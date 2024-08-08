@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="DocxControls.PropertiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocxControls"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:DesignTimePropertiesViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="450" d:DesignWidth="400">
+  <Grid>
+    <DataGrid ItemsSource="{Binding Properties}" HeadersVisibility="None" AutoGenerateColumns="False" 
+              CanUserAddRows="{Binding CanAddAndDeleteProperties}" 
+              CanUserDeleteRows="{Binding CanAddAndDeleteProperties}" SelectionChanged="DataGrid_SelectionChanged">
+      <DataGrid.Resources>
+        <Style TargetType="DataGridCell">
+          <Setter Property="BorderThickness" Value="0" />
+          <Setter Property="Padding" Value="0" />
+        </Style>
+      </DataGrid.Resources>
+      <DataGrid.Columns>
+        <DataGridTemplateColumn>
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}" 
+                         Background="Silver"
+                         Padding="5,0" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Binding="{Binding Value}" />
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DocxControls.DocumentPropertiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocxControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="30"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" MinHeight="50"/>
+      <RowDefinition Height="*" MinHeight="50"/>
+      <RowDefinition Height="*" MinHeight="50"/>
+    </Grid.RowDefinitions>
+    <Border Grid.Row="0" Grid.Column="0"
+            Background="Silver"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <TextBlock Text="Core" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock.LayoutTransform>
+          <RotateTransform Angle="-90" />
+        </TextBlock.LayoutTransform>
+      </TextBlock>
+    </Border>
+    <Border Grid.Row="0" Grid.Column="1"
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <local:PropertiesView DataContext="{Binding CoreProperties}"/>
+    </Border>
+    <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                  Height="5" Background="Silver" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+    <Border Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"
+            Background="Silver"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <TextBlock Text="App" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock.LayoutTransform>
+          <RotateTransform Angle="-90" />
+        </TextBlock.LayoutTransform>
+      </TextBlock>
+    </Border>
+    <Border Grid.Row="1" Grid.Column="1" Margin="0,5,0,0"
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <!--<local:DocumentPropertiesView DataContext ="AppProperties"/>-->
+    </Border>
+    <GridSplitter Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                  Height="5" Background="Silver" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+    <Border Grid.Row="2" Grid.Column="0" Margin="0,5,0,0"
+            Background="Silver"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <TextBlock Text="Custom" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock.LayoutTransform>
+          <RotateTransform Angle="-90" />
+        </TextBlock.LayoutTransform>
+      </TextBlock>
+    </Border>
+    <Border Grid.Row="2" Grid.Column="1" Margin="0,5,0,0"
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="1">
+      <!--<local:DocumentPropertiesView DataContext ="CustomProperties"/>-->
+    </Border>
+  </Grid>
+</UserControl>
