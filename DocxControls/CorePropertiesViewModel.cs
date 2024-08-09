@@ -12,7 +12,7 @@ public class CorePropertiesViewModel : PropertiesViewModel
   {
     WordDocument = wordDocument;
     CoreProperties = wordDocument.PackageProperties;
-    var names = CoreProperties.GetNames();
+    var names = CoreProperties.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
       var propertyViewModel = new PropertyViewModel

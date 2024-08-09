@@ -11,6 +11,8 @@ public class PropertyViewModel: ViewModel
 
   public Type Type { get; init; } = null!;
 
+  public bool IsReadOnly { get; init; }
+
   public object? Value
   {
     get => _Value;

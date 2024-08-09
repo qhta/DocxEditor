@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:DesignTimePropertiesViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="400">
+  <UserControl.Resources>
+    <local:DateTimeConverter x:Key="DateTimeConverter" />
+  </UserControl.Resources>
   <Grid>
     <DataGrid ItemsSource="{Binding Properties}" HeadersVisibility="None" AutoGenerateColumns="False" 
               CanUserAddRows="{Binding CanAddAndDeleteProperties}" 
@@ -27,7 +30,9 @@
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTextColumn Binding="{Binding Value}" />
+        <DataGridTextColumn MinWidth="400"
+                            IsReadOnly="{Binding IsReadOnly}"
+          Binding="{Binding Value, Converter={StaticResource DateTimeConverter}}" />
       </DataGrid.Columns>
     </DataGrid>
   </Grid>
