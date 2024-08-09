@@ -6,22 +6,30 @@
         xmlns:local="clr-namespace:DocxEditor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+  <Window.Resources>
+    <local:Strings x:Key="Strings"/>
+  </Window.Resources>
   <Grid>
-    <Menu x:Name="MainMenu" VerticalAlignment="Top">
-      <MenuItem Header="_File">
-        <MenuItem Header="_New" Click="New_Click"/>
-        <MenuItem Header="_Open" Click="Open_Click"/>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Menu x:Name="MainMenu" Grid.Row="0">
+      <MenuItem Header="{x:Static local:Strings._File}">
+        <MenuItem Header="{x:Static local:Strings._New}" Click="New_Click"/>
+        <MenuItem Header="{x:Static local:Strings._Open}" Click="Open_Click"/>
         <Separator/>
-        <MenuItem Header="_Exit" Click="Exit_Click"/>
+        <MenuItem Header="{x:Static local:Strings._Exit}" Click="Exit_Click"/>
       </MenuItem>
-      <MenuItem Header="_Edit">
-        <MenuItem Header="_Cut" Click="Cut_Click"/>
-        <MenuItem Header="_Copy" Click="Copy_Click"/>
-        <MenuItem Header="_Paste" Click="Paste_Click"/>
+      <MenuItem Header="{x:Static local:Strings._Edit}">
+        <MenuItem Header="{x:Static local:Strings._Cut}" Click="Cut_Click"/>
+        <MenuItem Header="{x:Static local:Strings._Copy}" Click="Copy_Click"/>
+        <MenuItem Header="{x:Static local:Strings._Paste}" Click="Paste_Click"/>
       </MenuItem>
-      <MenuItem Header="_Help">
-        <MenuItem Header="_About" Click="About_Click"/>
+      <MenuItem Header="{x:Static local:Strings._Help}">
+        <MenuItem Header="{x:Static local:Strings._About}" Click="About_Click"/>
       </MenuItem>
     </Menu>
+    <ContentPresenter Grid.Row="1" x:Name="MainPanel"/>
   </Grid>
 </Window>

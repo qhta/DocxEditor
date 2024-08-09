@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-
+using System.Globalization;
 using DocumentFormat.OpenXml.Packaging;
 
 using Qhta.OpenXmlTools;
@@ -13,11 +13,13 @@ public class CorePropertiesViewModel : PropertiesViewModel
     WordDocument = wordDocument;
     CoreProperties = wordDocument.PackageProperties;
     var names = CoreProperties.GetNames(ItemFilter.All);
+    Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
+      var caption = Strings.ResourceManager.GetString(name) ?? name;
       var propertyViewModel = new PropertyViewModel
       {
-        Caption = name,
+        Caption = caption,
         Name = name,
         Type = typeof(string),
         Value = CoreProperties.GetValue(name),

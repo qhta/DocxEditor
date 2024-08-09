@@ -24,7 +24,7 @@
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-              <TextBlock Text="{Binding Name}" 
+              <TextBlock Text="{Binding Caption}" 
                          Background="Silver"
                          Foreground="Black"
                          Padding="5,0" />

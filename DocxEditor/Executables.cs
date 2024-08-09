@@ -12,7 +12,7 @@ public static class Executables
 
   public static void FileOpenExecute(object sender)
   {
-    if (sender is not Window window) return;
+    if (sender is not MainWindow window) return;
     // ReSharper disable once UseObjectOrCollectionInitializer
     OpenFileDialog openFileDialog = new ();
     openFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
@@ -21,7 +21,7 @@ public static class Executables
       string filePath = openFileDialog.FileName;
       window.Title = filePath;
       var documentView = new DocumentView(filePath, true);
-      window.Content = documentView;
+      window.MainPanel.Content = documentView;
     }
   }
 }
