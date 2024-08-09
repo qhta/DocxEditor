@@ -17,11 +17,12 @@ public class CorePropertiesViewModel : PropertiesViewModel
     foreach (var name in names)
     {
       var caption = Strings.ResourceManager.GetString(name) ?? name;
+      var type = CoreProperties.GetType(name);
       var propertyViewModel = new PropertyViewModel
       {
         Caption = caption,
         Name = name,
-        Type = typeof(string),
+        PropType = type,
         Value = CoreProperties.GetValue(name),
 
       };

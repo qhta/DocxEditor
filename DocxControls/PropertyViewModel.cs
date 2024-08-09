@@ -9,7 +9,7 @@ public class PropertyViewModel: ViewModel
 
   public string Name { get; init; } = null!;
 
-  public Type Type { get; init; } = null!;
+  public Type PropType { get; init; } = null!;
 
   public bool IsReadOnly { get; init; }
 

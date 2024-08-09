@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -58,7 +59,7 @@ public partial class PropertiesView : UserControl
         var dataGridCell = FindParent<DataGridCell>(textBox);
         if (dataGridCell != null)
         {
-          var bindingExpression = textBox.GetBindingExpression(TextBox.TextProperty);
+          var bindingExpression = BindingOperations.GetBindingExpression(textBox, TextBox.TextProperty);
           if (bindingExpression != null)
           {
             bindingExpression.UpdateSource();

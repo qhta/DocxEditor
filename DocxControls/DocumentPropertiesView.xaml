@@ -11,12 +11,20 @@
   </UserControl.Resources>
   <Grid>
     <TabControl TabStripPlacement="Left">
-      <TabItem Header="{x:Static local:Strings.Core}" Background="Silver">
+      <TabItem Header="{x:Static local:Strings.CoreProperties}" Background="Silver">
         <Border Grid.Row="0" Grid.Column="1"
                 Background="White"
                 BorderBrush="Black"
                 BorderThickness="1">
           <local:PropertiesView DataContext="{Binding CoreProperties}"/>
+        </Border>
+      </TabItem>
+      <TabItem Header="{x:Static local:Strings.AppProperties}" Background="Silver">
+        <Border Grid.Row="0" Grid.Column="1"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="1">
+          <local:PropertiesView DataContext="{Binding AppProperties}"/>
         </Border>
       </TabItem>
     </TabControl>

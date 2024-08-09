@@ -8,12 +8,15 @@
              d:DataContext="{d:DesignInstance Type=local:DesignTimePropertiesViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="400">
   <UserControl.Resources>
-    <local:DateTimeConverter x:Key="DateTimeConverter" />
+    <local:PropertyValueConverter x:Key="PropertyValueConverter" />
   </UserControl.Resources>
   <Grid>
-    <DataGrid ItemsSource="{Binding Properties}" HeadersVisibility="None" AutoGenerateColumns="False" 
-              CanUserAddRows="{Binding CanAddAndDeleteProperties}" 
-              CanUserDeleteRows="{Binding CanAddAndDeleteProperties}" SelectionChanged="DataGrid_SelectionChanged">
+    <DataGrid 
+      ItemsSource="{Binding Properties}" 
+      HeadersVisibility="None" AutoGenerateColumns="False" 
+      CanUserAddRows="{Binding CanAddAndDeleteProperties}" 
+      CanUserDeleteRows="{Binding CanAddAndDeleteProperties}" 
+      SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />
@@ -24,20 +27,21 @@
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-              <TextBlock Text="{Binding Caption}" 
-                         Background="Silver"
-                         Foreground="Black"
-                         Padding="5,0" />
+              <TextBlock 
+                Text="{Binding Caption}" 
+                Background="Silver"
+                Foreground="Black"
+                Padding="5,0" />
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
         <DataGridTemplateColumn MinWidth="400">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-              <TextBox Text="{Binding Value, Converter={StaticResource DateTimeConverter}, UpdateSourceTrigger=Explicit}" 
+              <TextBox Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=Explicit}" 
                        IsReadOnly="{Binding IsReadOnly}"
                        KeyDown="TextBox_KeyDown" >
-                <TextBox.Style>
+              <TextBox.Style>
                   <Style TargetType="TextBox">
                     <Setter Property="BorderThickness" Value="0" />
                   </Style>

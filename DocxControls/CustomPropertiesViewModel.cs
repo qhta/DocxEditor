@@ -17,7 +17,7 @@ public class CustomPropertiesViewModel: PropertiesViewModel
       {
         Caption = name,
         Name = name,
-        Type = typeof(string),
+        PropType = typeof(string),
         Value = AppProperties.GetValue(name),
 
       };

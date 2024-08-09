@@ -1,8 +1,9 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
+using Qhta.OpenXmlTools;
 
 namespace DocxControls;
-public class DateTimeConverter : IValueConverter
+public class PropertyValueConverter : IValueConverter
 {
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
@@ -10,18 +11,28 @@ public class DateTimeConverter : IValueConverter
     {
       return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
     }
-    return value?.ToString();
+    return value?.AsString();
   }
 
   public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (targetType == typeof(DateTime) && value is string str)
+    if (targetType==typeof(object) && parameter is Type type)
     {
-      if (DateTime.TryParse(str, out var dateTime))
+      targetType = type;
+    }
+    if (value is string str)
+    {
+      if (targetType == typeof(DateTime))
       {
-        return dateTime;
+        if (DateTime.TryParse(str, out var dateTime))
+          return dateTime;
+      }
+      else
+      {
+        return str.FromString(targetType);
       }
     }
     return value;
   }
+
 }

@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Core" xml:space="preserve">
+  <data name="CoreProperties" xml:space="preserve">
     <value>Główne</value>
   </data>
   <data name="Properties" xml:space="preserve">
@@ -170,5 +170,53 @@
   </data>
   <data name="Revision" xml:space="preserve">
     <value>Rewizja</value>
+  </data>
+  <data name="AppProperties" xml:space="preserve">
+    <value>Aplikacji</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Aplikacja</value>
+  </data>
+  <data name="ApplicationVersion" xml:space="preserve">
+    <value>Wersja aplikacji</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="DigitalSignature" xml:space="preserve">
+    <value>Sygnatura cyfrowa</value>
+  </data>
+  <data name="HeadingPairs" xml:space="preserve">
+    <value>Pary nagłówków</value>
+  </data>
+  <data name="HyperlinkBase" xml:space="preserve">
+    <value>Ścieżka bazowa hiperłączy</value>
+  </data>
+  <data name="HyperlinkList" xml:space="preserve">
+    <value>Lista hiperłączy</value>
+  </data>
+  <data name="HyperlinksChanged" xml:space="preserve">
+    <value>Zmieniono hiperłącza</value>
+  </data>
+  <data name="LinksUpToDate" xml:space="preserve">
+    <value>Łącza aktualne</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Kierownik</value>
+  </data>
+  <data name="PresentationFormat" xml:space="preserve">
+    <value>Format prezentacji</value>
+  </data>
+  <data name="ScaleCrop" xml:space="preserve">
+    <value>Przycięcie skalowane</value>
+  </data>
+  <data name="SharedDocument" xml:space="preserve">
+    <value>Dokument współdzielony</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Szablon</value>
+  </data>
+  <data name="TitlesOfParts" xml:space="preserve">
+    <value>Tytuły części</value>
   </data>
 </root>
