@@ -26,13 +26,26 @@
             <DataTemplate>
               <TextBlock Text="{Binding Name}" 
                          Background="Silver"
+                         Foreground="Black"
                          Padding="5,0" />
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTextColumn MinWidth="400"
-                            IsReadOnly="{Binding IsReadOnly}"
-          Binding="{Binding Value, Converter={StaticResource DateTimeConverter}}" />
+        <DataGridTemplateColumn MinWidth="400">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBox Text="{Binding Value, Converter={StaticResource DateTimeConverter}, UpdateSourceTrigger=Explicit}" 
+                       IsReadOnly="{Binding IsReadOnly}"
+                       KeyDown="TextBox_KeyDown" >
+                <TextBox.Style>
+                  <Style TargetType="TextBox">
+                    <Setter Property="BorderThickness" Value="0" />
+                  </Style>
+                </TextBox.Style>
+              </TextBox>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

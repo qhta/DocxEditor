@@ -2,7 +2,7 @@
 using System.Windows.Data;
 
 namespace DocxControls;
-public class DateTimeConverter: IValueConverter
+public class DateTimeConverter : IValueConverter
 {
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
@@ -15,7 +15,7 @@ public class DateTimeConverter: IValueConverter
 
   public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-   if (targetType == typeof(DateTime) && value is string str)
+    if (targetType == typeof(DateTime) && value is string str)
     {
       if (DateTime.TryParse(str, out var dateTime))
       {
