@@ -26,12 +26,12 @@ public class CorePropertiesViewModel : PropertiesViewModel
         Value = CoreProperties.GetValue(name),
 
       };
-      propertyViewModel.PropertyChanged += CorePropertiesViewModel_PropertyChanged;
+      propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
       Properties.Add(propertyViewModel);
     }
   }
 
-  private void CorePropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
     var propertyViewModel = (PropertyViewModel)sender!;
     var propertyName = e.PropertyName!;

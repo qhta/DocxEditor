@@ -6,27 +6,28 @@ using System.Globalization;
 
 namespace DocxControls;
 
-public class AppPropertiesViewModel : PropertiesViewModel
+public class StatPropertiesViewModel : PropertiesViewModel
 {
 
-  public AppPropertiesViewModel(WordprocessingDocument wordDocument)
+  public StatPropertiesViewModel(WordprocessingDocument wordDocument)
   {
     WordDocument = wordDocument;
-    AppProperties = wordDocument.GetExtendedFileProperties();
-    var names = AppProperties.GetNames(ItemFilter.All);
+    StatProperties = wordDocument.GetExtendedFileProperties();
+    var names = StatProperties.GetNames(ItemFilter.All);
     Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
-      if (!AppProperties.IsVolatile(name) && AppProperties.AppliesToApplication(name, AppType.Word))
+      if (StatProperties.IsVolatile(name) && StatProperties.AppliesToApplication(name, AppType.Word))
       {
         var caption = Strings.ResourceManager.GetString(name) ?? name;
-        var type = AppProperties.GetType(name);
+        var type = StatProperties.GetType(name);
         var propertyViewModel = new PropertyViewModel
         {
           Caption = caption,
           Name = name,
           PropType = type,
-          Value = AppProperties.GetValue(name),
+          IsReadOnly = true,
+          Value = StatProperties.GetValue(name),
 
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
@@ -39,10 +40,10 @@ public class AppPropertiesViewModel : PropertiesViewModel
   {
     var propertyViewModel = (PropertyViewModel)sender!;
     var propertyName = e.PropertyName!;
-    AppProperties.SetValue(propertyName, propertyViewModel.Value);
+    StatProperties.SetValue(propertyName, propertyViewModel.Value);
   }
 
 
-  private readonly DocumentFormat.OpenXml.ExtendedProperties.Properties AppProperties;
+  private readonly DocumentFormat.OpenXml.ExtendedProperties.Properties StatProperties;
 
 }

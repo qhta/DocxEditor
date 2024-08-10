@@ -18,11 +18,11 @@ public partial class DocumentView : UserControl, IDisposable
     Open(filePath, isEditable);
   }
 
-  public WordDocumentViewModel DocumentViewModel { get; set; } = null!;
+  public DocumentViewModel DocumentViewModel { get; set; } = null!;
 
   public void Open(string filePath, bool isEditable)
   {
-    DocumentViewModel = new WordDocumentViewModel(filePath, isEditable);
+    DocumentViewModel = new DocumentViewModel(filePath, isEditable);
     DataContext = DocumentViewModel;
   }
 

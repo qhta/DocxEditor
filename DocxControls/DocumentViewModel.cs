@@ -1,8 +1,8 @@
 ﻿namespace DocxControls;
 
-public class WordDocumentViewModel: IDisposable
+public class DocumentViewModel: IDisposable
 {
-  public WordDocumentViewModel(string filePath, bool isEditable)
+  public DocumentViewModel(string filePath, bool isEditable)
   {
     Open(filePath, isEditable);
   }
@@ -40,6 +40,20 @@ public class WordDocumentViewModel: IDisposable
   }
   private PropertiesViewModel? _AppProperties;
 
+
+  public PropertiesViewModel StatProperties
+  {
+    get
+    {
+      if (_StatProperties == null)
+      {
+        _StatProperties = new StatPropertiesViewModel(WordDocument);
+      }
+      return _StatProperties;
+    }
+  }
+  private PropertiesViewModel? _StatProperties;
+
   public PropertiesViewModel CustomProperties
   {
     get
@@ -76,7 +90,7 @@ public class WordDocumentViewModel: IDisposable
     _disposed = true;
   }
 
-  ~WordDocumentViewModel()
+  ~DocumentViewModel()
   {
     Dispose(false);
   }

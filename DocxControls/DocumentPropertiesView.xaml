@@ -8,85 +8,45 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
     <local:Strings x:Key="Strings"/>
+    <Style x:Key="TabItemStyle" TargetType="TabItem">
+      <Setter Property="Background" Value="LightGray"/>
+    </Style>
+    <Style x:Key="BorderStyle" TargetType="Border">
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="BorderBrush" Value="Black"/>
+      <Setter Property="BorderThickness" Value="1"/>
+    </Style>
   </UserControl.Resources>
   <Grid>
     <TabControl TabStripPlacement="Left">
-      <TabItem Header="{x:Static local:Strings.CoreProperties}" Background="Silver">
-        <Border Grid.Row="0" Grid.Column="1"
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="1">
+      <TabItem 
+        Header="{x:Static local:Strings.CoreProperties}" 
+        Style="{StaticResource TabItemStyle}">
+        <Border 
+          Grid.Row="0" Grid.Column="1"
+          Style="{StaticResource BorderStyle}">
           <local:PropertiesView DataContext="{Binding CoreProperties}"/>
         </Border>
       </TabItem>
-      <TabItem Header="{x:Static local:Strings.AppProperties}" Background="Silver">
-        <Border Grid.Row="0" Grid.Column="1"
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="1">
+      <TabItem 
+        Header="{x:Static local:Strings.AppProperties}" 
+        Style="{StaticResource TabItemStyle}">
+        <Border 
+          Grid.Row="0" Grid.Column="1"
+          Style="{StaticResource BorderStyle}">
           <local:PropertiesView DataContext="{Binding AppProperties}"/>
+        </Border>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static local:Strings.StatProperties}" 
+        Style="{StaticResource TabItemStyle}">
+        <Border 
+          Grid.Row="0" Grid.Column="1"
+          Style="{StaticResource BorderStyle}">
+          <local:PropertiesView DataContext="{Binding StatProperties}"/>
         </Border>
       </TabItem>
     </TabControl>
 
-    <!--<Grid.ColumnDefinitions>
-      <ColumnDefinition Width="30"/>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" MinHeight="50"/>
-      <RowDefinition Height="*" MinHeight="50"/>
-      <RowDefinition Height="*" MinHeight="50"/>
-    </Grid.RowDefinitions>
-    <Border Grid.Row="0" Grid.Column="0"
-            Background="Silver"
-            BorderBrush="Black"
-            BorderThickness="1">
-      <TextBlock Text="Core" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock.LayoutTransform>
-          <RotateTransform Angle="-90" />
-        </TextBlock.LayoutTransform>
-      </TextBlock>
-    </Border>
-    <Border Grid.Row="0" Grid.Column="1"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="1">
-      <local:PropertiesView DataContext="{Binding CoreProperties}"/>
-    </Border>
-    <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
-                  Height="5" Background="Silver" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-    <Border Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"
-            Background="Silver"
-            BorderBrush="Black"
-            BorderThickness="1">
-      <TextBlock Text="App" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock.LayoutTransform>
-          <RotateTransform Angle="-90" />
-        </TextBlock.LayoutTransform>
-      </TextBlock>
-    </Border>
-    <Border Grid.Row="1" Grid.Column="1" Margin="0,5,0,0"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="1">
-    </Border>
-    <GridSplitter Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                  Height="5" Background="Silver" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-    <Border Grid.Row="2" Grid.Column="0" Margin="0,5,0,0"
-            Background="Silver"
-            BorderBrush="Black"
-            BorderThickness="1">
-      <TextBlock Text="Custom" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock.LayoutTransform>
-          <RotateTransform Angle="-90" />
-        </TextBlock.LayoutTransform>
-      </TextBlock>
-    </Border>
-    <Border Grid.Row="2" Grid.Column="1" Margin="0,5,0,0"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="1">
-    </Border>-->
   </Grid>
 </UserControl>

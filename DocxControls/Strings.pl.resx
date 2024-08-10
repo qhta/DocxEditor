@@ -219,4 +219,31 @@
   <data name="TitlesOfParts" xml:space="preserve">
     <value>Tytuły części</value>
   </data>
+  <data name="StatProperties" xml:space="preserve">
+    <value>Statystyczne</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Czas całkowity [min]</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Liczba słów</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Liczba stron</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>Liczba akapitów</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Liczba linii</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Liczba znaków</value>
+  </data>
+  <data name="CharactersWithSpaces" xml:space="preserve">
+    <value>L. znaków ze spacjami</value>
+  </data>
+  <data name="MultimediaClips" xml:space="preserve">
+    <value>Klipy multimedialne</value>
+  </data>
 </root>

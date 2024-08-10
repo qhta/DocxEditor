@@ -97,6 +97,24 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Characters count.
+        /// </summary>
+        public static string Characters {
+            get {
+                return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Characters with spaces.
+        /// </summary>
+        public static string CharactersWithSpaces {
+            get {
+                return ResourceManager.GetString("CharactersWithSpaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string Company {
@@ -250,6 +268,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lines count.
+        /// </summary>
+        public static string Lines {
+            get {
+                return ResourceManager.GetString("Lines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Links up to date.
         /// </summary>
         public static string LinksUpToDate {
@@ -273,6 +300,33 @@ namespace DocxControls {
         public static string Modified {
             get {
                 return ResourceManager.GetString("Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multimedia clips.
+        /// </summary>
+        public static string MultimediaClips {
+            get {
+                return ResourceManager.GetString("MultimediaClips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages count.
+        /// </summary>
+        public static string Pages {
+            get {
+                return ResourceManager.GetString("Pages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paragraphs count.
+        /// </summary>
+        public static string Paragraphs {
+            get {
+                return ResourceManager.GetString("Paragraphs", resourceCulture);
             }
         }
         
@@ -322,6 +376,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string StatProperties {
+            get {
+                return ResourceManager.GetString("StatProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject.
         /// </summary>
         public static string Subject {
@@ -358,11 +421,29 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total time [min].
+        /// </summary>
+        public static string TotalTime {
+            get {
+                return ResourceManager.GetString("TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Words count.
+        /// </summary>
+        public static string Words {
+            get {
+                return ResourceManager.GetString("Words", resourceCulture);
             }
         }
     }
