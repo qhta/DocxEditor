@@ -4,30 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocxEditor"
+        xmlns:controls="clr-namespace:DocxControls;assembly=DocxControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-  <Window.Resources>
-    <local:Strings x:Key="Strings"/>
-  </Window.Resources>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
     <Menu x:Name="MainMenu" Grid.Row="0">
-      <MenuItem Header="{x:Static local:Strings._File}">
-        <MenuItem Header="{x:Static local:Strings._New}" Click="New_Click"/>
-        <MenuItem Header="{x:Static local:Strings._Open}" Click="Open_Click"/>
+      <MenuItem Header="{x:Static controls:Strings._File}">
+        <MenuItem Header="{x:Static controls:Strings._New}" Click="New_Click"/>
+        <MenuItem Header="{x:Static controls:Strings._Open}" Click="Open_Click"/>
         <Separator/>
-        <MenuItem Header="{x:Static local:Strings._Exit}" Click="Exit_Click"/>
+        <MenuItem Header="{x:Static controls:Strings._Exit}" Click="Exit_Click"/>
       </MenuItem>
-      <MenuItem Header="{x:Static local:Strings._Edit}">
-        <MenuItem Header="{x:Static local:Strings._Cut}" Click="Cut_Click"/>
-        <MenuItem Header="{x:Static local:Strings._Copy}" Click="Copy_Click"/>
-        <MenuItem Header="{x:Static local:Strings._Paste}" Click="Paste_Click"/>
+      <MenuItem Header="{x:Static controls:Strings._Edit}">
+        <MenuItem Header="{x:Static controls:Strings._Cut}" Click="Cut_Click"/>
+        <MenuItem Header="{x:Static controls:Strings._Copy}" Click="Copy_Click"/>
+        <MenuItem Header="{x:Static controls:Strings._Paste}" Click="Paste_Click"/>
       </MenuItem>
-      <MenuItem Header="{x:Static local:Strings._Help}">
-        <MenuItem Header="{x:Static local:Strings._About}" Click="About_Click"/>
+      <MenuItem Header="{x:Static controls:Strings._Help}">
+        <MenuItem Header="{x:Static controls:Strings._About}" Click="About_Click"/>
       </MenuItem>
     </Menu>
     <ContentPresenter Grid.Row="1" x:Name="MainPanel"/>

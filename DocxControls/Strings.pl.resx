@@ -249,4 +249,46 @@
   <data name="CustomProperties" xml:space="preserve">
     <value>Dowolne</value>
   </data>
+  <data name="_About" xml:space="preserve">
+    <value>_O programie</value>
+  </data>
+  <data name="_Copy" xml:space="preserve">
+    <value>_Kopiuj</value>
+  </data>
+  <data name="_Cut" xml:space="preserve">
+    <value>Wy_tnij</value>
+  </data>
+  <data name="_Edit" xml:space="preserve">
+    <value>_Edycja</value>
+  </data>
+  <data name="_Exit" xml:space="preserve">
+    <value>_Wyjście</value>
+  </data>
+  <data name="_File" xml:space="preserve">
+    <value>_Plik</value>
+  </data>
+  <data name="_Help" xml:space="preserve">
+    <value>_Pomoc</value>
+  </data>
+  <data name="_New" xml:space="preserve">
+    <value>_Nowy</value>
+  </data>
+  <data name="_Open" xml:space="preserve">
+    <value>_Otwórz</value>
+  </data>
+  <data name="_Paste" xml:space="preserve">
+    <value>_Wklej</value>
+  </data>
+  <data name="ApplicationClosing" xml:space="preserve">
+    <value>Zamykanie aplikacji</value>
+  </data>
+  <data name="DocumentClosing" xml:space="preserve">
+    <value>Zamykanie dokumentu</value>
+  </data>
+  <data name="SaveChangesInDocument" xml:space="preserve">
+    <value>Otwarto dokument. Czy chcesz zapisać zmiany w tym dokumencie?</value>
+  </data>
+  <data name="SaveChangesInDocuments" xml:space="preserve">
+    <value>Otwarto kilka dokumentów. Czy chcesz zapisać zmiany w tych dokumentach?</value>
+  </data>
 </root>

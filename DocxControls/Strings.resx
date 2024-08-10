@@ -249,4 +249,46 @@
   <data name="CustomProperties" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="_About" xml:space="preserve">
+    <value>_About</value>
+  </data>
+  <data name="_Copy" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="_Cut" xml:space="preserve">
+    <value>_Cut</value>
+  </data>
+  <data name="_Edit" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
+  <data name="_Exit" xml:space="preserve">
+    <value>_Exit</value>
+  </data>
+  <data name="_File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="_Help" xml:space="preserve">
+    <value>_Help</value>
+  </data>
+  <data name="_New" xml:space="preserve">
+    <value>_New</value>
+  </data>
+  <data name="_Open" xml:space="preserve">
+    <value>_Open</value>
+  </data>
+  <data name="_Paste" xml:space="preserve">
+    <value>_Paste</value>
+  </data>
+  <data name="ApplicationClosing" xml:space="preserve">
+    <value>Application closing</value>
+  </data>
+  <data name="DocumentClosing" xml:space="preserve">
+    <value>Document closing</value>
+  </data>
+  <data name="SaveChangesInDocument" xml:space="preserve">
+    <value>There is one document open. Do you want to save changes in this document?</value>
+  </data>
+  <data name="SaveChangesInDocuments" xml:space="preserve">
+    <value>There are several documents open. Do you want to save changes in them?</value>
+  </data>
 </root>

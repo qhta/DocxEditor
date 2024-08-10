@@ -61,11 +61,110 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _About.
+        /// </summary>
+        public static string _About {
+            get {
+                return ResourceManager.GetString("_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Copy.
+        /// </summary>
+        public static string _Copy {
+            get {
+                return ResourceManager.GetString("_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Cut.
+        /// </summary>
+        public static string _Cut {
+            get {
+                return ResourceManager.GetString("_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Edit.
+        /// </summary>
+        public static string _Edit {
+            get {
+                return ResourceManager.GetString("_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Exit.
+        /// </summary>
+        public static string _Exit {
+            get {
+                return ResourceManager.GetString("_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _File.
+        /// </summary>
+        public static string _File {
+            get {
+                return ResourceManager.GetString("_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Help.
+        /// </summary>
+        public static string _Help {
+            get {
+                return ResourceManager.GetString("_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _New.
+        /// </summary>
+        public static string _New {
+            get {
+                return ResourceManager.GetString("_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Open.
+        /// </summary>
+        public static string _Open {
+            get {
+                return ResourceManager.GetString("_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Paste.
+        /// </summary>
+        public static string _Paste {
+            get {
+                return ResourceManager.GetString("_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application.
         /// </summary>
         public static string Application {
             get {
                 return ResourceManager.GetString("Application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application closing.
+        /// </summary>
+        public static string ApplicationClosing {
+            get {
+                return ResourceManager.GetString("ApplicationClosing", resourceCulture);
             }
         }
         
@@ -192,6 +291,15 @@ namespace DocxControls {
         public static string DigitalSignature {
             get {
                 return ResourceManager.GetString("DigitalSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document closing.
+        /// </summary>
+        public static string DocumentClosing {
+            get {
+                return ResourceManager.GetString("DocumentClosing", resourceCulture);
             }
         }
         
@@ -363,6 +471,24 @@ namespace DocxControls {
         public static string Revision {
             get {
                 return ResourceManager.GetString("Revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is one document open. Do you want to save changes in this document?.
+        /// </summary>
+        public static string SaveChangesInDocument {
+            get {
+                return ResourceManager.GetString("SaveChangesInDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are several documents open. Do you want to save changes in them?.
+        /// </summary>
+        public static string SaveChangesInDocuments {
+            get {
+                return ResourceManager.GetString("SaveChangesInDocuments", resourceCulture);
             }
         }
         

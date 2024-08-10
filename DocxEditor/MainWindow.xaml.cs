@@ -2,12 +2,13 @@
 using System.Windows;
 
 using DocumentFormat.OpenXml.Packaging;
+using DocxControls;
 
 namespace DocxEditor;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : Window, IMainWindow
 {
 
   public MainWindow()
@@ -52,7 +53,7 @@ public partial class MainWindow : Window
 
   protected override void OnClosing(CancelEventArgs e)
   {
-    var documents = (Application.Current as App)!.Documents;
+    var documents = Executables.Documents;
     var documentCount = documents.Count();
     if (documentCount == 0) return;
     var message = documentCount == 1 ? Strings.SaveChangesInDocument : Strings.SaveChangesInDocuments;
@@ -70,5 +71,15 @@ public partial class MainWindow : Window
           doc.Dispose();
         }
     }
+  }
+
+  public void SetTitle(string title)
+  {
+    Title = title;
+  }
+
+  public void ShowDocumentView(DocumentView documentView)
+  {
+    MainPanel.Content = documentView;
   }
 }
