@@ -9,6 +9,32 @@
              d:DesignHeight="450" d:DesignWidth="400">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
+    <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
+      <TextBox 
+        Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=Explicit}" 
+        IsReadOnly="{Binding IsReadOnly}"
+        Padding="5,0"
+        KeyDown="TextBox_KeyDown" >
+        <TextBox.Style>
+          <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0" />
+          </Style>
+        </TextBox.Style>
+      </TextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
+      <CheckBox 
+        IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+        Margin="20,0"/>
+    </DataTemplate>
+    <!--<DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
+      <ComboBox 
+        ItemsSource="{Binding Options}" 
+        SelectedItem="{Binding SelectedOption}" />
+    </DataTemplate>-->
+    <local:PropertyViewTemplateSelector x:Key="PropertyViewTemplateSelector"
+                              TextTemplate="{StaticResource TextTemplate}"
+                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
   </UserControl.Resources>
   <Grid>
     <DataGrid 
@@ -29,27 +55,15 @@
             <DataTemplate>
               <TextBlock 
                 Text="{Binding Caption}" 
+                Padding="5,0"
                 Background="Silver"
-                Foreground="Black"
-                Padding="5,0" />
+                Foreground="Black"/>
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTemplateColumn MinWidth="400">
-          <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-              <TextBox Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=Explicit}" 
-                       IsReadOnly="{Binding IsReadOnly}"
-                       KeyDown="TextBox_KeyDown" >
-              <TextBox.Style>
-                  <Style TargetType="TextBox">
-                    <Setter Property="BorderThickness" Value="0" />
-                  </Style>
-                </TextBox.Style>
-              </TextBox>
-            </DataTemplate>
-          </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>
+        <DataGridTemplateColumn 
+          CellTemplateSelector="{StaticResource PropertyViewTemplateSelector}" 
+          MinWidth="400"/>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>
