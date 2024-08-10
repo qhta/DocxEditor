@@ -52,10 +52,23 @@ public partial class MainWindow : Window
 
   protected override void OnClosing(CancelEventArgs e)
   {
-    base.OnClosing(e);
-    foreach (var doc in (Application.Current as App)!.Documents)
+    var documents = (Application.Current as App)!.Documents;
+    var documentCount = documents.Count();
+    if (documentCount == 0) return;
+    var message = documentCount == 1 ? Strings.SaveChangesInDocument : Strings.SaveChangesInDocuments;
+    if (documentCount == 1)
     {
-      doc.Dispose();
+      var result = MessageBox.Show(message, Strings.ApplicationClosing, MessageBoxButton.YesNoCancel);
+      if (result == MessageBoxResult.Cancel)
+      {
+        e.Cancel = true;
+        return;
+      }
+      if (result == MessageBoxResult.Yes)
+        foreach (var doc in documents)
+        {
+          doc.Dispose();
+        }
     }
   }
 }

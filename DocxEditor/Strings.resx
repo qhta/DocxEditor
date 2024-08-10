@@ -127,4 +127,16 @@
   <data name="_About" xml:space="preserve">
     <value>_About</value>
   </data>
+  <data name="SaveChangesInDocument" xml:space="preserve">
+    <value>There is one document open. Do you want to save changes in this document?</value>
+  </data>
+  <data name="SaveChangesInDocuments" xml:space="preserve">
+    <value>There are several documents open. Do you want to save changes in them?</value>
+  </data>
+  <data name="DocumentClosing" xml:space="preserve">
+    <value>Document closing</value>
+  </data>
+  <data name="ApplicationClosing" xml:space="preserve">
+    <value>Application closing</value>
+  </data>
 </root>

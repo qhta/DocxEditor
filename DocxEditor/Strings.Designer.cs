@@ -149,5 +149,41 @@ namespace DocxEditor {
                 return ResourceManager.GetString("_Paste", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application closing.
+        /// </summary>
+        public static string ApplicationClosing {
+            get {
+                return ResourceManager.GetString("ApplicationClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document closing.
+        /// </summary>
+        public static string DocumentClosing {
+            get {
+                return ResourceManager.GetString("DocumentClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is one document open. Do you want to save changes in this document?.
+        /// </summary>
+        public static string SaveChangesInDocument {
+            get {
+                return ResourceManager.GetString("SaveChangesInDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes in the documents?.
+        /// </summary>
+        public static string SaveChangesInDocuments {
+            get {
+                return ResourceManager.GetString("SaveChangesInDocuments", resourceCulture);
+            }
+        }
     }
 }
