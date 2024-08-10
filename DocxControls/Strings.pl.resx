@@ -246,4 +246,7 @@
   <data name="MultimediaClips" xml:space="preserve">
     <value>Klipy multimedialne</value>
   </data>
+  <data name="CustomProperties" xml:space="preserve">
+    <value>Dowolne</value>
+  </data>
 </root>

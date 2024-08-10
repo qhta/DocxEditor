@@ -1,19 +1,39 @@
 ﻿namespace DocxControls;
 
-public class DocumentViewModel: IDisposable
+/// <summary>
+/// View model for a document.
+/// </summary>
+public class DocumentViewModel
 {
+  /// <summary>
+  /// Initializes a new instance of the <see cref="DocumentViewModel"/> class.
+  /// </summary>
+  /// <param name="filePath"></param>
+  /// <param name="isEditable"></param>
   public DocumentViewModel(string filePath, bool isEditable)
   {
     Open(filePath, isEditable);
   }
 
+  /// <summary>
+  /// Internal WordprocessingDocument object
+  /// </summary>
   public DocumentFormat.OpenXml.Packaging.WordprocessingDocument WordDocument { get; set; } = null!;
 
+  /// <summary>
+  /// Open a document for viewing/editing.
+  /// </summary>
+  /// <param name="filePath"></param>
+  /// <param name="isEditable"></param>
   public void Open(string filePath, bool isEditable)
   {
     WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(filePath, isEditable);
   }
 
+  /// <summary>
+  /// Access to the core properties of the document
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
   public PropertiesViewModel CoreProperties
   {
     get
@@ -27,6 +47,10 @@ public class DocumentViewModel: IDisposable
   }
   private PropertiesViewModel? _CoreProperties;
 
+  /// <summary>
+  /// Access to the application-specific properties of the document
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
   public PropertiesViewModel AppProperties
   {
     get
@@ -41,6 +65,10 @@ public class DocumentViewModel: IDisposable
   private PropertiesViewModel? _AppProperties;
 
 
+  /// <summary>
+  /// Access to the statistics properties of the document
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
   public PropertiesViewModel StatProperties
   {
     get
@@ -54,6 +82,10 @@ public class DocumentViewModel: IDisposable
   }
   private PropertiesViewModel? _StatProperties;
 
+  /// <summary>
+  /// Access to the custom properties of the document
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
   public PropertiesViewModel CustomProperties
   {
     get
@@ -67,32 +99,4 @@ public class DocumentViewModel: IDisposable
   }
   private PropertiesViewModel? _CustomProperties;
 
-  #region Dispose pattern
-  private bool _disposed = false;
-
-  public void Dispose()
-  {
-    Dispose(true);
-    GC.SuppressFinalize(this);
-  }
-
-  protected virtual void Dispose(bool disposing)
-  {
-    if (_disposed) return;
-
-    if (disposing)
-    {
-      // Dispose managed resources here
-    }
-
-    // Dispose unmanaged resources here
-
-    _disposed = true;
-  }
-
-  ~DocumentViewModel()
-  {
-    Dispose(false);
-  }
-  #endregion
 }

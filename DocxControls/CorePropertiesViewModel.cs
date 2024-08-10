@@ -5,9 +5,15 @@ using DocumentFormat.OpenXml.Packaging;
 using Qhta.OpenXmlTools;
 
 namespace DocxControls;
+/// <summary>
+/// View model for the core document properties
+/// </summary>
 public class CorePropertiesViewModel : PropertiesViewModel
 {
-
+  /// <summary>
+  /// Initializes a new instance of the <see cref="CorePropertiesViewModel"/> class.
+  /// </summary>
+  /// <param name="wordDocument"></param>
   public CorePropertiesViewModel(WordprocessingDocument wordDocument)
   {
     WordDocument = wordDocument;

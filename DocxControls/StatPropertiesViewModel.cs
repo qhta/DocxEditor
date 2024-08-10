@@ -6,9 +6,16 @@ using System.Globalization;
 
 namespace DocxControls;
 
+/// <summary>
+/// View model for the statistics properties
+/// </summary>
 public class StatPropertiesViewModel : PropertiesViewModel
 {
 
+  /// <summary>
+  /// Initializes a new instance of the <see cref="StatPropertiesViewModel"/> class.
+  /// </summary>
+  /// <param name="wordDocument"></param>
   public StatPropertiesViewModel(WordprocessingDocument wordDocument)
   {
     WordDocument = wordDocument;

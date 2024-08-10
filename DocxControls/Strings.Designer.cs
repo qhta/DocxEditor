@@ -169,6 +169,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string CustomProperties {
+            get {
+                return ResourceManager.GetString("CustomProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {

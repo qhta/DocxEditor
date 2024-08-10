@@ -6,9 +6,16 @@ using System.Globalization;
 
 namespace DocxControls;
 
+/// <summary>
+/// View model for the application-specific properties
+/// </summary>
 public class AppPropertiesViewModel : PropertiesViewModel
 {
 
+  /// <summary>
+  /// Initializes a new instance of the <see cref="AppPropertiesViewModel"/> class.
+  /// </summary>
+  /// <param name="wordDocument"></param>
   public AppPropertiesViewModel(WordprocessingDocument wordDocument)
   {
     WordDocument = wordDocument;

@@ -1,8 +1,14 @@
 ﻿namespace DocxControls;
 
+/// <summary>
+/// Design-time view model for the properties of a document.
+/// </summary>
 public class DesignTimePropertiesViewModel: PropertiesViewModel
 {
 
+  /// <summary>
+  /// Default constructor
+  /// </summary>
   public DesignTimePropertiesViewModel()
   {
     Properties.Add(new PropertyViewModel { Caption = "Title", Name="Title", PropType=typeof(string), Value = "Title of the document" });

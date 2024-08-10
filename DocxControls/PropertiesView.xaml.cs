@@ -6,10 +6,16 @@ using System.Windows.Media;
 
 namespace DocxControls;
 
+/// <summary>
+/// Interaction logic for PropertiesView.xaml
+/// </summary>
 public partial class PropertiesView : UserControl
 {
   private object? _previouslySelectedItem;
 
+  /// <summary>
+  /// Default constructor
+  /// </summary>
   public PropertiesView()
   {
     InitializeComponent();

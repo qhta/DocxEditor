@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:DesignTimePropertiesViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="400" d:DesignWidth="600">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
     <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
@@ -27,14 +27,36 @@
         IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
         Margin="5,0"/>
     </DataTemplate>
-    <!--<DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
-      <ComboBox 
-        ItemsSource="{Binding Options}" 
-        SelectedItem="{Binding SelectedOption}" />
-    </DataTemplate>-->
-    <local:PropertyViewTemplateSelector x:Key="PropertyViewTemplateSelector"
+    <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
+    <DataTemplate x:Key="CaptionTemplate"  >
+      <TextBlock 
+        Text="{Binding Caption}" 
+        Padding="5,0"
+        Background="Silver"
+        Foreground="Black"/>
+    </DataTemplate>
+    <DataTemplate x:Key="NameTemplate"  >
+      <TextBox 
+        Text="{Binding Name}"
+        Padding="5,0"
+        Background="White"
+        Foreground="Black"/>
+    </DataTemplate>
+    <local:PropertyNameTemplateSelector x:Key="PropertyNameTemplateSelector"
+                                         CaptionTemplate="{StaticResource CaptionTemplate}"
+                                         NameTemplate="{StaticResource NameTemplate}" />
+    <local:PropertyTypeConverter x:Key="PropertyTypeConverter"/>
+    <DataTemplate x:Key="PropTypeTemplate" DataType="local:PropertyViewModel">
+      <ComboBox 
+        ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"
+        DisplayMemberPath="Name"
+        SelectedItem="{Binding PropType}"
+        SelectedValuePath="Name"
+        />
+    </DataTemplate>
+
   </UserControl.Resources>
   <Grid>
     <DataGrid 
@@ -50,19 +72,16 @@
         </Style>
       </DataGrid.Resources>
       <DataGrid.Columns>
-        <DataGridTemplateColumn>
-          <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-              <TextBlock 
-                Text="{Binding Caption}" 
-                Padding="5,0"
-                Background="Silver"
-                Foreground="Black"/>
-            </DataTemplate>
-          </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>
+        <DataGridTemplateColumn
+          CellTemplateSelector="{StaticResource PropertyNameTemplateSelector}" 
+          MinWidth="200"/>
+        <DataGridTemplateColumn
+          x:Name="PropTypeColumn"
+          CellTemplate="{StaticResource PropTypeTemplate}" 
+          Visibility="Visible"
+          MinWidth="100"/>
         <DataGridTemplateColumn 
-          CellTemplateSelector="{StaticResource PropertyViewTemplateSelector}" 
+          CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
           MinWidth="400"/>
       </DataGrid.Columns>
     </DataGrid>

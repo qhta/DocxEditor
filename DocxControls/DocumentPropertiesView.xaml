@@ -46,7 +46,15 @@
           <local:PropertiesView DataContext="{Binding StatProperties}"/>
         </Border>
       </TabItem>
+      <TabItem 
+        Header="{x:Static local:Strings.CustomProperties}" 
+        Style="{StaticResource TabItemStyle}">
+        <Border 
+          Grid.Row="0" Grid.Column="1"
+          Style="{StaticResource BorderStyle}">
+          <local:PropertiesView DataContext="{Binding CustomProperties}"/>
+        </Border>
+      </TabItem>
     </TabControl>
-
   </Grid>
 </UserControl>

@@ -5,11 +5,24 @@ using DocumentFormat.OpenXml.Packaging;
 using Qhta.MVVM;
 
 namespace DocxControls;
-public class PropertiesViewModel: ViewModel
+
+/// <summary>
+/// Abstract class for the properties view model
+/// </summary>
+public abstract class PropertiesViewModel: ViewModel
 {
+  /// <summary>
+  /// Internal Wordprocessing document
+  /// </summary>
   public WordprocessingDocument WordDocument { get; init; } = null!;
 
+  /// <summary>
+  /// Observable collection of properties
+  /// </summary>
   public ObservableCollection<PropertyViewModel> Properties { get; } = new();
 
+  /// <summary>
+  /// Can add and delete properties?
+  /// </summary>
   public bool CanAddAndDeleteProperties { get; init; }
 }

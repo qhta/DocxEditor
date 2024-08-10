@@ -4,23 +4,28 @@ using System.Windows.Controls;
 namespace DocxControls;
 
 /// <summary>
-/// Selects a DataTemplate based on the <see cref="PropertyViewModel"/> type
+/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="PropertyViewModel"/> property type
 /// </summary>
-public class PropertyViewTemplateSelector : DataTemplateSelector
+public class PropertyValueTemplateSelector : DataTemplateSelector
 {
   /// <summary>
   /// Template for string properties.
   /// </summary>
   public DataTemplate TextTemplate { get; set; } = null!;
+
   /// <summary>
   /// Template for boolean properties.
   /// </summary>
   public DataTemplate CheckBoxTemplate { get; set; } = null!;
-  //public DataTemplate ComboBoxTemplate { get; set; }
 
+  /// <summary>
+  /// Template selection logic.
+  /// </summary>
+  /// <param name="item"></param>
+  /// <param name="container"></param>
+  /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    // Example logic to choose the template based on the item
     if (item is PropertyViewModel data)
     {
       if (data.PropType == typeof(bool))

@@ -5,9 +5,9 @@ using Qhta.OpenXmlTools;
 namespace DocxControls;
 
 /// <summary>
-/// Converts a property value to a string for display and edit
+/// Converts a property type to a type name
 /// </summary>
-public class PropertyValueConverter : IValueConverter
+public class PropertyTypeConverter : IValueConverter
 {
 
   /// <summary>
@@ -20,15 +20,15 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (value is DateTime dateTime)
+    if (value is Type type)
     {
-      return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+      return type.Name;
     }
     return value?.AsString();
   }
 
   /// <summary>
-  /// Converts a string to a property value
+  /// Not implemented
   /// </summary>
   /// <param name="value"></param>
   /// <param name="targetType"></param>
@@ -37,23 +37,7 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (targetType==typeof(object) && parameter is Type type)
-    {
-      targetType = type;
-    }
-    if (value is string str)
-    {
-      if (targetType == typeof(DateTime))
-      {
-        if (DateTime.TryParse(str, out var dateTime))
-          return dateTime;
-      }
-      else
-      {
-        return str.FromString(targetType);
-      }
-    }
-    return value;
+    throw new NotImplementedException();
   }
 
 }
