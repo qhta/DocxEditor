@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
+using DocumentFormat.OpenXml.Packaging;
+
 namespace DocxEditor;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
+
   public MainWindow()
   {
     InitializeComponent();
@@ -49,12 +52,10 @@ public partial class MainWindow : Window
 
   protected override void OnClosing(CancelEventArgs e)
   {
-    foreach (var child in LogicalTreeHelper.GetChildren(this))
+    base.OnClosing(e);
+    foreach (var doc in (Application.Current as App)!.Documents)
     {
-      if (child is IDisposable disposable)
-      {
-        disposable.Dispose();
-      }
+      doc.Dispose();
     }
   }
 }

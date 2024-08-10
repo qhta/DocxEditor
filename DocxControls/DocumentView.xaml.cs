@@ -18,12 +18,12 @@ public partial class DocumentView : UserControl, IDisposable
     Open(filePath, isEditable);
   }
 
-  public WordDocumentViewModel WordDocument { get; set; } = null!;
+  public WordDocumentViewModel DocumentViewModel { get; set; } = null!;
 
   public void Open(string filePath, bool isEditable)
   {
-    WordDocument = new WordDocumentViewModel(filePath, isEditable);
-    DataContext = WordDocument;
+    DocumentViewModel = new WordDocumentViewModel(filePath, isEditable);
+    DataContext = DocumentViewModel;
   }
 
   #region Dispose pattern

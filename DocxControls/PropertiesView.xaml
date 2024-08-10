@@ -25,7 +25,7 @@
     <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
       <CheckBox 
         IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-        Margin="20,0"/>
+        Margin="5,0"/>
     </DataTemplate>
     <!--<DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
       <ComboBox 

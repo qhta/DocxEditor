@@ -19,9 +19,7 @@ public static class Executables
     if (openFileDialog.ShowDialog() == true)
     {
       string filePath = openFileDialog.FileName;
-      window.Title = filePath;
-      var documentView = new DocumentView(filePath, true);
-      window.MainPanel.Content = documentView;
+      (Application.Current as App)?.OpenDocument(filePath, true);
     }
   }
 }
