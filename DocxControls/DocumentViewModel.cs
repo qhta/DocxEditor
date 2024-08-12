@@ -86,7 +86,7 @@ public class DocumentViewModel
   /// Access to the custom properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public PropertiesViewModel CustomProperties
+  public CustomPropertiesViewModel CustomProperties
   {
     get
     {
@@ -97,6 +97,6 @@ public class DocumentViewModel
       return _CustomProperties;
     }
   }
-  private PropertiesViewModel? _CustomProperties;
+  private CustomPropertiesViewModel? _CustomProperties;
 
 }

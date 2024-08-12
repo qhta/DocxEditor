@@ -291,4 +291,7 @@
   <data name="SaveChangesInDocuments" xml:space="preserve">
     <value>Otwarto kilka dokumentów. Czy chcesz zapisać zmiany w tych dokumentach?</value>
   </data>
+  <data name="FieldCannotBeEmpty" xml:space="preserve">
+    <value>Pole nie może być puste</value>
+  </data>
 </root>

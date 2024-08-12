@@ -28,7 +28,7 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   {
     if (item is PropertyViewModel data)
     {
-      if (data.PropType == typeof(bool))
+      if (data.Type == typeof(bool))
         return CheckBoxTemplate;
       return TextTemplate;
     }

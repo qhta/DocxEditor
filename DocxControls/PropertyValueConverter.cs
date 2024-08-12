@@ -20,10 +20,6 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (value is DateTime dateTime)
-    {
-      return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
-    }
     return value?.AsString();
   }
 
@@ -43,15 +39,7 @@ public class PropertyValueConverter : IValueConverter
     }
     if (value is string str)
     {
-      if (targetType == typeof(DateTime))
-      {
-        if (DateTime.TryParse(str, out var dateTime))
-          return dateTime;
-      }
-      else
-      {
-        return str.FromString(targetType);
-      }
+      return str.FromString(targetType);
     }
     return value;
   }

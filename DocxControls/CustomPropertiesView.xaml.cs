@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DocxControls;
@@ -16,8 +17,19 @@ public partial class CustomPropertiesView : UserControl
     InitializeComponent();
   }
 
-  private void TypeColumn_LostFocus(object sender, RoutedEventArgs e)
+  private void PropertiesGrid_OnInitializingNewItem(object sender, InitializingNewItemEventArgs e)
   {
-    throw new NotImplementedException();
+    if (e.NewItem is CustomPropertyViewModel viewModel)
+    {
+      if (PropertiesGrid.DataContext is not CustomPropertiesViewModel customPropertiesViewModel)
+        return;
+      var name0 = "New property";
+      var name = name0;
+      int i = 1;
+      while (!customPropertiesViewModel.IsValidName(name))
+        name = name0 + (++i);
+      viewModel.Name = name;
+      viewModel.Type = typeof(string);
+    }
   }
 }

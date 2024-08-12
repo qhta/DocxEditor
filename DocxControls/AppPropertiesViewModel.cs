@@ -32,7 +32,7 @@ public class AppPropertiesViewModel : PropertiesViewModel
         {
           Caption = caption,
           Name = name,
-          PropType = type,
+          Type = type,
           Value = AppProperties.GetValue(name),
 
         };

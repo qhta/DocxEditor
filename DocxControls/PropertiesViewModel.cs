@@ -9,8 +9,9 @@ namespace DocxControls;
 /// <summary>
 /// Abstract class for the properties view model
 /// </summary>
-public abstract class PropertiesViewModel: ViewModel
+public abstract class PropertiesViewModel : ViewModel
 {
+
   /// <summary>
   /// Internal Wordprocessing document
   /// </summary>
@@ -21,8 +22,4 @@ public abstract class PropertiesViewModel: ViewModel
   /// </summary>
   public ObservableCollection<PropertyViewModel> Properties { get; } = new();
 
-  /// <summary>
-  /// Can add and delete properties?
-  /// </summary>
-  public bool CanAddAndDeleteProperties { get; init; }
 }

@@ -304,6 +304,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field cannot be empty.
+        /// </summary>
+        public static string FieldCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("FieldCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading pairs.
         /// </summary>
         public static string HeadingPairs {

@@ -57,4 +57,5 @@ public static class Executables
     window.SetTitle(filePath);
     window.ShowDocumentView(documentView);
   }
+
 }

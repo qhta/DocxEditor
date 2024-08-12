@@ -32,7 +32,7 @@ public class StatPropertiesViewModel : PropertiesViewModel
         {
           Caption = caption,
           Name = name,
-          PropType = type,
+          Type = type,
           IsReadOnly = true,
           Value = StatProperties.GetValue(name),
 

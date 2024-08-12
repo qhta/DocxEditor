@@ -28,7 +28,7 @@ public class CorePropertiesViewModel : PropertiesViewModel
       {
         Caption = caption,
         Name = name,
-        PropType = type,
+        Type = type,
         Value = CoreProperties.GetValue(name),
 
       };

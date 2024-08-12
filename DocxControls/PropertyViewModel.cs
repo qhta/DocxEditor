@@ -10,22 +10,17 @@ public class PropertyViewModel: ViewModel
   /// <summary>
   /// Display caption for the property.
   /// </summary>
-  public string? Caption { get; init; } = null!;
+  public string? Caption { get; set; }
 
   /// <summary>
   /// Name of the property to get/set.
   /// </summary>
-  public string? Name { get; init; } = null!;
-
-  /// <summary>
-  /// Is this a custom property?
-  /// </summary>
-  public bool IsCustomProperty { get; init; }
+  public virtual string? Name { get; set; }
 
   /// <summary>
   /// Type of the property.
   /// </summary>
-  public Type? PropType { get; set; } = null!;
+  public virtual Type? Type { get; set; }
 
   /// <summary>
   /// Is the property value read-only?
