@@ -6,6 +6,21 @@ using DocumentFormat.OpenXml.Packaging;
 namespace DocxControls;
 
 /// <summary>
+/// Defined to allow the collection to be refreshed.
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public class CustomObservableCollection<T> : ObservableCollection<T>
+{
+  /// <summary>
+  /// Raises the CollectionChanged event with the provided arguments.
+  /// </summary>
+  public void Refresh()
+  {
+    OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+  }
+}
+
+/// <summary>
 /// View model for the custom properties
 /// </summary>
 public class CustomPropertiesViewModel
@@ -19,7 +34,7 @@ public class CustomPropertiesViewModel
   /// <summary>
   /// Observable collection of properties
   /// </summary>
-  public ObservableCollection<CustomPropertyViewModel> Properties { get; } = new();
+  public CustomObservableCollection<CustomPropertyViewModel> Properties { get; } = new();
 
   /// <summary>
   /// Default constructor
@@ -29,6 +44,8 @@ public class CustomPropertiesViewModel
     WordDocument = null!;
     CustomProperties = null!;
   }
+
+  public int Count => WordDocument.GetCustomFileProperties().Elements().Count();
 
   /// <summary>
   /// Initializes a new instance of the <see cref="CustomPropertiesViewModel"/> class.
@@ -49,8 +66,10 @@ public class CustomPropertiesViewModel
 
       };
       propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+      Debug.WriteLine("Property added");
       Properties.Add(propertyViewModel);
     }
+    Properties.Refresh();
     Properties.CollectionChanged += Properties_CollectionChanged;
   }
 
@@ -83,6 +102,7 @@ public class CustomPropertiesViewModel
 
   private void Properties_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
   {
+    Debug.WriteLine($"Properties collection changed {e.Action}");
     if (e.Action == NotifyCollectionChangedAction.Add)
     {
       foreach (CustomPropertyViewModel propertyViewModel in e.NewItems!)
@@ -103,7 +123,8 @@ public class CustomPropertiesViewModel
     }
     else if (e.Action == NotifyCollectionChangedAction.Reset)
     {
-      CustomProperties.Clear();
+      // do nothing
+      //CustomProperties.Clear();
     }
     else if (e.Action == NotifyCollectionChangedAction.Replace)
     {

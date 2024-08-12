@@ -304,15 +304,6 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field cannot be empty.
-        /// </summary>
-        public static string FieldCannotBeEmpty {
-            get {
-                return ResourceManager.GetString("FieldCannotBeEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Heading pairs.
         /// </summary>
         public static string HeadingPairs {
@@ -435,6 +426,24 @@ namespace DocxControls {
         public static string MultimediaClips {
             get {
                 return ResourceManager.GetString("MultimediaClips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string NameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("NameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must be unique.
+        /// </summary>
+        public static string NameMustBeUnique {
+            get {
+                return ResourceManager.GetString("NameMustBeUnique", resourceCulture);
             }
         }
         
@@ -570,6 +579,15 @@ namespace DocxControls {
         public static string TotalTime {
             get {
                 return ResourceManager.GetString("TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value cannot be empty.
+        /// </summary>
+        public static string ValueCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("ValueCannotBeEmpty", resourceCulture);
             }
         }
         

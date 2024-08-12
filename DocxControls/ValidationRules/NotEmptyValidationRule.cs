@@ -17,7 +17,7 @@ public class NotEmptyValidationRule : ValidationRule
   {
     if (string.IsNullOrWhiteSpace(value as string))
     {
-      return new ValidationResult(false, Strings.FieldCannotBeEmpty);
+      return new ValidationResult(false, Strings.ValueCannotBeEmpty);
     }
     return ValidationResult.ValidResult;
   }
