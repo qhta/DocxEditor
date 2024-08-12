@@ -28,6 +28,7 @@
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
+    <!--<local:ItemsProvider x:Key="ItemsProvider" Items="{Binding Path=Properties}"></local:ItemsProvider>-->
   </UserControl.Resources>
   <Grid>
     <DataGrid
@@ -52,10 +53,14 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTextColumn 
-          MinWidth=" 100" 
-          Binding="{Binding Name, 
-          ValidatesOnDataErrors=True, 
-          UpdateSourceTrigger=PropertyChanged}">
+          MinWidth=" 100">
+          <DataGridTextColumn.Binding>
+            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+              <Binding.ValidationRules>
+                <local:NotUniqueNameValidationRule />
+              </Binding.ValidationRules>
+            </Binding>
+          </DataGridTextColumn.Binding>
         </DataGridTextColumn>
         <DataGridComboBoxColumn
           ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"

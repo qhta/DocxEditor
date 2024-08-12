@@ -45,6 +45,9 @@ public class CustomPropertiesViewModel
     CustomProperties = null!;
   }
 
+  /// <summary>
+  /// Gets the count of the custom properties in the document.
+  /// </summary>
   public int Count => WordDocument.GetCustomFileProperties().Elements().Count();
 
   /// <summary>

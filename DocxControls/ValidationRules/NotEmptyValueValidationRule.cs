@@ -5,7 +5,7 @@ namespace DocxControls;
 /// <summary>
 /// Validation rule that requires a string to be non-empty.
 /// </summary>
-public class NotEmptyValidationRule : ValidationRule
+public class NotEmptyValueValidationRule : ValidationRule
 {
   /// <summary>
   /// Validates a string to be non-empty.

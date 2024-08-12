@@ -29,26 +29,27 @@ public partial class CustomPropertiesView : UserControl
 
   private void SetValidationRule()
   {
+    int n = 0;
     Debug.WriteLine($"SetValidationRule items count={(DataContext as CustomPropertiesViewModel)?.Count}");
-    if (PropertiesGrid.Columns[0] is DataGridTextColumn textColumn)
+    foreach (var column in PropertiesGrid.Columns)
     {
-      Debug.WriteLine($"SetValidationRule for textColumn");
-      if (textColumn.Binding is Binding binding)
+      Debug.WriteLine($"column {n++} is {column.GetType()}");
+      if (column is DataGridTextColumn textColumn)
       {
-        var validationRule = _validationRule = new NotUniqueNameValidationRule
+        Debug.WriteLine($"SetValidationRule for textColumn");
+        if (textColumn.Binding is Binding binding)
         {
-          Items = PropertiesGrid.ItemsSource
-        };
-        binding.ValidationRules.Add(validationRule);
+          foreach (var rule in binding.ValidationRules)
+          {
+            if (rule is NotUniqueNameValidationRule notUniqueNameValidationRule)
+            {
+              _validationRule = notUniqueNameValidationRule;
+              _validationRule.Items = PropertiesGrid.ItemsSource;
+              return;
+            }
+          }
+        }
       }
-      else
-      {
-        Debug.WriteLine($"textColumn.Binding is {textColumn.Binding?.GetType().Name ?? "null"}");
-      }
-    }
-    else
-    {
-      Debug.WriteLine($"PropertiesGrid.Columns[0] is {PropertiesGrid.Columns[0].GetType()}");
     }
   }
 

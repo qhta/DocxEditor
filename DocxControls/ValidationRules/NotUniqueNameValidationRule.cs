@@ -31,13 +31,14 @@ public class NotUniqueNameValidationRule : ValidationRule
 
     if (Items != null)
     {
-      var nameProp = Items.GetType().GetGenericArguments()[0].GetProperty("Name");
-      if (nameProp == null)
-      {
-        throw new InvalidOperationException("Items must have a 'Name' property.");
-      }
+
       foreach (var item in Items)
       {
+        var nameProp = item.GetType().GetProperty("Name");
+        if (nameProp == null)
+        {
+          throw new InvalidOperationException("Items must have a 'Name' property.");
+        }
         if (string.Equals(input, nameProp.GetValue(item) as string, StringComparison.OrdinalIgnoreCase))
         {
           Debug.WriteLine("Name is not unique");
