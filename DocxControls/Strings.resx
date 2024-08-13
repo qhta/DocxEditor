@@ -300,4 +300,7 @@
   <data name="NameMustBeUnique" xml:space="preserve">
     <value>Name must be unique</value>
   </data>
+  <data name="InvalidValueForSpecifiedType" xml:space="preserve">
+    <value>Invalid value for the specified type</value>
+  </data>
 </root>

@@ -3,8 +3,6 @@ using System.ComponentModel;
 
 using DocumentFormat.OpenXml.Packaging;
 
-using Qhta.MVVM;
-
 namespace DocxControls;
 
 /// <summary>
@@ -63,21 +61,27 @@ public class CustomPropertiesViewModel
     var names = CustomProperties.GetNames();
     foreach (var name in names)
     {
+      Type type = typeof(string);
+      object? value = null;
       try
       {
-        var propertyViewModel = new CustomPropertyViewModel
-        {
-          Name = name,
-          Type = CustomProperties.GetType(name),
-          Value = CustomProperties.GetValue(name),
-
-        };
-        propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        Properties.Add(propertyViewModel);
-      } catch (Exception e)
+        type = CustomProperties.GetType(name);
+        value = CustomProperties.GetValue(name);
+      }
+      catch (Exception e)
       {
         Debug.WriteLine(e);
       }
+      var propertyViewModel = new CustomPropertyViewModel
+      {
+        Name = name,
+        Type = type,
+        Value = value,
+
+      };
+      propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+      Properties.Add(propertyViewModel);
+
     }
     Properties.Refresh();
     Properties.CollectionChanged += Properties_CollectionChanged;
@@ -96,7 +100,7 @@ public class CustomPropertiesViewModel
   private bool ValidateName(CustomPropertyViewModel viewModel)
   {
     var name = viewModel.Name;
-    if (name==null)
+    if (name == null)
       return false;
     if (name.Length == 0)
       return false;
@@ -120,9 +124,9 @@ public class CustomPropertiesViewModel
   {
     var name0 = "New property";
     var name = name0;
-    //int i = 1;
-    //while (!IsValidName(name))
-    //  name = name0 + (++i);
+    int i = 1;
+    while (!IsUniqueName(name))
+      name = name0 + (++i);
     viewModel.Name = name;
     viewModel.Type = typeof(string);
   }
@@ -178,7 +182,8 @@ public class CustomPropertiesViewModel
     {
       if (e.PropertyName == nameof(CustomPropertyViewModel.Value))
       {
-        CustomProperties.SetValue(propertyViewModel.Name!, propertyViewModel.Value);
+        if (propertyViewModel.Name != null && propertyViewModel.Type != null && propertyViewModel.Validate())
+          CustomProperties.SetValue(propertyViewModel.Name!, propertyViewModel.Value);
       }
       else if (e.PropertyName == nameof(CustomPropertyViewModel.Name))
       {
@@ -214,6 +219,6 @@ public class CustomPropertiesViewModel
     }
   }
 
-  private readonly DocumentFormat.OpenXml.CustomProperties.Properties CustomProperties;
+  private readonly DXCP.Properties CustomProperties;
 
 }

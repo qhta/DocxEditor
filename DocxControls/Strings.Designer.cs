@@ -349,6 +349,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid value for the specified type.
+        /// </summary>
+        public static string InvalidValueForSpecifiedType {
+            get {
+                return ResourceManager.GetString("InvalidValueForSpecifiedType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keywords.
         /// </summary>
         public static string Keywords {

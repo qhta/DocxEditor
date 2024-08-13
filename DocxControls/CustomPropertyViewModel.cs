@@ -82,40 +82,20 @@ public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
   }
 
 
-  //  /// <summary>
-  //  /// Error message for the property.
-  //  /// </summary>
-  //#pragma warning disable CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
-  //  public string Error { get; private set; } = string.Empty;
-
-  //  /// <summary>
-  //  /// Validates the <see cref="Name"/> property.
-  //  /// </summary>
-  //  /// <param name="columnName"></param>
-  //  /// <returns></returns>
-  //  public string this[string columnName]
+  ///// <summary>
+  ///// Determines if the view model is valid.
+  ///// </summary>
+  //public bool ValidateValueString(string? value)
+  //{
+  //  if (Type != null && value != null)
   //  {
-  //    get
-  //    {
-  //      string result = string.Empty;
-  //      if (columnName == nameof(Name))
-  //      {
-  //        if (string.IsNullOrWhiteSpace(Name))
-  //        {
-  //          Error = result = "Name cannot be empty.";
-  //        }
-  //        else if (Parent != null && !Parent.IsValidName(Name))
-  //        {
-  //          Error = result = "Name must be unique.";
-  //        }
-  //        else
-  //        {
-  //          Error = string.Empty;
-  //        }
-  //      }
-  //      return result;
-  //    }
+  //    if (VariantTools.ValidateVariantString(Type, value))
+  //      RemoveError(nameof(Value), Strings.InvalidValueForSpecifiedType);
+  //    else
+  //      AddError(nameof(Value), Strings.InvalidValueForSpecifiedType);
   //  }
+  //}
+
 
 
   private readonly Dictionary<string, List<string>> _errors = new();
@@ -154,6 +134,16 @@ public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
         else
         {
           RemoveError(propertyName, Strings.NameCannotBeEmpty);
+        }
+        break;
+      case nameof(Value):
+        if (Type != null && value != null)
+        {
+          var str = value.AsString();
+          if (VariantTools.ValidateVariantString(Type, str))
+            RemoveError(propertyName, Strings.InvalidValueForSpecifiedType);
+          else
+            AddError(propertyName, Strings.InvalidValueForSpecifiedType);
         }
         break;
         // Add more validation logic as needed
