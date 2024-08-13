@@ -8,28 +8,7 @@
              d:DesignHeight="400" d:DesignWidth="700">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-    <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
-      <TextBox 
-        Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-        IsReadOnly="{Binding IsReadOnly}"
-        Padding="5,0">
-        <TextBox.Style>
-          <Style TargetType="TextBox">
-            <Setter Property="BorderThickness" Value="0" />
-          </Style>
-        </TextBox.Style>
-      </TextBox>
-    </DataTemplate>
-    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
-      <CheckBox 
-        IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
-        Margin="5,0"/>
-    </DataTemplate>
-    <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
-                              TextTemplate="{StaticResource TextTemplate}"
-                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
-    <!--<local:ItemsProvider x:Key="ItemsProvider" Items="{Binding Path=Properties}"></local:ItemsProvider>-->
-  </UserControl.Resources>
+    </UserControl.Resources>
   <Grid>
     <DataGrid
       x:Name="PropertiesGrid"
@@ -37,7 +16,6 @@
       HeadersVisibility="None" AutoGenerateColumns="False" 
       CanUserAddRows="True" 
       CanUserDeleteRows="True"
-      InitializingNewItem="PropertiesGrid_OnInitializingNewItem"
       >
       <DataGrid.Resources>
         <Style TargetType="DataGridCell">
@@ -53,14 +31,7 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTextColumn 
-          MinWidth=" 100">
-          <DataGridTextColumn.Binding>
-            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
-              <Binding.ValidationRules>
-                <local:NotUniqueNameValidationRule />
-              </Binding.ValidationRules>
-            </Binding>
-          </DataGridTextColumn.Binding>
+          MinWidth=" 100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
         </DataGridTextColumn>
         <DataGridComboBoxColumn
           ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"

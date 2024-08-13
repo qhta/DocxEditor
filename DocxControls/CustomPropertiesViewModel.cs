@@ -3,6 +3,8 @@ using System.ComponentModel;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using Qhta.MVVM;
+
 namespace DocxControls;
 
 /// <summary>
@@ -61,16 +63,21 @@ public class CustomPropertiesViewModel
     var names = CustomProperties.GetNames();
     foreach (var name in names)
     {
-      var propertyViewModel = new CustomPropertyViewModel
+      try
       {
-        Name = name,
-        Type = CustomProperties.GetType(name),
-        Value = CustomProperties.GetValue(name),
+        var propertyViewModel = new CustomPropertyViewModel
+        {
+          Name = name,
+          Type = CustomProperties.GetType(name),
+          Value = CustomProperties.GetValue(name),
 
-      };
-      propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-      Debug.WriteLine("Property added");
-      Properties.Add(propertyViewModel);
+        };
+        propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+        Properties.Add(propertyViewModel);
+      } catch (Exception e)
+      {
+        Debug.WriteLine(e);
+      }
     }
     Properties.Refresh();
     Properties.CollectionChanged += Properties_CollectionChanged;
@@ -81,38 +88,58 @@ public class CustomPropertiesViewModel
   /// </summary>
   /// <param name="name"></param>
   /// <returns></returns>
-  public bool IsValidName(string name)
+  public bool IsUniqueName(string name)
   {
     return CustomProperties.Elements<DXCP.CustomDocumentProperty>().All(item => item.Name != name);
   }
 
-  ///// <summary>
-  ///// Collection view for the properties
-  ///// </summary>
-  //public CollectionView PropertiesCollectionView
-  //{
-  //  get
-  //  {
-  //    if (_propertiesCollectionView == null)
-  //    {
-  //      _propertiesCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(Properties);
-  //      (_propertiesCollectionView as IEditableCollectionView)!.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
-  //    }
-  //    return _propertiesCollectionView;
-  //  }
-  //}
-  //private CollectionView? _propertiesCollectionView;
+  private bool ValidateName(CustomPropertyViewModel viewModel)
+  {
+    var name = viewModel.Name;
+    if (name==null)
+      return false;
+    if (name.Length == 0)
+      return false;
+    if (IsUniqueName(name))
+    {
+      viewModel.RemoveError(nameof(CustomPropertyViewModel.Name), Strings.NameMustBeUnique);
+      return true;
+    }
+    else
+    {
+      viewModel.AddError(nameof(CustomPropertyViewModel.Name), Strings.NameMustBeUnique);
+      return false;
+    }
+  }
+
+  /// <summary>
+  /// Initializes a new property name and type.
+  /// </summary>
+  /// <param name="viewModel"></param>
+  public void Initialize(CustomPropertyViewModel viewModel)
+  {
+    var name0 = "New property";
+    var name = name0;
+    //int i = 1;
+    //while (!IsValidName(name))
+    //  name = name0 + (++i);
+    viewModel.Name = name;
+    viewModel.Type = typeof(string);
+  }
 
   private void Properties_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
   {
-    Debug.WriteLine($"Properties collection changed {e.Action}");
     if (e.Action == NotifyCollectionChangedAction.Add)
     {
       foreach (CustomPropertyViewModel propertyViewModel in e.NewItems!)
       {
+        if (propertyViewModel.IsEmpty)
+          Initialize(propertyViewModel);
         if (propertyViewModel.Name != null &&
-            propertyViewModel.Type != null)
+            propertyViewModel.Type != null && propertyViewModel.Validate() && ValidateName(propertyViewModel))
+        {
           CustomProperties.Add(propertyViewModel.Name, propertyViewModel.Type, propertyViewModel.Value);
+        }
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
       }
     }
@@ -132,7 +159,7 @@ public class CustomPropertiesViewModel
     else if (e.Action == NotifyCollectionChangedAction.Replace)
     {
       var propertyViewModel = (CustomPropertyViewModel)e.NewItems![0]!;
-      if (propertyViewModel.Name != null)
+      if (propertyViewModel.Name != null && propertyViewModel.Validate())
         CustomProperties.SetValue(propertyViewModel.Name, propertyViewModel.Value);
     }
     else if (e.Action == NotifyCollectionChangedAction.Move)
@@ -155,12 +182,15 @@ public class CustomPropertiesViewModel
       }
       else if (e.PropertyName == nameof(CustomPropertyViewModel.Name))
       {
-        if (propertyViewModel.Name != null)
+        if (ValidateName(propertyViewModel))
         {
-          if (!CustomProperties.Rename(propertyViewModel.Name!, propertyViewModel.Name))
+          if (propertyViewModel.Name != null)
           {
-            if (propertyViewModel.Type != null)
-              CustomProperties.Add(propertyViewModel.Name, propertyViewModel.Type);
+            if (!CustomProperties.Rename(propertyViewModel.Name!, propertyViewModel.Name))
+            {
+              if (propertyViewModel.Type != null)
+                CustomProperties.Add(propertyViewModel.Name, propertyViewModel.Type);
+            }
           }
         }
       }
