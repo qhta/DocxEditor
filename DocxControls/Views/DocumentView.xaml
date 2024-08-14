@@ -8,21 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
     <TabControl TabStripPlacement="Top">
+      <TabItem Header="{x:Static local:Strings.DocumentBody}">
+        <local:BodyView/>
+      </TabItem>
       <TabItem Header="{x:Static local:Strings.Properties}">
         <local:DocumentPropertiesView/>
       </TabItem>
-      <!--<TabItem Header="Settings">
-
-        </TabItem>
-        <TabItem Header="Styles">
-
-        </TabItem>
-        <TabItem Header="Fonts">
-
-        </TabItem>
-        <TabItem Header="Body">
-
-        </TabItem>-->
     </TabControl>
   </Grid>
 </UserControl>

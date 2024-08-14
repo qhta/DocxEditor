@@ -1,8 +1,6 @@
-﻿using DocumentFormat.OpenXml.Packaging;
+﻿using System.ComponentModel;
 
-using System.ComponentModel;
-using Qhta.OpenXmlTools;
-using System.Globalization;
+using DocumentFormat.OpenXml.Packaging;
 
 namespace DocxControls;
 
@@ -50,6 +48,6 @@ public class AppPropertiesViewModel : PropertiesViewModel
   }
 
 
-  private readonly DocumentFormat.OpenXml.ExtendedProperties.Properties AppProperties;
+  private readonly DXEP.Properties AppProperties;
 
 }

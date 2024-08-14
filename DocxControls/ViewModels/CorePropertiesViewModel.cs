@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Globalization;
-using DocumentFormat.OpenXml.Packaging;
 
-using Qhta.OpenXmlTools;
+using DocumentFormat.OpenXml.Packaging;
 
 namespace DocxControls;
 /// <summary>

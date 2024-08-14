@@ -4,7 +4,7 @@ using System.Windows.Controls;
 namespace DocxControls;
 
 /// <summary>
-/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="PropertyViewModel"/> property type
+/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="DocxControls.PropertyViewModel"/> property type
 /// </summary>
 public class PropertyValueTemplateSelector : DataTemplateSelector
 {

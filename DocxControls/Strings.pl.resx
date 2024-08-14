@@ -303,4 +303,37 @@
   <data name="InvalidValueForSpecifiedType" xml:space="preserve">
     <value>Nieprawidłowa wartość dla określonego typu</value>
   </data>
+  <data name="LaoutAndUI" xml:space="preserve">
+    <value>Układ i interfejs</value>
+  </data>
+  <data name="SaveAndLoad" xml:space="preserve">
+    <value>Zapisywani i ładowanie</value>
+  </data>
+  <data name="ThemingAndStyles" xml:space="preserve">
+    <value>Motywy i style</value>
+  </data>
+  <data name="RevisionsAndTracking" xml:space="preserve">
+    <value>Przeglądy i śledzenie</value>
+  </data>
+  <data name="ProofingAndAutomation" xml:space="preserve">
+    <value>Sprawdzanie i automatyzacja</value>
+  </data>
+  <data name="CustomXml" xml:space="preserve">
+    <value>Niestandardowy Xml</value>
+  </data>
+  <data name="MailMergeAndPrinting" xml:space="preserve">
+    <value>Korespondencja i drukowanie</value>
+  </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Kompatybilność</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="DocumentProtection" xml:space="preserve">
+    <value>Ochrona dokumentu</value>
+  </data>
+  <data name="DocumentBody" xml:space="preserve">
+    <value>Ciało dokumentu</value>
+  </data>
 </root>

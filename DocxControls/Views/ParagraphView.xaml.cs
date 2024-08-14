@@ -2,15 +2,16 @@
 
 namespace DocxControls;
 /// <summary>
-/// Interaction logic for BodyView.xaml
+/// Interaction logic for ParagraphView.xaml
 /// </summary>
-public partial class BodyView : UserControl
+public partial class ParagraphView : UserControl
 {
   /// <summary>
   /// Default constructor
   /// </summary>
-  public BodyView()
+  public ParagraphView()
   {
     InitializeComponent();
   }
+
 }

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="DocxControls.ParagraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocxControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <DataTemplate x:Key="RunTemplate" DataType="{x:Type local:RunViewModel}">
+      <local:RunView />
+    </DataTemplate>
+    <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
+      <TextBlock Text="{Binding OuterXml}" />
+    </DataTemplate>
+    <local:ElementTemplateSelector 
+      x:Key="ElementTemplateSelector"
+      RunTemplate="{StaticResource RunTemplate}"
+      UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
+      />
+  </UserControl.Resources>
+  <Grid MinHeight="25">
+    <ListView 
+      x:Name="ListView" 
+      ItemsSource="{Binding Elements}"
+      ItemTemplateSelector="{StaticResource ElementTemplateSelector}" >
+      <ListView.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel />
+        </ItemsPanelTemplate>
+      </ListView.ItemsPanel>
+    </ListView>
+  </Grid>
+</UserControl>

@@ -18,7 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CustomPropertiesView.xaml.cs">
+    <Compile Update="Views\RunView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ParagraphView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CustomPropertiesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Strings.Designer.cs">

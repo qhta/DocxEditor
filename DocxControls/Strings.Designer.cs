@@ -223,6 +223,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compatibility.
+        /// </summary>
+        public static string Compatibility {
+            get {
+                return ResourceManager.GetString("Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content status.
         /// </summary>
         public static string ContentStatus {
@@ -277,6 +286,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom Xml.
+        /// </summary>
+        public static string CustomXml {
+            get {
+                return ResourceManager.GetString("CustomXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -295,11 +313,29 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document body.
+        /// </summary>
+        public static string DocumentBody {
+            get {
+                return ResourceManager.GetString("DocumentBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document closing.
         /// </summary>
         public static string DocumentClosing {
             get {
                 return ResourceManager.GetString("DocumentClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document protection.
+        /// </summary>
+        public static string DocumentProtection {
+            get {
+                return ResourceManager.GetString("DocumentProtection", resourceCulture);
             }
         }
         
@@ -376,6 +412,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Layout &amp; UI.
+        /// </summary>
+        public static string LaoutAndUI {
+            get {
+                return ResourceManager.GetString("LaoutAndUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last modified by.
         /// </summary>
         public static string LastModifiedBy {
@@ -408,6 +453,15 @@ namespace DocxControls {
         public static string LinksUpToDate {
             get {
                 return ResourceManager.GetString("LinksUpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail merge.
+        /// </summary>
+        public static string MailMergeAndPrinting {
+            get {
+                return ResourceManager.GetString("MailMergeAndPrinting", resourceCulture);
             }
         }
         
@@ -484,6 +538,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proofing and automation.
+        /// </summary>
+        public static string ProofingAndAutomation {
+            get {
+                return ResourceManager.GetString("ProofingAndAutomation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
         public static string Properties {
@@ -498,6 +561,24 @@ namespace DocxControls {
         public static string Revision {
             get {
                 return ResourceManager.GetString("Revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revisions and tracking.
+        /// </summary>
+        public static string RevisionsAndTracking {
+            get {
+                return ResourceManager.GetString("RevisionsAndTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save &amp; load.
+        /// </summary>
+        public static string SaveAndLoad {
+            get {
+                return ResourceManager.GetString("SaveAndLoad", resourceCulture);
             }
         }
         
@@ -525,6 +606,15 @@ namespace DocxControls {
         public static string ScaleCrop {
             get {
                 return ResourceManager.GetString("ScaleCrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -561,6 +651,15 @@ namespace DocxControls {
         public static string Template {
             get {
                 return ResourceManager.GetString("Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theming and styles.
+        /// </summary>
+        public static string ThemingAndStyles {
+            get {
+                return ResourceManager.GetString("ThemingAndStyles", resourceCulture);
             }
         }
         

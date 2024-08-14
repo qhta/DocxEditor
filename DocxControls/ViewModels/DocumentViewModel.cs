@@ -31,6 +31,22 @@ public class DocumentViewModel
   }
 
   /// <summary>
+  /// Access to the body elements of the document
+  /// </summary>
+  public BodyElementsViewModel BodyElements
+  {
+    get
+    {
+      if (_BodyElements == null)
+      {
+        _BodyElements = new BodyElementsViewModel(WordDocument);
+      }
+      return _BodyElements;
+    }
+  }
+  private BodyElementsViewModel? _BodyElements;
+
+  /// <summary>
   /// Access to the core properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
