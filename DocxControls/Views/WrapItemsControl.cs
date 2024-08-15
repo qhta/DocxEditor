@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace DocxControls;
@@ -8,7 +10,7 @@ namespace DocxControls;
 /// <summary>
 /// Control that can wrap text items as a wrap panel
 /// </summary>
-public class WrapItemsControl : ItemsControl
+public class WrapItemsControl : ListBox
 {
   static WrapItemsControl()
   {
@@ -56,5 +58,53 @@ public class WrapItemsControl : ItemsControl
     get => (Thickness)GetValue(ItemMarginProperty);
     set => SetValue(ItemMarginProperty, value);
   }
+
+  ///// <summary>
+  ///// Handles the mouse left button down event to select the item
+  ///// </summary>
+  ///// <param name="e">The event data</param>
+  //protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+  //{
+  //  base.OnMouseLeftButtonDown(e);
+  //  var clickedItem = GetItemAt(e.GetPosition(this));
+
+  //  if (clickedItem != null)
+  //  {
+  //    if (SelectedItem == null)
+  //    {
+  //      SetCurrentValue(SelectedItemProperty, clickedItem);
+  //      SetCurrentValue(SelectedIndexProperty, Items.IndexOf(clickedItem));
+  //    }
+  //    else
+  //    {
+  //      SetCurrentValue(SelectedItemProperty, null);
+  //      SetCurrentValue(SelectedIndexProperty, -1);
+  //    }
+  //  }
+  //}
+
+  ///// <summary>
+  ///// Gets the item at the specified position
+  ///// </summary>
+  ///// <param name="position">The position</param>
+  ///// <returns>The item at the specified position, or null if no item is found</returns>
+  //private object? GetItemAt(Point position)
+  //{
+  //  HitTestResult result = VisualTreeHelper.HitTest(this, position);
+  //  if (result != null)
+  //  {
+  //    DependencyObject? current = result.VisualHit;
+  //    while (current != null && current != this)
+  //    {
+  //      if (current is FrameworkElement element && Items.Contains(element.DataContext))
+  //      {
+  //        return element.DataContext;
+  //      }
+  //      current = VisualTreeHelper.GetParent(current);
+  //    }
+  //  }
+  //  return null;
+  //}
+
 }
 

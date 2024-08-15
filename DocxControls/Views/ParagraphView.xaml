@@ -17,6 +17,8 @@
     <local:WrapItemsControl 
       ItemsSource="{Binding Elements}" 
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
-      ItemMargin="1,0"/>
+      ItemMargin="1,0"
+      ItemBorderBrush="Silver"
+      ItemBorderThickness="1"/>
   </Grid>
 </UserControl>

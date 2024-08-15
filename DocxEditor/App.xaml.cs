@@ -1,10 +1,6 @@
 ﻿using System.Globalization;
 using System.Windows;
 
-using DocumentFormat.OpenXml.Packaging;
-
-using DocxControls;
-
 namespace DocxEditor;
 /// <summary>
 /// Interaction logic for App.xaml
