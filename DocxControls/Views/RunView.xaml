@@ -7,28 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <DataTemplate x:Key="TextTemplate" DataType="{x:Type local:TextViewModel}">
-      <TextBlock Text="{Binding Text}" />
-    </DataTemplate>
-    <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
-      <TextBlock Text="{Binding OuterXml}" />
-    </DataTemplate>
-    <local:ElementTemplateSelector 
-      x:Key="ElementTemplateSelector"
-      TextTemplate="{StaticResource TextTemplate}"
-      UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
-      />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/Resources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </UserControl.Resources>
-  <Grid>
-    <ListView 
-      x:Name="ListView" 
-      ItemsSource="{Binding Elements}"
-      ItemTemplateSelector="{StaticResource ElementTemplateSelector}" >
-      <ListView.ItemsPanel>
-        <ItemsPanelTemplate>
-          <WrapPanel />
-        </ItemsPanelTemplate>
-      </ListView.ItemsPanel>
-    </ListView>
+  <Grid Height="auto">
+    <local:WrapItemsControl 
+      ItemsSource="{Binding Elements}" 
+      ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
+      ItemBorderBrush="Transparent"
+      ItemBorderThickness="0"/>
   </Grid>
 </UserControl>

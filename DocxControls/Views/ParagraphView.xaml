@@ -7,28 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <DataTemplate x:Key="RunTemplate" DataType="{x:Type local:RunViewModel}">
-      <local:RunView />
-    </DataTemplate>
-    <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
-      <TextBlock Text="{Binding OuterXml}" />
-    </DataTemplate>
-    <local:ElementTemplateSelector 
-      x:Key="ElementTemplateSelector"
-      RunTemplate="{StaticResource RunTemplate}"
-      UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
-      />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/Resources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </UserControl.Resources>
-  <Grid MinHeight="25">
-    <ListView 
-      x:Name="ListView" 
-      ItemsSource="{Binding Elements}"
-      ItemTemplateSelector="{StaticResource ElementTemplateSelector}" >
-      <ListView.ItemsPanel>
-        <ItemsPanelTemplate>
-          <WrapPanel />
-        </ItemsPanelTemplate>
-      </ListView.ItemsPanel>
-    </ListView>
+  <Grid MinHeight="25" Height="auto">
+    <local:WrapItemsControl 
+      ItemsSource="{Binding Elements}" 
+      ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
+      ItemMargin="1,0"/>
   </Grid>
 </UserControl>

@@ -29,6 +29,16 @@ public class ElementTemplateSelector : DataTemplateSelector
   public DataTemplate? TextTemplate { get; set; }
 
   /// <summary>
+  /// Template for a bookmark start.
+  /// </summary>
+  public DataTemplate? BookmarkStartTemplate { get; set; }
+
+  /// <summary>
+  /// Template for a bookmark end.
+  /// </summary>
+  public DataTemplate? BookmarkEndTemplate { get; set; }
+
+  /// <summary>
   /// Template for an unknown element.
   /// </summary>
   public DataTemplate? UnknownElementTemplate { get; set; }
@@ -49,6 +59,10 @@ public class ElementTemplateSelector : DataTemplateSelector
       return RunTemplate ?? UnknownElementTemplate;
     if (item is TextViewModel)
       return TextTemplate ?? UnknownElementTemplate;
+    if (item is BookmarkStartViewModel)
+      return BookmarkStartTemplate ?? UnknownElementTemplate;
+    if (item is BookmarkEndViewModel)
+      return BookmarkEndTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;
   }
 }

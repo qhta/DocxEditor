@@ -3,9 +3,9 @@
 namespace DocxControls;
 
 /// <summary>
-/// Converts a property value to a string for display and edit
+/// Decrements item control width by parameter value
 /// </summary>
-public class PropertyValueConverter : IValueConverter
+public class ItemWidthConverter : IValueConverter
 {
 
   /// <summary>
@@ -18,7 +18,20 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    return value?.AsString();
+    if (value is double width)
+    {
+      if (parameter is not double decrement)
+      {
+        if (!double.TryParse(parameter?.ToString(), out decrement))
+          decrement = 22;
+      }
+      var result = width - decrement;
+      if (result < 10)
+        result = 10;
+      //Debug.WriteLine($"ItemWidthConverter({value}, {parameter}) = {result}");
+      return result;
+    }
+    return value;
   }
 
   /// <summary>
@@ -31,15 +44,7 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (targetType==typeof(object) && parameter is Type type)
-    {
-      targetType = type;
-    }
-    if (value is string str)
-    {
-      return str.FromString(targetType);
-    }
-    return value;
+    throw new NotImplementedException();
   }
 
 }

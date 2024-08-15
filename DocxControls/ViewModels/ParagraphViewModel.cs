@@ -29,6 +29,8 @@ public class ParagraphViewModel : ElementViewModel
         ElementViewModel paragraphViewModel = element switch
         {
           DXW.Run run => new RunViewModel(run),
+          DXW.BookmarkStart bookmarkStart => new BookmarkStartViewModel(bookmarkStart),
+          DXW.BookmarkEnd bookmarkEnd => new BookmarkEndViewModel(bookmarkEnd),
           _ => new ElementViewModel(element)
         };
         Elements.Add(paragraphViewModel);

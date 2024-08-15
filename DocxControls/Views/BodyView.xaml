@@ -7,26 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type local:ParagraphViewModel}">
-      <local:ParagraphView />
-    </DataTemplate>
-    <DataTemplate x:Key="TableTemplate" DataType="{x:Type local:TableViewModel}">
-      <TextBlock Text="{Binding OuterXml}" />
-    </DataTemplate>
-    <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
-      <TextBlock Text="{Binding OuterXml}" />
-    </DataTemplate>
-    <local:ElementTemplateSelector 
-      x:Key="ElementTemplateSelector"
-      ParagraphTemplate="{StaticResource ParagraphTemplate}"
-      TableTemplate="{StaticResource TableTemplate}" 
-      UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
-      />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/Resources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
     <ListView 
       x:Name="ListView" 
       ItemsSource="{Binding BodyElements.Elements}"
-      ItemTemplateSelector="{StaticResource ElementTemplateSelector}" />
+      ItemTemplateSelector="{StaticResource ElementTemplateSelector}">
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="HorizontalAlignment" Value="Left" />
+          <Setter Property="Height" Value="Auto" />
+          <Setter Property="Width" Value="{Binding ActualWidth, 
+            RelativeSource={RelativeSource AncestorType=ListView}}" />
+        </Style>
+      </ListView.ItemContainerStyle>
+    </ListView>
   </Grid>
 </UserControl>
