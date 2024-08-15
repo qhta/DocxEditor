@@ -8,5 +8,6 @@
              d:DesignHeight="50" d:DesignWidth="50">
   <TextBlock Text="[" Margin="0,-4,0,0"
              FontSize="18"
-             FontWeight="Bold"/>
+             FontWeight="Bold"
+             ToolTip="{Binding ToolTip}"/>
 </UserControl>

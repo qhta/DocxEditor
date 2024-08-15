@@ -21,7 +21,28 @@ public class BookmarkStartViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// BookmarkStart element
+  /// <c>BookmarkStart</c> element
   /// </summary>
   public DXW.BookmarkStart BookmarkStart => (DXW.BookmarkStart)Element;
+    
+
+  /// <summary>
+  /// Name of the bookmark
+  /// </summary>
+  public string? BookmarkName
+  {
+    get => BookmarkStart.Name;
+    set
+    {
+      BookmarkStart.Name = value;
+      NotifyPropertyChanged(nameof(BookmarkName));
+      NotifyPropertyChanged(nameof(ToolTip));
+    }
+  }
+
+  /// <summary>
+  /// Displayed tooltip with the name of the bookmark
+  /// </summary>
+  public string ToolTip => Strings.Bookmark_ + BookmarkStart.Name;
+
 }

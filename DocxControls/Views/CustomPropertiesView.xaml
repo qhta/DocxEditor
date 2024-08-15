@@ -31,7 +31,7 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTextColumn 
-          MinWidth=" 100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+          MinWidth=" 100" Binding="{Binding BookmarkName, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
         </DataGridTextColumn>
         <DataGridComboBoxColumn
           ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"

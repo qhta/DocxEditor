@@ -336,4 +336,7 @@
   <data name="DocumentBody" xml:space="preserve">
     <value>Ciało dokumentu</value>
   </data>
+  <data name="Bookmark_" xml:space="preserve">
+    <value>Zakładka: </value>
+  </data>
 </root>

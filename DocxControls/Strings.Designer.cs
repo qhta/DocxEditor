@@ -187,6 +187,15 @@ namespace DocxControls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bookmark: .
+        /// </summary>
+        public static string Bookmark_ {
+            get {
+                return ResourceManager.GetString("Bookmark_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
