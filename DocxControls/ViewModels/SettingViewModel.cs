@@ -51,7 +51,12 @@ public class SettingViewModel : PropertyViewModel
   }
 
   /// <summary>
-  /// Tooltip for the setting.
+  /// Tooltip for the setting
   /// </summary>
   public string? Tooltip => SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+
+  /// <summary>
+  /// Description of the setting
+  /// </summary>
+  public string? Description => SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
 }

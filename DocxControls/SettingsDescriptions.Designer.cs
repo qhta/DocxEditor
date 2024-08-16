@@ -61,7 +61,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies information about the parameters of the grammar checking which was performed on the contents of the current WordprocessingML document. [Note: This information can be used as desired by applications; for example, to determine if the current grammar checking state, specified by the proofState element (§17.15.1.65) is sufficient. end note].
+        ///   Looks up a localized string similar to Specifies information about the parameters of the grammar checking which was performed on the contents of the current WordprocessingML document. &lt;p/&gt;Note: This information can be used as desired by applications; for example, to determine if the current grammar checking state, specified by the proofState element (§17.15.1.65) is sufficient. .
         /// </summary>
         public static string ActiveWritingStyle {
             get {
@@ -97,7 +97,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the custom XML schema whose target namespace matches the value specified in the val attribute should be associated with this document when it is loaded, if such a schema is available to the hosting application. Applications can also load and utilize any additional schemas as well as those explicitly mentioned here. [Note: These custom XML schemas can then be used to validate the structure of the custom XML markup in the document, etc. end note].
+        ///   Looks up a localized string similar to Specifies that the custom XML schema whose target namespace matches the value specified in the val attribute should be associated with this document when it is loaded, if such a schema is available to the hosting application. Applications can also load and utilize any additional schemas as well as those explicitly mentioned here. &lt;p/&gt;Note: These custom XML schemas can then be used to validate the structure of the custom XML markup in the document, etc. .
         /// </summary>
         public static string AttachedSchema {
             get {
@@ -115,7 +115,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether formatting automatically applied by an application (i.e. not explicitly applied by a use or an application) shall be allowed to override formatting protection enabled via the formatting attribute on the documentProtection element (§17.15.1.9) when those formatting operations would add formatting which has been explicitly disabled. [Example: Automatically adding superscript to the st in the string 1st. end example].
+        ///   Looks up a localized string similar to Specifies whether formatting automatically applied by an application (i.e. not explicitly applied by a use or an application) shall be allowed to override formatting protection enabled via the formatting attribute on the documentProtection element (§17.15.1.9) when those formatting operations would add formatting which has been explicitly disabled. &lt;p/&gt;Example: Automatically adding superscript to the st in the string 1st. .
         /// </summary>
         public static string AutoFormatOverride {
             get {
@@ -187,7 +187,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies how full-width characters in the current WordprocessingML document should be compressed to remove additional whitespace when the contents of this document are displayed, specifically by specifying the set(s) of characters which can be compressed to remove additional whitespace. [Note: The behavior of this element is functionally identical to the text-justify-trim property. end note].
+        ///   Looks up a localized string similar to Specifies how full-width characters in the current WordprocessingML document should be compressed to remove additional whitespace when the contents of this document are displayed, specifically by specifying the set(s) of characters which can be compressed to remove additional whitespace. &lt;p/&gt;Note: The behavior of this element is functionally identical to the text-justify-trim property. .
         /// </summary>
         public static string CharacterSpacingControl {
             get {
@@ -250,7 +250,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as the radix point when evaluating the contents of all fields in the current document.&lt;p/&gt;[Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the radix point in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the radix point which must be used to evaluate fields in the cont [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as the radix point when evaluating the contents of all fields in the current document.&lt;p/&gt;Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the radix point in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the radix point which must be used to evaluate fields in the conte [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DecimalSymbol {
             get {
@@ -304,7 +304,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. [Note: The display of gridlines is an application-level setting not specified in /IEC 29500. end note] The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in /IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayHorizontalDrawingGrid {
             get {
@@ -313,7 +313,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. [Note: The display of gridlines is an application-level setting not specified in /IEC 29500. end note] The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in /IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayVerticalDrawingGrid {
             get {
@@ -331,7 +331,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the set of document protection restrictions which have been applied to the contents of a WordprocessingML document. These restrictions should be enforced by applications editing this document when the enforcement attribute is turned on, and ignored (but persisted) otherwise. Document protection is a set of restrictions used to prevent unintentional changes to all or part of a WordprocessingML document. [Note: This protection does not encrypt the document, and malicious applications might circumven [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the set of document protection restrictions which have been applied to the contents of a WordprocessingML document. These restrictions should be enforced by applications editing this document when the enforcement attribute is turned on, and ignored (but persisted) otherwise. Document protection is a set of restrictions used to prevent unintentional changes to all or part of a WordprocessingML document. &lt;p/&gt;Note: This protection does not encrypt the document, and malicious applications might circum [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DocumentProtection {
             get {
@@ -340,7 +340,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the classification of a given WordprocessingML document.&lt;p/&gt;[Note: This element can be used by hosting applications to facilitate customized user interface and/or automatic formatting behaviors based on the &apos;type&apos; of a given WordprocessingML document. end note].
+        ///   Looks up a localized string similar to Specifies the classification of a given WordprocessingML document.&lt;p/&gt;Note: This element can be used by hosting applications to facilitate customized user interface and/or automatic formatting behaviors based on the &apos;type&apos; of a given WordprocessingML document. .
         /// </summary>
         public static string DocumentType {
             get {
@@ -376,7 +376,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether applications displaying this document should display the contents of the header and footer when displaying the document in print layout view (§17.15.1.92) or should collapse those areas as well as the whitespace on all displayed pages so that the text extents are directly following one another. [Rationale: Collapsing the ends of pages makes it easier to read the contents of the document, since the text flows between pages without whitespace, while maintaining the WYSIWYG functionality of p [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies whether applications displaying this document should display the contents of the header and footer when displaying the document in print layout view (§17.15.1.92) or should collapse those areas as well as the whitespace on all displayed pages so that the text extents are directly following one another. &lt;p/&gt;Rationale: Collapsing the ends of pages makes it easier to read the contents of the document, since the text flows between pages without whitespace, while maintaining the WYSIWYG functionality o [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DoNotDisplayPageBoundaries {
             get {
@@ -394,7 +394,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies if document content contained in text boxes, footnotes, and endnotes shall be excluded when an application calculates a given document’s statistics when these values are calculated and/or displayed by an application.&lt;p/&gt;[Note: Some examples of document statistics that an application might chose to calculate are: number of words, number of characters, number of paragraphs, number of pages, number of lines, and so on. end note].
+        ///   Looks up a localized string similar to Specifies if document content contained in text boxes, footnotes, and endnotes shall be excluded when an application calculates a given document’s statistics when these values are calculated and/or displayed by an application.&lt;p/&gt;Note: Some examples of document statistics that an application might chose to calculate are: number of words, number of characters, number of paragraphs, number of pages, number of lines, and so on. .
         /// </summary>
         public static string DoNotIncludeSubdocsInStats {
             get {
@@ -421,7 +421,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to this WordprocessingML document as moves when the trackRevisions element (§17.15.1.89) is turned on, even when that syntax is appropriate. Instead, applications should use a standard insertion and deletion annotation syntax. Existing moves shall not be modified. [Rationale: This element is provided to enable interoperability with earlier word processing applications which do not understand moves. end rationale].
+        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to this WordprocessingML document as moves when the trackRevisions element (§17.15.1.89) is turned on, even when that syntax is appropriate. Instead, applications should use a standard insertion and deletion annotation syntax. Existing moves shall not be modified. &lt;p/&gt;Rationale: This element is provided to enable interoperability with earlier word processing applications which do not understand moves. .
         /// </summary>
         public static string DoNotTrackMoves {
             get {
@@ -610,7 +610,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as a list item separator when evaluating the contents of all fields in the current document.&lt;p/&gt;[Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the list separator in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the list separator which must be used to evaluate fields [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as a list item separator when evaluating the contents of all fields in the current document.&lt;p/&gt;Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the list separator in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the list separator which must be used to evaluate fields  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ListSeparator {
             get {
@@ -637,7 +637,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the left and right margins defined in the section properties shall be swapped on facing pages.&lt;p/&gt;[Guidance: This setting is generally used when printing on both sides of pages and binding them like a book. end guidance].
+        ///   Looks up a localized string similar to Specifies that the left and right margins defined in the section properties shall be swapped on facing pages.&lt;p/&gt;Guidance: This setting is generally used when printing on both sides of pages and binding them like a book..
         /// </summary>
         public static string MirrorMargins {
             get {
@@ -682,7 +682,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that printing the contents of this document shall only print the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in their current locations on the page - all other document contents shall be suppressed.&lt;p/&gt;[Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting online document to be printed into the correct locations on the existing paper form. [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that printing the contents of this document shall only print the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in their current locations on the page - all other document contents shall be suppressed.&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting online document to be printed into the correct locations on the existing paper form. .
         /// </summary>
         public static string PrintFormsData {
             get {
@@ -691,7 +691,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the contents of this document shall be printed with fractional character widths. Fractional character widths exist when the spacing between characters is not constant (i.e. a proportional font face is used).&lt;p/&gt;[Note: Fractional character widths are generally used in conjunction with large font sizes to prevent characters from running together or having too much space between one another. end note].
+        ///   Looks up a localized string similar to Specifies the contents of this document shall be printed with fractional character widths. Fractional character widths exist when the spacing between characters is not constant (i.e. a proportional font face is used).&lt;p/&gt;Note: Fractional character widths are generally used in conjunction with large font sizes to prevent characters from running together or having too much space between one another. .
         /// </summary>
         public static string PrintFractionalCharacterWidth {
             get {
@@ -700,7 +700,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;[Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in /IEC 29500. end note].
+        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in /IEC 29500. .
         /// </summary>
         public static string PrintPostScriptOverText {
             get {
@@ -718,7 +718,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies if the grammar and spell checking engines of the last application to process this document completed checking the grammar and spelling of a the document before the document was last saved. Applications which modify the document contents without checking spelling or grammar should reset these states as needed.&lt;p/&gt;[Note: If this element specifies that an application&apos;s grammar and spell checking engines completed checking the grammar and spelling of the document when the document was last saved, then [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies if the grammar and spell checking engines of the last application to process this document completed checking the grammar and spelling of a the document before the document was last saved. Applications which modify the document contents without checking spelling or grammar should reset these states as needed.&lt;p/&gt;Note: If this element specifies that an application&apos;s grammar and spell checking engines completed checking the grammar and spelling of the document when the document was last saved, then  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ProofState {
             get {
@@ -727,7 +727,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the exact set of page and text sizing parameters which shall be used to display the contents of a WordprocessingML document. [Rationale: This setting is typically used for documents that have been annotated using ink. This setting freezes the document&apos;s presentation such that the ink annotations must exist at the same position of the WordprocessingML document irrespective of the monitor on which the WordprocessingML document is rendered. end rationale]&lt;p/&gt;This element shall only affect the display [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the exact set of page and text sizing parameters which shall be used to display the contents of a WordprocessingML document. &lt;p/&gt;Rationale: This setting is typically used for documents that have been annotated using ink. This setting freezes the document&apos;s presentation such that the ink annotations must exist at the same position of the WordprocessingML document irrespective of the monitor on which the WordprocessingML document is rendered. &lt;p/&gt;This element shall only affect the display of Wordpro [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ReadModeInkLockDown {
             get {
@@ -763,7 +763,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the set of revision save ID values for the current document. Revision save ID values refer to four digit hexadecimal values which uniquely identify an editing session in the life of the current document. An editing session is the period of time between two subsequent save operations by an application.&lt;p/&gt;[Guidance: The set of revision save IDs stored with a document only supplies information about the editing session in which document components were last saved, which can be used by applications i [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the set of revision save ID values for the current document. Revision save ID values refer to four digit hexadecimal values which uniquely identify an editing session in the life of the current document. An editing session is the period of time between two subsequent save operations by an application.&lt;p/&gt;Guidance: The set of revision save IDs stored with a document only supplies information about the editing session in which document components were last saved, which can be used by applications in [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Rsids {
             get {
@@ -772,7 +772,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to /IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;[Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delimite [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to /IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delimited [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SaveFormsData {
             get {
@@ -781,7 +781,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that this document should be capable of being saved into a format consisting of a single XML file (not defined by /IEC 29500) when its contents are invalid based XML schema validation of the custom XML markup contained in the document. This setting has no effect on documents that do not contain custom XML markup, or that do contain custom XML markup but do not have a schema attached. [Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that this document should be capable of being saved into a format consisting of a single XML file (not defined by /IEC 29500) when its contents are invalid based XML schema validation of the custom XML markup contained in the document. This setting has no effect on documents that do not contain custom XML markup, or that do contain custom XML markup but do not have a schema attached. &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SaveInvalidXml {
             get {
@@ -808,7 +808,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by /IEC 29500). [Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional. end guidance].
+        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by /IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional..
         /// </summary>
         public static string SaveThroughXslt {
             get {
@@ -817,7 +817,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to /IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;[Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications. end rationale].
+        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to /IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications. .
         /// </summary>
         public static string SaveXmlDataOnly {
             get {
@@ -943,7 +943,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether the fields contained in this document should automatically have their field result recalculated from the field codes when this document is opened by an application which supports field calculations. [Note: Some fields are always recalculated (e.g. the page numbering), therefore this element only affects fields which are typically not automatically recalculated on opening the document. Also note that this setting must not supersede any document protection (§17.15.1.29) or write protection ( [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies whether the fields contained in this document should automatically have their field result recalculated from the field codes when this document is opened by an application which supports field calculations. &lt;p/&gt;Note: Some fields are always recalculated (e.g. the page numbering), therefore this element only affects fields which are typically not automatically recalculated on opening the document. Also note that this setting must not supersede any document protection (§17.15.1.29) or write protectio [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UpdateFieldsOnOpen {
             get {
@@ -952,7 +952,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that this document should be saved through the custom XSLT transform defined by the saveThroughXslt element (§17.15.1.76) in this document when it is saved as a single XML file (not defined by /IEC 29500). [Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional. end guidance]&lt;p/&gt;If the saveXmlDataOnly element (§17.15.1.77) is specified, then the single XML file to be transformed is the custom XML markup of th [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that this document should be saved through the custom XSLT transform defined by the saveThroughXslt element (§17.15.1.76) in this document when it is saved as a single XML file (not defined by /IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional. &lt;p/&gt;If the saveXmlDataOnly element (§17.15.1.77) is specified, then the single XML file to be transformed is the custom XML markup of the document [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UseXsltWhenSaving {
             get {

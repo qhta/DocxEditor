@@ -34,9 +34,12 @@
         Text="{Binding Caption}" 
         Padding="5,0"
         Background="Silver"
-        Foreground="Black">
+        Foreground="Black"
+        ToolTipOpening="FrameworkElement_OnToolTipOpening"
+        >
         <TextBlock.ToolTip>
-          <ToolTip Content="{Binding Tooltip}" Style="{StaticResource CustomToolTipStyle}"/>
+          <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+          </ToolTip>
         </TextBlock.ToolTip>
       </TextBlock>
     </DataTemplate>

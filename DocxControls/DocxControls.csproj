@@ -42,6 +42,9 @@
     <Compile Update="Views\DocumentSettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomToolTipView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,9 +52,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ParagraphView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\CustomPropertiesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Strings.Designer.cs">
