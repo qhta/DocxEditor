@@ -10,7 +10,7 @@ public class PropertyViewModel: ViewModel
   /// <summary>
   /// Display caption for the property.
   /// </summary>
-  public string? Caption { get; set; }
+  public virtual string? Caption => Strings.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Name of the property to get/set.

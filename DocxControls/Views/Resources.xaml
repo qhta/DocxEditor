@@ -4,7 +4,8 @@
                     >
     <ResourceDictionary.MergedDictionaries>
       <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/WrapItemsControlStyle.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
 
   <local:ItemWidthConverter x:Key="ItemWidthConverter" />
   <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type local:ParagraphViewModel}">

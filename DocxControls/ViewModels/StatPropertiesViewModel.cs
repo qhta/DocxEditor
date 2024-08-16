@@ -26,11 +26,9 @@ public class StatPropertiesViewModel : PropertiesViewModel
     {
       if (StatProperties.IsVolatile(name) && StatProperties.AppliesToApplication(name, AppType.Word))
       {
-        var caption = Strings.ResourceManager.GetString(name) ?? name;
         var type = StatProperties.GetType(name);
         var propertyViewModel = new PropertyViewModel
         {
-          Caption = caption,
           Name = name,
           Type = type,
           IsReadOnly = true,
@@ -38,7 +36,7 @@ public class StatPropertiesViewModel : PropertiesViewModel
 
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        Properties.Add(propertyViewModel);
+        Items.Add(propertyViewModel);
       }
     }
   }

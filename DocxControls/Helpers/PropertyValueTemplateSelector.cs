@@ -26,15 +26,15 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is PropertyViewModel propertyViewModel)
+    if (item is SettingViewModel settingViewModel)
     {
-      if (propertyViewModel.Type == typeof(bool))
+      if (settingViewModel.Type == typeof(bool) || settingViewModel.Type == typeof(DXO10W.OnOffValues))
         return CheckBoxTemplate;
       return TextTemplate;
     }
-    if (item is SettingViewModel settingViewModel)
+    if (item is PropertyViewModel propertyViewModel)
     {
-      if (settingViewModel.Type == typeof(bool) || settingViewModel.Type==typeof(DXO10W.OnOffValues))
+      if (propertyViewModel.Type == typeof(bool))
         return CheckBoxTemplate;
       return TextTemplate;
     }

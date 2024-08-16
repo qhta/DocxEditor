@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  <UserControl.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/Resources.xaml"/>
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </UserControl.Resources>
   <Grid>
     <ListView 
       x:Name="ListView" 

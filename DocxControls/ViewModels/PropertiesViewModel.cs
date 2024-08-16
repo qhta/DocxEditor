@@ -20,6 +20,6 @@ public abstract class PropertiesViewModel : ViewModel
   /// <summary>
   /// Observable collection of properties
   /// </summary>
-  public ObservableCollection<PropertyViewModel> Properties { get; } = new();
+  public ObservableCollection<PropertyViewModel> Items { get; } = new();
 
 }

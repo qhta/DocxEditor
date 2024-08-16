@@ -12,7 +12,7 @@
   <Grid>
     <DataGrid
       x:Name="PropertiesGrid"
-      ItemsSource="{Binding Properties}" 
+      ItemsSource="{Binding Items}" 
       HeadersVisibility="None" AutoGenerateColumns="False" 
       CanUserAddRows="True" 
       CanUserDeleteRows="True"

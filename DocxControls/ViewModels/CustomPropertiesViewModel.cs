@@ -34,7 +34,7 @@ public class CustomPropertiesViewModel
   /// <summary>
   /// Observable collection of properties
   /// </summary>
-  public CustomObservableCollection<CustomPropertyViewModel> Properties { get; } = new();
+  public CustomObservableCollection<CustomPropertyViewModel> Items { get; } = new();
 
   /// <summary>
   /// Default constructor
@@ -80,11 +80,11 @@ public class CustomPropertiesViewModel
 
       };
       propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-      Properties.Add(propertyViewModel);
+      Items.Add(propertyViewModel);
 
     }
-    Properties.Refresh();
-    Properties.CollectionChanged += Properties_CollectionChanged;
+    Items.Refresh();
+    Items.CollectionChanged += ItemsCollectionChanged;
   }
 
   /// <summary>
@@ -131,7 +131,7 @@ public class CustomPropertiesViewModel
     viewModel.Type = typeof(string);
   }
 
-  private void Properties_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+  private void ItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
   {
     if (e.Action == NotifyCollectionChangedAction.Add)
     {

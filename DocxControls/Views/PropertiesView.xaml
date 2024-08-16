@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance Type=local:DesignTimePropertiesViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="400" d:DesignWidth="600">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
@@ -40,7 +39,7 @@
   </UserControl.Resources>
   <Grid>
     <DataGrid 
-      ItemsSource="{Binding Properties}" 
+      ItemsSource="{Binding Items}" 
       HeadersVisibility="None" AutoGenerateColumns="False" 
       CanUserAddRows="False" 
       CanUserDeleteRows="False">

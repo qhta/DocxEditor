@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveWritingStyle" xml:space="preserve">
+    <value>Określa informacje o parametrach sprawdzania gramatyki, które zostało wykonane na zawartości bieżącego dokumentu WordprocessingML. [Uwaga: Te informacje mogą być używane przez aplikacje w różny sposób, na przykład do określenia, czy bieżący stan sprawdzania gramatyki, określony przez element proofState (§17.15.1.65) jest wystarczający. Uwaga końcowa]</value>
+  </data>
+  <data name="AlignBorderAndEdges" xml:space="preserve">
+    <value>Określa, że obramowania akapitów określone za pomocą elementu pBdr (§17.3.1.24) i obramowania tabeli za pomocą elementu tblBorders (§17.4.40) powinny zostać dostosowane w celu wyrównania do zakresów obramowania strony zdefiniowanego za pomocą elementu pgBorders (§17.6.10), jeśli odstęp między tymi obramowaniami jest mniejszy lub równy 10,5 punktu (szerokość jednego znaku) lub mniejsza od obramowania strony. Obecność tego ustawienia zapewni, że między sąsiednią stroną a obramowaniem akapitu/tabeli nie będzie przerw o szerokości jednego znaku lub mniejszej, ponieważ obramowania, które są idealnie wyrównane, nie będą wyświetlane na korzyść krawędzi strony znajdującej się między nimi.</value>
+  </data>
+  <data name="AlwaysMergeEmptyNamespace" xml:space="preserve">
+    <value>Określa, czy niestandardowy znacznik XML określony za pomocą elementu customXml, który nie ma skojarzonej przestrzeni nazw, powinien być traktowany jako błąd i przenoszony do specjalnej przestrzeni nazw błędów (na potrzeby walidacji schematu XML) po otwarciu dokumentu. Jeśli ten element jest włączony, gdy aplikacja stwierdzi, że bieżący znacznik XML znajduje się w pustej przestrzeni nazw, elementy te nie zostaną automatycznie przeniesione do przestrzeni nazw błędów.</value>
+  </data>
+  <data name="AlwaysShowPlaceholderText" xml:space="preserve">
+    <value>Określa, że każdy niestandardowy element XML określony za pomocą elementu customXml w tym dokumencie zawsze powinien pokazywać jakąś formę prezentacji tekstu zastępczego w dokumencie, jeśli nie zawiera zawartości uruchamiania. Jeśli element zastępczy (§17.5.2.25) jest obecny we właściwościach niestandardowego elementu XML, oznacza to, że jest to tekst zastępczy i ten efekt nie ma żadnego wpływu. Jeśli element zastępczy zostanie pominięty, aplikacja użyje nazwy elementu do wygenerowania domyślnego tekstu zastępczego w jego miejsce.</value>
+  </data>
+  <data name="AttachedSchema" xml:space="preserve">
+    <value>Określa, że niestandardowy schemat XML, którego docelowa przestrzeń nazw jest zgodna z wartością określoną w atrybucie val, powinien być skojarzony z tym dokumentem podczas ładowania, jeśli taki schemat jest dostępny dla aplikacji hostującej. Aplikacje mogą również ładować i wykorzystywać wszelkie dodatkowe schematy, a także te wyraźnie wymienione w tym miejscu. [Uwaga: Te niestandardowe schematy XML mogą być następnie używane do sprawdzania poprawności struktury niestandardowych znaczników XML w dokumencie itp. Uwaga końcowa]</value>
+  </data>
+  <data name="AttachedTemplate" xml:space="preserve">
+    <value>Określa lokalizację szablonu dokumentu, który powinien być dołączony do bieżącego dokumentu WordprocessingML, jeśli jest dostępny i ma format obsługiwany przez aplikację. W szczególności atrybut val tego elementu  powinien zawierać ścieżkę do pliku powiązanego szablonu dokumentu.</value>
+  </data>
+  <data name="AutoFormatOverride" xml:space="preserve">
+    <value>Określa, czy formatowanie automatycznie stosowane przez aplikację (tj. niezastosowane jawnie przez użycie lub aplikację) powinno mieć możliwość zastąpienia ochrony formatowania włączonej za pośrednictwem atrybutu formatowania w elemencie documentProtection (§17.15.1.9), gdy te operacje formatowania dodałyby formatowanie, które zostało jawnie wyłączone. [Przykład: Automatyczne dodawanie indeksu górnego do st w ciągu 1st. Koniec przykładu]</value>
+  </data>
+  <data name="AutoHyphenation" xml:space="preserve">
+    <value>Określa, czy zawartość danego dokumentu WordprocessingML powinna być automatycznie dzielona wyrazami wyrazów wyrazów przez aplikację hostującą przed jego wyświetleniem, jeśli aplikacja obsługuje tę funkcję.</value>
+  </data>
+  <data name="BookFoldPrinting" xml:space="preserve">
+    <value>Określa, czy zawartość danego dokumentu WordprocessingML powinna być drukowana jako podpisy. Podpisy to drukowane arkusze, które przedstawiają kilka stron dokumentu, które są składane i oprawiane innymi podpisami w celu utworzenia broszury, której zestaw można związać ze sobą, tworząc publikację przypominającą książkę. W szczególności ten element określa, że każda strona w danym dokumencie WordprocessingML powinna być zorientowana w orientacji poziomej, podzielona na pół w pionie z dwoma lewymi marginesami wychodzącymi z dwusiecznej strony i dwoma prawymi marginesami utworzonymi po lewej i prawej stronie każdej strony.</value>
+  </data>
+  <data name="BookFoldPrintingSheets" xml:space="preserve">
+    <value>Element ten powinien być używany w połączeniu z elementami bookFoldPrinting (§17.15.1.11) i bookFoldRevPrinting (§17.15.1.13) w celu określenia liczby stron, które mają być zawarte w każdej broszurze podczas drukowania serii podpisów. Podpisy to wydrukowane arkusze, które przedstawiają kilka stron dokumentu, które mają być złożone i oprawione innymi podpisami w celu utworzenia broszury. Broszury można oprawić ze sobą, tworząc książkę podobną do publikacji.</value>
+  </data>
+  <data name="BookFoldReversePrinting" xml:space="preserve">
+    <value>Powinien być używany w połączeniu z elementami bookFoldPrinting (§17.15.1.11) i bookFoldRevPrinting (§17.15.1.13) w celu określenia liczby stron, które mają być zawarte w każdej broszurze podczas drukowania serii podpisów. Podpisy to wydrukowane arkusze, które przedstawiają kilka stron dokumentu, które mają być złożone i oprawione innymi podpisami w celu utworzenia broszury. Broszury można oprawić ze sobą, tworząc książkę podobną do publikacji.</value>
+  </data>
+  <data name="BordersDoNotSurroundFooter" xml:space="preserve">
+    <value>Określa, że obramowanie strony danego dokumentu WordprocessingML określone za pomocą elementu pgBorders (§17.6.10) nie powinno otaczać zawartości stopki.</value>
+  </data>
+  <data name="BordersDoNotSurroundHeader" xml:space="preserve">
+    <value>Określa, że obramowanie strony danego dokumentu WordprocessingML określone za pomocą elementu pgBorders (§17.6.10) nie powinno otaczać zawartości nagłówka.</value>
+  </data>
+  <data name="Captions" xml:space="preserve">
+    <value>Określa obecność informacji o podpisach w danym dokumencie WordprocessingML. Informacje te są podzielone na dwa komponenty:&lt;p/&gt;• Podpis elementu podrzędnego określa format pojedynczego typu podpisu, który ma być automatycznie dodawany do dokumentu.&lt;p/&gt;• Element podrzędny autoCaptions definiuje typy obiektów, do których format napisów ma być automatycznie stosowany.&lt;p/&gt;Te informacje powinny być używane do określania podpisów, które są automatycznie dodawane do obiektów po ich wstawieniu do dokumentu WordprocessingML. [Uwaga: To ustawienie jest zwykle ignorowane, chyba że jest określone w domyślnym szablonie aplikacji. Uwaga końcowa]</value>
+  </data>
+  <data name="CharacterSpacingControl" xml:space="preserve">
+    <value>Określa, w jaki sposób znaki o pełnej szerokości w bieżącym dokumencie WordprocessingML powinny być kompresowane w celu usunięcia dodatkowych białych znaków podczas wyświetlania zawartości tego dokumentu, w szczególności przez określenie zestawów znaków, które można skompresować w celu usunięcia dodatkowych białych znaków. [Uwaga: Zachowanie tego elementu jest funkcjonalnie identyczne z właściwością text-justify-trim . Uwaga końcowa]</value>
+  </data>
+  <data name="ChartTrackingRefBased" xml:space="preserve">
+    <value>Określa sposób zachowania właściwości punktu danych i etykiet danych na wszystkich wykresach w tym dokumencie. Znaczenie tego ustawienia jest następujące:&lt;p/&gt;True  Właściwości punktów danych i etykiety danych na wszystkich wykresach w tym dokumencie są zgodne z ich odwołaniem.&lt;p/&gt;False  Właściwości punktów danych i etykiety danych na wszystkich wykresach w tym dokumencie są zgodne z ich położeniem na wykresie.</value>
+  </data>
+  <data name="ClickAndTypeStyle" xml:space="preserve">
+    <value>Określa styl akapitu, określony za pomocą elementu style, który ma być stosowany do akapitów tworzonych automatycznie po wstawieniu tekstu do dokumentu WordprocessingML w obszarze dokumentu, z którym nie jest skojarzony żaden inny styl. Do tego stylu odwołuje się atrybut val, który przechowuje identyfikator stylu (przechowywany w atrybucie styleId w definicji stylu).</value>
+  </data>
+  <data name="ColorSchemeMapping" xml:space="preserve">
+    <value>Określa kolor motywu przechowywany w części Motyw dokumentu, do której ma być odwzorowana wartość tego koloru motywu. To mapowanie umożliwia łączenie ze sobą wielu kolorów motywu.</value>
+  </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Określa zestaw opcjonalnych opcji zgodności dla bieżącego dokumentu.</value>
+  </data>
+  <data name="ConflictMode" xml:space="preserve">
+    <value>W przypadku wartości true określa, że użytkownik rozwiązywał problemy ze zmianami w momencie zapisywania dokumentu.</value>
+  </data>
+  <data name="ConsecutiveHyphenLimit" xml:space="preserve">
+    <value>Określa maksymalną liczbę kolejnych wierszy tekstu, które mogą kończyć się łącznikiem podczas wyświetlania zawartości tego dokumentu. Po osiągnięciu tego limitu następujący wiersz nie może być dzielony wyrazami, niezależnie od tego, czy spełnia kryteria niezbędne do dzielenia wyrazów.</value>
+  </data>
+  <data name="DecimalSymbol" xml:space="preserve">
+    <value>Określa znak, który ma być interpretowany jako punkt podstawy podczas oceniania zawartości wszystkich pól w bieżącym dokumencie.&lt;p/&gt;[Uzasadnienie: Podczas oceniania instrukcji polowych na podstawie zawartości bieżącego dokumentu, konieczna jest znajomość znaku, który musi być traktowany jako punkt podstawy, aby zapobiec zmianom w obliczeniach tych samych instrukcji pola na podstawie ustawień regionalnych bieżącego użytkownika. Ten element przechowuje punkt podstawy, który musi być używany do oceny pól w zawartości tego dokumentu, niezależnie od ustawień regionalnych aplikacji ładującej plik. uzasadnienie końcowe]</value>
+  </data>
+  <data name="DefaultImageDpi" xml:space="preserve">
+    <value>Określa rozdzielczość w punktach na cal (DPI), z jaką będą zapisywane obrazy w dokumencie.&lt;p/&gt;To ustawienie jest ignorowane przez obrazy, które mają punkty na cal (DPI) określone przez useLocalDpi. To ustawienie jest również ignorowane, gdy parametr doNotAutoCompressPictures jest ustawiony na wartość §true§.</value>
+  </data>
+  <data name="DefaultTableStyle" xml:space="preserve">
+    <value>Określa styl tabeli, który ma być automatycznie stosowany do właściwości tabel dodanych do tego dokumentu przez aplikację. Należy zauważyć, że nie zmienia stylu tabeli zastosowanego do tabel, które nie odwołują się do stylu, zamiast tego automatycznie stosuje styl do tej tabeli za pośrednictwem elementu tblStyle (§17.4.63). To łącze jest tworzone przez odwołanie się do wartości atrybutu styleId stylu tabeli, który powinien być używany do formatowania nowo wstawionych tabel.</value>
+  </data>
+  <data name="DefaultTabStop" xml:space="preserve">
+    <value>Określa wartość, która ma być używana jako mnożnik do generowania automatycznych tabulatorów w tym dokumencie. Tabulatory automatyczne odnoszą się do lokalizacji tabulatorów, które występują po przekroczeniu wszystkich niestandardowych tabulatorów w bieżącym akapicie.</value>
+  </data>
+  <data name="DiscardImageEditingData" xml:space="preserve">
+    <value>W przypadku wartości true określa, że przycięte obszary obrazów nie mają być zapisywane. Zapisane obrazy są raczej wynikiem zastosowania imgProps na oryginalnych obrazach. &lt;p/&gt;Jeśli ten element jest nieobecny lub ma wartość §false§, przycięte obszary obrazów są zapisywane.</value>
+  </data>
+  <data name="DisplayBackgroundShape" xml:space="preserve">
+    <value>Określa, czy obrazy i kolory zdefiniowane w tle dokumentu za pomocą elementu tła (§17.2.1) mają być wyświetlane, gdy dokument jest wyświetlany w widoku układu wydruku, jak określono w elemencie widoku (§17.15.1.92).</value>
+  </data>
+  <data name="DisplayHorizontalDrawingGrid" xml:space="preserve">
+    <value>Określa liczbę jednostek siatki poziomej zdefiniowanych za pomocą elementu drawingGridHorizontalSpacing (§17.15.1.45), która powinna być dozwolona między kolejnymi widocznymi liniami siatki poziomej w tym dokumencie, jeśli są wyświetlane linie siatki. [Uwaga: Wyświetlanie linii siatki jest ustawieniem na poziomie aplikacji, które nie zostało określone w normie /IEC 29500. Siatka rysunku to siatka, która może być używana przez aplikacje do określania położenia obiektów przestawnych w dokumencie.</value>
+  </data>
+  <data name="DisplayVerticalDrawingGrid" xml:space="preserve">
+    <value>Określa liczbę pionowych jednostek siatki zdefiniowanych za pomocą elementu drawingGridVerticalSpacing (§17.15.1.47), które powinny być dozwolone między kolejnymi pionowymi liniami siatki w tym dokumencie, jeśli są wyświetlane linie siatki. [Uwaga: Wyświetlanie linii siatki jest ustawieniem na poziomie aplikacji, które nie zostało określone w normie /IEC 29500. Siatka rysunku to siatka, która może być używana przez aplikacje do określania położenia obiektów przestawnych w dokumencie.</value>
+  </data>
+  <data name="DocumentId" xml:space="preserve">
+    <value>Określa dowolny identyfikator dla kontekstu identyfikatorów akapitów w dokumencie. Wartości MUSZĄ być większe niż 0 i mniejsze niż 0x80000000.</value>
+  </data>
+  <data name="DocumentProtection" xml:space="preserve">
+    <value>Określa zestaw ograniczeń ochrony dokumentów, które zostały zastosowane do zawartości dokumentu WordprocessingML. Te ograniczenia powinny być wymuszane przez aplikacje edytujące ten dokument, gdy atrybut wymuszania jest włączony i ignorowane (ale utrwalane) w przeciwnym razie. Ochrona dokumentów to zestaw ograniczeń używanych w celu zapobiegania niezamierzonym zmianom w całości lub części dokumentu WordprocessingML. [Uwaga: Ta ochrona nie szyfruje dokumentu, a złośliwe aplikacje mogą obejść jego użycie. Ta ochrona nie jest przeznaczona jako funkcja bezpieczeństwa. Uwaga końcowa]</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Określa klasyfikację danego dokumentu WordprocessingML.&lt;p/&gt;[Uwaga: Ten element może być używany przez aplikacje hostingowe w celu ułatwienia dostosowania interfejsu użytkownika i/lub automatycznego formatowania w oparciu o §typ§ danego dokumentu WordprocessingML. Uwaga końcowa]</value>
+  </data>
+  <data name="DocumentVariables" xml:space="preserve">
+    <value>Określa obecność zmiennych dokumentu w języku WordprocessingML. Zmienna dokumentu to lokalizacja przechowywania dowolnych danych klienta w parach nazwa/wartość, która jest utrwalana w danym dokumencie WordprocessingML.</value>
+  </data>
+  <data name="DoNotAutoCompressPictures" xml:space="preserve">
+    <value>Określa, że obrazy w tym dokumencie nie są automatycznie kompresowane podczas zapisywania dokumentu w celu zmniejszenia ogólnego rozmiaru wynikowego dokumentu WordprocessingML.</value>
+  </data>
+  <data name="DoNotDemarcateInvalidXml" xml:space="preserve">
+    <value>Określa, czy podpowiedź wizualna powinna być wyświetlana wokół zawartości zawartej w dokumencie WordprocessingML, która jest zawarta z niestandardowym znacznikiem XML określonym za pomocą elementu customXml, gdy aplikacja stwierdzi, że bieżący znacznik XML (lub jego zawartość) narusza ograniczenia dołączonych schematów XML.</value>
+  </data>
+  <data name="DoNotDisplayPageBoundaries" xml:space="preserve">
+    <value>Określa, czy aplikacje wyświetlające ten dokument powinny wyświetlać zawartość nagłówka i stopki podczas wyświetlania dokumentu w widoku układu wydruku (§17.15.1.92), czy też powinny zwijać te obszary, a także białe znaki na wszystkich wyświetlanych stronach, tak aby zakresy tekstu znajdowały się bezpośrednio po sobie. [Uzasadnienie: Zwijanie końców stron ułatwia odczytywanie zawartości dokumentu, ponieważ tekst przepływa między stronami bez białych znaków, przy jednoczesnym zachowaniu funkcji WYSIWYG widoku układu wydruku dla głównej zawartości dokumentu. uzasadnienie końcowe]</value>
+  </data>
+  <data name="DoNotHyphenateCaps" xml:space="preserve">
+    <value>Określa, czy wyrazy składające się wyłącznie z wielkich liter mają być dzielone w danym dokumencie, gdy automatyczne dzielenie wyrazów jest określone za pomocą elementu autoHyphenation (§17.15.1.10).</value>
+  </data>
+  <data name="DoNotIncludeSubdocsInStats" xml:space="preserve">
+    <value>Określa, czy zawartość dokumentu zawarta w polach tekstowych, przypisach dolnych i końcowych ma być wykluczana, gdy aplikacja oblicza statystyki danego dokumentu, gdy te wartości są obliczane i/lub wyświetlane przez aplikację.&lt;p/&gt;[Uwaga: Oto kilka przykładów statystyk dokumentów, które aplikacja może wybrać do obliczenia: liczba słów, liczba znaków, liczba akapitów, liczba stron, liczba wierszy i tak dalej. Uwaga końcowa]</value>
+  </data>
+  <data name="DoNotShadeFormData" xml:space="preserve">
+    <value>Określa, czy podpowiedź wizualna powinna być wyświetlana wokół pól formularza zawartych w dokumencie WordprocessingML określonym za pomocą  pól FORMTEXT, FORMCHECKBOX lub FORMDROPDOWN.</value>
+  </data>
+  <data name="DoNotTrackFormatting" xml:space="preserve">
+    <value>Określa, że aplikacje nie mogą śledzić poprawek wprowadzonych w formatowaniu tego dokumentu WordprocessingML, gdy element trackRevisions (§17.15.1.89) jest włączony.</value>
+  </data>
+  <data name="DoNotTrackMoves" xml:space="preserve">
+    <value>Określa, że aplikacje nie mogą śledzić poprawek wprowadzonych do tego dokumentu WordprocessingML podczas ruchu, gdy element trackRevisions (§17.15.1.89) jest włączony, nawet jeśli ta składnia jest odpowiednia. Zamiast tego aplikacje powinny używać standardowej składni adnotacji wstawiania i usuwania. Istniejące ruchy nie mogą być modyfikowane. [Uzasadnienie: Ten element został dostarczony, aby umożliwić interoperacyjność z wcześniejszymi aplikacjami do edycji tekstu, które nie rozumieją ruchów. uzasadnienie końcowe]</value>
+  </data>
+  <data name="DoNotUseMarginsForDrawingGridOrigin" xml:space="preserve">
+    <value>Określa, że lewy górny róg strony nie może być używany jako początek siatki rysunku. Siatka rysunkowa to wirtualna siatka, która może być używana przez aplikacje do określania, gdzie obiekty rysunkowe powinny być umieszczone na stronie po wstawieniu (tj. w celu zapewnienia wyrównania obiektów itp.). Jeśli ten element jest obecny, siatka powinna zaczynać się od lewej górnej krawędzi strony, a nie od zakresu tekstu.</value>
+  </data>
+  <data name="DoNotValidateAgainstSchema" xml:space="preserve">
+    <value>Określa, że aplikacje nie mogą weryfikować niestandardowych znaczników XML w tym dokumencie względem odpowiednich niestandardowych schematów XML, nawet jeśli te schematy są dostępne. Aplikacja powinna zachowywać się po cichu tak, jakby nie była w stanie zapewnić tej funkcji.</value>
+  </data>
+  <data name="DrawingGridHorizontalOrigin" xml:space="preserve">
+    <value>Określa odległość od lewej krawędzi strony, która ma być używana jako początek poziomych linii siatki używanych przez siatkę rysunku. Siatka rysunkowa to wirtualna siatka, która może być używana przez aplikacje do określania, gdzie obiekty rysunkowe powinny być umieszczone na stronie po wstawieniu (np. w celu zapewnienia wyrównania obiektów itp.). Ponieważ siatka zawsze obejmuje całą stronę, gdy określony jest element doNotUseMarginsForDrawingGridOrigin (§17.15.1.42), element ten powinien wpływać tylko na krawędź początkową pierwszej wyświetlanej poziomej linii siatki (tj. dostosowuje siatkę tylko o moduł wartości w stosunku do szerokości jednej jednostki siatki).</value>
+  </data>
+  <data name="DrawingGridHorizontalSpacing" xml:space="preserve">
+    <value>Określa szerokość poziomych jednostek siatki w tym dokumencie. Siatka rysunku to siatka, która może być używana przez aplikacje do określania położenia obiektów przestawnych w dokumencie.&lt;p/&gt;Jeśli ten element zostanie pominięty, każda pozioma jednostka siatki powinna mieć 180 dwudziestych punktu (0,125”) szerokości.</value>
+  </data>
+  <data name="DrawingGridVerticalOrigin" xml:space="preserve">
+    <value>Określa odległość od górnej krawędzi strony, która ma być używana jako początek pionowych linii siatki używanych przez siatkę rysunku. Siatka rysunkowa to wirtualna siatka, która może być używana przez aplikacje do określania, gdzie obiekty rysunkowe powinny być umieszczone na stronie po wstawieniu (tj. w celu zapewnienia wyrównania obiektów itp.). Ponieważ siatka zawsze obejmuje całą stronę, gdy określony jest element doNotUseMarginsForDrawingGridOrigin (§17.15.1.42), element ten powinien mieć wpływ tylko na krawędź początkową pierwszej wyświetlanej pionowej linii siatki (tj. dostosowuje siatkę tylko o moduł wartości w stosunku do szerokości jednej jednostki siatki).</value>
+  </data>
+  <data name="DrawingGridVerticalSpacing" xml:space="preserve">
+    <value>Określa szerokość pionowych jednostek siatki w tym dokumencie. Siatka rysunku to siatka, która może być używana przez aplikacje do określania położenia obiektów przestawnych w dokumencie.&lt;p/&gt;Jeśli ten element zostanie pominięty, każda pionowa jednostka siatki powinna mieć 180 dwudziestych punktu (0,125”) szerokości.</value>
+  </data>
+  <data name="EmbedSystemFonts" xml:space="preserve">
+    <value>Określa, że aplikacje powinny osadzać popularne czcionki systemowe, gdy są używane, a osadzanie czcionek jest włączone dla tego dokumentu za pomocą elementu embedTrueTypeFonts (§17.8.3.8). Typowe czcionki systemowe odnoszą się do zestawu czcionek, które zazwyczaj są zawsze obecne na komputerze i nie są zdefiniowane w normie IEEE/IEC 29500.</value>
+  </data>
+  <data name="EmbedTrueTypeFonts" xml:space="preserve">
+    <value>Określa, że aplikacje powinny osadzać czcionki używane w tym dokumencie podczas jego zapisywania. Czcionki te są osadzane zgodnie z algorytmem określonym w §17.8.1.</value>
+  </data>
+  <data name="EndnoteDocumentWideProperties" xml:space="preserve">
+    <value>Określa właściwości przypisu końcowego dla bieżącego dokumentu. Każda z tych właściwości jest przechowywana jako element podrzędny w elemencie endnotePr.&lt;p/&gt;Te właściwości można zastąpić dla określonej sekcji za pomocą elementu endnotePr dla całej sekcji (§17.11.5).</value>
+  </data>
+  <data name="EvenAndOddHeaders" xml:space="preserve">
+    <value>Określa, czy sekcje w tym dokumencie mają mieć różne nagłówki i stopki dla stron parzystych i nieparzystych (nagłówek/stopka strony nieparzystej i nagłówek/stopka strony parzystej).&lt;p/&gt;Jeśli atrybut val jest ustawiony na wartość true, to każda sekcja w dokumencie powinna używać nieparzystego nagłówka strony dla wszystkich stron o numerach nieparzystych w sekcji i nagłówka strony parzystej dla wszystkich stron o numerach parzystych w sekcji (licząc każdą stronę w sekcji zaczynając od jednej, niezależnie od ustawień numeracji stron dla sekcji). Jeśli atrybut val jest ustawiony na false, to wszystkie strony w sekcji powinny używać nieparzystego nagłówka strony.&lt;p/&gt;To ustawienie nie ma wpływu na obecność nagłówka pierwszej strony w każdej sekcji, który jest określony za pomocą elementu titlePg (§17.10.6). Jeśli określono nagłówek pierwszej strony, to ustawienie to zostanie zastosowane na wszystkich kolejnych stronach, w tym na pierwszej stronie w liczbie stron parzystych/nieparzystych.&lt;p/&gt;Jeśli ten element jest ustawiony na false i określony jest nagłówek strony parzystej , to zostanie zignorowany i zostanie wyświetlony tylko nagłówek strony nieparzystej. I odwrotnie, jeśli ten element jest ustawiony na true i któryś z typów nagłówka zostanie pominięty dla danej sekcji, to w razie potrzeby zostanie utworzony pusty nagłówek (w jego miejsce nie należy używać innego typu nagłówka).</value>
+  </data>
+  <data name="FootnoteDocumentWideProperties" xml:space="preserve">
+    <value>Określa właściwości przypisu dolnego dla tego dokumentu. Każda właściwość jest przechowywana jako unikatowy element w elemencie footnotePr.&lt;p/&gt;Te właściwości można zastąpić dla określonej sekcji za pomocą elementu footnotePr dla całej sekcji (§17.11.11).</value>
+  </data>
+  <data name="ForceUpgrade" xml:space="preserve">
+    <value>Określa, że zawartość tego dokumentu może być uaktualniana i że jego funkcjonalność dokumentu wynikowego nie może być ograniczona tylko do tych funkcji, które są zgodne z wcześniejszymi edytorami tekstu. Jedynymi czynnościami wymaganymi w ramach uaktualniania dokumentu są:&lt;p/&gt;• Usunięcie tego elementu. Jeśli aplikacja nie wie, jak uaktualnić dokument, ten element powinien zostać zignorowany i utrwalony.&lt;p/&gt;• Usunięcie wszystkich opcji kompatybilności (§17.15.1.21) w dokumencie, które zachowują kompatybilność z poprzednimi edytorami tekstu. Ustawienia kompatybilności, które po prostu wpływają na dane zachowanie, nie mogą być wyłączone.&lt;p/&gt;[Uwaga: Pozostałe operacje, które muszą zostać wykonane w ramach aktualizacji dokumentu, są zdefiniowane przez aplikację i nie wchodzą w zakres normy /IEC 29500. Uwaga końcowa]</value>
+  </data>
+  <data name="FormsDesign" xml:space="preserve">
+    <value>Określa, że dokument został ostatnio zapisany w czasie, gdy edytowany był tekst zastępczy wszystkich znaczników dokumentu strukturalnego w tym dokumencie. Oznacza to, że tekst zastępczy aktualnie wyświetlany we wszystkich znacznikach dokumentu strukturalnego, w których wyświetlany jest element showingPlcHdr (§17.5.2.39), zostanie przypisany do odpowiedniego wpisu dokumentu glosariusza, jak określono za pomocą elementu docPart (§17.12.5) po otwarciu tego dokumentu, aby zapewnić, że najnowszy tekst zastępczy zostanie zapisany we wpisie dokumentu glosariusza. Jeśli bieżącego tekstu zastępczego nie można zapisać jako pozycji dokumentu glosariusza, należy go zmodyfikować zgodnie z potrzebami przed zapisaniem.</value>
+  </data>
+  <data name="GutterAtTop" xml:space="preserve">
+    <value>Określa, że margines na oprawę danego dokumentu WordprocessingML powinien być umieszczony u góry stron dokumentu podczas wyświetlania dokumentu. Margines  na oprawę to biały obszar utworzony przez wewnętrzne marginesy dwóch stron zwróconych do siebie, na przykład biały obszar między tekstem na stronach książki, gdy książka jest otwarta.&lt;p/&gt;Jeśli ten element zostanie pominięty, to margines na oprawę nie zostanie umieszczony u góry strony. Jeśli w danym dokumencie używane są elementy mirrorMargins (§17.15.1.57), bookFoldPrinting (§17.15.1.11), bookFoldRevPrinting (§17.15.1.13) lub printTwoOnOne (§17.15.1.64), element gutterAtTop nie będzie używany. Zamiast tego margines na oprawę powinien być ustawiany automatycznie, jeśli jest to konieczne, aby umożliwić drukowanie i układ strony w tych ustawieniach.</value>
+  </data>
+  <data name="HeaderShapeDefaults" xml:space="preserve">
+    <value>Określa domyślne parametry obiektu przy użyciu składni VML (§14.1) wstawionej w nagłówku i stopce dokumentu WordprocessingML. Definicja i semantyka tych parametrów jest opisana w podpunkcie VML - Office Drawing (§14.2) normy /IEC 29500.</value>
+  </data>
+  <data name="HideGrammaticalErrors" xml:space="preserve">
+    <value>Określa, czy podpowiedź wizualna powinna być wyświetlana wokół zawartości uruchamiania zawartej w dokumencie WordprocessingML, który został oznaczony jako możliwy błąd gramatyczny przy użyciu elementu proofErr (§17.13.8.1) lub za pośrednictwem własnego aparatu gramatycznego aplikacji.</value>
+  </data>
+  <data name="HideSpellingErrors" xml:space="preserve">
+    <value>Określa, czy wizualna wskazówka powinna być wyświetlana wokół zawartości uruchamiania zawartej w dokumencie WordprocessingML, który został oznaczony jako możliwy błąd pisowni przy użyciu elementu proofErr (§17.13.8.1) lub za pośrednictwem własnego silnika sprawdzania pisowni aplikacji.</value>
+  </data>
+  <data name="HyphenationZone" xml:space="preserve">
+    <value>Określa strefę dzielenia wyrazów, która ma być używana podczas automatycznego lub ręcznego dzielenia wyrazów w zawartości tego dokumentu. Strefa dzielenia wyrazów to ilość białych znaków, którą można pozostawić na końcu wiersza (lub dodać do wyjustowanych wierszy) przed próbą dzielenia wyrazów w następnym słowie w dokumencie (w celu zmniejszenia ilości białych znaków w wierszu). Mniejsza strefa dzielenia wyrazów powinna zmniejszyć nierówność prawej krawędzi tekstu podstawowego danego dokumentu, ponieważ dzielenie wyrazów jest większą liczbą wyrazów. I odwrotnie, większa strefa dzielenia wyrazów powinna zwiększyć nierówność prawej krawędzi tekstu danego dokumentu, ponieważ dzieli się mniej wyrazów.&lt;p/&gt;Jeśli ten element zostanie pominięty, podczas dzielenia wyrazów w tym dokumencie zostanie zastosowana domyślna strefa dzielenia wyrazów wynosząca 360 dwudziestych punktu (0,25§).</value>
+  </data>
+  <data name="IgnoreMixedContent" xml:space="preserve">
+    <value>Określa, że aplikacje powinny ignorować całą zawartość tekstową, która nie jest zawarta w niestandardowym elemencie znacznika XML liścia, podczas sprawdzania poprawności zawartości niestandardowego znacznika XML w tym dokumencie względem co najmniej jednego dołączonego niestandardowego schematu XML. Element liścia to niestandardowy element XML, który nie ma podrzędnych niestandardowych elementów XML (jest to liść w niestandardowym drzewie XML).</value>
+  </data>
+  <data name="LinkStyles" xml:space="preserve">
+    <value>Określa, że style w danym dokumencie są aktualizowane tak, aby były zgodne ze stylami w dołączonym szablonie określonym za pomocą elementu attachedTemplate (§17.15.1.6), gdy dokument jest otwierany przez aplikację hostingową. To ustawienie umożliwia synchronizację stylów zawartych w dokumentach z dołączonymi szablonami ze stylami używanymi w dołączonym szablonie.</value>
+  </data>
+  <data name="ListSeparator" xml:space="preserve">
+    <value>Określa znak, który ma być interpretowany jako separator elementu listy podczas oceniania zawartości wszystkich pól w bieżącym dokumencie.&lt;p/&gt;[Uzasadnienie: Podczas oceniania instrukcji pól na podstawie zawartości bieżącego dokumentu, konieczna jest znajomość znaku, który musi być traktowany jako separator listy, aby zapobiec zmianom w obliczaniu tych samych instrukcji pól na podstawie ustawień regionalnych bieżącego użytkownika. Ten element przechowuje separator listy, który musi być używany do oceny pól w zawartości tego dokumentu, niezależnie od ustawień regionalnych aplikacji ładującej plik. uzasadnienie końcowe]</value>
+  </data>
+  <data name="MailMerge" xml:space="preserve">
+    <value>Określa wszystkie informacje dotyczące korespondencji seryjnej dla dokumentu, który został połączony z zewnętrznym źródłem danych w ramach operacji korespondencji seryjnej.&lt;p/&gt;Dokument zawierający dane korespondencji seryjnej może być jednego z dwóch typów:&lt;p/&gt;• Dokument źródłowy, czyli dokument zawierający wszystkie informacje dotyczące korespondencji seryjnej, używany w połączeniu z aplikacją do łączenia się z zewnętrznym źródłem danych i tworzenia jednego dokumentu dla każdego rekordu w tym źródle danych.&lt;p/&gt;• Scalony dokument, dokument zawierający wszystkie informacje dotyczące korespondencji seryjnej, a także odniesienie do pojedynczego konkretnego rekordu, który zostanie użyty do wypełnienia wartości wszystkich pól korespondencji seryjnej w tym dokumencie.&lt;p/&gt;Informacje w tym elemencie zawierają wszystkie dane potrzebne do nawiązania połączenia ze źródłem danych i wypełnienia wszelkich pól scalanych w dokumencie danymi z tego źródła danych.</value>
+  </data>
+  <data name="MathProperties" xml:space="preserve">
+    <value>Określa właściwości na poziomie dokumentu dla wszystkich elementów matematycznych w dokumencie.</value>
+  </data>
+  <data name="MirrorMargins" xml:space="preserve">
+    <value>Określa, że lewy i prawy margines zdefiniowany we właściwościach sekcji mają być zamienione miejscami na stronach sąsiadujących.&lt;p/&gt;[Wskazówki: To ustawienie jest zwykle używane podczas drukowania na obu stronach stron i oprawiania ich jak książki. Wskazówki dotyczące kończenia]</value>
+  </data>
+  <data name="NoLineBreaksAfterKinsoku" xml:space="preserve">
+    <value>Określa zestaw znaków, który nie może kończyć wiersza dla ciągów tekstu, które podlegają niestandardowej logice dzielenia wierszy przy użyciu elementu kinsoku (§17.3.1.16) podczas wyświetlania zawartości dokumentu. To ograniczenie ma zastosowanie tylko do tekstu, który został oznaczony w języku tej reguły za pomocą elementu lang (§17.3.2.20) lub metod automatycznego wykrywania poza zakresem /IEC 29500.</value>
+  </data>
+  <data name="NoLineBreaksBeforeKinsoku" xml:space="preserve">
+    <value>Określa zestaw znaków, który powinien być ograniczony od początku nowego wiersza dla przebiegów tekstu, które podlegają niestandardowej logice dzielenia wierszy przy użyciu elementu kinsoku (§17.3.1.16) podczas wyświetlania zawartości dokumentu. To ograniczenie ma zastosowanie tylko do tekstu, który został oznaczony w języku tej reguły za pomocą elementu lang (§17.3.2.20) lub metod automatycznego wykrywania poza zakresem /IEC 29500.</value>
+  </data>
+  <data name="NoPunctuationKerning" xml:space="preserve">
+    <value>Określa, że znaki interpunkcyjne nie mogą być kerowane w bieżącym dokumencie, gdy kerning jest włączony w przebiegu przy użyciu elementu kern (§17.3.2.19). Kerning odnosi się do procesu, w którym aplikacja hostująca zmniejsza odstępy między sąsiadującymi znakami i/lub interpunkcją w celu poprawy wyglądu tekstu. Tekst o dobrym kerze ma podobną ilość spacji między każdą parą znaków i/lub każdym zestawem znaku i symbolu interpunkcyjnego. Gdy kerning jest włączony, tekst łaciński jest zawsze kerningowany, a opcja ta określa, czy kerningowane są również znaki interpunkcyjne.</value>
+  </data>
+  <data name="PersistentDocumentId" xml:space="preserve">
+    <value>Określa unikatowy identyfikator zestawu dokumentów pochodzących ze wspólnego źródła. Możliwe wartości tego atrybutu są definiowane przez ST_Guid typ simple</value>
+  </data>
+  <data name="PrintFormsData" xml:space="preserve">
+    <value>Określa, że drukowanie zawartości tego dokumentu powoduje wydrukowanie tylko zawartości pól formularza WordprocessingML zdefiniowanych za pomocą  kodów pól FORMTEXT, FORMCHECKBOX i FORMDROPDOWN w ich bieżących lokalizacjach na stronie — cała pozostała zawartość dokumentu zostanie pominięta.&lt;p/&gt;[Uzasadnienie: To ustawienie jest zwykle używane, aby umożliwić powielanie formularzy papierowych w elektronicznym formularzu dokumentu WordprocessingML, co pozwala na wydrukowanie wynikowego dokumentu online w odpowiednich miejscach na istniejącym formularzu papierowym. uzasadnienie końcowe]</value>
+  </data>
+  <data name="PrintFractionalCharacterWidth" xml:space="preserve">
+    <value>Określa, że zawartość tego dokumentu powinna być drukowana z szerokością ułamkową. Ułamkowe szerokości znaków występują, gdy odstępy między znakami nie są stałe (tj. używany jest proporcjonalny krój czcionki).&lt;p/&gt;[Uwaga: Ułamkowe szerokości znaków są zwykle używane w połączeniu z dużymi rozmiarami czcionek, aby zapobiec zbieganiu się znaków lub zbyt dużej odległości między nimi. Uwaga końcowa]</value>
+  </data>
+  <data name="PrintPostScriptOverText" xml:space="preserve">
+    <value>Określa, że kody PostScript określone w dokumentach WordprocessingML zawierających  pola PRINT mają być dołączane na pierwszym planie (w tej samej kolejności Z co tekst) z danymi drukowanymi w treści danego dokumentu WordprocessingML.&lt;p/&gt;[Uwaga: To ustawienie jest zachowywane w celu zapewnienia zgodności starszych dokumentów edytora tekstu. Pole PRINT nie powinno być używane zamiast nowszych technologii w /IEC 29500. Uwaga końcowa]</value>
+  </data>
+  <data name="PrintTwoOnOne" xml:space="preserve">
+    <value>Określa, czy podczas drukowania tego dokumentu na jednym arkuszu papieru powinny być drukowane dwie strony. W szczególności ten element określa, że każda strona wyświetlana dla zawartości w danym dokumencie WordprocessingML powinna mieć rozmiar strony określony w ustawieniach sekcji podzielony na pół z dwoma górnymi marginesami pochodzącymi z dwusiecznej strony i dolnymi marginesami utworzonymi u góry i u dołu każdej strony.</value>
+  </data>
+  <data name="ProofState" xml:space="preserve">
+    <value>Określa, czy aparaty sprawdzania gramatyki i pisowni ostatniej aplikacji, która przetwarzała ten dokument, zakończyły sprawdzanie gramatyki i pisowni dokumentu przed jego ostatnim zapisaniem. Aplikacje, które modyfikują zawartość dokumentu bez sprawdzania pisowni lub gramatyki, powinny w razie potrzeby zresetować te stany.&lt;p/&gt;[Uwaga: Jeśli ten element określa, że mechanizmy sprawdzania gramatyki i pisowni aplikacji zakończyły sprawdzanie gramatyki i pisowni dokumentu podczas ostatniego zapisywania dokumentu, kolejne aplikacje mogą zdecydować się nie uruchamiać swoich aparatów sprawdzania gramatyki i pisowni po załadowaniu danego dokumentu WordprocessingML.&lt;p/&gt;Może to zwiększyć szybkość, z jaką aplikacja hostująca ładuje plik i nie wpływa negatywnie na stan sprawdzania gramatyki lub pisowni dokumentu, ponieważ wszystkie błędy zostały już znalezione i oznaczone za pomocą elementu proofErr (§17.13.8.1), ponieważ dokument nie był edytowany, a jedynie załadowany, od czasu ostatniego zapisanego. Uwaga końcowa]</value>
+  </data>
+  <data name="ReadModeInkLockDown" xml:space="preserve">
+    <value>Określa dokładny zestaw parametrów zmiany rozmiaru strony i tekstu, które mają być używane do wyświetlania zawartości dokumentu WordprocessingML. [Uzasadnienie: To ustawienie jest zwykle używane w przypadku dokumentów, które zostały opatrzone adnotacjami przy użyciu pisma odręcznego. To ustawienie powoduje zablokowanie prezentacji dokumentu w taki sposób, że adnotacje odręczne muszą znajdować się w tym samym miejscu co dokument WordprocessingML, niezależnie od monitora, na którym jest renderowany dokument WordprocessingML. uzasadnienie końcowe]&lt;p/&gt;Ten element ma wpływ na wyświetlanie dokumentów WordprocessingML tylko w następujący sposób:&lt;p/&gt;• Jeśli atrybut actualPage jest określony z wartością true, strony danego dokumentu WordprocessingML są renderowane tak, jak normalnie byłyby wyświetlane. Powstałe strony mogą mieć dowolne zmiany ustawień powiększenia. Wszystkie inne atrybuty nie są brane pod uwagę.&lt;p/&gt;• Jeśli atrybut actualPage jest określony z wartością false, strony danego dokumentu WordprocessingML będą renderowane jako strony wirtualne po załadowaniu przez zgodną aplikację hostingową, niezależnie od widoku danego dokumentu WordprocessingML (§17.15.1.92). Strony wirtualne to strony, które nie są skorelowane z wydrukowanym układem danego dokumentu WordprocessingML, które zostały przeskalowane przez zgodną aplikację hostingową w celu poprawy czytelności danego dokumentu WordprocessingML po jego wyświetleniu. W szczególności atrybuty w i h określają szerokość i wysokość stron wirtualnych, a atrybut fontSz określa skalowanie, które ma zostać zastosowane do tekstu w danym dokumencie WordprocessingML.</value>
+  </data>
+  <data name="RemoveDateAndTime" xml:space="preserve">
+    <value>Określa, że informacje o dacie i godzinie mają być usuwane ze wszystkich adnotacji, które znajdują się w bieżącym dokumencie w momencie jego zapisywania. Adnotacje przechowują te informacje w atrybucie date w elemencie XML adnotacji.</value>
+  </data>
+  <data name="RemovePersonalInformation" xml:space="preserve">
+    <value>Określa, że aplikacje hostujące powinny usuwać wszystkie dane osobowe autorów dokumentów po zapisaniu danego dokumentu WordprocessingML. Definicja i zakres danych osobowych nie są zdefiniowane w normie /IEC 29500.</value>
+  </data>
+  <data name="RevisionView" xml:space="preserve">
+    <value>Określa, które formy adnotacji powinny być widoczne dla dokumentu WordprocessingML po jego wyświetleniu. To ustawienie nie ma wpływu na to, czy adnotacje są dodawane, czy utrwalane, ma wpływ tylko na wyświetlanie adnotacji, które istnieją w treści dokumentu (trwałe lub w pamięci).</value>
+  </data>
+  <data name="Rsids" xml:space="preserve">
+    <value>Określa zestaw wartości identyfikatora zapisu poprawki dla bieżącego dokumentu. Wartości identyfikatora zapisu wersji odnoszą się do czterocyfrowych wartości szesnastkowych, które jednoznacznie identyfikują sesję edycji w czasie życia bieżącego dokumentu. Sesja edycji to okres czasu między dwiema kolejnymi operacjami składowania przez aplikację.&lt;p/&gt;[Wskazówki: Zestaw identyfikatorów zapisu wersji przechowywanych z dokumentem zawiera tylko informacje o sesji edycji, w której składniki dokumentu zostały ostatnio zapisane, które mogą być używane przez aplikacje w dowolny sposób. Zakończ wytyczne]</value>
+  </data>
+  <data name="SaveFormsData" xml:space="preserve">
+    <value>Określa, że zapisanie zawartości tego dokumentu spowoduje zapisanie tylko zawartości pól formularza WordprocessingML zdefiniowanych przy użyciu  kodów pól FORMTEXT, FORMCHECKBOX i FORMDROPDOWN w formacie tekstowym rozdzielanym przecinkami, który nie jest zgodny z normą /IEC 29500 (tj. jest to jednokierunkowy eksport z dokumentu WordprocessingML).&lt;p/&gt;[Uzasadnienie: To ustawienie jest zwykle używane, aby umożliwić powielanie formularzy papierowych w elektronicznym formularzu dokumentu WordprocessingML, co pozwala na wyodrębnienie wynikowej zawartości jako pliku tekstowego rozdzielanego przecinkami. uzasadnienie końcowe]</value>
+  </data>
+  <data name="SaveInvalidXml" xml:space="preserve">
+    <value>Określa, że powinno być możliwe zapisanie tego dokumentu w formacie składającym się z pojedynczego pliku XML (niezdefiniowanego przez /IEC 29500), gdy jego zawartość jest nieprawidłowa na podstawie walidacji schematu XML niestandardowego znacznika XML zawartego w dokumencie. To ustawienie nie ma wpływu na dokumenty, które nie zawierają niestandardowych znaczników XML lub zawierają niestandardowe znaczniki XML, ale nie mają dołączonego schematu. [Wskazówki: Ponieważ to ustawienie określa zachowanie podczas zapisywania w alternatywnym formacie pliku, który nie został zdefiniowany przez /IEC 29500, to zachowanie jest opcjonalne. Zakończ wytyczne]&lt;p/&gt;Jeśli ten element zostanie pominięty, aplikacje nie powinny zezwalać na zapisanie tego dokumentu w pojedynczym pliku XML, jeśli jego zawartość jest nieprawidłowa na podstawie niestandardowego znacznika XML zawartego w dokumencie. Jeśli element doNotValidateAgainstSchema (§17.15.1.43) jest ustawiony, kod XML nigdy nie jest §nieprawidłowy§ i ta właściwość jest ignorowana.</value>
+  </data>
+  <data name="SavePreviewPicture" xml:space="preserve">
+    <value>Określa, czy część miniatury dokumentu powinna być generowana dla zawartości pierwszej strony tego dokumentu po zapisaniu przez aplikację obsługującą generowanie miniatur dokumentów.&lt;p/&gt;Jeśli ten element zostanie pominięty, aplikacje mogą zdecydować się na zapisanie miniatury, jednak takie zachowanie nie jest wymagane. Jeżeli ten element jest określony, tworzona jest miniatura, jeżeli ta funkcja jest obsługiwana.</value>
+  </data>
+  <data name="SaveSubsetFonts" xml:space="preserve">
+    <value>Określa, że aplikacje powinny tworzyć podzbiór czcionek, gdy dla tego dokumentu jest włączone osadzanie czcionek przy użyciu elementu embedTrueTypeFonts (§17.8.3.8). Podzbiór to mechanizm, w którym tylko glify używane w zawartości tego dokumentu WordprocessingML są przechowywane w czcionce osadzonej, aby zapobiec niepotrzebnemu powiększaniu pliku w wyniku użycia niewielkiej liczby glifów z dużej czcionki osadzonej.&lt;p/&gt;Jeśli ten element zostanie pominięty, zestaw czcionek nie powinien być podzbiorem w bieżącym dokumencie, gdy włączona jest czcionka osadzona. Jeśli element embedTrueTypeFonts zostanie pominięty lub będzie fałszywy, to ustawienie nie będzie miało żadnego wpływu.</value>
+  </data>
+  <data name="SaveThroughXslt" xml:space="preserve">
+    <value>Określa lokalizację niestandardowego przekształcenia XSL, które ma być używane, gdy ten dokument jest zapisywany jako pojedynczy plik XML (w formacie niezdefiniowanym przez /IEC 29500). [Wskazówki: Ponieważ to ustawienie określa zachowanie podczas zapisywania w alternatywnym formacie pliku, który nie został zdefiniowany przez /IEC 29500, to zachowanie jest opcjonalne. Zakończ wytyczne]</value>
+  </data>
+  <data name="SaveXmlDataOnly" xml:space="preserve">
+    <value>Określa, że zawartość tego dokumentu zostanie zapisana jako plik XML zawierający tylko niestandardowe znaczniki XML w tym dokumencie w jego zwykłej formie. Wynikowy dokument nie jest zgodny z normą /IEC 29500 (tj. jest to opcja zapisywania tylko do eksportu dla dokumentu WordprocessingML).&lt;p/&gt;[Uzasadnienie: To ustawienie jest zwykle używane do wyodrębniania niestandardowych znaczników XML z dokumentu WordprocessingML w celu dalszego przetwarzania przez aplikacje obsługujące XML. uzasadnienie końcowe]</value>
+  </data>
+  <data name="SchemaLibrary" xml:space="preserve">
+    <value>Określa zestaw przestrzeni nazw XML, które zostały skojarzone z zawartością niestandardowych znaczników XML w bieżącym dokumencie Office Open XML. Do każdej unikatowej przestrzeni nazw, do której odwołuje się dokument, można odwoływać się w tym elemencie za pomocą pojedynczego elementu schematu, niezależnie od liczby składowych schematów XML, które składają się na tę przestrzeń nazw.</value>
+  </data>
+  <data name="ShapeDefaults" xml:space="preserve">
+    <value>Określa domyślne parametry obiektu przy użyciu składni VML (§14.1) wstawionej w treści (główny wątek dokumentu, komentarze, przypisy dolne i końcowe) dokumentu WordprocessingML. Definicja i semantyka tych parametrów jest opisana w podpunkcie VML - Office Drawing (§14.2) normy /IEC 29500.</value>
+  </data>
+  <data name="ShowEnvelope" xml:space="preserve">
+    <value>Określa, że nagłówek wiadomości e-mail ma być wyświetlany po otwarciu tego dokumentu, jeśli nagłówek wiadomości e-mail jest obsługiwany przez aplikację otwierającą plik.</value>
+  </data>
+  <data name="ShowXmlTags" xml:space="preserve">
+    <value>Określa, że należy zapewnić pewien wskaźnik wizualny dla lokalizacji początkowej i końcowej niestandardowych znaczników XML obecnych w tym dokumencie, jeśli takie istnieją.</value>
+  </data>
+  <data name="StrictFirstAndLastChars" xml:space="preserve">
+    <value>Określa, że ścisły zestaw reguł kinsoku ma być stosowany do tekstu japońskiego w tym dokumencie, gdy element kinsoku (§17.3.1.16) jest stosowany do tego tekstu. Wynikowe reguły łamania wierszy są dostępne w elemencie kinsoku.</value>
+  </data>
+  <data name="StyleLockStylesPart" xml:space="preserve">
+    <value>Określa, czy aplikacje powinny uniemożliwiać zastąpienie całego zestawu stylów przechowywanych w części Style podczas edycji tego dokumentu. To ustawienie nie powinno wykluczać edycji lub usuwania poszczególnych stylów, a jedynie uniemożliwiać usuwanie i zastępowanie całej części stylów w jednej operacji (za pomocą interfejsu użytkownika lub operacji programowej).</value>
+  </data>
+  <data name="StyleLockThemesPart" xml:space="preserve">
+    <value>Określa, czy aplikacje mają uniemożliwiać modyfikację informacji o motywie dokumentu przechowywanych w części Motyw podczas edycji tego dokumentu. To ustawienie nie powinno wykluczać korzystania z informacji o motywie, zamiast tego powinno uniemożliwiać modyfikację części motywu w pojedynczej operacji (za pomocą interfejsu użytkownika lub operacji programowej).</value>
+  </data>
+  <data name="StylePaneFormatFilter" xml:space="preserve">
+    <value>Określa sortowanie, które powinno być stosowane do listy stylów w tym dokumencie, jeśli style są wyświetlane w interfejsie użytkownika.</value>
+  </data>
+  <data name="StylePaneSortMethods" xml:space="preserve">
+    <value>Określa sortowanie, które powinno być stosowane do listy stylów w tym dokumencie, jeśli style są wyświetlane w interfejsie użytkownika.</value>
+  </data>
+  <data name="SummaryLength" xml:space="preserve">
+    <value>Określa rozmiar automatycznych podsumowań dokumentów wykonywanych na zawartości dokumentu WordprocessingML. Automatyczne podsumowanie dokumentu to podzbiór tekstu zawartego w dokumencie uznanym przez aplikację hostującą za podsumowujący zawartość dokumentu WordprocessingML. Atrybut val tego elementu określa rozmiar automatycznego podsumowania dokumentu, które ma zostać wykonane na danym dokumencie WordprocessingML jako procent całkowitego rozmiaru danego dokumentu WordprocessingML. Wykonywanie automatycznego podsumowania dokumentu jest operacją wykonawczą wykraczającą poza zakres normy /IEC 29500.</value>
+  </data>
+  <data name="ThemeFontLanguages" xml:space="preserve">
+    <value>Określa język, który ma być używany do określania odpowiednich czcionek motywu w części Motyw dokumentu, które są odwzorowywane na czcionki motywu głównego/pomocniczego. W szczególności atrybut bidi służy do określania czcionki motywu zastosowanej do złożonego tekstu skryptu, atrybut eastAsia służy do określania czcionki motywu zastosowanej do tekstu wschodnioazjatyckiego, a atrybut val służy do określania czcionki motywu zastosowanej do całego innego tekstu.</value>
+  </data>
+  <data name="TrackRevisions" xml:space="preserve">
+    <value>Określa, że aplikacje powinny śledzić poprawki wprowadzone w dokumencie WordprocessingML. Poprawki to zmiany w dokumencie WordprocessingML, które są rejestrowane w taki sposób, że można je przeglądać niezależnie, akceptować lub usuwać i w razie potrzeby przywracać. Gdy poprawki są śledzone, wynikowy znacznik WordprocessingML w podpunkcie Wersje tego dokumentu opisuje niezbędną składnię.</value>
+  </data>
+  <data name="UICompatibleWith97To2003" xml:space="preserve">
+    <value>Wyłącza funkcje niezgodne z wcześniejszymi formatami edytora tekstu.</value>
+  </data>
+  <data name="UpdateFieldsOnOpen" xml:space="preserve">
+    <value>Określa, czy wyniki pól zawartych w tym dokumencie powinny być automatycznie przeliczane na podstawie kodów pól, gdy ten dokument jest otwierany przez aplikację obsługującą obliczenia pól. [Uwaga: Niektóre pola są zawsze przeliczane (np. numeracja stron), dlatego ten element dotyczy tylko pól, które zazwyczaj nie są automatycznie przeliczane po otwarciu dokumentu. Należy również pamiętać, że to ustawienie nie może zastępować żadnych ustawień ochrony dokumentów (§17.15.1.29) ani ochrony przed zapisem (§17.15.1.93). Uwaga końcowa]</value>
+  </data>
+  <data name="UseXsltWhenSaving" xml:space="preserve">
+    <value>Określa, że ten dokument powinien zostać zapisany za pomocą niestandardowego przekształcenia XSLT zdefiniowanego przez element saveThroughXslt (§17.15.1.76) w tym dokumencie, gdy jest zapisywany jako pojedynczy plik XML (niezdefiniowany przez /IEC 29500). [Wskazówki: Ponieważ to ustawienie określa zachowanie podczas zapisywania w alternatywnym formacie pliku, który nie został zdefiniowany przez /IEC 29500, to zachowanie jest opcjonalne. Zakończ wytyczne]&lt;p/&gt;Jeśli określono element saveXmlDataOnly (§17.15.1.77), pojedynczy plik XML do przekształcenia jest niestandardowym znacznikiem XML dokumentu, w przeciwnym razie jest to format spoza zakresu /IEC 29500. Jeśli transformacja XSL określona przez element saveThroughXslt nie jest obecna, to ustawienie powinno zostać zignorowane.</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Określa sposób, w jaki zawartość tego dokumentu powinna być wyświetlana po otwarciu przez aplikację.</value>
+  </data>
+  <data name="WriteProtection" xml:space="preserve">
+    <value>Określa ustawienia ochrony przed zapisem, które zostały zastosowane do dokumentu WordprocessingML. Ochrona przed  zapisem odnosi się do trybu, w którym nie można edytować zawartości dokumentu, a dokument nie może być ponownie zapisany przy użyciu tej samej nazwy pliku. To ustawienie jest niezależne od elementu documentProtection (§17.15.1.29), ale podobnie jak w przypadku ochrony dokumentów, to ustawienie nie jest przeznaczone jako funkcja zabezpieczeń i można je zignorować.&lt;p/&gt;Jeśli jest obecna, ochrona przed zapisem powinna powodować jedno z dwóch zachowań ochrony przed zapisem:&lt;p/&gt;• Jeśli atrybut hasła jest obecny lub oba atrybuty są pominięte, aplikacja poprosi o podanie hasła, aby zakończyć ochronę przed zapisem. Jeśli podane hasło nie jest zgodne z wartością skrótu w tym atrybucie, należy włączyć ochronę przed zapisem.&lt;p/&gt;• Jeśli obecny jest tylko zalecany atrybut, aplikacja powinna udostępnić interfejs użytkownika zalecający użytkownikowi otwarcie tego dokumentu w stanie chronionym przed zapisem. Jeśli użytkownik zdecyduje się to zrobić, dokument będzie chroniony przed zapisem, w przeciwnym razie zostanie otwarty w pełni edytowalny.</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Określa poziom powiększenia, który powinien być stosowany do dokumentu po jego wyświetleniu przez aplikację. Poziom powiększenia jest określany za pomocą dwóch atrybutów zapisanych na tym elemencie:&lt;p/&gt;• val, w którym przechowywane są informacje o typie powiększenia zastosowanym do dokumentu&lt;p/&gt;• procent, w którym przechowywana jest wartość procentowa powiększenia, która ma być używana podczas renderowania dokumentu&lt;p/&gt;Jeśli oba atrybuty są obecne, atrybut percent jest traktowany jako wartość §zapisana w pamięci podręcznej§ i używany tylko wtedy, gdy dla  atrybutu val określono wartość non.&lt;p/&gt;</value>
+  </data>
+</root>

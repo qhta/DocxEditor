@@ -17,21 +17,18 @@ public class CorePropertiesViewModel : PropertiesViewModel
     WordDocument = wordDocument;
     CoreProperties = wordDocument.PackageProperties;
     var names = CoreProperties.GetNames(ItemFilter.All);
-    Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
-      var caption = Strings.ResourceManager.GetString(name) ?? name;
       var type = CoreProperties.GetType(name);
       var propertyViewModel = new PropertyViewModel
       {
-        Caption = caption,
         Name = name,
         Type = type,
         Value = CoreProperties.GetValue(name),
 
       };
       propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-      Properties.Add(propertyViewModel);
+      Items.Add(propertyViewModel);
     }
   }
 

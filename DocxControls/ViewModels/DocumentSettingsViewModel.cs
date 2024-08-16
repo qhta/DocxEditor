@@ -19,7 +19,7 @@ public class DocumentSettingsViewModel
   /// <summary>
   /// Observable collection of properties
   /// </summary>
-  public ObservableCollection<SettingViewModel> Settings { get; } = new();
+  public ObservableCollection<SettingViewModel> Items { get; } = new();
 
   /// <summary>
   /// Initializes a new instance of the <see cref="AppPropertiesViewModel"/> class.
@@ -42,20 +42,19 @@ public class DocumentSettingsViewModel
       {
         var settingViewModel = new SettingViewModel
         {
-          Caption = caption,
           Name = name,
           Category = category,
           Type = type,
           Value = DocumentSettings.GetValue(name),
 
         };
-        settingViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        Settings.Add(settingViewModel);
+        settingViewModel.PropertyChanged += SettingsViewModel_PropertyChanged;
+        Items.Add(settingViewModel);
       }
     }
   }
 
-  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  private void SettingsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
     var propertyViewModel = (SettingViewModel)sender!;
     var propertyName = e.PropertyName!;

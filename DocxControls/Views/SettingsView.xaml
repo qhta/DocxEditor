@@ -34,13 +34,17 @@
         Text="{Binding Caption}" 
         Padding="5,0"
         Background="Silver"
-        Foreground="Black"/>
+        Foreground="Black">
+        <TextBlock.ToolTip>
+          <ToolTip Content="{Binding Tooltip}" Style="{StaticResource CustomToolTipStyle}"/>
+        </TextBlock.ToolTip>
+      </TextBlock>
     </DataTemplate>
 
   </UserControl.Resources>
   <Grid>
     <DataGrid 
-      ItemsSource="{Binding Settings}" 
+      ItemsSource="{Binding Items}" 
       HeadersVisibility="None" AutoGenerateColumns="False" 
       CanUserAddRows="False" 
       CanUserDeleteRows="False">

@@ -24,18 +24,16 @@ public class AppPropertiesViewModel : PropertiesViewModel
     {
       if (!AppProperties.IsVolatile(name) && AppProperties.AppliesToApplication(name, AppType.Word))
       {
-        var caption = Strings.ResourceManager.GetString(name) ?? name;
         var type = AppProperties.GetType(name);
         var propertyViewModel = new PropertyViewModel
         {
-          Caption = caption,
           Name = name,
           Type = type,
           Value = AppProperties.GetValue(name),
 
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        Properties.Add(propertyViewModel);
+        Items.Add(propertyViewModel);
       }
     }
   }

@@ -1,53 +1,19 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// View model for a setting of a document.
 /// </summary>
-public class SettingViewModel : ViewModel
+public class SettingViewModel : PropertyViewModel
 {
   /// <summary>
-  /// Display caption for the property.
+  /// Display caption for the setting.
   /// </summary>
-  public string? Caption { get; set; }
-
-  /// <summary>
-  /// Name of the property to get/set.
-  /// </summary>
-  public virtual string? Name { get; set; }
+  public override string? Caption => SettingsNames.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Category of the property.
   /// </summary>
   public virtual SettingCategory Category { get; set; }
-
-  /// <summary>
-  /// Type of the property.
-  /// </summary>
-  public virtual Type? Type { get; set; }
-
-  /// <summary>
-  /// Is the property value read-only?
-  /// </summary>
-  public bool IsReadOnly { get; init; }
-
-  /// <summary>
-  /// Value of the property.
-  /// </summary>
-  public object? Value
-  {
-    get => _Value;
-    set
-    {
-      if (value != _Value && Name != null)
-      {
-        _Value = value;
-        NotifyPropertyChanged(Name);
-      }
-    }
-  }
-  private object? _Value;
 
   /// <summary>
   /// Boolean value of the property.
@@ -84,4 +50,8 @@ public class SettingViewModel : ViewModel
     }
   }
 
+  /// <summary>
+  /// Tooltip for the setting.
+  /// </summary>
+  public string? Tooltip => SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 }
