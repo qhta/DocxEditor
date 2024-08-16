@@ -24,11 +24,15 @@ public class ElementViewModel : ViewModel
   /// <summary>
   /// Access to inner Xml of the element
   /// </summary>
-  public string InnerXml => Element.InnerXml;
+  public string InnerXml => CleanXml(Element.InnerXml);
 
   /// <summary>
   /// Access to outer Xml of the element
   /// </summary>
-  public string OuterXml => Element.OuterXml;
+  public string OuterXml => CleanXml(Element.OuterXml);
 
+  private string CleanXml(string xml)
+  {
+    return xml.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
+  }
 }

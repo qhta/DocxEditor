@@ -11,7 +11,6 @@ namespace DocxControls;
 public class DocumentSettingsViewModel
 {
 
-
   /// <summary>
   /// Internal Wordprocessing document
   /// </summary>
@@ -26,7 +25,8 @@ public class DocumentSettingsViewModel
   /// Initializes a new instance of the <see cref="AppPropertiesViewModel"/> class.
   /// </summary>
   /// <param name="wordDocument"></param>
-  public DocumentSettingsViewModel(WordprocessingDocument wordDocument)
+  /// <param name="categories">Determines which categories to accept. Null for all</param>
+  public DocumentSettingsViewModel(WordprocessingDocument wordDocument, SettingCategory[]? categories = null)
   {
     WordDocument = wordDocument;
     DocumentSettings = wordDocument.GetSettings();
@@ -35,10 +35,11 @@ public class DocumentSettingsViewModel
     foreach (var name in names)
     {
       var type = DocumentSettings.GetType(name);
-      if (type.IsValueType || type == typeof(string))
+
+      var caption = Strings.ResourceManager.GetString(name) ?? name;
+      var category = DocumentSettings.GetCategory(name);
+      if (categories == null || categories.Contains(category))
       {
-        var caption = Strings.ResourceManager.GetString(name) ?? name;
-        var category = DocumentSettings.GetCategory(name);
         var settingViewModel = new SettingViewModel
         {
           Caption = caption,
@@ -56,7 +57,7 @@ public class DocumentSettingsViewModel
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    var propertyViewModel = (PropertyViewModel)sender!;
+    var propertyViewModel = (SettingViewModel)sender!;
     var propertyName = e.PropertyName!;
     DocumentSettings.SetValue(propertyName, propertyViewModel.Value);
   }

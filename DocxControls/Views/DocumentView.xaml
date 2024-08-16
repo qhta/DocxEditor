@@ -14,6 +14,9 @@
       <TabItem Header="{x:Static local:Strings.Properties}">
         <local:DocumentPropertiesView/>
       </TabItem>
+      <TabItem Header="{x:Static local:Strings.Settings}">
+        <local:DocumentSettingsView/>
+      </TabItem>
     </TabControl>
   </Grid>
 </UserControl>

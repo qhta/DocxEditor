@@ -5,8 +5,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="400" d:DesignWidth="600">
+  <UserControl.Resources>
+    <local:PropertyValueConverter x:Key="PropertyValueConverter" />
+    <DataTemplate x:Key="TextTemplate" DataType="local:ElementTemplateSelector">
+      <TextBox 
+        Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
+        IsReadOnly="{Binding IsReadOnly}"
+        Padding="5,0">
+        <TextBox.Style>
+          <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0" />
+          </Style>
+        </TextBox.Style>
+      </TextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:ElementTemplateSelector">
+      <CheckBox 
+        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
+        IsThreeState="true"
+        Margin="5,0"/>
+    </DataTemplate>
+    <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
+                              TextTemplate="{StaticResource TextTemplate}"
+                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
+    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:ElementTemplateSelector" >
+      <TextBlock 
+        Text="{Binding Caption}" 
+        Padding="5,0"
+        Background="Silver"
+        Foreground="Black"/>
+    </DataTemplate>
+
+  </UserControl.Resources>
+  <Grid>
+    <DataGrid 
+      ItemsSource="{Binding Settings}" 
+      HeadersVisibility="None" AutoGenerateColumns="False" 
+      CanUserAddRows="False" 
+      CanUserDeleteRows="False">
+      <DataGrid.Resources>
+        <Style TargetType="DataGridCell">
+          <Setter Property="BorderThickness" Value="0" />
+          <Setter Property="Padding" Value="0" />
+        </Style>
+      </DataGrid.Resources>
+      <DataGrid.Columns>
+        <DataGridTemplateColumn
+          CellTemplate="{StaticResource PropertyCaptionTemplate}" 
+          MinWidth="200"/>
+        <DataGridTemplateColumn 
+          CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
+          MinWidth="200"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
 </UserControl>

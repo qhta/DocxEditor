@@ -29,4 +29,20 @@ public class TextViewModel : ElementViewModel
   /// Text of the element
   /// </summary>
   public string Text => TextElement.Text;
+
+
+  /// <summary>
+  /// Check if the parent run is bold
+  /// </summary>
+  public bool? IsBold => (TextElement.Parent as DXW.Run)?.IsBold();
+
+  /// <summary>
+  /// Check if the parent run is italic
+  /// </summary>
+  public bool? IsItalic => (TextElement.Parent as DXW.Run)?.IsItalic();
+
+  /// <summary>
+  /// Check if the parent run is underlined
+  /// </summary>
+  public bool? IsUnderline => (TextElement.Parent as DXW.Run)?.IsUnderline();
 }

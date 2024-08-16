@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="DocxControls.DocumentSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocxControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <local:Strings x:Key="Strings"/>
+    <Style x:Key="TabItemStyle" TargetType="TabItem">
+      <Setter Property="Background" Value="LightGray"/>
+    </Style>
+    <Style x:Key="BorderStyle" TargetType="Border">
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="BorderBrush" Value="Black"/>
+      <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+  </UserControl.Resources>
+  <Grid>
+    <TabControl TabStripPlacement="Left">
+      <TabItem 
+        Header="{x:Static local:Strings.LoadSaveAndSecurity}" 
+        Style="{StaticResource TabItemStyle}">
+        <Border 
+          Style="{StaticResource BorderStyle}">
+          <local:SettingsView DataContext="{Binding LoadSaveAndSecuritySettings}"/>
+        </Border>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</UserControl>

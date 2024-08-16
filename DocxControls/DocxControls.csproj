@@ -24,6 +24,12 @@
     <Compile Update="Views\BookmarkEndView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DocumentSettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RunView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

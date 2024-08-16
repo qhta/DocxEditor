@@ -1,18 +1,16 @@
 ﻿using System.Windows.Controls;
 
 namespace DocxControls;
-
 /// <summary>
-/// Interaction logic for SettingsView.xaml
+/// Interaction logic for DocumentSettingsView.xaml
 /// </summary>
-public partial class SettingsView : UserControl
+public partial class DocumentSettingsView : UserControl
 {
   /// <summary>
   /// Default constructor
   /// </summary>
-  public SettingsView()
+  public DocumentSettingsView()
   {
     InitializeComponent();
   }
-
 }

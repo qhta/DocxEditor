@@ -51,4 +51,19 @@ public class RunViewModel : ElementViewModel
   /// Observable collection of element view models
   /// </summary>
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
+
+  /// <summary>
+  /// Check if the run is bold
+  /// </summary>
+  public bool IsBold => Run.IsBold();
+
+  /// <summary>
+  /// Check if the run is italic
+  /// </summary>
+  public bool IsItalic => Run.IsItalic();
+
+  /// <summary>
+  /// Check if the run is underlined
+  /// </summary>
+  public bool IsUnderline => Run.IsItalic();
 }

@@ -115,4 +115,157 @@ public class DocumentViewModel
   }
   private CustomPropertiesViewModel? _CustomProperties;
 
+  /// <summary>
+  /// Access to the document settings in the LayoutAndUI categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel LayoutAndUISettings
+  {
+    get
+    {
+      if (_LayoutAndUISettings == null)
+      {
+        _LayoutAndUISettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.LayoutAndUI);
+      }
+      return _LayoutAndUISettings;
+    }
+  }
+  private DocumentSettingsViewModel? _LayoutAndUISettings;
+
+  /// <summary>
+  /// Access to the document settings in the Save, Load and Security categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel LoadSaveAndSecuritySettings
+  {
+    get
+    {
+      if (_SaveLoadAndSecuritySettings == null)
+      {
+        _SaveLoadAndSecuritySettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.LoadSaveAndSecurity);
+      }
+      return _SaveLoadAndSecuritySettings;
+    }
+  }
+  private DocumentSettingsViewModel? _SaveLoadAndSecuritySettings;
+
+  /// <summary>
+  /// Access to the document settings in the Proofing, Hyphenation and Automation categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel ProofingHyphenationAndAutomationSettings
+  {
+    get
+    {
+      if (_ProofingHyphenationAndAutomationSettings == null)
+      {
+        _ProofingHyphenationAndAutomationSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.ProofingHyphenationAndAutomation);
+      }
+      return _ProofingHyphenationAndAutomationSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _ProofingHyphenationAndAutomationSettings;
+
+  /// <summary>
+  /// Access to the document settings in the MailMerge and Printing categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel MailMergeAndPrintingSettings
+  {
+    get
+    {
+      if (_MailMergeAndPrintingSettings == null)
+      {
+        _MailMergeAndPrintingSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.MailMergeAndPrinting);
+      }
+      return _MailMergeAndPrintingSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _MailMergeAndPrintingSettings;
+
+  /// <summary>
+  /// Access to the document settings in the Theming and Styles categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel ThemingAndStylesSettings
+  {
+    get
+    {
+      if (_ThemingAndStylesSettings == null)
+      {
+        _ThemingAndStylesSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.ThemingAndStyles);
+      }
+      return _ThemingAndStylesSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _ThemingAndStylesSettings;
+
+  /// <summary>
+  /// Access to the document settings in the Revisions and Tracking categories
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel RevisionsAndTrackingSettings
+  {
+    get
+    {
+      if (_RevisionsAndTrackingSettings == null)
+      {
+        _RevisionsAndTrackingSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.RevisionsAndTracking);
+      }
+      return _RevisionsAndTrackingSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _RevisionsAndTrackingSettings;
+
+  /// <summary>
+  /// Access to the document settings in the Identification category
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel IdentificationSettings
+  {
+    get
+    {
+      if (_IdentificationSettings == null)
+      {
+        _IdentificationSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.Identification);
+      }
+      return _IdentificationSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _IdentificationSettings;
+
+  /// <summary>
+  /// Access to the document settings in the CustomXml category
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel CustomXmlSettings
+  {
+    get
+    {
+      if (_CustomXmlSettings == null)
+      {
+        _CustomXmlSettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.CustomXml);
+      }
+      return _CustomXmlSettings;
+    }
+  }
+  private DocumentSettingsViewModel? _CustomXmlSettings;
+
+  /// <summary>
+  /// Access to the document settings in the Compatibility category
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public DocumentSettingsViewModel CompatibilitySettings
+  {
+    get
+    {
+      if (_CompatibilitySettings == null)
+      {
+        _CompatibilitySettings = new DocumentSettingsViewModel(WordDocument, SettingCategoryGroup.Compatibility);
+      }
+      return _CompatibilitySettings;
+    }
+  }
+  private DocumentSettingsViewModel? _CompatibilitySettings;
+
 }

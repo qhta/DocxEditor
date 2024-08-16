@@ -202,7 +202,7 @@
     <value>Łącza aktualne</value>
   </data>
   <data name="Manager" xml:space="preserve">
-    <value>Kierownik</value>
+    <value>Menedżer</value>
   </data>
   <data name="PresentationFormat" xml:space="preserve">
     <value>Format prezentacji</value>
@@ -338,5 +338,8 @@
   </data>
   <data name="Bookmark_" xml:space="preserve">
     <value>Zakładka: </value>
+  </data>
+  <data name="LoadSaveAndSecurity" xml:space="preserve">
+    <value>Ładowanie, pamiętanie i bezpieczeństwo</value>
   </data>
 </root>
