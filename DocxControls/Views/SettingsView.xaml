@@ -8,7 +8,7 @@
              d:DesignHeight="400" d:DesignWidth="600">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-    <DataTemplate x:Key="TextTemplate" DataType="local:ElementTemplateSelector">
+    <DataTemplate x:Key="TextTemplate" DataType="local:SettingViewModel">
       <TextBox 
         Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
         IsReadOnly="{Binding IsReadOnly}"
@@ -20,7 +20,7 @@
         </TextBox.Style>
       </TextBox>
     </DataTemplate>
-    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:ElementTemplateSelector">
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:SettingViewModel">
       <CheckBox 
         IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
         IsThreeState="true"
@@ -29,21 +29,38 @@
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
-    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:ElementTemplateSelector" >
+    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:SettingViewModel" >
       <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"
         Background="Silver"
         Foreground="Black"
-        ToolTipOpening="FrameworkElement_OnToolTipOpening"
-        >
+        ToolTipOpening="FrameworkElement_OnToolTipOpening">
         <TextBlock.ToolTip>
           <ToolTip  Style="{StaticResource CustomToolTipStyle}">
           </ToolTip>
         </TextBlock.ToolTip>
       </TextBlock>
     </DataTemplate>
-
+    <DataTemplate x:Key="ObjectCaptionTemplate" DataType="local:SettingViewModel" >
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock 
+        Text="{Binding Caption}" 
+        Padding="5,0"
+        Background="Silver"
+        Foreground="Black"
+        ToolTipOpening="FrameworkElement_OnToolTipOpening">
+          <TextBlock.ToolTip>
+            <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+            </ToolTip>
+          </TextBlock.ToolTip>
+        </TextBlock>
+      </Grid>
+    </DataTemplate>
   </UserControl.Resources>
   <Grid>
     <DataGrid 

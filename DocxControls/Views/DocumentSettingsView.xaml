@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
+             xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <local:Strings x:Key="Strings"/>
     <Style x:Key="TabItemStyle" TargetType="TabItem">
       <Setter Property="Background" Value="LightGray"/>
     </Style>
@@ -20,7 +20,7 @@
   <Grid>
     <TabControl TabStripPlacement="Left">
       <TabItem 
-        Header="{x:Static local:Strings.LoadSaveAndSecurity}" 
+        Header="{x:Static resources:Strings.LoadSaveAndSecurity}" 
         Style="{StaticResource TabItemStyle}">
         <Border 
           Style="{StaticResource BorderStyle}">

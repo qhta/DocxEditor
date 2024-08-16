@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DocxControls {
+namespace DocxControls.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DocxControls {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DocxControls.SettingsDescriptions", typeof(SettingsDescriptions).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DocxControls.Resources.SettingsDescriptions", typeof(SettingsDescriptions).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -304,7 +304,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in /IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayHorizontalDrawingGrid {
             get {
@@ -313,7 +313,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in /IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayVerticalDrawingGrid {
             get {
@@ -484,7 +484,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that applications shall embed common system fonts when they are in use and font embedding is enabled for this document using the embedTrueTypeFonts element (§17.8.3.8). Common system fonts refer to a set of fonts which are typically always present on a machine, and are not defined by /IEC 29500..
+        ///   Looks up a localized string similar to Specifies that applications shall embed common system fonts when they are in use and font embedding is enabled for this document using the embedTrueTypeFonts element (§17.8.3.8). Common system fonts refer to a set of fonts which are typically always present on a machine, and are not defined by IEEE/IEC 29500..
         /// </summary>
         public static string EmbedSystemFonts {
             get {
@@ -556,7 +556,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the header and footer of a WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of /IEC 29500..
+        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the header and footer of a WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of IEEE/IEC 29500..
         /// </summary>
         public static string HeaderShapeDefaults {
             get {
@@ -646,7 +646,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from ending a line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of /IEC 29500..
+        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from ending a line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of IEEE/IEC 29500..
         /// </summary>
         public static string NoLineBreaksAfterKinsoku {
             get {
@@ -655,7 +655,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from beginning a new line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of /IEC 29500..
+        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from beginning a new line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of IEEE/IEC 29500..
         /// </summary>
         public static string NoLineBreaksBeforeKinsoku {
             get {
@@ -700,7 +700,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in /IEC 29500. .
+        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in IEEE/IEC 29500. .
         /// </summary>
         public static string PrintPostScriptOverText {
             get {
@@ -745,7 +745,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that hosting applications shall remove all personal information of document authors upon saving a given WordprocessingML document. The definition and extent of personal information is not defined by /IEC 29500..
+        ///   Looks up a localized string similar to Specifies that hosting applications shall remove all personal information of document authors upon saving a given WordprocessingML document. The definition and extent of personal information is not defined by IEEE/IEC 29500..
         /// </summary>
         public static string RemovePersonalInformation {
             get {
@@ -772,7 +772,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to /IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delimited [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to IEEE/IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delim [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SaveFormsData {
             get {
@@ -781,7 +781,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that this document should be capable of being saved into a format consisting of a single XML file (not defined by /IEC 29500) when its contents are invalid based XML schema validation of the custom XML markup contained in the document. This setting has no effect on documents that do not contain custom XML markup, or that do contain custom XML markup but do not have a schema attached. &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that this document should be capable of being saved into a format consisting of a single XML file (not defined by IEEE/IEC 29500) when its contents are invalid based XML schema validation of the custom XML markup contained in the document. This setting has no effect on documents that do not contain custom XML markup, or that do contain custom XML markup but do not have a schema attached. &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SaveInvalidXml {
             get {
@@ -808,7 +808,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by /IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional..
+        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional. .
         /// </summary>
         public static string SaveThroughXslt {
             get {
@@ -817,7 +817,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to /IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications. .
+        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to IEEE/IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications. .
         /// </summary>
         public static string SaveXmlDataOnly {
             get {
@@ -835,7 +835,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the body (the main document story, comments, footnotes, and endnotes) of the WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of /IEC 29500..
+        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the body (the main document story, comments, footnotes, and endnotes) of the WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of IEEE/IEC 29500..
         /// </summary>
         public static string ShapeDefaults {
             get {
@@ -952,7 +952,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that this document should be saved through the custom XSLT transform defined by the saveThroughXslt element (§17.15.1.76) in this document when it is saved as a single XML file (not defined by /IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by /IEC 29500, this behavior is optional. &lt;p/&gt;If the saveXmlDataOnly element (§17.15.1.77) is specified, then the single XML file to be transformed is the custom XML markup of the document [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that this document should be saved through the custom XSLT transform defined by the saveThroughXslt element (§17.15.1.76) in this document when it is saved as a single XML file (not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional. &lt;p/&gt;If the saveXmlDataOnly element (§17.15.1.77) is specified, then the single XML file to be transformed is the custom XML markup of the  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UseXsltWhenSaving {
             get {

@@ -18,17 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SettingsDescriptions.Designer.cs">
+    <Compile Update="Resources\SettingsDescriptions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SettingsDescriptions.resx</DependentUpon>
     </Compile>
-    <Compile Update="SettingsNames.Designer.cs">
+    <Compile Update="Resources\SettingsNames.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SettingsNames.resx</DependentUpon>
     </Compile>
-    <Compile Update="SettingsTooltips.Designer.cs">
+    <Compile Update="Resources\SettingsTooltips.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SettingsTooltips.resx</DependentUpon>
@@ -54,7 +54,7 @@
     <Compile Update="Views\ParagraphView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Strings.Designer.cs">
+    <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -62,19 +62,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="SettingsDescriptions.resx">
+    <EmbeddedResource Update="Resources\SettingsDescriptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsDescriptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingsNames.resx">
+    <EmbeddedResource Update="Resources\SettingsNames.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingsTooltips.resx">
+    <EmbeddedResource Update="Resources\SettingsTooltips.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsTooltips.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Strings.resx">
+    <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>

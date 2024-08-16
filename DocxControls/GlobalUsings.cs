@@ -21,6 +21,8 @@ global using System.Xml.Serialization;
 global using Qhta.OpenXmlTools;
 //global using Qhta.TypeUtils;
 
+global using DocxControls.Resources;
+
 global using DX = DocumentFormat.OpenXml;
 //global using DXAC = DocumentFormat.OpenXml.AdditionalCharacteristics;
 //global using DXB = DocumentFormat.OpenXml.Bibliography;

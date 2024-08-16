@@ -4,17 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
+             xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
     <TabControl TabStripPlacement="Top">
-      <TabItem Header="{x:Static local:Strings.DocumentBody}">
+      <TabItem Header="{x:Static resources:Strings.DocumentBody}">
         <local:BodyView/>
       </TabItem>
-      <TabItem Header="{x:Static local:Strings.Properties}">
+      <TabItem Header="{x:Static resources:Strings.Properties}">
         <local:DocumentPropertiesView/>
       </TabItem>
-      <TabItem Header="{x:Static local:Strings.Settings}">
+      <TabItem Header="{x:Static resources:Strings.Settings}">
         <local:DocumentSettingsView/>
       </TabItem>
     </TabControl>

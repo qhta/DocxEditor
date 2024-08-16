@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DocxControls {
+namespace DocxControls.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DocxControls {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SettingsNames {
+    public class SettingsTooltips {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SettingsNames() {
+        internal SettingsTooltips() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DocxControls {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DocxControls.SettingsNames", typeof(SettingsNames).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DocxControls.Resources.SettingsTooltips", typeof(SettingsTooltips).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active writing style.
+        ///   Looks up a localized string similar to Grammar checking settings.
         /// </summary>
         public static string ActiveWritingStyle {
             get {
@@ -70,7 +70,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Align border and edges.
+        ///   Looks up a localized string similar to Align paragraph and table borders with page border.
         /// </summary>
         public static string AlignBorderAndEdges {
             get {
@@ -79,7 +79,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always merge empty namespace.
+        ///   Looks up a localized string similar to Do not mark custom XML elements with no namespace as invalid.
         /// </summary>
         public static string AlwaysMergeEmptyNamespace {
             get {
@@ -88,7 +88,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always show placeholder text.
+        ///   Looks up a localized string similar to Use custom XML element names as default placeholder text.
         /// </summary>
         public static string AlwaysShowPlaceholderText {
             get {
@@ -97,7 +97,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attached schema.
+        ///   Looks up a localized string similar to Attached custom XML schema.
         /// </summary>
         public static string AttachedSchema {
             get {
@@ -106,7 +106,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attached template.
+        ///   Looks up a localized string similar to Attached document template.
         /// </summary>
         public static string AttachedTemplate {
             get {
@@ -115,7 +115,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto format override.
+        ///   Looks up a localized string similar to Allow automatic formatting to override formatting protection settings.
         /// </summary>
         public static string AutoFormatOverride {
             get {
@@ -124,7 +124,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto hyphenation.
+        ///   Looks up a localized string similar to Automatically hyphenate document contents when displayed.
         /// </summary>
         public static string AutoHyphenation {
             get {
@@ -142,7 +142,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Book fold printing sheets.
+        ///   Looks up a localized string similar to Number of pages per booklet.
         /// </summary>
         public static string BookFoldPrintingSheets {
             get {
@@ -151,7 +151,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Book fold reverse printing.
+        ///   Looks up a localized string similar to Reverse book fold printing.
         /// </summary>
         public static string BookFoldReversePrinting {
             get {
@@ -160,7 +160,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Borders do not surround footer.
+        ///   Looks up a localized string similar to Page border excludes footer.
         /// </summary>
         public static string BordersDoNotSurroundFooter {
             get {
@@ -169,7 +169,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Borders do not surround header.
+        ///   Looks up a localized string similar to Page border excludes header.
         /// </summary>
         public static string BordersDoNotSurroundHeader {
             get {
@@ -178,7 +178,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Captions.
+        ///   Looks up a localized string similar to Caption settings.
         /// </summary>
         public static string Captions {
             get {
@@ -187,7 +187,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Character spacing control.
+        ///   Looks up a localized string similar to Character-level whitespace compression.
         /// </summary>
         public static string CharacterSpacingControl {
             get {
@@ -196,7 +196,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chart tracking ref based.
+        ///   Looks up a localized string similar to Datapoint properties and datalabels behavior.
         /// </summary>
         public static string ChartTrackingRefBased {
             get {
@@ -205,7 +205,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click and type style.
+        ///   Looks up a localized string similar to Paragraph style applied to automatically generated paragraphs.
         /// </summary>
         public static string ClickAndTypeStyle {
             get {
@@ -214,7 +214,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color scheme mapping.
+        ///   Looks up a localized string similar to Theme color mappings.
         /// </summary>
         public static string ColorSchemeMapping {
             get {
@@ -223,7 +223,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compatibility.
+        ///   Looks up a localized string similar to Compatibility settings.
         /// </summary>
         public static string Compatibility {
             get {
@@ -232,7 +232,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conflict mode.
+        ///   Looks up a localized string similar to User was resolving conflicting edits when the document was saved.
         /// </summary>
         public static string ConflictMode {
             get {
@@ -241,7 +241,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consecutive hyphen limit.
+        ///   Looks up a localized string similar to Maximum number of consecutively hyphenated lines.
         /// </summary>
         public static string ConsecutiveHyphenLimit {
             get {
@@ -250,7 +250,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decimal symbol.
+        ///   Looks up a localized string similar to Radix point for field code evaluation.
         /// </summary>
         public static string DecimalSymbol {
             get {
@@ -259,7 +259,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default image dpi.
+        ///   Looks up a localized string similar to Resolution in dots per inch (DPI) at which images in the document will be saved.
         /// </summary>
         public static string DefaultImageDpi {
             get {
@@ -268,7 +268,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default table style.
+        ///   Looks up a localized string similar to Default table style for newly inserted tables.
         /// </summary>
         public static string DefaultTableStyle {
             get {
@@ -277,7 +277,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default tab stop.
+        ///   Looks up a localized string similar to Distance between automatic tab stops.
         /// </summary>
         public static string DefaultTabStop {
             get {
@@ -286,7 +286,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discard image editing data.
+        ///   Looks up a localized string similar to Cropped-out areas of the images are not to be saved.
         /// </summary>
         public static string DiscardImageEditingData {
             get {
@@ -295,7 +295,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display background shape.
+        ///   Looks up a localized string similar to Display background objects when displaying document.
         /// </summary>
         public static string DisplayBackgroundShape {
             get {
@@ -304,7 +304,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display horizontal drawing grid.
+        ///   Looks up a localized string similar to Distance between horizontal gridlines.
         /// </summary>
         public static string DisplayHorizontalDrawingGrid {
             get {
@@ -313,7 +313,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display vertical drawing grid.
+        ///   Looks up a localized string similar to Distance between vertical gridlines.
         /// </summary>
         public static string DisplayVerticalDrawingGrid {
             get {
@@ -322,7 +322,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document id.
+        ///   Looks up a localized string similar to Arbitrary identifier for the context of the paragraph identifiers in the document.
         /// </summary>
         public static string DocumentId {
             get {
@@ -331,7 +331,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document protection.
+        ///   Looks up a localized string similar to Document editing restrictions.
         /// </summary>
         public static string DocumentProtection {
             get {
@@ -340,7 +340,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document type.
+        ///   Looks up a localized string similar to Document classification.
         /// </summary>
         public static string DocumentType {
             get {
@@ -358,7 +358,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not auto compress pictures.
+        ///   Looks up a localized string similar to Do not automatically compress images.
         /// </summary>
         public static string DoNotAutoCompressPictures {
             get {
@@ -367,7 +367,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not demarcate invalid xml.
+        ///   Looks up a localized string similar to Do not show visual indicator for invalid custom XML markup.
         /// </summary>
         public static string DoNotDemarcateInvalidXml {
             get {
@@ -376,7 +376,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not display page boundaries.
+        ///   Looks up a localized string similar to Do not display visual boundary for header/footer or between pages.
         /// </summary>
         public static string DoNotDisplayPageBoundaries {
             get {
@@ -385,7 +385,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not hyphenate caps.
+        ///   Looks up a localized string similar to Do not hyphenate words in all capital letters.
         /// </summary>
         public static string DoNotHyphenateCaps {
             get {
@@ -394,7 +394,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not include subdocs in stats.
+        ///   Looks up a localized string similar to Do not include content in text boxes, footnotes, and endnotes in document statistics.
         /// </summary>
         public static string DoNotIncludeSubdocsInStats {
             get {
@@ -403,7 +403,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not shade form data.
+        ///   Looks up a localized string similar to Do not show visual indicator for form fields.
         /// </summary>
         public static string DoNotShadeFormData {
             get {
@@ -412,7 +412,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not track formatting.
+        ///   Looks up a localized string similar to Do not track formatting revisions when tracking revisions.
         /// </summary>
         public static string DoNotTrackFormatting {
             get {
@@ -421,7 +421,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not track moves.
+        ///   Looks up a localized string similar to Do not use move syntax when tracking revisions.
         /// </summary>
         public static string DoNotTrackMoves {
             get {
@@ -439,7 +439,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not validate against schema.
+        ///   Looks up a localized string similar to Do not validate custom XML markup against schemas.
         /// </summary>
         public static string DoNotValidateAgainstSchema {
             get {
@@ -448,7 +448,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drawing grid horizontal origin.
+        ///   Looks up a localized string similar to Drawing grid horizontal origin point.
         /// </summary>
         public static string DrawingGridHorizontalOrigin {
             get {
@@ -457,7 +457,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drawing grid horizontal spacing.
+        ///   Looks up a localized string similar to Drawing grid horizontal grid unit size.
         /// </summary>
         public static string DrawingGridHorizontalSpacing {
             get {
@@ -466,7 +466,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drawing grid vertical origin.
+        ///   Looks up a localized string similar to Drawing grid vertical origin point.
         /// </summary>
         public static string DrawingGridVerticalOrigin {
             get {
@@ -475,7 +475,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drawing grid vertical spacing.
+        ///   Looks up a localized string similar to Drawing grid vertical grid unit size.
         /// </summary>
         public static string DrawingGridVerticalSpacing {
             get {
@@ -484,7 +484,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Embed system fonts.
+        ///   Looks up a localized string similar to Embed common system fonts.
         /// </summary>
         public static string EmbedSystemFonts {
             get {
@@ -493,7 +493,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Embed true type fonts.
+        ///   Looks up a localized string similar to Embed truetype fonts.
         /// </summary>
         public static string EmbedTrueTypeFonts {
             get {
@@ -502,7 +502,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endnote document wide properties.
+        ///   Looks up a localized string similar to Document-wide endnote properties.
         /// </summary>
         public static string EndnoteDocumentWideProperties {
             get {
@@ -511,7 +511,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Even and odd headers.
+        ///   Looks up a localized string similar to Different even/odd page headers and footers.
         /// </summary>
         public static string EvenAndOddHeaders {
             get {
@@ -520,7 +520,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Footnote document wide properties.
+        ///   Looks up a localized string similar to Document-wide footnote properties.
         /// </summary>
         public static string FootnoteDocumentWideProperties {
             get {
@@ -529,7 +529,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Force upgrade.
+        ///   Looks up a localized string similar to Upgrade document on open.
         /// </summary>
         public static string ForceUpgrade {
             get {
@@ -538,7 +538,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forms design.
+        ///   Looks up a localized string similar to Structured document tag placeholder text should be resaved.
         /// </summary>
         public static string FormsDesign {
             get {
@@ -547,7 +547,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gutter at top.
+        ///   Looks up a localized string similar to Position gutter at top of page.
         /// </summary>
         public static string GutterAtTop {
             get {
@@ -556,7 +556,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Header shape defaults.
+        ///   Looks up a localized string similar to Default parameters for object using the VML syntax inserted in the header and footer.
         /// </summary>
         public static string HeaderShapeDefaults {
             get {
@@ -565,7 +565,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide grammatical errors.
+        ///   Looks up a localized string similar to Do not display visual indication of grammatical errors.
         /// </summary>
         public static string HideGrammaticalErrors {
             get {
@@ -574,7 +574,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide spelling errors.
+        ///   Looks up a localized string similar to Do not display visual indication of spelling errors.
         /// </summary>
         public static string HideSpellingErrors {
             get {
@@ -592,7 +592,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ignore mixed content.
+        ///   Looks up a localized string similar to Ignore mixed content when validating custom XML markup.
         /// </summary>
         public static string IgnoreMixedContent {
             get {
@@ -601,7 +601,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link styles.
+        ///   Looks up a localized string similar to Automatically update styles from document template.
         /// </summary>
         public static string LinkStyles {
             get {
@@ -610,7 +610,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List separator.
+        ///   Looks up a localized string similar to List separator for field code evaluation.
         /// </summary>
         public static string ListSeparator {
             get {
@@ -619,7 +619,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mail merge.
+        ///   Looks up a localized string similar to Mail merge settings.
         /// </summary>
         public static string MailMerge {
             get {
@@ -637,7 +637,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mirror margins.
+        ///   Looks up a localized string similar to Mirror page margins.
         /// </summary>
         public static string MirrorMargins {
             get {
@@ -646,7 +646,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No line breaks after kinsoku.
+        ///   Looks up a localized string similar to Custom set of characters which cannot end a line.
         /// </summary>
         public static string NoLineBreaksAfterKinsoku {
             get {
@@ -655,7 +655,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No line breaks before kinsoku.
+        ///   Looks up a localized string similar to Custom set of characters which cannot begin a line.
         /// </summary>
         public static string NoLineBreaksBeforeKinsoku {
             get {
@@ -664,7 +664,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No punctuation kerning.
+        ///   Looks up a localized string similar to Never kern punctuation characters.
         /// </summary>
         public static string NoPunctuationKerning {
             get {
@@ -673,7 +673,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Persistent document id.
+        ///   Looks up a localized string similar to Unique identifier for a set of documents derived from a common source.
         /// </summary>
         public static string PersistentDocumentId {
             get {
@@ -682,7 +682,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print forms data.
+        ///   Looks up a localized string similar to Only print form field content.
         /// </summary>
         public static string PrintFormsData {
             get {
@@ -691,7 +691,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print fractional character width.
+        ///   Looks up a localized string similar to Print fractional character widths.
         /// </summary>
         public static string PrintFractionalCharacterWidth {
             get {
@@ -700,7 +700,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print post script over text.
+        ///   Looks up a localized string similar to Print postscript codes with document text.
         /// </summary>
         public static string PrintPostScriptOverText {
             get {
@@ -709,7 +709,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print two on one.
+        ///   Looks up a localized string similar to Print two pages per sheet.
         /// </summary>
         public static string PrintTwoOnOne {
             get {
@@ -718,7 +718,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proof state.
+        ///   Looks up a localized string similar to Spelling and grammatical checking state.
         /// </summary>
         public static string ProofState {
             get {
@@ -727,7 +727,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read mode ink lock down.
+        ///   Looks up a localized string similar to Freeze document layout.
         /// </summary>
         public static string ReadModeInkLockDown {
             get {
@@ -736,7 +736,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove date and time.
+        ///   Looks up a localized string similar to Remove date and time from annotations.
         /// </summary>
         public static string RemoveDateAndTime {
             get {
@@ -745,7 +745,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove personal information.
+        ///   Looks up a localized string similar to Remove personal information from document properties.
         /// </summary>
         public static string RemovePersonalInformation {
             get {
@@ -754,7 +754,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revision view.
+        ///   Looks up a localized string similar to Visibility of annotation types.
         /// </summary>
         public static string RevisionView {
             get {
@@ -763,7 +763,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rsids.
+        ///   Looks up a localized string similar to Listing of all revision save id values.
         /// </summary>
         public static string Rsids {
             get {
@@ -772,7 +772,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save forms data.
+        ///   Looks up a localized string similar to Only save form field content.
         /// </summary>
         public static string SaveFormsData {
             get {
@@ -781,7 +781,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save invalid xml.
+        ///   Looks up a localized string similar to Allow saving document as XML file when custom XML markup is invalid.
         /// </summary>
         public static string SaveInvalidXml {
             get {
@@ -790,7 +790,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save preview picture.
+        ///   Looks up a localized string similar to Generate thumbnail for document on save.
         /// </summary>
         public static string SavePreviewPicture {
             get {
@@ -799,7 +799,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save subset fonts.
+        ///   Looks up a localized string similar to Subset fonts when embedding.
         /// </summary>
         public static string SaveSubsetFonts {
             get {
@@ -808,7 +808,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save throughXSLT.
+        ///   Looks up a localized string similar to Custom XSL transform to use when saving as XML file.
         /// </summary>
         public static string SaveThroughXslt {
             get {
@@ -817,7 +817,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save xml data only.
+        ///   Looks up a localized string similar to Only save custom XML markup.
         /// </summary>
         public static string SaveXmlDataOnly {
             get {
@@ -826,7 +826,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schema library.
+        ///   Looks up a localized string similar to Embedded custom XML schema supplementary data.
         /// </summary>
         public static string SchemaLibrary {
             get {
@@ -835,7 +835,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shape defaults.
+        ///   Looks up a localized string similar to Default parameters for object using the VML syntax inserted in the body.
         /// </summary>
         public static string ShapeDefaults {
             get {
@@ -844,7 +844,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show envelope.
+        ///   Looks up a localized string similar to Show e-mail message header.
         /// </summary>
         public static string ShowEnvelope {
             get {
@@ -853,7 +853,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show XML tags.
+        ///   Looks up a localized string similar to Show visual indicators for custom XML markup start/end locations.
         /// </summary>
         public static string ShowXmlTags {
             get {
@@ -862,7 +862,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strict first and last chars.
+        ///   Looks up a localized string similar to Use strict kinsoku rules for japanese text.
         /// </summary>
         public static string StrictFirstAndLastChars {
             get {
@@ -871,7 +871,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Style lock styles part.
+        ///   Looks up a localized string similar to Prevent replacement of styles part.
         /// </summary>
         public static string StyleLockStylesPart {
             get {
@@ -880,7 +880,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Style lock themes part.
+        ///   Looks up a localized string similar to Prevent modification of themes part.
         /// </summary>
         public static string StyleLockThemesPart {
             get {
@@ -889,7 +889,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Style pane format filter.
+        ///   Looks up a localized string similar to Suggested filtering for list of document styles.
         /// </summary>
         public static string StylePaneFormatFilter {
             get {
@@ -898,7 +898,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Style pane sort methods.
+        ///   Looks up a localized string similar to Suggested sorting for list of document styles.
         /// </summary>
         public static string StylePaneSortMethods {
             get {
@@ -907,7 +907,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary length.
+        ///   Looks up a localized string similar to Percentage of document to use when generating summary.
         /// </summary>
         public static string SummaryLength {
             get {
@@ -925,7 +925,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Track revisions.
+        ///   Looks up a localized string similar to Track revisions to document.
         /// </summary>
         public static string TrackRevisions {
             get {
@@ -934,7 +934,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ui compatible with 97 to 2003.
+        ///   Looks up a localized string similar to User interface compatible with old Word versions.
         /// </summary>
         public static string UICompatibleWith97To2003 {
             get {
@@ -943,7 +943,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update fields on open.
+        ///   Looks up a localized string similar to Automatically recalculate fields on open.
         /// </summary>
         public static string UpdateFieldsOnOpen {
             get {
@@ -952,7 +952,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use XSLT when saving.
+        ///   Looks up a localized string similar to Save document as XML file through custom XSL transform.
         /// </summary>
         public static string UseXsltWhenSaving {
             get {
@@ -961,7 +961,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
+        ///   Looks up a localized string similar to Document view setting.
         /// </summary>
         public static string View {
             get {
@@ -979,7 +979,7 @@ namespace DocxControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zoom.
+        ///   Looks up a localized string similar to Magnification setting.
         /// </summary>
         public static string Zoom {
             get {

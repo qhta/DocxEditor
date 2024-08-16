@@ -3,6 +3,7 @@ using System.Windows;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocxControls;
+using DocxControls.Resources;
 
 namespace DocxEditor;
 /// <summary>

@@ -8,7 +8,7 @@
              d:DesignHeight="400" d:DesignWidth="600">
   <UserControl.Resources>
     <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-    <DataTemplate x:Key="TextTemplate" DataType="local:ElementTemplateSelector">
+    <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
       <TextBox 
         Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
         IsReadOnly="{Binding IsReadOnly}"
@@ -20,7 +20,7 @@
         </TextBox.Style>
       </TextBox>
     </DataTemplate>
-    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:ElementTemplateSelector">
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
       <CheckBox 
         IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
         Margin="5,0"/>
@@ -28,7 +28,7 @@
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
-    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:ElementTemplateSelector" >
+    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
       <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"

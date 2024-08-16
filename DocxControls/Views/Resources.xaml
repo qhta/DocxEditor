@@ -1,12 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DocxControls"
+                    xmlns:resources="clr-namespace:DocxControls.Resources"
                     >
     <ResourceDictionary.MergedDictionaries>
       <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/WrapItemsControlStyle.xaml"/>
       <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
-
+  <resources:Strings x:Key="Strings"/>
   <local:ItemWidthConverter x:Key="ItemWidthConverter" />
   <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type local:ParagraphViewModel}">
     <local:ParagraphView />

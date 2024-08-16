@@ -370,7 +370,7 @@
     <value>Zapisywanie przez XSLT</value>
   </data>
   <data name="SaveXmlDataOnly" xml:space="preserve">
-    <value>Zapisywanie tylko danych xml</value>
+    <value>Zapisywanie tylko danych XML</value>
   </data>
   <data name="SchemaLibrary" xml:space="preserve">
     <value>Biblioteka schematów</value>
