@@ -56,9 +56,15 @@ public class DocumentSettingsViewModel
 
   private void SettingsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    var propertyViewModel = (SettingViewModel)sender!;
-    var propertyName = e.PropertyName!;
-    DocumentSettings.SetValue(propertyName, propertyViewModel.Value);
+    if (e.PropertyName == nameof(PropertyViewModel.Value))
+    {
+      var propertyViewModel = (PropertyViewModel)sender!;
+      var propertyName = propertyViewModel.Name;
+      if (propertyName != null)
+      {
+        DocumentSettings.SetValue(propertyName, propertyViewModel.Value);
+      }
+    }
   }
 
 

@@ -40,9 +40,15 @@ public class AppPropertiesViewModel : PropertiesViewModel
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    var propertyViewModel = (PropertyViewModel)sender!;
-    var propertyName = e.PropertyName!;
-    AppProperties.SetValue(propertyName, propertyViewModel.Value);
+    if (e.PropertyName == nameof(PropertyViewModel.Value))
+    {
+      var propertyViewModel = (PropertyViewModel)sender!;
+      var propertyName = propertyViewModel.Name;
+      if (propertyName != null)
+      {
+        AppProperties.SetValue(propertyName, propertyViewModel.Value);
+      }
+    }
   }
 
 

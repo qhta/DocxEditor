@@ -34,9 +34,15 @@ public class CorePropertiesViewModel : PropertiesViewModel
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    var propertyViewModel = (PropertyViewModel)sender!;
-    var propertyName = e.PropertyName!;
-    CoreProperties.SetValue(propertyName, propertyViewModel.Value);
+    if (e.PropertyName == nameof(PropertyViewModel.Value))
+    {
+      var propertyViewModel = (PropertyViewModel)sender!;
+      var propertyName = propertyViewModel.Name;
+      if (propertyName != null)
+      {
+        CoreProperties.SetValue(propertyName, propertyViewModel.Value);
+      }
+    }
   }
 
 #pragma warning disable OOXML0001

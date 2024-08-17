@@ -56,9 +56,12 @@ public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
     {
       if (value != _value)
       {
-        _value = value;
-        NotifyPropertyChanged(nameof(Value));
-        ValidateProperty(nameof(Value), _value);
+        ValidateProperty(nameof(Value), value);
+        if (!HasErrors)
+        {
+          _value = value;
+          NotifyPropertyChanged(nameof(Value));
+        }
       }
     }
   }

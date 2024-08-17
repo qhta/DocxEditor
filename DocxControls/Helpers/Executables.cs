@@ -23,7 +23,7 @@ public static class Executables
   /// <param name="sender"></param>
   public static void FileNewExecute(object sender)
   {
-    MessageBox.Show("New clicked");
+    MessageBox.Show("FileNew clicked");
   }
 
   /// <summary>

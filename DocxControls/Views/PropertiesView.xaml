@@ -44,15 +44,14 @@
       </TextBlock>
     </DataTemplate>
     <DataTemplate x:Key="ObjectCaptionTemplate" DataType="local:PropertyViewModel" >
-      <Grid>
+      <Grid Background="Silver">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="16"/>
+          <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"
-        Background="Aqua"
         Foreground="Black"
         ToolTipOpening="FrameworkElement_OnToolTipOpening">
           <TextBlock.ToolTip>
@@ -60,6 +59,12 @@
             </ToolTip>
           </TextBlock.ToolTip>
         </TextBlock>
+        <Button 
+          x:Name="DownButton"
+          Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"
+          Click="DownButton_Click">
+          <Image Source="/DocxControls;component/Resources/TriangleDown.png" Width="16" Height="16"/>
+        </Button>
       </Grid>
     </DataTemplate>
     <local:PropertyCaptionTemplateSelector x:Key="PropertyCaptionTemplateSelector"

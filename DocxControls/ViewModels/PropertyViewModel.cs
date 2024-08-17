@@ -38,7 +38,7 @@ public class PropertyViewModel: ViewModel
       if (value != _Value && Name!=null)
       {
         _Value = value;
-        NotifyPropertyChanged(Name);
+        NotifyPropertyChanged(nameof(Value));
       }
     }
   }
@@ -88,4 +88,21 @@ public class PropertyViewModel: ViewModel
   /// Description of the property
   /// </summary>
   public virtual string? Description => PropertiesDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+
+  /// <summary>
+  /// Value of the property.
+  /// </summary>
+  public bool IsExpanded
+  {
+    get => _IsExpanded;
+    set
+    {
+      if (value != _IsExpanded)
+      {
+        _IsExpanded = value;
+        NotifyPropertyChanged(nameof(IsExpanded));
+      }
+    }
+  }
+  private bool _IsExpanded;
 }
