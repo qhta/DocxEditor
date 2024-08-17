@@ -45,9 +45,6 @@
     <Compile Update="Views\CustomToolTipView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SettingsView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\RunView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -24,7 +24,7 @@
         Style="{StaticResource TabItemStyle}">
         <Border 
           Style="{StaticResource BorderStyle}">
-          <local:SettingsView DataContext="{Binding LoadSaveAndSecuritySettings}"/>
+          <local:PropertiesView DataContext="{Binding LoadSaveAndSecuritySettings}"/>
         </Border>
       </TabItem>
     </TabControl>

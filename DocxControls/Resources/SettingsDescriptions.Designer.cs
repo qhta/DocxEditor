@@ -808,7 +808,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional. .
+        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional..
         /// </summary>
         public static string SaveThroughXslt {
             get {

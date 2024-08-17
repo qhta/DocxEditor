@@ -22,7 +22,8 @@
     </DataTemplate>
     <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
       <CheckBox 
-        IsChecked="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
+        IsThreeState="true"
         Margin="5,0"/>
     </DataTemplate>
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
@@ -33,9 +34,33 @@
         Text="{Binding Caption}" 
         Padding="5,0"
         Background="Silver"
-        Foreground="Black"/>
+        Foreground="Black"
+        ToolTipOpening="FrameworkElement_OnToolTipOpening">
+        <TextBlock.ToolTip>
+          <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+          </ToolTip>
+        </TextBlock.ToolTip>
+      </TextBlock>
     </DataTemplate>
-
+    <DataTemplate x:Key="ObjectCaptionTemplate" DataType="local:PropertyViewModel" >
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock 
+        Text="{Binding Caption}" 
+        Padding="5,0"
+        Background="Silver"
+        Foreground="Black"
+        ToolTipOpening="FrameworkElement_OnToolTipOpening">
+          <TextBlock.ToolTip>
+            <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+            </ToolTip>
+          </TextBlock.ToolTip>
+        </TextBlock>
+      </Grid>
+    </DataTemplate>
   </UserControl.Resources>
   <Grid>
     <DataGrid 
@@ -52,10 +77,11 @@
       <DataGrid.Columns>
         <DataGridTemplateColumn
           CellTemplate="{StaticResource PropertyCaptionTemplate}" 
-          MinWidth="200"/>
+          MinWidth="100"/>
         <DataGridTemplateColumn 
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
-          MinWidth="400"/>
+          MinWidth="50"
+          Width="*"/>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>
