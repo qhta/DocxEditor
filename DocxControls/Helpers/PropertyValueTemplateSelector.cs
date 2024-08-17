@@ -4,7 +4,7 @@ using System.Windows.Controls;
 namespace DocxControls;
 
 /// <summary>
-/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="DocxControls.PropertyViewModel"/> property type
+/// Selects a <c>DataTemplate</c> for a value of a property  based on the <see cref="DocxControls.PropertyViewModel"/> property type
 /// </summary>
 public class PropertyValueTemplateSelector : DataTemplateSelector
 {
@@ -26,12 +26,6 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is SettingViewModel settingViewModel)
-    {
-      if (settingViewModel.Type == typeof(bool) || settingViewModel.Type == typeof(DXO10W.OnOffValues))
-        return CheckBoxTemplate;
-      return TextTemplate;
-    }
     if (item is PropertyViewModel propertyViewModel)
     {
       if (propertyViewModel.Type == typeof(bool))

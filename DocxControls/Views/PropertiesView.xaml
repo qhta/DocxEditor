@@ -29,6 +29,7 @@
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
+
     <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
       <TextBlock 
         Text="{Binding Caption}" 
@@ -46,12 +47,12 @@
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition Width="16"/>
         </Grid.ColumnDefinitions>
         <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"
-        Background="Silver"
+        Background="Aqua"
         Foreground="Black"
         ToolTipOpening="FrameworkElement_OnToolTipOpening">
           <TextBlock.ToolTip>
@@ -61,6 +62,10 @@
         </TextBlock>
       </Grid>
     </DataTemplate>
+    <local:PropertyCaptionTemplateSelector x:Key="PropertyCaptionTemplateSelector"
+                                           NormalTemplate="{StaticResource PropertyCaptionTemplate}"
+                                           ObjectTemplate="{StaticResource ObjectCaptionTemplate}" />
+
   </UserControl.Resources>
   <Grid>
     <DataGrid 
@@ -76,7 +81,7 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTemplateColumn
-          CellTemplate="{StaticResource PropertyCaptionTemplate}" 
+          CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
           MinWidth="100"/>
         <DataGridTemplateColumn 
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
