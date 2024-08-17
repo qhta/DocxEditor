@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Application" xml:space="preserve">
+    <value>Specifies the name of the application that created this document.</value>
+  </data>
+  <data name="ApplicationVersion" xml:space="preserve">
+    <value>Specifies the version of the application which produced this document.&lt;p/&gt;The content of this element shall be of the form XX.YYYY where X and Y represent numerical values, or the document shall be considered non-conformant.&lt;p/&gt;Note: The contents of this element do not represent absolute values, but rather qualify the contents of the Application element to differentiate between different versions of the same producer. Applications should use this information in an informative manner only (as document metadata).</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Specifies the category of the content that is contained in the document.</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Specifies the total number of characters in a document.</value>
+  </data>
+  <data name="CharactersWithSpaces" xml:space="preserve">
+    <value>Specifies the last count of the number of characters (including spaces) in this document.</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Specifies the name of a company associated with the document.</value>
+  </data>
+  <data name="ContentStatus" xml:space="preserve">
+    <value>Example values include "Draft", "Reviewed", and "Final".</value>
+  </data>
+  <data name="ContentType" xml:space="preserve">
+    <value>Example values include "Whitepaper", "Security Bulletin", and "Exam".&lt;p/&gt;This property is distinct from Multipurpose Internet Mail Extensions (MIME) content types as defined in RFC 2616.</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Automatically set by application.</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Automatically set by application.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>The description may include but is not limited to: an abstract, table of contents, reference to a graphical representation of content, or a free-text account of the content.</value>
+  </data>
+  <data name="DigitalSignature" xml:space="preserve">
+    <value>Contains the signature of a digitally signed document.&lt;p/&gt;Note: This property is a mechanism used by legacy documents to store the digital signature of its binary representation, and should be avoided in favor of the well-defined mechanism defined in Part 2. Any use of this property should be for legacy compatibility only, and is application-defined.</value>
+  </data>
+  <data name="DocumentSecurity" xml:space="preserve">
+    <value>Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;p/&gt;1 Document is password protected.&lt;p/&gt;2 Document is recommended to be opened as read-only.&lt;p/&gt;4 Document is enforced to be opened as read-only.&lt;p/&gt;8 Document is locked for annotation.</value>
+  </data>
+  <data name="HeadingPairs" xml:space="preserve">
+    <value>Heading pairs indicates the grouping of document parts and the number of parts in each group. These parts are not document parts but conceptual representations of document sections.</value>
+  </data>
+  <data name="HyperlinkBase" xml:space="preserve">
+    <value>Specifies the base string used for evaluating relative hyperlinks in this document.</value>
+  </data>
+  <data name="HyperlinkList" xml:space="preserve">
+    <value>Specifies the set of hyperlinks that were in this document when last saved.</value>
+  </data>
+  <data name="HyperlinksChanged" xml:space="preserve">
+    <value>Specifies that one or more hyperlinks in this part were updated exclusively in this part by a producer. The next producer to open this document shall update the hyperlink relationships with the new hyperlinks specified in this part.</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>A string that identifies this document</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>A delimited set of keywords to support searching and indexing the document and content</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language of the document content</value>
+  </data>
+  <data name="LastModifiedBy" xml:space="preserve">
+    <value>Automatically set by application.</value>
+  </data>
+  <data name="LastPrinted" xml:space="preserve">
+    <value>Automatically set by application.</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Specifies the total number of lines in a document when last saved by a conforming producer if applicable.</value>
+  </data>
+  <data name="LinksUpToDate" xml:space="preserve">
+    <value>Indicates whether hyperlinks in a document are up-to-date. Set this element to TRUE to indicate that hyperlinks are updated. Set this element to FALSE to indicate that hyperlinks are outdated.</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Specifies the name of a supervisor associated with the document.</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Automatically set by application.</value>
+  </data>
+  <data name="MultimediaClips" xml:space="preserve">
+    <value>Number of multimedia clips contained in the document</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Specifies the total number of pages of a document if applicable.</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>Specifies the total number of paragraphs found in a document if applicable.</value>
+  </data>
+  <data name="PresentationFormat" xml:space="preserve">
+    <value>Specifies the intended format for a presentation document. For example, a presentation intended to be shown on video has PresentationFormat "Video".</value>
+  </data>
+  <data name="Revision" xml:space="preserve">
+    <value>Indicates the number of changed saves or revisions.&lt;p/&gt;The application is responsible for updating the Revision property value after each revision.</value>
+  </data>
+  <data name="ScaleCrop" xml:space="preserve">
+    <value>Indicates the display mode of the document thumbnail. Set this element to TRUE to enable scaling of the document thumbnail to the display. Set this element to FALSE to enable cropping of the document thumbnail to show only sections that fits the display.</value>
+  </data>
+  <data name="SharedDocument" xml:space="preserve">
+    <value>Indicates if this document is currently shared between multiple producers. If this element is set to TRUE, producers should take care when updating the document.</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>A string that identifies the topic of this document</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Specifies the name of an external document template containing format and style information used to create the current document.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>A string that is presented as the title of this document</value>
+  </data>
+  <data name="TitlesOfParts" xml:space="preserve">
+    <value>Specifies the title of each document. These parts are not document parts but conceptual representations of document sections.</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Total time that a document has been edited. The default time unit is minutes.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>A string that identifies the version of this document</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Specifies the total number of words contained in a document when last saved.</value>
+  </data>
+</root>

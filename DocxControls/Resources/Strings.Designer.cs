@@ -151,29 +151,11 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application.
-        /// </summary>
-        public static string Application {
-            get {
-                return ResourceManager.GetString("Application", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Application closing.
         /// </summary>
         public static string ApplicationClosing {
             get {
                 return ResourceManager.GetString("ApplicationClosing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Application version.
-        /// </summary>
-        public static string ApplicationVersion {
-            get {
-                return ResourceManager.GetString("ApplicationVersion", resourceCulture);
             }
         }
         
@@ -192,42 +174,6 @@ namespace DocxControls.Resources {
         public static string Bookmark_ {
             get {
                 return ResourceManager.GetString("Bookmark_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        public static string Category {
-            get {
-                return ResourceManager.GetString("Category", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Characters count.
-        /// </summary>
-        public static string Characters {
-            get {
-                return ResourceManager.GetString("Characters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Characters with spaces.
-        /// </summary>
-        public static string CharactersWithSpaces {
-            get {
-                return ResourceManager.GetString("CharactersWithSpaces", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Company.
-        /// </summary>
-        public static string Company {
-            get {
-                return ResourceManager.GetString("Company", resourceCulture);
             }
         }
         
@@ -268,24 +214,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created.
-        /// </summary>
-        public static string Created {
-            get {
-                return ResourceManager.GetString("Created", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creator.
-        /// </summary>
-        public static string Creator {
-            get {
-                return ResourceManager.GetString("Creator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
         public static string CustomProperties {
@@ -300,24 +228,6 @@ namespace DocxControls.Resources {
         public static string CustomXml {
             get {
                 return ResourceManager.GetString("CustomXml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        public static string Description {
-            get {
-                return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Digital signature.
-        /// </summary>
-        public static string DigitalSignature {
-            get {
-                return ResourceManager.GetString("DigitalSignature", resourceCulture);
             }
         }
         
@@ -340,60 +250,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Document protection.
-        /// </summary>
-        public static string DocumentProtection {
-            get {
-                return ResourceManager.GetString("DocumentProtection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heading pairs.
-        /// </summary>
-        public static string HeadingPairs {
-            get {
-                return ResourceManager.GetString("HeadingPairs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hyperlink base.
-        /// </summary>
-        public static string HyperlinkBase {
-            get {
-                return ResourceManager.GetString("HyperlinkBase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hyperlink list.
-        /// </summary>
-        public static string HyperlinkList {
-            get {
-                return ResourceManager.GetString("HyperlinkList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hyperlinks changed.
-        /// </summary>
-        public static string HyperlinksChanged {
-            get {
-                return ResourceManager.GetString("HyperlinksChanged", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifier.
-        /// </summary>
-        public static string Identifier {
-            get {
-                return ResourceManager.GetString("Identifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid value for the specified type.
         /// </summary>
         public static string InvalidValueForSpecifiedType {
@@ -403,65 +259,11 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keywords.
-        /// </summary>
-        public static string Keywords {
-            get {
-                return ResourceManager.GetString("Keywords", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        public static string Language {
-            get {
-                return ResourceManager.GetString("Language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Layout &amp; UI.
         /// </summary>
         public static string LaoutAndUI {
             get {
                 return ResourceManager.GetString("LaoutAndUI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last modified by.
-        /// </summary>
-        public static string LastModifiedBy {
-            get {
-                return ResourceManager.GetString("LastModifiedBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last printed.
-        /// </summary>
-        public static string LastPrinted {
-            get {
-                return ResourceManager.GetString("LastPrinted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lines count.
-        /// </summary>
-        public static string Lines {
-            get {
-                return ResourceManager.GetString("Lines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Links up to date.
-        /// </summary>
-        public static string LinksUpToDate {
-            get {
-                return ResourceManager.GetString("LinksUpToDate", resourceCulture);
             }
         }
         
@@ -484,33 +286,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manager.
-        /// </summary>
-        public static string Manager {
-            get {
-                return ResourceManager.GetString("Manager", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modified.
-        /// </summary>
-        public static string Modified {
-            get {
-                return ResourceManager.GetString("Modified", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multimedia clips.
-        /// </summary>
-        public static string MultimediaClips {
-            get {
-                return ResourceManager.GetString("MultimediaClips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name cannot be empty.
         /// </summary>
         public static string NameCannotBeEmpty {
@@ -529,33 +304,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages count.
-        /// </summary>
-        public static string Pages {
-            get {
-                return ResourceManager.GetString("Pages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paragraphs count.
-        /// </summary>
-        public static string Paragraphs {
-            get {
-                return ResourceManager.GetString("Paragraphs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Presentation format.
-        /// </summary>
-        public static string PresentationFormat {
-            get {
-                return ResourceManager.GetString("PresentationFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Proofing and automation.
         /// </summary>
         public static string ProofingAndAutomation {
@@ -570,15 +318,6 @@ namespace DocxControls.Resources {
         public static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revision.
-        /// </summary>
-        public static string Revision {
-            get {
-                return ResourceManager.GetString("Revision", resourceCulture);
             }
         }
         
@@ -619,29 +358,11 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scale crop.
-        /// </summary>
-        public static string ScaleCrop {
-            get {
-                return ResourceManager.GetString("ScaleCrop", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shared document.
-        /// </summary>
-        public static string SharedDocument {
-            get {
-                return ResourceManager.GetString("SharedDocument", resourceCulture);
             }
         }
         
@@ -655,24 +376,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subject.
-        /// </summary>
-        public static string Subject {
-            get {
-                return ResourceManager.GetString("Subject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Template.
-        /// </summary>
-        public static string Template {
-            get {
-                return ResourceManager.GetString("Template", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Theming and styles.
         /// </summary>
         public static string ThemingAndStyles {
@@ -682,56 +385,11 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
-        /// </summary>
-        public static string Title {
-            get {
-                return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Titles of parts.
-        /// </summary>
-        public static string TitlesOfParts {
-            get {
-                return ResourceManager.GetString("TitlesOfParts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total time [min].
-        /// </summary>
-        public static string TotalTime {
-            get {
-                return ResourceManager.GetString("TotalTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Value cannot be empty.
         /// </summary>
         public static string ValueCannotBeEmpty {
             get {
                 return ResourceManager.GetString("ValueCannotBeEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version.
-        /// </summary>
-        public static string Version {
-            get {
-                return ResourceManager.GetString("Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Words count.
-        /// </summary>
-        public static string Words {
-            get {
-                return ResourceManager.GetString("Words", resourceCulture);
             }
         }
     }

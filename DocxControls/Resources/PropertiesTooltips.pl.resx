@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Application" xml:space="preserve">
+    <value>Nazwa aplikacji</value>
+  </data>
+  <data name="ApplicationVersion" xml:space="preserve">
+    <value>Wersja aplikacji</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategoria dokumentu</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Łączna liczba znaków</value>
+  </data>
+  <data name="CharactersWithSpaces" xml:space="preserve">
+    <value>Łączna liczba znaków</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Nazwa firmy</value>
+  </data>
+  <data name="ContentStatus" xml:space="preserve">
+    <value>Stan zawartości dokumentu</value>
+  </data>
+  <data name="ContentType" xml:space="preserve">
+    <value>Typ zawartości zawartej w dokumencie</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Data i godzina początkowego utworzenia dokumentu</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Osoba lub podmiot, który utworzył dokument i jego zawartość</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Opis treści zawartej w dokumencie</value>
+  </data>
+  <data name="DigitalSignature" xml:space="preserve">
+    <value>Podpis cyfrowy</value>
+  </data>
+  <data name="DocumentSecurity" xml:space="preserve">
+    <value>Bezpieczeństwo dokumentu</value>
+  </data>
+  <data name="HeadingPairs" xml:space="preserve">
+    <value>Pary nagłówków</value>
+  </data>
+  <data name="HyperlinkBase" xml:space="preserve">
+    <value>Względna baza hiperłączy</value>
+  </data>
+  <data name="HyperlinkList" xml:space="preserve">
+    <value>Lista hiperłączy</value>
+  </data>
+  <data name="HyperlinksChanged" xml:space="preserve">
+    <value>Zmieniono hiperłącza</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Identyfikator dokumentu</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Słowa kluczowe dokumentu</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Wartość identyfikująca język zawartości dokumentu</value>
+  </data>
+  <data name="LastModifiedBy" xml:space="preserve">
+    <value>Użytkownik, który jako ostatni zmodyfikował zawartość dokumentu</value>
+  </data>
+  <data name="LastPrinted" xml:space="preserve">
+    <value>Data i godzina ostatniego wydrukowania zawartości dokumentu</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Liczba linii</value>
+  </data>
+  <data name="LinksUpToDate" xml:space="preserve">
+    <value>Aktualne linki</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Imię i nazwisko osoby odpowiedzialnej za dokument</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Data i godzina ostatniej zmiany dokumentu</value>
+  </data>
+  <data name="MultimediaClips" xml:space="preserve">
+    <value>Łączna liczba klipów multimedialnych</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Łączna liczba stron</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>Łączna liczba akapitów</value>
+  </data>
+  <data name="PresentationFormat" xml:space="preserve">
+    <value>Zamierzony format prezentacji</value>
+  </data>
+  <data name="Revision" xml:space="preserve">
+    <value>Numer wersji dokumentu</value>
+  </data>
+  <data name="ScaleCrop" xml:space="preserve">
+    <value>Tryb wyświetlania miniatur</value>
+  </data>
+  <data name="SharedDocument" xml:space="preserve">
+    <value>Udostępniony dokument</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Temat treści dokumentu</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Nazwa szablonu dokumentu</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Nazwa nadana dokumentowi i jego treści</value>
+  </data>
+  <data name="TitlesOfParts" xml:space="preserve">
+    <value>Tytuły części</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Łączny czas edycji</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Numer wersji dokumentu</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Licznik słów</value>
+  </data>
+</root>

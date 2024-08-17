@@ -8,7 +8,7 @@ public class SettingViewModel : PropertyViewModel
   /// <summary>
   /// Display caption for the setting.
   /// </summary>
-  public override string? Caption => SettingsNames.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public override string? Caption => SettingsCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Category of the property.

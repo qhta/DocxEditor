@@ -18,15 +18,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\PropertiesCaptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PropertiesCaptions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\PropertiesDescriptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PropertiesDescriptions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\PropertiesTooltips.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PropertiesTooltips.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SettingsDescriptions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SettingsDescriptions.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\SettingsNames.Designer.cs">
+    <Compile Update="Resources\SettingsCaptions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SettingsNames.resx</DependentUpon>
+      <DependentUpon>SettingsCaptions.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\SettingsTooltips.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -59,13 +74,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\PropertiesCaptions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertiesCaptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PropertiesDescriptions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertiesDescriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PropertiesTooltips.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertiesTooltips.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SettingsDescriptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsDescriptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SettingsNames.resx">
+    <EmbeddedResource Update="Resources\SettingsCaptions.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SettingsNames.Designer.cs</LastGenOutput>
+      <LastGenOutput>SettingsCaptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\SettingsTooltips.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

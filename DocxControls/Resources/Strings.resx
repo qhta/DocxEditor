@@ -123,128 +123,17 @@
   <data name="Properties" xml:space="preserve">
     <value>Properties</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Creator" xml:space="preserve">
-    <value>Creator</value>
-  </data>
-  <data name="Created" xml:space="preserve">
-    <value>Created</value>
-  </data>
-  <data name="LastModifiedBy" xml:space="preserve">
-    <value>Last modified by</value>
-  </data>
-  <data name="Modified" xml:space="preserve">
-    <value>Modified</value>
-  </data>
-  <data name="LastPrinted" xml:space="preserve">
-    <value>Last printed</value>
-  </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Subject</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
   <data name="ContentStatus" xml:space="preserve">
     <value>Content status</value>
   </data>
   <data name="ContentType" xml:space="preserve">
     <value>Content type</value>
   </data>
-  <data name="Keywords" xml:space="preserve">
-    <value>Keywords</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="Identifier" xml:space="preserve">
-    <value>Identifier</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="Revision" xml:space="preserve">
-    <value>Revision</value>
-  </data>
   <data name="AppProperties" xml:space="preserve">
     <value>App</value>
   </data>
-  <data name="Application" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="ApplicationVersion" xml:space="preserve">
-    <value>Application version</value>
-  </data>
-  <data name="Company" xml:space="preserve">
-    <value>Company</value>
-  </data>
-  <data name="DigitalSignature" xml:space="preserve">
-    <value>Digital signature</value>
-  </data>
-  <data name="HeadingPairs" xml:space="preserve">
-    <value>Heading pairs</value>
-  </data>
-  <data name="HyperlinkBase" xml:space="preserve">
-    <value>Hyperlink base</value>
-  </data>
-  <data name="HyperlinkList" xml:space="preserve">
-    <value>Hyperlink list</value>
-  </data>
-  <data name="HyperlinksChanged" xml:space="preserve">
-    <value>Hyperlinks changed</value>
-  </data>
-  <data name="LinksUpToDate" xml:space="preserve">
-    <value>Links up to date</value>
-  </data>
-  <data name="Manager" xml:space="preserve">
-    <value>Manager</value>
-  </data>
-  <data name="PresentationFormat" xml:space="preserve">
-    <value>Presentation format</value>
-  </data>
-  <data name="ScaleCrop" xml:space="preserve">
-    <value>Scale crop</value>
-  </data>
-  <data name="SharedDocument" xml:space="preserve">
-    <value>Shared document</value>
-  </data>
-  <data name="Template" xml:space="preserve">
-    <value>Template</value>
-  </data>
-  <data name="TitlesOfParts" xml:space="preserve">
-    <value>Titles of parts</value>
-  </data>
   <data name="StatProperties" xml:space="preserve">
     <value>Statistics</value>
-  </data>
-  <data name="TotalTime" xml:space="preserve">
-    <value>Total time [min]</value>
-  </data>
-  <data name="Words" xml:space="preserve">
-    <value>Words count</value>
-  </data>
-  <data name="Pages" xml:space="preserve">
-    <value>Pages count</value>
-  </data>
-  <data name="Paragraphs" xml:space="preserve">
-    <value>Paragraphs count</value>
-  </data>
-  <data name="Lines" xml:space="preserve">
-    <value>Lines count</value>
-  </data>
-  <data name="Characters" xml:space="preserve">
-    <value>Characters count</value>
-  </data>
-  <data name="CharactersWithSpaces" xml:space="preserve">
-    <value>Characters with spaces</value>
-  </data>
-  <data name="MultimediaClips" xml:space="preserve">
-    <value>Multimedia clips</value>
   </data>
   <data name="CustomProperties" xml:space="preserve">
     <value>Custom</value>
@@ -329,9 +218,6 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
-  </data>
-  <data name="DocumentProtection" xml:space="preserve">
-    <value>Document protection</value>
   </data>
   <data name="DocumentBody" xml:space="preserve">
     <value>Document body</value>

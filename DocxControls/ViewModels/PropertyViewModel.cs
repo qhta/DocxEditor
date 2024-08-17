@@ -10,7 +10,7 @@ public class PropertyViewModel: ViewModel
   /// <summary>
   /// Display caption for the property.
   /// </summary>
-  public virtual string? Caption => Strings.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public virtual string? Caption => PropertiesCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Name of the property to get/set.
@@ -82,10 +82,10 @@ public class PropertyViewModel: ViewModel
   /// <summary>
   /// Tooltip for the property
   /// </summary>
-  public virtual string? Tooltip => null;//SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public virtual string? Tooltip =>PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
 
   /// <summary>
   /// Description of the property
   /// </summary>
-  public virtual string? Description => null;//SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+  public virtual string? Description => PropertiesDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
 }

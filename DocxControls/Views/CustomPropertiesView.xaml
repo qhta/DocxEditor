@@ -42,7 +42,8 @@
           />
         <DataGridTextColumn 
           Binding="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-          MinWidth="400"/>
+          MinWidth="10"
+          Width="*"/>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>
