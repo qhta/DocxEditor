@@ -39,8 +39,4 @@ public partial class PropertiesView : UserControl
     }
   }
 
-  private void DownButton_Click(object sender, RoutedEventArgs e)
-  {
-    throw new NotImplementedException();
-  }
 }

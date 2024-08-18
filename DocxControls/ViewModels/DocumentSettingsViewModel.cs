@@ -31,12 +31,9 @@ public class DocumentSettingsViewModel
     WordDocument = wordDocument;
     DocumentSettings = wordDocument.GetSettings();
     var names = DocumentSettings.GetNames(ItemFilter.All);
-    Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
       var type = DocumentSettings.GetType(name);
-
-      var caption = Strings.ResourceManager.GetString(name) ?? name;
       var category = DocumentSettings.GetCategory(name);
       if (categories == null || categories.Contains(category))
       {

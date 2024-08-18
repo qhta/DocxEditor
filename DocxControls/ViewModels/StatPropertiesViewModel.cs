@@ -1,8 +1,6 @@
-﻿using DocumentFormat.OpenXml.Packaging;
+﻿using System.ComponentModel;
 
-using System.ComponentModel;
-using Qhta.OpenXmlTools;
-using System.Globalization;
+using DocumentFormat.OpenXml.Packaging;
 
 namespace DocxControls;
 
@@ -21,7 +19,6 @@ public class StatPropertiesViewModel : PropertiesViewModel
     WordDocument = wordDocument;
     StatProperties = wordDocument.GetExtendedFileProperties();
     var names = StatProperties.GetNames(ItemFilter.All);
-    Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
       if (StatProperties.IsVolatile(name) && StatProperties.AppliesToApplication(name, AppType.Word))

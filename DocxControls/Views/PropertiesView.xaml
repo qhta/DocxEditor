@@ -43,29 +43,58 @@
         </TextBlock.ToolTip>
       </TextBlock>
     </DataTemplate>
+    <BitmapImage x:Key="CheckedImage" UriSource="/DocxControls;component/Resources/TriangleUp.png" />
+    <BitmapImage x:Key="UncheckedImage" UriSource="/DocxControls;component/Resources/TriangleDown.png" />
     <DataTemplate x:Key="ObjectCaptionTemplate" DataType="local:PropertyViewModel" >
-      <Grid Background="Silver">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock 
+      <StackPanel>
+        <Grid Background="Silver">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"
         Foreground="Black"
         ToolTipOpening="FrameworkElement_OnToolTipOpening">
-          <TextBlock.ToolTip>
-            <ToolTip  Style="{StaticResource CustomToolTipStyle}">
-            </ToolTip>
-          </TextBlock.ToolTip>
-        </TextBlock>
-        <Button 
+            <TextBlock.ToolTip>
+              <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+              </ToolTip>
+            </TextBlock.ToolTip>
+          </TextBlock>
+          <ToggleButton 
           x:Name="DownButton"
           Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"
-          Click="DownButton_Click">
-          <Image Source="/DocxControls;component/Resources/TriangleDown.png" Width="16" Height="16"/>
-        </Button>
-      </Grid>
+          IsChecked="{Binding IsExpanded}">
+            <ToggleButton.Style>
+              <Style TargetType="ToggleButton">
+                <Setter Property="Content">
+                  <Setter.Value>
+                    <Image Source="{StaticResource UncheckedImage}" />
+                  </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                  <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Content">
+                      <Setter.Value>
+                        <Image Source="{StaticResource CheckedImage}" />
+                      </Setter.Value>
+                    </Setter>
+                  </Trigger>
+                  <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Content">
+                      <Setter.Value>
+                        <Image Source="{StaticResource UncheckedImage}" />
+                      </Setter.Value>
+                    </Setter>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </ToggleButton.Style>
+          </ToggleButton>
+        </Grid>
+        <local:PropertiesView DataContext="{Binding ObjectProperties}"/>
+      </StackPanel>
     </DataTemplate>
     <local:PropertyCaptionTemplateSelector x:Key="PropertyCaptionTemplateSelector"
                                            NormalTemplate="{StaticResource PropertyCaptionTemplate}"

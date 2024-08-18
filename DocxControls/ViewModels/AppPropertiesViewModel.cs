@@ -19,7 +19,6 @@ public class AppPropertiesViewModel : PropertiesViewModel
     WordDocument = wordDocument;
     AppProperties = wordDocument.GetExtendedFileProperties();
     var names = AppProperties.GetNames(ItemFilter.All);
-    Strings.Culture = CultureInfo.CurrentUICulture;
     foreach (var name in names)
     {
       if (!AppProperties.IsVolatile(name) && AppProperties.AppliesToApplication(name, AppType.Word))
