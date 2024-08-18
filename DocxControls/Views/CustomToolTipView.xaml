@@ -9,14 +9,16 @@
              d:Width="200" d:Height="100"
              MaxWidth="400">
     <StackPanel>
-      <TextBlock Text="{Binding Title}" 
-                 FontWeight="Bold" 
-                 Foreground="Black" 
-                 TextWrapping="Wrap"
-                 Margin="0,0,0,5"/>
-      <TextBlock Text="{Binding Content}" 
-                 Foreground="Black" 
-                 TextWrapping="Wrap"/>
+      <TextBlock 
+        Text="{Binding TooltipTitle}" 
+        FontWeight="Bold" 
+        Foreground="Black" 
+        TextWrapping="Wrap"
+        Margin="0,0,0,5"/>
+    <TextBlock 
+      Text="{Binding TooltipDescription}" 
+      Foreground="Black" 
+      TextWrapping="Wrap"/>
     </StackPanel>
 
 </UserControl>

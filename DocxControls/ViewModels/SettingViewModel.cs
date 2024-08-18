@@ -19,10 +19,10 @@ public class SettingViewModel : PropertyViewModel
   /// <summary>
   /// Tooltip for the setting
   /// </summary>
-  public override string? Tooltip => SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public override string? TooltipTitle => SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Description of the setting
   /// </summary>
-  public override string? Description => SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+  public override string? TooltipDescription => SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
 }

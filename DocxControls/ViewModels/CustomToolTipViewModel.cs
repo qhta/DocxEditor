@@ -5,41 +5,41 @@ namespace DocxControls;
 /// <summary>
 /// View model for a custom tooltip.
 /// </summary>
-public class CustomToolTipViewModel: ViewModel
+public class CustomToolTipViewModel: ViewModel, IToolTipProvider
 {
   /// <summary>
   /// Title of the tooltip.
   /// </summary>
-  public string? Title
+  public string? TooltipTitle
   {
-    get => _title;
+    get => _tooltip;
     set
     {
-      if (value!= _title)
+      if (value!= _tooltip)
       {
-        _title = value;
-        NotifyPropertyChanged(nameof(Title));
+        _tooltip = value;
+        NotifyPropertyChanged(nameof(TooltipTitle));
       }
     }
   }
 
-  private string? _title = "Title";
+  private string? _tooltip = "Title";
 
   /// <summary>
   /// Content of the tooltip.
   /// </summary>
-  public string? Content
+  public string? TooltipDescription
   {
-    get => _content;
+    get => _description;
     set
     {
-      if (value != _content)
+      if (value != _description)
       {
-        _content = value;
-        NotifyPropertyChanged(nameof(Content));
+        _description = value;
+        NotifyPropertyChanged(nameof(TooltipDescription));
       }
     }
   }
 
-  private string? _content = "Content";
+  private string? _description = "Content";
 }

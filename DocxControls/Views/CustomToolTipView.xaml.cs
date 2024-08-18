@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DocxControls;
 /// <summary>
@@ -13,6 +14,5 @@ public partial class CustomToolTipView : UserControl
   {
     InitializeComponent();
   }
-
 
 }

@@ -16,27 +16,4 @@ public partial class PropertiesView : UserControl
     InitializeComponent();
   }
 
-  private void FrameworkElement_OnToolTipOpening(object sender, ToolTipEventArgs e)
-  {
-    if (sender is FrameworkElement frameworkElement)
-    {
-      if (frameworkElement.ToolTip is ToolTip toolTip)
-      {
-        if (frameworkElement.DataContext is PropertyViewModel propertyViewModel)
-        {
-          var title = propertyViewModel.Tooltip;
-          var content = propertyViewModel.Description;
-          if (title != null)
-          {
-            toolTip.DataContext = new CustomToolTipViewModel { Title = title, Content = content };
-          }
-          else
-          {
-            e.Handled = true;
-          }
-        }
-      }
-    }
-  }
-
 }

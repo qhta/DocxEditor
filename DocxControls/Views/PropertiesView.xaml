@@ -35,10 +35,13 @@
         Text="{Binding Caption}" 
         Padding="5,0"
         Background="Silver"
-        Foreground="Black"
-        ToolTipOpening="FrameworkElement_OnToolTipOpening">
+        Foreground="Black">
         <TextBlock.ToolTip>
-          <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+          <ToolTip  Style="{StaticResource CustomToolTipStyle}"
+                    >
+            <local:CustomToolTipView
+              DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
+              />
           </ToolTip>
         </TextBlock.ToolTip>
       </TextBlock>
@@ -55,8 +58,7 @@
           <TextBlock 
         Text="{Binding Caption}" 
         Padding="5,0"
-        Foreground="Black"
-        ToolTipOpening="FrameworkElement_OnToolTipOpening">
+        Foreground="Black">
             <TextBlock.ToolTip>
               <ToolTip  Style="{StaticResource CustomToolTipStyle}">
               </ToolTip>

@@ -5,7 +5,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel
+public class PropertyViewModel : ViewModel, IToolTipProvider
 {
   /// <summary>
   /// Display caption for the property.
@@ -82,12 +82,12 @@ public class PropertyViewModel : ViewModel
   /// <summary>
   /// Tooltip for the property
   /// </summary>
-  public virtual string? Tooltip => PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
+  public virtual string? TooltipTitle => PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
 
   /// <summary>
   /// Description of the property
   /// </summary>
-  public virtual string? Description => PropertiesDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+  public virtual string? TooltipDescription => PropertiesDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
 
   /// <summary>
   /// Is the object property view expended?
@@ -113,13 +113,9 @@ public class PropertyViewModel : ViewModel
   {
     get
     {
-      if (/*IsExpanded && */Type!=null && (Type.IsClass && Type!=typeof(string)) )
+      if (IsExpanded && Type != null && (Type.IsClass && Type!=typeof(string)) )
       {
-        if (_NestedPropertiesViewModel == null)
-        {
-          _NestedPropertiesViewModel = new ObjectPropertiesViewModel(Type, Value);
-        }
-        return _NestedPropertiesViewModel;
+        return _NestedPropertiesViewModel ??= new ObjectPropertiesViewModel(Type, Value);
       }
       else
       {
