@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace DocxControls;
 
@@ -6,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for complex object properties
 /// </summary>
-public class ObjectPropertiesViewModel: PropertiesViewModel
+public class ObjectPropertiesViewModel : PropertiesViewModel
 {
   /// <summary>
   /// Initializes a new instance of the <see cref="ObjectPropertiesViewModel"/> class.
@@ -18,7 +19,8 @@ public class ObjectPropertiesViewModel: PropertiesViewModel
     if (modeledObject == null)
       modeledObject = System.Activator.CreateInstance(objectType);
     ModeledObject = modeledObject!;
-    var properties = ModeledObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+    var properties = ModeledObject.GetType()
+      .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
     foreach (var prop in properties)
     {
       if (prop.CanRead && prop.CanWrite)
@@ -27,30 +29,45 @@ public class ObjectPropertiesViewModel: PropertiesViewModel
         {
           Name = prop.Name,
           Type = prop.PropertyType,
-          Value = prop.GetValue(ModeledObject),
+          Value = null,//prop.GetValue(ModeledObject),
 
         };
-        propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+        //propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
         Items.Add(propertyViewModel);
       }
     }
   }
 
-  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  //private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  //{
+  //  if (e.PropertyName == nameof(PropertyViewModel.Value))
+  //  {
+  //    var propertyViewModel = (PropertyViewModel)sender!;
+  //    var propertyName = propertyViewModel.Name;
+  //    if (propertyName != null)
+  //    {
+  //      var prop = ModeledObject.GetType().GetProperty(propertyName);
+  //      if (prop != null && prop.CanWrite)
+  //        prop.SetValue(ModeledObject, propertyViewModel.Value);
+  //    }
+  //  }
+  //}
+
+  /// <summary>
+  /// Object which properties are modeled
+  /// </summary>
+  public object ModeledObject { get; set; }
+
+  public ObservableCollection<PropertyViewModel> ObjectProperties
   {
-    if (e.PropertyName == nameof(PropertyViewModel.Value))
-    {
-      var propertyViewModel = (PropertyViewModel)sender!;
-      var propertyName = propertyViewModel.Name;
-      if (propertyName != null)
-      {
-        var prop = ModeledObject.GetType().GetProperty(propertyName);
-        if (prop!=null && prop.CanWrite)
-          prop.SetValue(ModeledObject, propertyViewModel.Value);
-      }
+    get
+    {      
+
+      var result = base.Items;
+      if (ModeledObject.GetType().Name.EndsWith("DocumentProtection"))
+        Debug.WriteLine($"Items.Count={result.Count}");
+      return result;
     }
   }
 
-
-  private readonly object ModeledObject;
 }

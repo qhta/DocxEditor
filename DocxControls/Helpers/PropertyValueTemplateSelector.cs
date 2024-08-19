@@ -28,6 +28,12 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? FlagsComboBoxTemplate { get; set; }
 
+
+  /// <summary>
+  /// Template for object properties.
+  /// </summary>
+  public DataTemplate? PropertiesViewComboBoxTemplate { get; set; }
+
   /// <summary>
   /// Template selection logic.
   /// </summary>
@@ -47,6 +53,10 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
     if (item is IBooleanProvider booleanProvider && booleanProvider.IsBoolean)
     {
       return CheckBoxTemplate ?? TextTemplate;
+    }
+    if (item is IObjectPropertiesProvider objectPropertiesProvider && objectPropertiesProvider.IsObject)
+    {
+      return PropertiesViewComboBoxTemplate ?? TextTemplate;
     }
     return TextTemplate;
   }

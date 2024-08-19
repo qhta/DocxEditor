@@ -6,68 +6,6 @@
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-  <UserControl.Resources>
-    <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-    <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
-      <TextBox 
-        Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-        IsReadOnly="{Binding IsReadOnly}"
-        Padding="5,0">
-        <TextBox.Style>
-          <Style TargetType="TextBox">
-            <Setter Property="BorderThickness" Value="0" />
-          </Style>
-        </TextBox.Style>
-      </TextBox>
-    </DataTemplate>
-    <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
-      <CheckBox 
-        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
-        IsThreeState="{Binding IsThreeState}"
-        Margin="5,0"/>
-    </DataTemplate>
-    <DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
-      <ComboBox 
-        SelectedValue="{Binding SelectedEnum, UpdateSourceTrigger=PropertyChanged}"
-        ItemsSource="{Binding EnumValues}"
-        DisplayMemberPath="Caption"
-        SelectedValuePath="Value">
-      </ComboBox>
-    </DataTemplate>
-    <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="local:PropertyViewModel">
-      <local:CheckBoxComboBox 
-        Text="{Binding SelectedEnum, Converter={StaticResource PropertyValueConverter},
-        UpdateSourceTrigger=PropertyChanged}"
-        ItemsSource="{Binding EnumValues}"
-        DisplayMemberPath="Caption"
-        SelectedValuePath="Value"
-        Padding="5,0">
-      </local:CheckBoxComboBox>
-    </DataTemplate>
-    <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
-                              TextTemplate="{StaticResource TextTemplate}"
-                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
-                              ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
-                              FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
-                              />
-
-    <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
-      <TextBlock 
-        Text="{Binding Caption}" 
-        Padding="5,0"
-        Background="Silver"
-        Foreground="Black">
-        <TextBlock.ToolTip>
-          <ToolTip  Style="{StaticResource CustomToolTipStyle}"
-                    >
-            <local:CustomToolTipView
-              DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
-              />
-          </ToolTip>
-        </TextBlock.ToolTip>
-      </TextBlock>
-    </DataTemplate>
-  </UserControl.Resources>
   <Grid>
     <DataGrid 
       ItemsSource="{Binding Items}" 

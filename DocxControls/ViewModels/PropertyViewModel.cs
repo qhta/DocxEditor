@@ -6,7 +6,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectPropertiesProvider
 {
   /// <summary>
   /// Display caption for the property.
@@ -215,13 +215,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       Caption = GetEnumCaption(value),
       Tooltip = GetEnumTooltip(value)
     };
-    result.PropertyChanged += EnumFlagValueViewModel_PropertyChanged;
     return result;
-  }
-
-  private void EnumFlagValueViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-  {
-
   }
 
   private string? GetEnumCaption(object value)
@@ -254,4 +248,18 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     return value.ToString();
   }
   #endregion IEnumProvider implementation
+
+  #region IObjectValueProvider implementation
+
+  /// <summary>
+  /// Is the property of object type?
+  /// </summary>
+  public bool IsObject => (Type!= null) && (Type.IsClass && Type!=typeof(string));
+
+  /// <summary>
+  /// Gets the value as an object view model.
+  /// </summary>
+  public ObjectPropertiesViewModel? ObjectProperties => new ObjectPropertiesViewModel(Type!, Value);
+
+  #endregion IObjectValueProvider implementation
 }
