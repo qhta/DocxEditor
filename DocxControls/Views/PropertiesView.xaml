@@ -34,10 +34,21 @@
         SelectedValuePath="Value">
       </ComboBox>
     </DataTemplate>
+    <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="local:PropertyViewModel">
+      <local:CheckBoxComboBox 
+        Text="{Binding SelectedEnum, Converter={StaticResource PropertyValueConverter},
+        UpdateSourceTrigger=PropertyChanged}"
+        ItemsSource="{Binding EnumValues}"
+        DisplayMemberPath="Caption"
+        SelectedValuePath="Value"
+        Padding="5,0">
+      </local:CheckBoxComboBox>
+    </DataTemplate>
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
                               CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
                               ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
+                              FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
                               />
 
     <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >

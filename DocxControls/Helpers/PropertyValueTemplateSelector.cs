@@ -24,6 +24,11 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   public DataTemplate? ComboBoxTemplate { get; set; }
 
   /// <summary>
+  /// Template for enum flags properties.
+  /// </summary>
+  public DataTemplate? FlagsComboBoxTemplate { get; set; }
+
+  /// <summary>
   /// Template selection logic.
   /// </summary>
   /// <param name="item"></param>
@@ -33,6 +38,10 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   {
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
+      if (enumProvider.IsFlags)
+      {
+        return FlagsComboBoxTemplate ?? ComboBoxTemplate ?? TextTemplate;
+      }
       return ComboBoxTemplate ?? TextTemplate;
     }
     if (item is IBooleanProvider booleanProvider && booleanProvider.IsBoolean)

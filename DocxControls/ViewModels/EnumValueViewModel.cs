@@ -1,9 +1,11 @@
-﻿namespace DocxControls;
+﻿using Qhta.MVVM;
+
+namespace DocxControls;
 
 /// <summary>
 /// Class for providing data for <c>ComboBox</c> items.
 /// </summary>
-public class EnumValueViewModel: IEnumValueModel
+public class EnumValueViewModel: ViewModel, IEnumValueModel
 {
   /// <summary>
   /// Caption to display in the <c>ComboBox</c>
@@ -13,7 +15,7 @@ public class EnumValueViewModel: IEnumValueModel
   /// <summary>
   /// Object value of the item.
   /// </summary>
-  public object? Value { get; init; }
+  public object? Value { get; set; }
 
   /// <summary>
   /// Determines if the item is selected in the <c>ComboBox</c>
@@ -29,4 +31,6 @@ public class EnumValueViewModel: IEnumValueModel
   /// Description to display in the <c>ComboBox</c> tooltip
   /// </summary>
   public string? Description { get; init; }
+
+
 }

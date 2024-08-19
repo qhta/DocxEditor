@@ -1,4 +1,5 @@
-﻿using Qhta.MVVM;
+﻿using System.Windows.Controls;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -149,7 +150,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property type an enum treated as separate bits?
   /// </summary>
-  public bool IsFlags => false;
+  public bool IsFlags => Type!=null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
 
   /// <summary>
   /// Integer value of the property.
@@ -166,7 +167,14 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   public object? SelectedEnum
   {
     get => Value;
-    set => Value = value;
+    set
+    {
+      if (Value != value)
+      {
+        Value = value;
+        NotifyPropertyChanged(nameof(SelectedEnum));
+      }
+    }
   }
 
   /// <summary>
@@ -179,7 +187,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       if (Type != null)
       {
         if (Type.IsEnum)
+        {
+          if (IsFlags)
+            return Enum.GetValues(Type).Cast<object>().Select(CreateEnumFlagValueViewModel);
           return Enum.GetValues(Type).Cast<object>().Select(CreateEnumValueViewModel);
+        }
       }
       return [];
     }
@@ -193,6 +205,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       Caption = GetEnumCaption(value),
       Tooltip = GetEnumTooltip(value)
     };
+  }
+
+  private EnumFlagValueViewModel CreateEnumFlagValueViewModel(object value)
+  {
+    var result = new EnumFlagValueViewModel(this, Type!, value)
+    {
+      Value = value,
+      Caption = GetEnumCaption(value),
+      Tooltip = GetEnumTooltip(value)
+    };
+    result.PropertyChanged += EnumFlagValueViewModel_PropertyChanged;
+    return result;
+  }
+
+  private void EnumFlagValueViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+  {
+
   }
 
   private string? GetEnumCaption(object value)
