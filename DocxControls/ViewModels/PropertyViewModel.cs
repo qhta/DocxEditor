@@ -5,12 +5,13 @@ namespace DocxControls;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider
 {
   /// <summary>
   /// Display caption for the property.
   /// </summary>
-  public virtual string? Caption => PropertiesCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public virtual string? Caption =>
+    PropertiesCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Name of the property to get/set.
@@ -42,7 +43,66 @@ public class PropertyViewModel : ViewModel, IToolTipProvider
       }
     }
   }
+
   private object? _Value;
+
+  /// <summary>
+  /// Not nullable type of the property.
+  /// </summary>
+  public virtual Type? NotNullableType
+  {
+    get
+    {
+      var type = Type;
+      if (type != null)
+      {
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+          return type.GetGenericArguments()[0];
+      }
+      return type;
+    }
+  }
+
+  #region IToolTipProvider implementation
+
+  /// <summary>
+  /// Tooltip for the property
+  /// </summary>
+  public virtual string? TooltipTitle =>
+    PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
+
+  /// <summary>
+  /// Description of the property
+  /// </summary>
+  public virtual string? TooltipDescription => PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+
+  #endregion IToolTipProvider implementation
+
+  #region IBooleanProvider implementation
+
+  /// <summary>
+  /// Is the property a boolean?
+  /// </summary>
+  public bool IsBoolean => NotNullableType == typeof(bool) || NotNullableType == typeof(DXO10W.OnOffValues);
+
+
+  /// <summary>
+  /// 
+  /// </summary>
+  public bool IsThreeState
+  {
+    get
+    {
+      var type = Type;
+      if (type != null)
+      {
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+          return true;
+      }
+      return type != typeof(bool);
+    }
+  }
 
   /// <summary>
   /// Boolean value of the property.
@@ -78,52 +138,91 @@ public class PropertyViewModel : ViewModel, IToolTipProvider
       Value = value;
     }
   }
+  #endregion IBooleanProvider implementation
+
+  #region IEnumProvider implementation
+  /// <summary>
+  /// Is the property type an enum?
+  /// </summary>
+  public bool IsEnum => Type?.IsEnum ?? false;
 
   /// <summary>
-  /// Tooltip for the property
+  /// Is the property type an enum treated as separate bits?
   /// </summary>
-  public virtual string? TooltipTitle => PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
+  public bool IsFlags => false;
 
   /// <summary>
-  /// Description of the property
+  /// Integer value of the property.
   /// </summary>
-  public virtual string? TooltipDescription => PropertiesDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
-
-  /// <summary>
-  /// Is the object property view expended?
-  /// </summary>
-  public bool IsExpanded
+  public int? AsInteger
   {
-    get => _IsExpanded;
-    set
-    {
-      if (value != _IsExpanded)
-      {
-        _IsExpanded = value;
-        NotifyPropertyChanged(nameof(IsExpanded));
-      }
-    }
+    get => Value as int?;
+    set => Value = value;
   }
-  private bool _IsExpanded;
 
   /// <summary>
-  /// Properties of the object;
+  /// 
   /// </summary>
-  public ObjectPropertiesViewModel? ObjectProperties
+  public object? SelectedEnum
+  {
+    get => Value;
+    set => Value = value;
+  }
+
+  /// <summary>
+  /// Enum values of the property.
+  /// </summary>
+  public IEnumerable<object> EnumValues
   {
     get
     {
-      if (IsExpanded && Type != null && (Type.IsClass && Type!=typeof(string)) )
+      if (Type != null)
       {
-        return _NestedPropertiesViewModel ??= new ObjectPropertiesViewModel(Type, Value);
+        if (Type.IsEnum)
+          return Enum.GetValues(Type).Cast<object>().Select(CreateEnumValueViewModel);
       }
-      else
-      {
-        _NestedPropertiesViewModel = null;
-        return null;
-      }
+      return [];
     }
   }
 
-  private ObjectPropertiesViewModel? _NestedPropertiesViewModel;
+  private EnumValueViewModel CreateEnumValueViewModel(object value)
+  {
+    return new EnumValueViewModel
+    {
+      Value = value,
+      Caption = GetEnumCaption(value),
+      Tooltip = GetEnumTooltip(value)
+    };
+  }
+
+  private string? GetEnumCaption(object value)
+  {
+    if (Type != null)
+    {
+      if (Type.IsEnum)
+      {
+        var str = Enum.GetName(Type, value);
+        if (str != null)
+          str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+        return str;
+      }
+    }
+    return value.ToString();
+  }
+
+  private string? GetEnumTooltip(object value)
+  {
+    if (Type != null)
+    {
+      if (Type.IsEnum)
+      {
+        var str = Enum.GetName(Type, value);
+        if (str != null)
+          str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+        return str;
+      }
+    }
+    return value.ToString();
+  }
+  #endregion IEnumProvider implementation
 }

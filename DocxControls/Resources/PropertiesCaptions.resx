@@ -217,4 +217,16 @@
   <data name="Words" xml:space="preserve">
     <value>Words count</value>
   </data>
+  <data name="PasswordProtected" xml:space="preserve">
+    <value>Password protected </value>
+  </data>
+  <data name="ReadOnlyRecommended" xml:space="preserve">
+    <value>ReadOnly recommended</value>
+  </data>
+  <data name="ReadOnlyForced" xml:space="preserve">
+    <value>ReadOnly forced</value>
+  </data>
+  <data name="LockedForAnnotation" xml:space="preserve">
+    <value>Locked for annotation</value>
+  </data>
 </root>

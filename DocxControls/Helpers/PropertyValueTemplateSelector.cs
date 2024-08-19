@@ -16,7 +16,12 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <summary>
   /// Template for boolean properties.
   /// </summary>
-  public DataTemplate CheckBoxTemplate { get; set; } = null!;
+  public DataTemplate? CheckBoxTemplate { get; set; }
+
+  /// <summary>
+  /// Template for enum properties.
+  /// </summary>
+  public DataTemplate? ComboBoxTemplate { get; set; }
 
   /// <summary>
   /// Template selection logic.
@@ -26,11 +31,13 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is PropertyViewModel propertyViewModel)
+    if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
-      if (propertyViewModel.Type == typeof(bool))
-        return CheckBoxTemplate;
-      return TextTemplate;
+      return ComboBoxTemplate ?? TextTemplate;
+    }
+    if (item is IBooleanProvider booleanProvider && booleanProvider.IsBoolean)
+    {
+      return CheckBoxTemplate ?? TextTemplate;
     }
     return TextTemplate;
   }

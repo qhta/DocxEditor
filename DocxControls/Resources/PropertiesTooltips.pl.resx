@@ -167,7 +167,7 @@
     <value>Liczba linii</value>
   </data>
   <data name="LinksUpToDate" xml:space="preserve">
-    <value>Aktualne linki</value>
+    <value>Hiperłącza są aktualne</value>
   </data>
   <data name="Manager" xml:space="preserve">
     <value>Imię i nazwisko osoby odpowiedzialnej za dokument</value>
@@ -216,5 +216,17 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>Licznik słów</value>
+  </data>
+  <data name="PasswordProtected" xml:space="preserve">
+    <value>Dokument jest chroniony hasłem</value>
+  </data>
+  <data name="ReadOnlyRecommended" xml:space="preserve">
+    <value>Zaleca się otwieranie dokumentu w trybie tylko do odczytu</value>
+  </data>
+  <data name="ReadOnlyForced" xml:space="preserve">
+    <value>Zaleca się otwieranie dokumentu w trybie tylko do odczytu</value>
+  </data>
+  <data name="LockedForAnnotation" xml:space="preserve">
+    <value>Dokument jest zablokowany w celu dodania adnotacji</value>
   </data>
 </root>

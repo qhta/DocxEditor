@@ -277,6 +277,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked for annotation.
+        /// </summary>
+        public static string LockedForAnnotation {
+            get {
+                return ResourceManager.GetString("LockedForAnnotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manager.
         /// </summary>
         public static string Manager {
@@ -322,11 +331,38 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password protected .
+        /// </summary>
+        public static string PasswordProtected {
+            get {
+                return ResourceManager.GetString("PasswordProtected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Presentation format.
         /// </summary>
         public static string PresentationFormat {
             get {
                 return ResourceManager.GetString("PresentationFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ReadOnly forced.
+        /// </summary>
+        public static string ReadOnlyForced {
+            get {
+                return ResourceManager.GetString("ReadOnlyForced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ReadOnly recommended.
+        /// </summary>
+        public static string ReadOnlyRecommended {
+            get {
+                return ResourceManager.GetString("ReadOnlyRecommended", resourceCulture);
             }
         }
         

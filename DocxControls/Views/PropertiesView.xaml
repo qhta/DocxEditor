@@ -23,12 +23,22 @@
     <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
       <CheckBox 
         IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
-        IsThreeState="true"
+        IsThreeState="{Binding IsThreeState}"
         Margin="5,0"/>
+    </DataTemplate>
+    <DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
+      <ComboBox 
+        SelectedValue="{Binding SelectedEnum, UpdateSourceTrigger=PropertyChanged}"
+        ItemsSource="{Binding EnumValues}"
+        DisplayMemberPath="Caption"
+        SelectedValuePath="Value">
+      </ComboBox>
     </DataTemplate>
     <local:PropertyValueTemplateSelector x:Key="PropertyValueTemplateSelector"
                               TextTemplate="{StaticResource TextTemplate}"
-                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" />
+                              CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
+                              ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
+                              />
 
     <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
       <TextBlock 
@@ -46,62 +56,6 @@
         </TextBlock.ToolTip>
       </TextBlock>
     </DataTemplate>
-    <BitmapImage x:Key="CheckedImage" UriSource="/DocxControls;component/Resources/TriangleUp.png" />
-    <BitmapImage x:Key="UncheckedImage" UriSource="/DocxControls;component/Resources/TriangleDown.png" />
-    <DataTemplate x:Key="ObjectCaptionTemplate" DataType="local:PropertyViewModel" >
-      <StackPanel>
-        <Grid Background="Silver">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-          </Grid.ColumnDefinitions>
-          <TextBlock 
-        Text="{Binding Caption}" 
-        Padding="5,0"
-        Foreground="Black">
-            <TextBlock.ToolTip>
-              <ToolTip  Style="{StaticResource CustomToolTipStyle}">
-              </ToolTip>
-            </TextBlock.ToolTip>
-          </TextBlock>
-          <ToggleButton 
-          x:Name="DownButton"
-          Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"
-          IsChecked="{Binding IsExpanded}">
-            <ToggleButton.Style>
-              <Style TargetType="ToggleButton">
-                <Setter Property="Content">
-                  <Setter.Value>
-                    <Image Source="{StaticResource UncheckedImage}" />
-                  </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                  <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Content">
-                      <Setter.Value>
-                        <Image Source="{StaticResource CheckedImage}" />
-                      </Setter.Value>
-                    </Setter>
-                  </Trigger>
-                  <Trigger Property="IsChecked" Value="False">
-                    <Setter Property="Content">
-                      <Setter.Value>
-                        <Image Source="{StaticResource UncheckedImage}" />
-                      </Setter.Value>
-                    </Setter>
-                  </Trigger>
-                </Style.Triggers>
-              </Style>
-            </ToggleButton.Style>
-          </ToggleButton>
-        </Grid>
-        <local:PropertiesView DataContext="{Binding ObjectProperties}"/>
-      </StackPanel>
-    </DataTemplate>
-    <local:PropertyCaptionTemplateSelector x:Key="PropertyCaptionTemplateSelector"
-                                           NormalTemplate="{StaticResource PropertyCaptionTemplate}"
-                                           ObjectTemplate="{StaticResource ObjectCaptionTemplate}" />
-
   </UserControl.Resources>
   <Grid>
     <DataGrid 
@@ -117,7 +71,7 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTemplateColumn
-          CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
+          CellTemplate="{StaticResource PropertyCaptionTemplate}" 
           MinWidth="100"/>
         <DataGridTemplateColumn 
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 

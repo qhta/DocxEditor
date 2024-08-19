@@ -7,12 +7,12 @@
 public interface IToolTipProvider
 {
   /// <summary>
-  /// 
+  /// Title to display in the <see cref="CustomToolTipView"/>
   /// </summary>
   public string? TooltipTitle { get; }
 
   /// <summary>
-  /// Description displayed in the <see cref="CustomToolTipView"/>
+  /// Description to display in the <see cref="CustomToolTipView"/>
   /// </summary>
   public string? TooltipDescription { get; }
 }

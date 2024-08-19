@@ -167,7 +167,7 @@
     <value>Liczba wierszy</value>
   </data>
   <data name="LinksUpToDate" xml:space="preserve">
-    <value>Aktualne linki</value>
+    <value>Hiperłącza są aktualne</value>
   </data>
   <data name="Manager" xml:space="preserve">
     <value>Menedżer</value>
@@ -188,7 +188,7 @@
     <value>Format prezentacji</value>
   </data>
   <data name="Revision" xml:space="preserve">
-    <value>Zapis</value>
+    <value>Rewizja</value>
   </data>
   <data name="ScaleCrop" xml:space="preserve">
     <value>Przycięcie miniatury</value>
@@ -216,5 +216,17 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>Liczba słów</value>
+  </data>
+  <data name="PasswordProtected" xml:space="preserve">
+    <value>Ochrona hasłem </value>
+  </data>
+  <data name="ReadOnlyRecommended" xml:space="preserve">
+    <value>Zalecenie tylko do odczytu</value>
+  </data>
+  <data name="ReadOnlyForced" xml:space="preserve">
+    <value>Wymuszenie tylko do odczytu</value>
+  </data>
+  <data name="LockedForAnnotation" xml:space="preserve">
+    <value>Zablokowano do adnotacji</value>
   </data>
 </root>
