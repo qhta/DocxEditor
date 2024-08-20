@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -85,8 +86,22 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property a boolean?
   /// </summary>
-  public bool IsBoolean => NotNullableType == typeof(bool) || NotNullableType == typeof(DXO10W.OnOffValues);
-
+  public bool IsBoolean
+  {
+    get
+    {
+      var type = NotNullableType;
+      if (type != null)
+      {
+        if (type == typeof(bool))
+          return true;
+        var systemType = type.ToSystemType();
+        if (systemType == typeof(bool) || systemType == typeof(bool?))
+          return true;
+      }
+      return false;
+    }
+  }
 
   /// <summary>
   /// 
@@ -145,12 +160,12 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property type an enum?
   /// </summary>
-  public bool IsEnum => Type?.IsEnum ?? false;
+  public bool IsEnum => Type != null && (Type.IsEnum || Type.Name.EndsWith("Values"));
 
   /// <summary>
   /// Is the property type an enum treated as separate bits?
   /// </summary>
-  public bool IsFlags => Type!=null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
+  public bool IsFlags => Type != null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
 
   /// <summary>
   /// Integer value of the property.
@@ -184,8 +199,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     get
     {
+      //DXW.DocumentProtectionValues
+
       if (Type != null)
       {
+        if (Type.Name.EndsWith("Values"))
+          return Type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public)
+            .Select(CreateEnumValueViewModel);
         if (Type.IsEnum)
         {
           if (IsFlags)
@@ -222,44 +242,56 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     if (Type != null)
     {
+      string? str = null;
+      if (Type.Name.EndsWith("Values"))
+      {
+        if (value is PropertyInfo propertyInfo)
+          str = propertyInfo.Name;
+      }
       if (Type.IsEnum)
       {
-        var str = Enum.GetName(Type, value);
-        if (str != null)
-          str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
-        return str;
+        str = Enum.GetName(Type, value);
       }
+      if (str != null)
+        str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+      return str;
     }
     return value.ToString();
   }
 
-  private string? GetEnumTooltip(object value)
+private string? GetEnumTooltip(object value)
+{
+  if (Type != null)
   {
-    if (Type != null)
+    string? str = null;
+    if (Type.Name.EndsWith("Values"))
     {
-      if (Type.IsEnum)
-      {
-        var str = Enum.GetName(Type, value);
-        if (str != null)
-          str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
-        return str;
-      }
+      if (value is PropertyInfo propertyInfo)
+        str = propertyInfo.Name;
     }
-    return value.ToString();
+    if (Type.IsEnum)
+    {
+      str = Enum.GetName(Type, value);
+    }
+    if (str != null)
+      str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+    return str;
   }
-  #endregion IEnumProvider implementation
+    return value.ToString();
+}
+#endregion IEnumProvider implementation
 
-  #region IObjectValueProvider implementation
+#region IObjectValueProvider implementation
 
-  /// <summary>
-  /// Is the property of object type?
-  /// </summary>
-  public bool IsObject => (Type!= null) && (Type.IsClass && Type!=typeof(string));
+/// <summary>
+/// Is the property of object type?
+/// </summary>
+public bool IsObject => (Type != null) && (Type.IsClass && Type != typeof(string));
 
-  /// <summary>
-  /// Gets the value as an object view model.
-  /// </summary>
-  public ObjectPropertiesViewModel? ObjectProperties => new ObjectPropertiesViewModel(Type!, Value);
+/// <summary>
+/// Gets the value as an object view model.
+/// </summary>
+public ObjectPropertiesViewModel? ObjectProperties => new ObjectPropertiesViewModel(Type!, Value);
 
   #endregion IObjectValueProvider implementation
 }

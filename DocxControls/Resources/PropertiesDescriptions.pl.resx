@@ -217,4 +217,61 @@
   <data name="Title" xml:space="preserve">
     <value>Ciąg znaków prezentowany jako tytuł tego dokumentu</value>
   </data>
+  <data name="AlgorithmIdExtensibility" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="AlgorithmIdExtensibilitySource" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="AlgorithmName" xml:space="preserve">
+    <value>Określa konkretny kryptograficzny algorytm haszowania, który powinien być używany wraz z atrybutem soli i hasłem wejściowym w celu obliczenia wartości skrótu.</value>
+  </data>
+  <data name="CryptographicAlgorithmClass" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicAlgorithmSid" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicAlgorithmType" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicProvider" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicProviderType" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicProviderTypeExtensibility" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicProviderTypeExtSource" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="CryptographicSpinCount" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Określa zestaw ograniczeń edycyjnych, które mają być wymuszane na danym dokumencie WordprocessingML.</value>
+  </data>
+  <data name="Enforcement" xml:space="preserve">
+    <value>Określa, czy ustawienia ochrony dokumentu mają być wymuszane dla danego dokumentu WordprocessingML. Jeśli wartość tego elementu jest off, 0 lub false, wszystkie elementy WordprocessingML dotyczące ochrony dokumentów są nadal zachowywane w dokumencie, ale nie są wymuszane. Jeśli wartość tego elementu to on, 1 lub true, ochrona dokumentu jest wymuszana.</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Określa, czy dla danego dokumentu WordprocessingML obowiązują ograniczenia formatowania. Dzięki temu dokument może ograniczyć typy stylów, które mogą istnieć w danym dokumencie WordprocessingML. W szczególności, ustawiając wartość tego atrybutu na true, każdy styl, którego zablokowany element (§17.7.4.7) ma wartość true (lub style ukryte (§17.7.4.5), którego zablokowany atrybut ma wartość true) nie będzie dostępny do użycia w aplikacji, podobnie jak formatowanie bezpośrednie. Można używać tylko stylów z zablokowaną wartością false.</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
+    <value>Określa wartość skrótu hasła przechowywanego w tym dokumencie. Wartość tę porównuje się z uzyskaną wartością skrótu po zaszyfrowaniu hasła podanego przez użytkownika przy użyciu algorytmu określonego przez poprzednie atrybuty i nadrzędny element XML, a jeżeli te dwie wartości są zgodne, ochrona nie jest już egzekwowana.</value>
+  </data>
+  <data name="Salt" xml:space="preserve">
+    <value>Właściwość przestarzała</value>
+  </data>
+  <data name="SaltValue" xml:space="preserve">
+    <value>Określa sól, która została poprzedzona hasłem podanym przez użytkownika przed jego skrótem przy użyciu algorytmu wyznaczania wartości skrótu zdefiniowanego przez poprzednie wartości atrybutów w celu wygenerowania atrybutu hashValue i która powinna być również dołączona do hasła podanego przez użytkownika przed próbą wygenerowania wartości skrótu do porównania. Sól to losowy ciąg znaków, który jest dodawany do hasła podanego przez użytkownika przed jego zaszyfrowaniem, aby uniemożliwić złośliwej stronie wstępne obliczenie wszystkich możliwych kombinacji hasła/skrótu i po prostu użycie tych wstępnie obliczonych wartości (często określane jako "atak słownikowy").</value>
+  </data>
+  <data name="SpinCount" xml:space="preserve">
+    <value>Określa, ile razy funkcja skrótu powinna być uruchamiana iteracyjnie (uruchamiana przy użyciu wyniku każdej iteracji oraz wartości 4-bajtowej (opartej na 0, little endian) zawierającej numer iteracji jako dane wejściowe dla następnej iteracji) podczas próby porównania hasła dostarczonego przez użytkownika z wartością przechowywaną w atrybucie hashValue.</value>
+  </data>
 </root>

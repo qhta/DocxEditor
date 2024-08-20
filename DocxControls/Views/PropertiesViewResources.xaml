@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:DocxControls">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
@@ -28,7 +29,8 @@
        SelectedValue="{Binding SelectedEnum, UpdateSourceTrigger=PropertyChanged}"
        ItemsSource="{Binding EnumValues}"
        DisplayMemberPath="Caption"
-       SelectedValuePath="Value">
+       SelectedValuePath="Value"
+       Padding="5,0">
     </ComboBox>
   </DataTemplate>
   <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="local:PropertyViewModel">
@@ -56,7 +58,7 @@
      x:Key="PropertyValueTemplateSelector"
      TextTemplate="{StaticResource TextTemplate}"
      CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
-     ComboBoxTemplate="{StaticResource PropertiesViewComboBoxTemplate}"
+     ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
      PropertiesViewComboBoxTemplate="{StaticResource PropertiesViewComboBoxTemplate}"
      />

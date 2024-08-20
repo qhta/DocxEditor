@@ -229,4 +229,61 @@
   <data name="LockedForAnnotation" xml:space="preserve">
     <value>Dokument jest zablokowany w celu dodania adnotacji</value>
   </data>
+  <data name="AlgorithmIdExtensibility" xml:space="preserve">
+    <value>Rozszerzalność algorytmu kryptograficznego</value>
+  </data>
+  <data name="AlgorithmIdExtensibilitySource" xml:space="preserve">
+    <value>Źródło rozszerzalności algorytmu</value>
+  </data>
+  <data name="AlgorithmName" xml:space="preserve">
+    <value>Nazwa algorytmu kryptograficznego</value>
+  </data>
+  <data name="CryptographicAlgorithmClass" xml:space="preserve">
+    <value>Klasa algorytmu kryptograficznego</value>
+  </data>
+  <data name="CryptographicAlgorithmSid" xml:space="preserve">
+    <value>Kryptograficzny algorytm haszujący</value>
+  </data>
+  <data name="CryptographicAlgorithmType" xml:space="preserve">
+    <value>Typ algorytmu kryptograficznego</value>
+  </data>
+  <data name="CryptographicProvider" xml:space="preserve">
+    <value>Dostawca usług kryptograficznych</value>
+  </data>
+  <data name="CryptographicProviderType" xml:space="preserve">
+    <value>Typ dostawcy usług kryptograficznych</value>
+  </data>
+  <data name="CryptographicProviderTypeExtensibility" xml:space="preserve">
+    <value>Rozszerzalność typu dostawcy kryptograficznego</value>
+  </data>
+  <data name="CryptographicProviderTypeExtSource" xml:space="preserve">
+    <value>Źródło rozszerzalności typu dostawcy</value>
+  </data>
+  <data name="CryptographicSpinCount" xml:space="preserve">
+    <value>Iteracje w celu uruchomienia algorytmu haszującego</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Ograniczenia edycji dokumentu</value>
+  </data>
+  <data name="Enforcement" xml:space="preserve">
+    <value>Wymuszanie ustawień ochrony dokumentów</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Zezwalaj na formatowanie tylko z odblokowanymi stylami</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Skrót hasła</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
+    <value>Wartość skrótu</value>
+  </data>
+  <data name="Salt" xml:space="preserve">
+    <value>Sól do weryfikatora haseł</value>
+  </data>
+  <data name="SaltValue" xml:space="preserve">
+    <value>Wartość soli</value>
+  </data>
+  <data name="SpinCount" xml:space="preserve">
+    <value>Liczba obrotów</value>
+  </data>
 </root>

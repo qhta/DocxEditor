@@ -33,7 +33,8 @@ public class DocumentSettingsViewModel
     var names = DocumentSettings.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
-      var type = DocumentSettings.GetType(name);
+      var openXmlType = DocumentSettings.GetType(name);
+      var type = openXmlType.ToSystemType();
       var category = DocumentSettings.GetCategory(name);
       if (categories == null || categories.Contains(category))
       {
@@ -42,7 +43,8 @@ public class DocumentSettingsViewModel
           Name = name,
           Category = category,
           Type = type,
-          Value = DocumentSettings.GetValue(name),
+          OriginalType = openXmlType,
+          Value = DocumentSettings.GetValue(name).ToSystemValue(openXmlType),
 
         };
         settingViewModel.PropertyChanged += SettingsViewModel_PropertyChanged;
@@ -55,11 +57,11 @@ public class DocumentSettingsViewModel
   {
     if (e.PropertyName == nameof(PropertyViewModel.Value))
     {
-      var propertyViewModel = (PropertyViewModel)sender!;
-      var propertyName = propertyViewModel.Name;
+      var settingViewModel = (SettingViewModel)sender!;
+      var propertyName = settingViewModel.Name;
       if (propertyName != null)
       {
-        DocumentSettings.SetValue(propertyName, propertyViewModel.Value);
+        DocumentSettings.SetValue(propertyName, settingViewModel.Value.ToOpenXmlValue(settingViewModel.OriginalType));
       }
     }
   }

@@ -217,4 +217,62 @@
   <data name="Words" xml:space="preserve">
     <value>Specifies the total number of words contained in a document when last saved.</value>
   </data>
+  <data name="AlgorithmIdExtensibility" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="AlgorithmIdExtensibilitySource" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="AlgorithmName" xml:space="preserve">
+    <value>Specifies the specific cryptographic hashing algorithm which shall be used along with the salt attribute and input password in order to compute the hash value.</value>
+  </data>
+  <data name="CryptographicAlgorithmClass" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicAlgorithmSid" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicAlgorithmType" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicProvider" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicProviderType" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicProviderTypeExtensibility" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicProviderTypeExtSource" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="CryptographicSpinCount" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Specifies the set of editing restrictions which shall be enforced on a given WordprocessingML document.</value>
+  </data>
+  <data name="Enforcement" xml:space="preserve">
+    <value>Specifies if the document protection Properties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced.</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Specifies if formatting restrictions are in effect for a given WordprocessingML document. This enables the document to restrict the types of styles that can exist in a given WordprocessingML document. Specifically, by setting this attribute's value equal to true, every style whose locked element (§17.7.4.7) has a value of true (or latent styles (§17.7.4.5) whose locked attribute is true) shall not be available for use in the application, nor should any direct formatting. Only styles with a locked value of false can be used.</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
+    <value>Specifies the hash value for the password stored with this document. This value shall be compared with the resulting hash value after hashing the user-supplied password using the algorithm specified by the preceding attributes and parent XML element, and if the two values match, the protection shall no longer be enforced.</value>
+  </data>
+  <data name="Salt" xml:space="preserve">
+    <value>Obsolete property</value>
+  </data>
+  <data name="SaltValue" xml:space="preserve">
+    <value>Specifies the salt which was prepended to the user-supplied password before it was hashed using the hashing algorithm defined by the preceding attribute values to generate the hashValue attribute, and which shall also be prepended to the user-supplied password before attempting to generate a hash value for comparison. A salt is a random string which is added to a user-supplied password before it is hashed in order to prevent a malicious party from pre-calculating all possible password/hash combinations and simply using those pre-calculated values (often referred to as a "dictionary attack").</value>
+  </data>
+  <data name="SpinCount" xml:space="preserve">
+    <value>Specifies the number of times the hashing function shall be iteratively run (runs using each iteration's result plus a 4 byte value (0-based, little endian) containing the number of the iteration as the input for the next iteration) when attempting to compare a user-supplied
+password with the value stored in the hashValue attribute.</value>
+  </data>
 </root>

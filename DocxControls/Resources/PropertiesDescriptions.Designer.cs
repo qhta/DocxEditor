@@ -61,6 +61,33 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string AlgorithmIdExtensibility {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string AlgorithmIdExtensibilitySource {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibilitySource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the specific cryptographic hashing algorithm which shall be used along with the salt attribute and input password in order to compute the hash value..
+        /// </summary>
+        public static string AlgorithmName {
+            get {
+                return ResourceManager.GetString("AlgorithmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the name of the application that created this document..
         /// </summary>
         public static string Application {
@@ -151,6 +178,78 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmClass {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmSid {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmSid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmType {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProvider {
+            get {
+                return ResourceManager.GetString("CryptographicProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderType {
+            get {
+                return ResourceManager.GetString("CryptographicProviderType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderTypeExtensibility {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderTypeExtSource {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicSpinCount {
+            get {
+                return ResourceManager.GetString("CryptographicSpinCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The description may include but is not limited to: an abstract, table of contents, reference to a graphical representation of content, or a free-text account of the content..
         /// </summary>
         public static string Description {
@@ -174,6 +273,51 @@ namespace DocxControls.Resources {
         public static string DocumentSecurity {
             get {
                 return ResourceManager.GetString("DocumentSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of editing restrictions which shall be enforced on a given WordprocessingML document..
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if the document protection Properties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced..
+        /// </summary>
+        public static string Enforcement {
+            get {
+                return ResourceManager.GetString("Enforcement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if formatting restrictions are in effect for a given WordprocessingML document. This enables the document to restrict the types of styles that can exist in a given WordprocessingML document. Specifically, by setting this attribute&apos;s value equal to true, every style whose locked element (§17.7.4.7) has a value of true (or latent styles (§17.7.4.5) whose locked attribute is true) shall not be available for use in the application, nor should any direct formatting. Only styles with a locked value of f [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Formatting {
+            get {
+                return ResourceManager.GetString("Formatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string Hash {
+            get {
+                return ResourceManager.GetString("Hash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the hash value for the password stored with this document. This value shall be compared with the resulting hash value after hashing the user-supplied password using the algorithm specified by the preceding attributes and parent XML element, and if the two values match, the protection shall no longer be enforced..
+        /// </summary>
+        public static string HashValue {
+            get {
+                return ResourceManager.GetString("HashValue", resourceCulture);
             }
         }
         
@@ -340,6 +484,24 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string Salt {
+            get {
+                return ResourceManager.GetString("Salt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the salt which was prepended to the user-supplied password before it was hashed using the hashing algorithm defined by the preceding attribute values to generate the hashValue attribute, and which shall also be prepended to the user-supplied password before attempting to generate a hash value for comparison. A salt is a random string which is added to a user-supplied password before it is hashed in order to prevent a malicious party from pre-calculating all possible password/hash combinations and  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SaltValue {
+            get {
+                return ResourceManager.GetString("SaltValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indicates the display mode of the document thumbnail. Set this element to TRUE to enable scaling of the document thumbnail to the display. Set this element to FALSE to enable cropping of the document thumbnail to show only sections that fits the display..
         /// </summary>
         public static string ScaleCrop {
@@ -354,6 +516,16 @@ namespace DocxControls.Resources {
         public static string SharedDocument {
             get {
                 return ResourceManager.GetString("SharedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of times the hashing function shall be iteratively run (runs using each iteration&apos;s result plus a 4 byte value (0-based, little endian) containing the number of the iteration as the input for the next iteration) when attempting to compare a user-supplied
+        ///password with the value stored in the hashValue attribute..
+        /// </summary>
+        public static string SpinCount {
+            get {
+                return ResourceManager.GetString("SpinCount", resourceCulture);
             }
         }
         

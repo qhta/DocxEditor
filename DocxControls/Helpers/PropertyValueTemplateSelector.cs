@@ -42,6 +42,13 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
+    if (item is PropertyViewModel propertyViewModel)
+    {
+      if (propertyViewModel.Type!.Name== "DocumentProtectionValues")
+      {
+        Debug.Assert(true);
+      }
+    }
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)

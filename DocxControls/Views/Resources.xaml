@@ -3,12 +3,13 @@
                     xmlns:local="clr-namespace:DocxControls"
                     xmlns:resources="clr-namespace:DocxControls.Resources"
                     >
-    <ResourceDictionary.MergedDictionaries>
-      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/WrapItemsControlStyle.xaml"/>
-      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
-      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CheckBoxComboBoxStyle.xaml"/>
-      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
-      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewComboBoxStyle.xaml"/>
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/WrapItemsControlStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CheckBoxComboBoxStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <resources:Strings x:Key="Strings"/>
   <local:ItemWidthConverter x:Key="ItemWidthConverter" />

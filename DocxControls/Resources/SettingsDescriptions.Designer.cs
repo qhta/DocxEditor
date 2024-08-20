@@ -61,11 +61,38 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies information about the parameters of the grammar checking which was performed on the contents of the current WordprocessingML document. &lt;p/&gt;Note: This information can be used as desired by applications; for example, to determine if the current grammar checking state, specified by the proofState element (§17.15.1.65) is sufficient. .
+        ///   Looks up a localized string similar to Specifies information about the parameters of the grammar checking which was performed on the contents of the current WordprocessingML document. &lt;p/&gt;Note: This information can be used as desired by applications; for example, to determine if the current grammar checking state, specified by the proofState element (§17.15.1.65) is sufficient..
         /// </summary>
         public static string ActiveWritingStyle {
             get {
                 return ResourceManager.GetString("ActiveWritingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string AlgorithmIdExtensibility {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string AlgorithmIdExtensibilitySource {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibilitySource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the specific cryptographic hashing algorithm which shall be used along with the salt attribute and input password in order to compute the hash value..
+        /// </summary>
+        public static string AlgorithmName {
+            get {
+                return ResourceManager.GetString("AlgorithmName", resourceCulture);
             }
         }
         
@@ -97,7 +124,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the custom XML schema whose target namespace matches the value specified in the val attribute should be associated with this document when it is loaded, if such a schema is available to the hosting application. Applications can also load and utilize any additional schemas as well as those explicitly mentioned here. &lt;p/&gt;Note: These custom XML schemas can then be used to validate the structure of the custom XML markup in the document, etc. .
+        ///   Looks up a localized string similar to Specifies that the custom XML schema whose target namespace matches the value specified in the val attribute should be associated with this document when it is loaded, if such a schema is available to the hosting application. Applications can also load and utilize any additional schemas as well as those explicitly mentioned here. &lt;p/&gt;Note: These custom XML schemas can then be used to validate the structure of the custom XML markup in the document, etc..
         /// </summary>
         public static string AttachedSchema {
             get {
@@ -115,7 +142,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether formatting automatically applied by an application (i.e. not explicitly applied by a use or an application) shall be allowed to override formatting protection enabled via the formatting attribute on the documentProtection element (§17.15.1.9) when those formatting operations would add formatting which has been explicitly disabled. &lt;p/&gt;Example: Automatically adding superscript to the st in the string 1st. .
+        ///   Looks up a localized string similar to Specifies whether formatting automatically applied by an application (i.e. not explicitly applied by a use or an application) shall be allowed to override formatting protection enabled via the formatting attribute on the documentProtection element (§17.15.1.9) when those formatting operations would add formatting which has been explicitly disabled. &lt;p/&gt;Example: Automatically adding superscript to the st in the string 1st..
         /// </summary>
         public static string AutoFormatOverride {
             get {
@@ -178,7 +205,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the presence of information about captionsin a given WordprocessingML document. This information is divided into two components:&lt;p/&gt;• The child element caption defines the format for a single type of caption to be automatically added to the document.&lt;p/&gt;•  The child element autoCaptions defines the types of objects to which a caption format shall automatically be applied.&lt;p/&gt;This information should be used to determine the captions which are automatically added to objects when they are inserted in [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the presence of information about captionsin a given WordprocessingML document. This information is divided into two components:&lt;p/&gt;• The child element caption defines the format for a single type of caption to be automatically added to the document.&lt;p/&gt;• The child element autoCaptions defines the types of objects to which a caption format shall automatically be applied.&lt;p/&gt;This information should be used to determine the captions which are automatically added to objects when they are inserted int [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Captions {
             get {
@@ -187,7 +214,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies how full-width characters in the current WordprocessingML document should be compressed to remove additional whitespace when the contents of this document are displayed, specifically by specifying the set(s) of characters which can be compressed to remove additional whitespace. &lt;p/&gt;Note: The behavior of this element is functionally identical to the text-justify-trim property. .
+        ///   Looks up a localized string similar to Specifies how full-width characters in the current WordprocessingML document should be compressed to remove additional whitespace when the contents of this document are displayed, specifically by specifying the set(s) of characters which can be compressed to remove additional whitespace. &lt;p/&gt;Note: The behavior of this element is functionally identical to the text-justify-trim property..
         /// </summary>
         public static string CharacterSpacingControl {
             get {
@@ -196,7 +223,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies how the datapoint properties and datalabels in all charts in this document behave. The meaning of the setting is as follows:&lt;p/&gt;True  Datapoint properties and datalabels in all charts in this document follow their reference.&lt;p/&gt;False  Datapoint properties and datalabels in all charts in this document follow their position in the chart..
+        ///   Looks up a localized string similar to Specifies how the datapoint properties and datalabels in all charts in this document behave. The meaning of the setting is as follows:&lt;p/&gt;True Datapoint properties and datalabels in all charts in this document follow their reference.&lt;p/&gt;False Datapoint properties and datalabels in all charts in this document follow their position in the chart..
         /// </summary>
         public static string ChartTrackingRefBased {
             get {
@@ -246,6 +273,78 @@ namespace DocxControls.Resources {
         public static string ConsecutiveHyphenLimit {
             get {
                 return ResourceManager.GetString("ConsecutiveHyphenLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmClass {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmSid {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmSid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicAlgorithmType {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProvider {
+            get {
+                return ResourceManager.GetString("CryptographicProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderType {
+            get {
+                return ResourceManager.GetString("CryptographicProviderType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderTypeExtensibility {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicProviderTypeExtSource {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string CryptographicSpinCount {
+            get {
+                return ResourceManager.GetString("CryptographicSpinCount", resourceCulture);
             }
         }
         
@@ -304,7 +403,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500. The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayHorizontalDrawingGrid {
             get {
@@ -313,7 +412,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500.  The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500. The drawing grid is a grid which can be used by applications to help position floating objects in the document..
         /// </summary>
         public static string DisplayVerticalDrawingGrid {
             get {
@@ -340,7 +439,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the classification of a given WordprocessingML document.&lt;p/&gt;Note: This element can be used by hosting applications to facilitate customized user interface and/or automatic formatting behaviors based on the &apos;type&apos; of a given WordprocessingML document. .
+        ///   Looks up a localized string similar to Specifies the classification of a given WordprocessingML document.&lt;p/&gt;Note: This element can be used by hosting applications to facilitate customized user interface and/or automatic formatting behaviors based on the &apos;type&apos; of a given WordprocessingML document..
         /// </summary>
         public static string DocumentType {
             get {
@@ -394,7 +493,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies if document content contained in text boxes, footnotes, and endnotes shall be excluded when an application calculates a given document’s statistics when these values are calculated and/or displayed by an application.&lt;p/&gt;Note: Some examples of document statistics that an application might chose to calculate are: number of words, number of characters, number of paragraphs, number of pages, number of lines, and so on. .
+        ///   Looks up a localized string similar to Specifies if document content contained in text boxes, footnotes, and endnotes shall be excluded when an application calculates a given document’s statistics when these values are calculated and/or displayed by an application.&lt;p/&gt;Note: Some examples of document statistics that an application might chose to calculate are: number of words, number of characters, number of paragraphs, number of pages, number of lines, and so on..
         /// </summary>
         public static string DoNotIncludeSubdocsInStats {
             get {
@@ -421,7 +520,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to this WordprocessingML document as moves when the trackRevisions element (§17.15.1.89) is turned on, even when that syntax is appropriate. Instead, applications should use a standard insertion and deletion annotation syntax. Existing moves shall not be modified. &lt;p/&gt;Rationale: This element is provided to enable interoperability with earlier word processing applications which do not understand moves. .
+        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to this WordprocessingML document as moves when the trackRevisions element (§17.15.1.89) is turned on, even when that syntax is appropriate. Instead, applications should use a standard insertion and deletion annotation syntax. Existing moves shall not be modified. &lt;p/&gt;Rationale: This element is provided to enable interoperability with earlier word processing applications which do not understand moves..
         /// </summary>
         public static string DoNotTrackMoves {
             get {
@@ -484,6 +583,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of editing restrictions which shall be enforced on a given WordprocessingML document..
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies that applications shall embed common system fonts when they are in use and font embedding is enabled for this document using the embedTrueTypeFonts element (§17.8.3.8). Common system fonts refer to a set of fonts which are typically always present on a machine, and are not defined by IEEE/IEC 29500..
         /// </summary>
         public static string EmbedSystemFonts {
@@ -507,6 +615,15 @@ namespace DocxControls.Resources {
         public static string EndnoteDocumentWideProperties {
             get {
                 return ResourceManager.GetString("EndnoteDocumentWideProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if the document protection settings shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced..
+        /// </summary>
+        public static string Enforcement {
+            get {
+                return ResourceManager.GetString("Enforcement", resourceCulture);
             }
         }
         
@@ -538,6 +655,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies if formatting restrictions are in effect for a given WordprocessingML document. This enables the document to restrict the types of styles that can exist in a given WordprocessingML document. Specifically, by setting this attribute&apos;s value equal to true, every style whose locked element (§17.7.4.7) has a value of true (or latent styles (§17.7.4.5) whose locked attribute is true) shall not be available for use in the application, nor should any direct formatting. Only styles with a locked value of f [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Formatting {
+            get {
+                return ResourceManager.GetString("Formatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies that the document was last saved while the placeholder text of all structured document tags in this document were being edited. This means that the placeholder text currently displayed in all structured document tags which are displaying the showingPlcHdr element (§17.5.2.39) shall be committed to the corresponding glossary document entry as specified using the docPart element (§17.12.5) when this document is opened, in order to ensure that the most recent placeholder text is stored in the glossar [rest of string was truncated]&quot;;.
         /// </summary>
         public static string FormsDesign {
@@ -552,6 +678,24 @@ namespace DocxControls.Resources {
         public static string GutterAtTop {
             get {
                 return ResourceManager.GetString("GutterAtTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string Hash {
+            get {
+                return ResourceManager.GetString("Hash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the hash value for the password stored with this document. This value shall be compared with the resulting hash value after hashing the user-supplied password using the algorithm specified by the preceding attributes and parent XML element, and if the two values match, the protection shall no longer be enforced..
+        /// </summary>
+        public static string HashValue {
+            get {
+                return ResourceManager.GetString("HashValue", resourceCulture);
             }
         }
         
@@ -682,7 +826,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that printing the contents of this document shall only print the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in their current locations on the page - all other document contents shall be suppressed.&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting online document to be printed into the correct locations on the existing paper form. .
+        ///   Looks up a localized string similar to Specifies that printing the contents of this document shall only print the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in their current locations on the page - all other document contents shall be suppressed.&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting online document to be printed into the correct locations on the existing paper form..
         /// </summary>
         public static string PrintFormsData {
             get {
@@ -691,7 +835,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the contents of this document shall be printed with fractional character widths. Fractional character widths exist when the spacing between characters is not constant (i.e. a proportional font face is used).&lt;p/&gt;Note: Fractional character widths are generally used in conjunction with large font sizes to prevent characters from running together or having too much space between one another. .
+        ///   Looks up a localized string similar to Specifies the contents of this document shall be printed with fractional character widths. Fractional character widths exist when the spacing between characters is not constant (i.e. a proportional font face is used).&lt;p/&gt;Note: Fractional character widths are generally used in conjunction with large font sizes to prevent characters from running together or having too much space between one another..
         /// </summary>
         public static string PrintFractionalCharacterWidth {
             get {
@@ -700,7 +844,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in IEEE/IEC 29500. .
+        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in IEEE/IEC 29500..
         /// </summary>
         public static string PrintPostScriptOverText {
             get {
@@ -772,6 +916,24 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obsolete property.
+        /// </summary>
+        public static string Salt {
+            get {
+                return ResourceManager.GetString("Salt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the salt which was prepended to the user-supplied password before it was hashed using the hashing algorithm defined by the preceding attribute values to generate the hashValue attribute, and which shall also be prepended to the user-supplied password before attempting to generate a hash value for comparison. A salt is a random string which is added to a user-supplied password before it is hashed in order to prevent a malicious party from pre-calculating all possible password/hash combinations and  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SaltValue {
+            get {
+                return ResourceManager.GetString("SaltValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to IEEE/IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delim [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SaveFormsData {
@@ -817,7 +979,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to IEEE/IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications. .
+        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to IEEE/IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications..
         /// </summary>
         public static string SaveXmlDataOnly {
             get {
@@ -858,6 +1020,16 @@ namespace DocxControls.Resources {
         public static string ShowXmlTags {
             get {
                 return ResourceManager.GetString("ShowXmlTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of times the hashing function shall be iteratively run (runs using each iteration&apos;s result plus a 4 byte value (0-based, little endian) containing the number of the iteration as the input for the next iteration) when attempting to compare a user-supplied
+        ///password with the value stored in the hashValue attribute..
+        /// </summary>
+        public static string SpinCount {
+            get {
+                return ResourceManager.GetString("SpinCount", resourceCulture);
             }
         }
         

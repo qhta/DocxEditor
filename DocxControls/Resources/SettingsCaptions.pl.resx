@@ -247,13 +247,13 @@
     <value>Nie weryfikuj względem schematu</value>
   </data>
   <data name="DrawingGridHorizontalOrigin" xml:space="preserve">
-    <value>Początek  wsp. poziomych siatki rysunku</value>
+    <value>Początek wsp. poziomych siatki rysunku</value>
   </data>
   <data name="DrawingGridHorizontalSpacing" xml:space="preserve">
     <value>Odstępy poziome siatki rysunku</value>
   </data>
   <data name="DrawingGridVerticalOrigin" xml:space="preserve">
-    <value>Początek  wsp. pionowych siatki rysunku</value>
+    <value>Początek wsp. pionowych siatki rysunku</value>
   </data>
   <data name="DrawingGridVerticalSpacing" xml:space="preserve">
     <value>Odstępy pionowe siatki rysunku</value>

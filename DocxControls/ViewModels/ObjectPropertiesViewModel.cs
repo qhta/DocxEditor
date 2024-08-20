@@ -25,10 +25,12 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
     {
       if (prop.CanRead && prop.CanWrite)
       {
+        var propType = prop.PropertyType;
+        propType = propType.ToSystemType() ?? propType;
         var propertyViewModel = new PropertyViewModel
         {
           Name = prop.Name,
-          Type = prop.PropertyType,
+          Type = propType,
           Value = null,//prop.GetValue(ModeledObject),
 
         };
@@ -58,16 +60,20 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
   /// </summary>
   public object ModeledObject { get; set; }
 
+  /// <summary>
+  /// Observable collection of properties of the modeled object
+  /// </summary>
   public ObservableCollection<PropertyViewModel> ObjectProperties
   {
     get
     {      
 
       var result = base.Items;
-      if (ModeledObject.GetType().Name.EndsWith("DocumentProtection"))
+      if (ModeledObject.GetType().Name.EndsWith("DocumentProtectionValues"))
         Debug.WriteLine($"Items.Count={result.Count}");
       return result;
     }
   }
+
 
 }

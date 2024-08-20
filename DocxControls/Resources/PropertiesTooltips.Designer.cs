@@ -61,6 +61,33 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Algorithm Extensibility.
+        /// </summary>
+        public static string AlgorithmIdExtensibility {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algorithm Extensibility Source.
+        /// </summary>
+        public static string AlgorithmIdExtensibilitySource {
+            get {
+                return ResourceManager.GetString("AlgorithmIdExtensibilitySource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Algorithm Name.
+        /// </summary>
+        public static string AlgorithmName {
+            get {
+                return ResourceManager.GetString("AlgorithmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application name.
         /// </summary>
         public static string Application {
@@ -151,6 +178,78 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Algorithm Class.
+        /// </summary>
+        public static string CryptographicAlgorithmClass {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Hashing Algorithm.
+        /// </summary>
+        public static string CryptographicAlgorithmSid {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmSid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Algorithm Type.
+        /// </summary>
+        public static string CryptographicAlgorithmType {
+            get {
+                return ResourceManager.GetString("CryptographicAlgorithmType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Provider.
+        /// </summary>
+        public static string CryptographicProvider {
+            get {
+                return ResourceManager.GetString("CryptographicProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Provider Type.
+        /// </summary>
+        public static string CryptographicProviderType {
+            get {
+                return ResourceManager.GetString("CryptographicProviderType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cryptographic Provider Type Extensibility.
+        /// </summary>
+        public static string CryptographicProviderTypeExtensibility {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtensibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider Type Extensibility Source.
+        /// </summary>
+        public static string CryptographicProviderTypeExtSource {
+            get {
+                return ResourceManager.GetString("CryptographicProviderTypeExtSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iterations to Run Hashing Algorithm.
+        /// </summary>
+        public static string CryptographicSpinCount {
+            get {
+                return ResourceManager.GetString("CryptographicSpinCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A description of the content contained in the document.
         /// </summary>
         public static string Description {
@@ -174,6 +273,51 @@ namespace DocxControls.Resources {
         public static string DocumentSecurity {
             get {
                 return ResourceManager.GetString("DocumentSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Editing Restrictions.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enforce Document Protection Properties.
+        /// </summary>
+        public static string Enforcement {
+            get {
+                return ResourceManager.GetString("Enforcement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only Allow Formatting With Unlocked Styles.
+        /// </summary>
+        public static string Formatting {
+            get {
+                return ResourceManager.GetString("Formatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Hash.
+        /// </summary>
+        public static string Hash {
+            get {
+                return ResourceManager.GetString("Hash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hash value.
+        /// </summary>
+        public static string HashValue {
+            get {
+                return ResourceManager.GetString("HashValue", resourceCulture);
             }
         }
         
@@ -376,6 +520,24 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salt for Password Verifier.
+        /// </summary>
+        public static string Salt {
+            get {
+                return ResourceManager.GetString("Salt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salt value.
+        /// </summary>
+        public static string SaltValue {
+            get {
+                return ResourceManager.GetString("SaltValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thumbnail display mode.
         /// </summary>
         public static string ScaleCrop {
@@ -390,6 +552,15 @@ namespace DocxControls.Resources {
         public static string SharedDocument {
             get {
                 return ResourceManager.GetString("SharedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spin count.
+        /// </summary>
+        public static string SpinCount {
+            get {
+                return ResourceManager.GetString("SpinCount", resourceCulture);
             }
         }
         

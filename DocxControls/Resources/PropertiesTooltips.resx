@@ -229,4 +229,61 @@
   <data name="LockedForAnnotation" xml:space="preserve">
     <value>Document is locked for annotation</value>
   </data>
+  <data name="AlgorithmIdExtensibility" xml:space="preserve">
+    <value>Cryptographic Algorithm Extensibility</value>
+  </data>
+  <data name="AlgorithmIdExtensibilitySource" xml:space="preserve">
+    <value>Algorithm Extensibility Source</value>
+  </data>
+  <data name="AlgorithmName" xml:space="preserve">
+    <value>Cryptographic Algorithm Name</value>
+  </data>
+  <data name="CryptographicAlgorithmClass" xml:space="preserve">
+    <value>Cryptographic Algorithm Class</value>
+  </data>
+  <data name="CryptographicAlgorithmSid" xml:space="preserve">
+    <value>Cryptographic Hashing Algorithm</value>
+  </data>
+  <data name="CryptographicAlgorithmType" xml:space="preserve">
+    <value>Cryptographic Algorithm Type</value>
+  </data>
+  <data name="CryptographicProvider" xml:space="preserve">
+    <value>Cryptographic Provider</value>
+  </data>
+  <data name="CryptographicProviderType" xml:space="preserve">
+    <value>Cryptographic Provider Type</value>
+  </data>
+  <data name="CryptographicProviderTypeExtensibility" xml:space="preserve">
+    <value>Cryptographic Provider Type Extensibility</value>
+  </data>
+  <data name="CryptographicProviderTypeExtSource" xml:space="preserve">
+    <value>Provider Type Extensibility Source</value>
+  </data>
+  <data name="CryptographicSpinCount" xml:space="preserve">
+    <value>Iterations to Run Hashing Algorithm</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Document Editing Restrictions</value>
+  </data>
+  <data name="Enforcement" xml:space="preserve">
+    <value>Enforce Document Protection Properties</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Only Allow Formatting With Unlocked Styles</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Password Hash</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
+    <value>Hash value</value>
+  </data>
+  <data name="Salt" xml:space="preserve">
+    <value>Salt for Password Verifier</value>
+  </data>
+  <data name="SaltValue" xml:space="preserve">
+    <value>Salt value</value>
+  </data>
+  <data name="SpinCount" xml:space="preserve">
+    <value>Spin count</value>
+  </data>
 </root>
