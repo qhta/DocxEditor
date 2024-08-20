@@ -16,18 +16,10 @@ public class SettingViewModel : PropertyViewModel
   public virtual SettingCategory Category { get; set; }
 
   /// <summary>
-  /// Original type of the setting.
+  /// Does the property have a tooltip?
   /// </summary>
-  public Type? OriginalType { get; set; }
-
-  ///// <summary>
-  ///// Original value of the setting.
-  ///// </summary>
-  //public object? OriginalValue
-  //{
-  //  get => Value.ToOpenXmlValue(OriginalType!);
-  //  set => Value = value.ToSystemValue(OriginalType!);
-  //}
+  public override bool HasTooltip =>
+    SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) != null;
 
   /// <summary>
   /// Tooltip for the setting
@@ -38,4 +30,5 @@ public class SettingViewModel : PropertyViewModel
   /// Description of the setting
   /// </summary>
   public override string? TooltipDescription => SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+
 }

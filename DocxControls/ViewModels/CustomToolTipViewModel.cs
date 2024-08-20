@@ -8,6 +8,11 @@ namespace DocxControls;
 public class CustomToolTipViewModel: ViewModel, IToolTipProvider
 {
   /// <summary>
+  /// Should the tooltip be displayed?
+  /// </summary>
+  public bool HasTooltip => TooltipTitle != null;
+
+  /// <summary>
   /// Title of the tooltip.
   /// </summary>
   public string? TooltipTitle

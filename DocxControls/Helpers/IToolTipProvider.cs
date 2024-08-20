@@ -7,6 +7,11 @@
 public interface IToolTipProvider
 {
   /// <summary>
+  /// Should the <see cref="CustomToolTipView"/> be displayed?
+  /// </summary>
+  public bool HasTooltip{ get; }
+
+  /// <summary>
   /// Title to display in the <see cref="CustomToolTipView"/>
   /// </summary>
   public string? TooltipTitle { get; }

@@ -65,7 +65,27 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     }
   }
 
+  /// <summary>
+  /// Original type of the setting.
+  /// </summary>
+  public Type? OriginalType { get; set; }
+
+  ///// <summary>
+  ///// Original value of the setting.
+  ///// </summary>
+  //public object? OriginalValue
+  //{
+  //  get => Value.ToOpenXmlValue(OriginalType!);
+  //  set => Value = value.ToSystemValue(OriginalType!);
+  //}
+
   #region IToolTipProvider implementation
+
+  /// <summary>
+  /// Does the property have a tooltip?
+  /// </summary>
+  public virtual bool HasTooltip =>
+    PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) != null;
 
   /// <summary>
   /// Tooltip for the property
@@ -259,39 +279,48 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     return value.ToString();
   }
 
-private string? GetEnumTooltip(object value)
-{
-  if (Type != null)
+  private string? GetEnumTooltip(object value)
   {
-    string? str = null;
-    if (Type.Name.EndsWith("Values"))
+    if (Type != null)
     {
-      if (value is PropertyInfo propertyInfo)
-        str = propertyInfo.Name;
+      string? str = null;
+      if (Type.Name.EndsWith("Values"))
+      {
+        if (value is PropertyInfo propertyInfo)
+          str = propertyInfo.Name;
+      }
+      if (Type.IsEnum)
+      {
+        str = Enum.GetName(Type, value);
+      }
+      if (str != null)
+        str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+      return str;
     }
-    if (Type.IsEnum)
-    {
-      str = Enum.GetName(Type, value);
-    }
-    if (str != null)
-      str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
-    return str;
-  }
     return value.ToString();
-}
-#endregion IEnumProvider implementation
+  }
+  #endregion IEnumProvider implementation
 
-#region IObjectValueProvider implementation
+  #region IObjectValueProvider implementation
 
-/// <summary>
-/// Is the property of object type?
-/// </summary>
-public bool IsObject => (Type != null) && (Type.IsClass && Type != typeof(string));
+  /// <summary>
+  /// Is the property of object type?
+  /// </summary>
+  public bool IsObject => (Type != null) && (Type.IsClass && Type != typeof(string));
 
-/// <summary>
-/// Gets the value as an object view model.
-/// </summary>
-public ObjectPropertiesViewModel? ObjectProperties => new ObjectPropertiesViewModel(Type!, Value);
+  /// <summary>
+  /// Gets the value as an object view model.
+  /// </summary>
+  public ObjectPropertiesViewModel? ObjectProperties
+  {
+    get
+    {
+      if (_objectProperties == null)
+        _objectProperties = new ObjectPropertiesViewModel (Type!, Value);
+      return _objectProperties;
+    }
+  }
+  private ObjectPropertiesViewModel? _objectProperties;
 
   #endregion IObjectValueProvider implementation
 }

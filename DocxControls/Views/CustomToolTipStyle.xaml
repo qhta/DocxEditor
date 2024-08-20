@@ -10,5 +10,10 @@
         </DataTemplate>
       </Setter.Value>
     </Setter>
+  <Style.Triggers>
+    <DataTrigger Binding="{Binding HasTooltip}" Value="false">
+      <Setter Property="Visibility" Value="Collapsed"/>
+    </DataTrigger>
+  </Style.Triggers>
   </Style>
 </ResourceDictionary>
