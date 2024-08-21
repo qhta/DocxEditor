@@ -12,5 +12,11 @@ public partial class DocumentPropertiesView : UserControl
   public DocumentPropertiesView()
   {
     InitializeComponent();
+    DataContextChanged += DocumentPropertiesView_DataContextChanged;
+  }
+
+  private void DocumentPropertiesView_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+  {
+    Debug.WriteLine($"DataContextChanged({DataContext})");
   }
 }

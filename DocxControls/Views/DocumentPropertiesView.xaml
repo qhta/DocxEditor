@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:DocxControls"
              xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:DocumentViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
     <Style x:Key="TabItemStyle" TargetType="TabItem">
@@ -22,38 +23,54 @@
       <TabItem 
         Header="{x:Static resources:Strings.CoreProperties}" 
         Style="{StaticResource TabItemStyle}">
-        <Border 
-          Grid.Row="0" Grid.Column="1"
-          Style="{StaticResource BorderStyle}">
-          <local:PropertiesView DataContext="{Binding CoreProperties}"/>
-        </Border>
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Grid.Row="0" Grid.Column="1"
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.CoreProperties, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
         Header="{x:Static resources:Strings.AppProperties}" 
         Style="{StaticResource TabItemStyle}">
-        <Border 
-          Grid.Row="0" Grid.Column="1"
-          Style="{StaticResource BorderStyle}">
-          <local:PropertiesView DataContext="{Binding AppProperties}"/>
-        </Border>
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Grid.Row="0" Grid.Column="1"
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.AppProperties, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
         Header="{x:Static resources:Strings.StatProperties}" 
         Style="{StaticResource TabItemStyle}">
-        <Border 
-          Grid.Row="0" Grid.Column="1"
-          Style="{StaticResource BorderStyle}">
-          <local:PropertiesView DataContext="{Binding StatProperties}"/>
-        </Border>
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Grid.Row="0" Grid.Column="1"
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.StatProperties, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
         Header="{x:Static resources:Strings.CustomProperties}" 
         Style="{StaticResource TabItemStyle}">
-        <Border 
-          Grid.Row="0" Grid.Column="1"
-          Style="{StaticResource BorderStyle}">
-          <local:CustomPropertiesView DataContext="{Binding CustomProperties}"/>
-        </Border>
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border  
+              Grid.Row="0" Grid.Column="1"
+              Style="{StaticResource BorderStyle}">
+              <local:CustomPropertiesView DataContext="{Binding DataContext.CustomProperties, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
       </TabItem>
     </TabControl>
   </Grid>
