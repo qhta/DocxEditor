@@ -225,7 +225,4 @@
   <data name="Bookmark_" xml:space="preserve">
     <value>Bookmark: </value>
   </data>
-  <data name="LoadSaveAndSecurity" xml:space="preserve">
-    <value>Load, Save and Security</value>
-  </data>
 </root>

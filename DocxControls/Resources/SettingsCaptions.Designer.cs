@@ -619,6 +619,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load, Save and Security.
+        /// </summary>
+        public static string LoadSaveAndSecurity {
+            get {
+                return ResourceManager.GetString("LoadSaveAndSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mail merge.
         /// </summary>
         public static string MailMerge {
@@ -921,6 +930,15 @@ namespace DocxControls.Resources {
         public static string ThemeFontLanguages {
             get {
                 return ResourceManager.GetString("ThemeFontLanguages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theming and Styles.
+        /// </summary>
+        public static string ThemingAndStyles {
+            get {
+                return ResourceManager.GetString("ThemingAndStyles", resourceCulture);
             }
         }
         

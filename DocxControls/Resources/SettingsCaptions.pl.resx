@@ -426,4 +426,10 @@
   <data name="Zoom" xml:space="preserve">
     <value>Powiększenie</value>
   </data>
+  <data name="LoadSaveAndSecurity" xml:space="preserve">
+    <value>Ładowanie, pamiętanie i bezpieczeństwo</value>
+  </data>
+  <data name="ThemingAndStyles" xml:space="preserve">
+    <value>Motyw i style</value>
+  </data>
 </root>

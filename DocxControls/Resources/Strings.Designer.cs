@@ -268,15 +268,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load, Save and Security.
-        /// </summary>
-        public static string LoadSaveAndSecurity {
-            get {
-                return ResourceManager.GetString("LoadSaveAndSecurity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mail merge.
         /// </summary>
         public static string MailMergeAndPrinting {

@@ -406,4 +406,10 @@
   <data name="Zoom" xml:space="preserve">
     <value>Zoom</value>
   </data>
+  <data name="LoadSaveAndSecurity" xml:space="preserve">
+    <value>Load, Save and Security</value>
+  </data>
+  <data name="ThemingAndStyles" xml:space="preserve">
+    <value>Theming and Styles</value>
+  </data>
 </root>
