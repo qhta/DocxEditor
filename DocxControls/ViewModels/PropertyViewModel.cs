@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Windows.Controls;
 
 using Qhta.MVVM;
 
@@ -70,14 +71,10 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public Type? OriginalType { get; set; }
 
-  ///// <summary>
-  ///// Original value of the setting.
-  ///// </summary>
-  //public object? OriginalValue
-  //{
-  //  get => Value.ToOpenXmlValue(OriginalType!);
-  //  set => Value = value.ToSystemValue(OriginalType!);
-  //}
+  /// <summary>
+  /// Original value of the property.
+  /// </summary>
+  public object? OriginalValue { get; set; }
 
   #region IToolTipProvider implementation
 
@@ -224,8 +221,14 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       if (Type != null)
       {
         if (Type.Name.EndsWith("Values"))
-          return Type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public)
-            .Select(CreateEnumValueViewModel);
+        {
+          var result = new List<EnumValueViewModel>();
+          result.Add(new EnumValueViewModel());
+          result.AddRange(
+            Type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public)
+              .Select(CreateEnumPropValueViewModel));
+          return result;
+        }
         if (Type.IsEnum)
         {
           if (IsFlags)
@@ -237,6 +240,16 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     }
   }
 
+  private EnumValueViewModel CreateEnumPropValueViewModel(PropertyInfo value)
+  {
+    var name = value.Name;
+    return new EnumValueViewModel
+    {
+      Value = name,
+      Caption = GetEnumCaption(name),
+      Tooltip = GetEnumTooltip(name)
+    };
+  }
   private EnumValueViewModel CreateEnumValueViewModel(object value)
   {
     return new EnumValueViewModel
@@ -262,12 +275,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     if (Type != null)
     {
-      string? str = null;
-      if (Type.Name.EndsWith("Values"))
-      {
-        if (value is PropertyInfo propertyInfo)
-          str = propertyInfo.Name;
-      }
+      string? str = value as String;
       if (Type.IsEnum)
       {
         str = Enum.GetName(Type, value);
@@ -283,12 +291,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     if (Type != null)
     {
-      string? str = null;
-      if (Type.Name.EndsWith("Values"))
-      {
-        if (value is PropertyInfo propertyInfo)
-          str = propertyInfo.Name;
-      }
+      string? str = value as String;
       if (Type.IsEnum)
       {
         str = Enum.GetName(Type, value);
@@ -316,10 +319,20 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     get
     {
       if (_objectProperties == null)
-        _objectProperties = new ObjectPropertiesViewModel (Type!, Value);
+      {
+        _objectProperties = new ObjectPropertiesViewModel(Type!, Value);
+        _objectProperties.PropertyChanged += PropertiesViewModel_PropertyChanged; 
+        _Value = _objectProperties.ModeledObject;
+      }
       return _objectProperties;
     }
   }
+
+  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  {
+    NotifyPropertyChanged(nameof(Value));
+  }
+
   private ObjectPropertiesViewModel? _objectProperties;
 
   #endregion IObjectValueProvider implementation

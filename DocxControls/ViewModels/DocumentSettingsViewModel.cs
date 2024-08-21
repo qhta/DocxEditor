@@ -62,6 +62,8 @@ public class DocumentSettingsViewModel
       if (propertyName != null)
       {
         var value = settingViewModel.Value.ToOpenXmlValue(settingViewModel.OriginalType);
+        if (value is DX.OpenXmlElement element && element.IsEmpty())
+          value = null;
         DocumentSettings.SetValue(propertyName, value);
       }
     }

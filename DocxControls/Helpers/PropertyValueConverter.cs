@@ -37,6 +37,8 @@ public class PropertyValueConverter : IValueConverter
     }
     if (value is string str)
     {
+      if (str==string.Empty)
+        return null;
       return str.FromString(targetType);
     }
     return value;

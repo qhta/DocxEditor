@@ -46,7 +46,7 @@
   <DataTemplate x:Key="PropertiesViewComboBoxTemplate" DataType="local:PropertyViewModel">
     <local:PropertiesViewComboBox 
        Text="{Binding ObjectProperties.ModeledObject, Converter={StaticResource PropertyValueConverter},
-       UpdateSourceTrigger=PropertyChanged}"
+       UpdateSourceTrigger=Default}"
        ItemsSource="{Binding ObjectProperties.ObjectProperties}"
 
        >

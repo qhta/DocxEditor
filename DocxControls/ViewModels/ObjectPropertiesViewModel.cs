@@ -30,8 +30,11 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
     {
       if (prop.CanRead && prop.CanWrite)
       {
+        var propName = prop.Name;
         var origType = prop.PropertyType;
         var type = origType.ToSystemType();
+        if (type == typeof(bool))
+          type = typeof(bool?);
         object? value = null;
         if (ModeledObject != null)
         {
@@ -41,11 +44,11 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
         }
         var propertyViewModel = new PropertyViewModel
         {
-          Name = prop.Name,
+          Name = propName,
           Type = type,
           OriginalType = origType,
-          Value = value
-
+          Value = value,
+          OriginalValue = modeledObject
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
         Items.Add(propertyViewModel);
@@ -64,7 +67,10 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
         ModeledObject ??= Activator.CreateInstance(ObjectType);
         var prop = ModeledObject!.GetType().GetProperty(propertyName);
         if (prop != null && prop.CanWrite)
+        {
           prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
+          NotifyPropertyChanged(nameof(ModeledObject));
+        }
       }
     }
   }
