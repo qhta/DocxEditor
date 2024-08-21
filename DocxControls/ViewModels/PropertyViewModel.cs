@@ -76,6 +76,12 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public object? OriginalValue { get; set; }
 
+  /// <summary>
+  /// Is the property obsolete?
+  /// </summary>
+  public bool IsObsolete => PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.InvariantCulture)?.StartsWith("Obsolete") ?? false;
+
   #region IToolTipProvider implementation
 
   /// <summary>

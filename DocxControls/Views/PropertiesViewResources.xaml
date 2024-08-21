@@ -66,9 +66,18 @@
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
     <TextBlock 
        Text="{Binding Caption}" 
-       Padding="5,0"
-       Background="Silver"
-       Foreground="Black">
+       Padding="5,0">
+      <TextBlock.Style>
+        <Style TargetType="TextBlock">
+          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Foreground" Value="Black"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsObsolete}" Value="True">
+              <Setter Property="Foreground" Value="DarkSlateGray"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
       <TextBlock.ToolTip>
         <ToolTip  Style="{StaticResource CustomToolTipStyle}"
                    >
