@@ -134,7 +134,7 @@
     <value>Contains the signature of a digitally signed document.&lt;p/&gt;Note: This property is a mechanism used by legacy documents to store the digital signature of its binary representation, and should be avoided in favor of the well-defined mechanism defined in Part 2. Any use of this property should be for legacy compatibility only, and is application-defined.</value>
   </data>
   <data name="DocumentSecurity" xml:space="preserve">
-    <value>Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;p/&gt;1 Document is password protected.&lt;p/&gt;2 Document is recommended to be opened as read-only.&lt;p/&gt;4 Document is enforced to be opened as read-only.&lt;p/&gt;8 Document is locked for annotation.</value>
+    <value>Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;br/&gt;1 - Document is password protected.&lt;br/&gt;2 - Document is recommended to be opened as read-only.&lt;br/&gt;4 - Document is enforced to be opened as read-only.&lt;br/&gt;8 - Document is locked for annotation.</value>
   </data>
   <data name="HeadingPairs" xml:space="preserve">
     <value>Heading pairs indicates the grouping of document parts and the number of parts in each group. These parts are not document parts but conceptual representations of document sections.</value>

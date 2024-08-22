@@ -32,7 +32,8 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <summary>
   /// Template for object properties.
   /// </summary>
-  public DataTemplate? PropertiesViewComboBoxTemplate { get; set; }
+  public DataTemplate? ObjectViewComboBoxTemplate { get; set; }
+
 
   /// <summary>
   /// Template selection logic.
@@ -42,13 +43,6 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is PropertyViewModel propertyViewModel)
-    {
-      if (propertyViewModel.Type!.Name== "DocumentProtectionValues")
-      {
-        Debug.Assert(true);
-      }
-    }
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)
@@ -61,9 +55,9 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
     {
       return CheckBoxTemplate ?? TextTemplate;
     }
-    if (item is IObjectPropertiesProvider objectPropertiesProvider && objectPropertiesProvider.IsObject)
+    if (item is IObjectViewModelProvider objectPropertiesProvider && objectPropertiesProvider.IsObject)
     {
-      return PropertiesViewComboBoxTemplate ?? TextTemplate;
+      return ObjectViewComboBoxTemplate ?? TextTemplate;
     }
     return TextTemplate;
   }

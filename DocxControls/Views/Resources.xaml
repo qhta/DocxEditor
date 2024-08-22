@@ -9,7 +9,7 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CheckBoxComboBoxStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
-    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewComboBoxStyle.xaml"/>
+    <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/ObjectViewComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <resources:Strings x:Key="Strings"/>
   <local:ItemWidthConverter x:Key="ItemWidthConverter" />

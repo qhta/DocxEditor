@@ -205,7 +205,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the presence of information about captionsin a given WordprocessingML document. This information is divided into two components:&lt;p/&gt;• The child element caption defines the format for a single type of caption to be automatically added to the document.&lt;p/&gt;• The child element autoCaptions defines the types of objects to which a caption format shall automatically be applied.&lt;p/&gt;This information should be used to determine the captions which are automatically added to objects when they are inserted int [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the presence of information about captionsin a given WordprocessingML document. This information is divided into two components:&lt;br/&gt;• The child element caption defines the format for a single type of caption to be automatically added to the document.&lt;br/&gt;• The child element autoCaptions defines the types of objects to which a caption format shall automatically be applied.&lt;p/&gt;This information should be used to determine the captions which are automatically added to objects when they are inserted i [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Captions {
             get {
@@ -232,7 +232,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the paragraph style, specified using the style element, which shall be applied to paragraphs which are automatically created when text is inserted into a WordprocessingML document in an area of the document that has no other style associated with it. This style is referenced via the val attribute, which stores the style ID of the style (stored in the styleId attribute on the style definition)..
+        ///   Looks up a localized string similar to Specifies the paragraph style, specified using the Style element, which shall be applied to paragraphs which are automatically created when text is inserted into a WordprocessingML document in an area of the document that has no other style associated with it. This style is referenced via the val attribute, which stores the style ID of the style (stored in the styleId attribute on the style definition)..
         /// </summary>
         public static string ClickAndTypeStyle {
             get {
@@ -646,7 +646,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies that the contents of this document can be upgraded and that the resulting document shall not have its functionality limited to only those functions compatible with earlier word processing applications. The only actions required as part of upgrading the document are:&lt;p/&gt;• The removal of this element. If an application does not know how to upgrade a document, this element should be ignored and persisted.&lt;p/&gt;• The removal of all compatibility options (§17.15.1.21) on the document which maintain compa [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies that the contents of this document can be upgraded and that the resulting document shall not have its functionality limited to only those functions compatible with earlier word processing applications. The only actions required as part of upgrading the document are:&lt;br/&gt;• The removal of this element. If an application does not know how to upgrade a document, this element should be ignored and persisted.&lt;br/&gt;• The removal of all compatibility options (§17.15.1.21) on the document which maintain com [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ForceUpgrade {
             get {
@@ -763,7 +763,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies all of the mail merge information for a document that has been connected to an external data source as part of a mail merge operation.&lt;p/&gt;The document which contains this mail merge data can be of one of two types:&lt;p/&gt;• A source document, the document which contains all of the information for the mail merge, and is used in conjunction with an application to connect to an external data source and create one document for each record in that data source.&lt;p/&gt;• A merged document, a document which conta [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies all of the mail merge information for a document that has been connected to an external data source as part of a mail merge operation.&lt;p/&gt;The document which contains this mail merge data can be of one of two types:&lt;br/&gt;• A source document, the document which contains all of the information for the mail merge, and is used in conjunction with an application to connect to an external data source and create one document for each record in that data source.&lt;br/&gt;• A merged document, a document which con [rest of string was truncated]&quot;;.
         /// </summary>
         public static string MailMerge {
             get {
@@ -1079,7 +1079,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the size for automatic document summaries performed on the content of a WordprocessingML document. An automatic document summary is a subset of text contained in a document deemed by the hosting application to summarize the content of the WordprocessingML document. The val attribute of this element specifies the size of an automatic document summary to be performed on a given WordprocessingML document as a percentage of the total size of the given WordprocessingML document. Performing an automatic [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the size for automatic document summaries performed on the content of a WordprocessingML document. An automatic document summary is a subset of text contained in a document deemed by the hosting application to summarize the content of the WordprocessingML document. The val attribute of this element specifies the size of an automatic document summary to be performed on a given WordprocessingML document as a percentage of the total size of the given WordprocessingML document. &lt;p/&gt;Performing an autom [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SummaryLength {
             get {
@@ -1151,7 +1151,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the magnification level which should be applied to a document when it is displayed by an application. The zoom level is specified with the use of two attributes stored on this element:&lt;p/&gt;• val, which stores the type of zoom applied to the document&lt;p/&gt;• percent, which stores the zoom percentage to be used when rendering the document&lt;p/&gt;If both attributes are present, then the percent attribute shall be treated as a &apos;cached&apos; value and only used when the value none is specified for the val attribute [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Specifies the magnification level which should be applied to a document when it is displayed by an application. The zoom level is specified with the use of two attributes stored on this element:&lt;br/&gt;• val, which stores the type of zoom applied to the document&lt;br/&gt;• percent, which stores the zoom percentage to be used when rendering the document&lt;p/&gt;If both attributes are present, then the percent attribute shall be treated as a &apos;cached&apos; value and only used when the value none is specified for the val attribu [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Zoom {
             get {

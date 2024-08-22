@@ -44,15 +44,12 @@
     </local:CheckBoxComboBox>
   </DataTemplate>
   <DataTemplate x:Key="PropertiesViewComboBoxTemplate" DataType="local:PropertyViewModel">
-    <local:PropertiesViewComboBox 
-       Text="{Binding ObjectProperties.ModeledObject, Converter={StaticResource PropertyValueConverter},
+    <local:ObjectViewComboBox 
+       Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},
        UpdateSourceTrigger=Default}"
-       ItemsSource="{Binding ObjectProperties.ObjectProperties}"
-
+       ItemsSource="{Binding ObjectViewModel.ObjectProperties}"
        >
-      <!--DataContext ="{Binding ObjectProperties}"-->
-      <!---->
-    </local:PropertiesViewComboBox>
+    </local:ObjectViewComboBox>
   </DataTemplate>
   <local:PropertyValueTemplateSelector 
      x:Key="PropertyValueTemplateSelector"
@@ -60,7 +57,7 @@
      CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
      ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
-     PropertiesViewComboBoxTemplate="{StaticResource PropertiesViewComboBoxTemplate}"
+     ObjectViewComboBoxTemplate="{StaticResource PropertiesViewComboBoxTemplate}"
      />
 
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >

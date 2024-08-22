@@ -33,13 +33,85 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:Strings.ThemingAndStyles}" 
+        Header="{x:Static resources:SettingsCaptions.ThemingAndStyles}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
             <Border 
               Style="{StaticResource BorderStyle}">
               <local:PropertiesView DataContext="{Binding DataContext.ThemingAndStylesSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.ProofingHyphenationAndAutomation}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.ProofingHyphenationAndAutomationSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.Identification}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.IdentificationSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.RevisionsAndTracking}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.RevisionsAndTrackingSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.MailMergeAndPrinting}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.MailMergeAndPrintingSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.CustomXml}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.CustomXmlSettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
+            </Border>
+          </DataTemplate>
+        </TabItem.ContentTemplate>
+      </TabItem>
+      <TabItem 
+        Header="{x:Static resources:SettingsCaptions.Compatibility}" 
+        Style="{StaticResource TabItemStyle}">
+        <TabItem.ContentTemplate>
+          <DataTemplate>
+            <Border 
+              Style="{StaticResource BorderStyle}">
+              <local:PropertiesView DataContext="{Binding DataContext.CompatibilitySettings, RelativeSource={RelativeSource AncestorType=TabControl}}"/>
             </Border>
           </DataTemplate>
         </TabItem.ContentTemplate>

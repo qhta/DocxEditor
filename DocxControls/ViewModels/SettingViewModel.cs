@@ -29,6 +29,7 @@ public class SettingViewModel : PropertyViewModel
   /// <summary>
   /// Description of the setting
   /// </summary>
-  public override string? TooltipDescription => SettingsDescriptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+  public override string? TooltipDescription => FixDescription(SettingsDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.CurrentUICulture));
 
 }

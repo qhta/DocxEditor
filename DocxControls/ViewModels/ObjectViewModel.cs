@@ -7,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for complex object properties
 /// </summary>
-public class ObjectPropertiesViewModel : PropertiesViewModel
+public class ObjectViewModel : PropertiesViewModel, IObjectViewModel
 {
   /// <summary>
   ///  Type of the object which properties are modeled
@@ -15,20 +15,26 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
   public Type ObjectType { get; init; }
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="ObjectPropertiesViewModel"/> class.
+  /// Determines if the modeled object can contain members.
+  /// </summary>
+  public bool IsContainer => ObjectType.IsSubclassOf(typeof(DX.OpenXmlCompositeElement));
+
+  /// <summary>
+  /// Initializes a new instance of the <see cref="ObjectViewModel"/> class.
   /// </summary>
   /// <param name="objectType">Type of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>
-  public ObjectPropertiesViewModel(Type objectType, Object? modeledObject)
+  public ObjectViewModel(Type objectType, Object? modeledObject)
   {
+    //if (objectType.Name=="DocumentVariables")
+    //  Debug.Assert(true);
     ObjectType = objectType;
     ModeledObject = modeledObject;
     ModeledObject ??= Activator.CreateInstance(ObjectType);
-    var properties = objectType
-      .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+    var properties = objectType.GetOpenXmlProperties().ToArray();
     foreach (var prop in properties)
     {
-      if (prop.CanRead && prop.CanWrite)
+      if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType!=typeof(string)))
       {
         var propName = prop.Name;
         var origType = prop.PropertyType;
@@ -54,6 +60,12 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
         Items.Add(propertyViewModel);
       }
     }
+    if (IsContainer)
+      foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
+      {
+        var memberViewModel = new ObjectViewModel(member.GetType(), member);
+        ObjectMembers.Add(memberViewModel);
+      }
   }
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -93,7 +105,12 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
   private object? _modeledObject;
 
   /// <summary>
-  /// Inherited Items
+  /// Properties of the object.
   /// </summary>
   public ObservableCollection<PropertyViewModel> ObjectProperties => Items;
+
+  /// <summary>
+  /// Members of the object.
+  /// </summary>
+  public ObservableCollection<ObjectViewModel> ObjectMembers { get; } = new();
 }

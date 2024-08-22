@@ -194,7 +194,7 @@
     <value>Automatycznie ustawiane przez aplikację.</value>
   </data>
   <data name="DocumentSecurity" xml:space="preserve">
-    <value>Określa poziom bezpieczeństwa dokumentu jako wartość liczbową. Bezpieczeństwo dokumentu jest definiowane następująco:&lt;p/&gt;1 Dokument jest chroniony hasłem.&lt;p/&gt;2 Zaleca się otwieranie dokumentu tylko do odczytu.&lt;p/&gt;4 Dokument jest wymuszany do otwierania tylko do odczytu.&lt;p/&gt;8 Dokument jest zablokowany do adnotacji.</value>
+    <value>Określa poziom bezpieczeństwa dokumentu jako wartość liczbową. Bezpieczeństwo dokumentu jest definiowane następująco:&lt;br/&gt;1 - Dokument jest chroniony hasłem.&lt;br/&gt;2 - Zaleca się otwieranie dokumentu tylko do odczytu.&lt;br/&gt;4 - Dokument jest wymuszany do otwierania tylko do odczytu.&lt;br/&gt;8 - Dokument jest zablokowany do adnotacji.</value>
   </data>
   <data name="LastModifiedBy" xml:space="preserve">
     <value>Automatycznie ustawiane przez aplikację.</value>

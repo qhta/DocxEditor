@@ -166,7 +166,7 @@
     <value>Śledzenie wykresu oparte na odnośnikach</value>
   </data>
   <data name="ClickAndTypeStyle" xml:space="preserve">
-    <value>Kliknij i wpisz styl</value>
+    <value>Styl "kliknij i pisz"</value>
   </data>
   <data name="ColorSchemeMapping" xml:space="preserve">
     <value>Mapowanie schematu kolorów</value>
@@ -229,7 +229,7 @@
     <value>Nie dziel wielkich liter</value>
   </data>
   <data name="DoNotIncludeSubdocsInStats" xml:space="preserve">
-    <value>Nie uwzględniaj subdoców w statystykach</value>
+    <value>Nie uwzględniaj dok. podrzędnych w statystykach</value>
   </data>
   <data name="DoNotShadeFormData" xml:space="preserve">
     <value>Nie cieniuj danych formularza</value>
@@ -337,10 +337,10 @@
     <value>Drukowanie dwóch na jednym</value>
   </data>
   <data name="ProofState" xml:space="preserve">
-    <value>Stan dowodu</value>
+    <value>Stan sprawdzania</value>
   </data>
   <data name="ReadModeInkLockDown" xml:space="preserve">
-    <value>Blokada atramentu w trybie odczytu</value>
+    <value>Blokada układu w trybie odczytu</value>
   </data>
   <data name="RemoveDateAndTime" xml:space="preserve">
     <value>Usuń datę i godzinę</value>
@@ -388,10 +388,10 @@
     <value>Ścisły pierwszy i ostatni znak</value>
   </data>
   <data name="StyleLockStylesPart" xml:space="preserve">
-    <value>Część stylów blokady stylu</value>
+    <value>Blokada definicji styli</value>
   </data>
   <data name="StyleLockThemesPart" xml:space="preserve">
-    <value>Część motywów blokady stylu</value>
+    <value>Blokada definicji motywu</value>
   </data>
   <data name="StylePaneFormatFilter" xml:space="preserve">
     <value>Filtr formatu okienka stylu</value>
@@ -427,9 +427,27 @@
     <value>Powiększenie</value>
   </data>
   <data name="LoadSaveAndSecurity" xml:space="preserve">
-    <value>Ładowanie, pamiętanie i bezpieczeństwo</value>
+    <value>Zapis i bezpieczeństwo</value>
   </data>
   <data name="ThemingAndStyles" xml:space="preserve">
     <value>Motyw i style</value>
+  </data>
+  <data name="ProofingHyphenationAndAutomation" xml:space="preserve">
+    <value>Pisownia, przenosz., automat.</value>
+  </data>
+  <data name="CustomXml" xml:space="preserve">
+    <value>Dowolny XML</value>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Identyfikacja</value>
+  </data>
+  <data name="LayoutAndUI" xml:space="preserve">
+    <value>Wygląd i interfejs</value>
+  </data>
+  <data name="MailMergeAndPrinting" xml:space="preserve">
+    <value>Koresp. seryjna i drukowanie</value>
+  </data>
+  <data name="RevisionsAndTracking" xml:space="preserve">
+    <value>Recencja i śledzenie</value>
   </data>
 </root>

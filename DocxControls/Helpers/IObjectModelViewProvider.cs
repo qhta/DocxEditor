@@ -1,12 +1,13 @@
-﻿using Qhta.MVVM;
+﻿using System.Collections.ObjectModel;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
 /// <summary>
-/// Interface for providing a value as an object.
+/// Interface for providing a model view for an object.
 /// Used in <see cref="PropertiesView"/>.
 /// </summary>
-public interface IObjectPropertiesProvider
+public interface IObjectViewModelProvider
 {
   /// <summary>
   ///  Determines if the property type is an object.
@@ -14,8 +15,8 @@ public interface IObjectPropertiesProvider
   public bool IsObject { get; }
 
   /// <summary>
-  /// Gets the value as an object properties view model.
+  /// Provided view model for the object.
   /// </summary>
-  public ObjectPropertiesViewModel? ObjectProperties { get; }
+  public IObjectViewModel ObjectViewModel { get; }
 
 }

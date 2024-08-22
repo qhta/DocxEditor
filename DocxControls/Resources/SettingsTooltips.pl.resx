@@ -119,7 +119,7 @@
     <value>Zezwalaj na zastępowanie ustawień ochrony formatowania automatycznego formatowania</value>
   </data>
   <data name="AutoHyphenation" xml:space="preserve">
-    <value>Automatyczne dzielenie wyrazów zawartości dokumentu po wyświetleniu</value>
+    <value>Automatyczne dzielenie wyrazów zawartości dokumentu przy wyświetlaniu</value>
   </data>
   <data name="BookFoldPrinting" xml:space="preserve">
     <value>Drukowanie przy składaniu książek</value>
@@ -368,10 +368,10 @@
     <value>Używanie ścisłych reguł kinsoku dla tekstu japońskiego</value>
   </data>
   <data name="StyleLockStylesPart" xml:space="preserve">
-    <value>Zapobieganie zamianie części stylów</value>
+    <value>Blokada definicji styli</value>
   </data>
   <data name="StyleLockThemesPart" xml:space="preserve">
-    <value>Zapobiegaj modyfikacjom części motywów</value>
+    <value>Blokada definicji motywu</value>
   </data>
   <data name="StylePaneFormatFilter" xml:space="preserve">
     <value>Sugerowane filtrowanie listy stylów dokumentu</value>

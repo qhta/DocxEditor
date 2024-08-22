@@ -407,9 +407,27 @@
     <value>Zoom</value>
   </data>
   <data name="LoadSaveAndSecurity" xml:space="preserve">
-    <value>Load, Save and Security</value>
+    <value>Load, save, security</value>
   </data>
   <data name="ThemingAndStyles" xml:space="preserve">
-    <value>Theming and Styles</value>
+    <value>Theming and styles</value>
+  </data>
+  <data name="ProofingHyphenationAndAutomation" xml:space="preserve">
+    <value>Proof, hyph., automat.</value>
+  </data>
+  <data name="CustomXml" xml:space="preserve">
+    <value>Custom XML</value>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Identification</value>
+  </data>
+  <data name="LayoutAndUI" xml:space="preserve">
+    <value>Layout and UI</value>
+  </data>
+  <data name="MailMergeAndPrinting" xml:space="preserve">
+    <value>Mail merge and printing</value>
+  </data>
+  <data name="RevisionsAndTracking" xml:space="preserve">
+    <value>Revisions and tracking</value>
   </data>
 </root>

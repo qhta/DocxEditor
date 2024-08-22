@@ -268,7 +268,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;p/&gt;1 Document is password protected.&lt;p/&gt;2 Document is recommended to be opened as read-only.&lt;p/&gt;4 Document is enforced to be opened as read-only.&lt;p/&gt;8 Document is locked for annotation..
+        ///   Looks up a localized string similar to Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;br/&gt;1 - Document is password protected.&lt;br/&gt;2 - Document is recommended to be opened as read-only.&lt;br/&gt;4 - Document is enforced to be opened as read-only.&lt;br/&gt;8 - Document is locked for annotation..
         /// </summary>
         public static string DocumentSecurity {
             get {

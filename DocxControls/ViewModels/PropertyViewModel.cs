@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Controls;
 
 using Qhta.MVVM;
 
@@ -8,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectPropertiesProvider
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider
 {
   /// <summary>
   /// Display caption for the property.
@@ -80,7 +79,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// Is the property obsolete?
   /// </summary>
   public bool IsObsolete => PropertiesDescriptions.ResourceManager
-    .GetString(Name!, CultureInfo.InvariantCulture)?.StartsWith("Obsolete") ?? false;
+    .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false;
 
   #region IToolTipProvider implementation
 
@@ -99,8 +98,18 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Description of the property
   /// </summary>
-  public virtual string? TooltipDescription => PropertiesDescriptions.ResourceManager
-    .GetString(Name!, CultureInfo.CurrentUICulture)?.Replace("<p/>", "\n");
+  public virtual string? TooltipDescription => FixDescription(PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.CurrentUICulture));
+
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="description"></param>
+  /// <returns></returns>
+  protected string? FixDescription(string? description)
+  {
+    return description?.Replace("<p/>", "\n\n").Replace("<br/>", "\n");
+  }
 
   #endregion IToolTipProvider implementation
 
@@ -310,7 +319,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   }
   #endregion IEnumProvider implementation
 
-  #region IObjectValueProvider implementation
+  #region IObjectViewModelProvider implementation
 
   /// <summary>
   /// Is the property of object type?
@@ -320,13 +329,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Gets the value as an object view model.
   /// </summary>
-  public ObjectPropertiesViewModel? ObjectProperties
+  public IObjectViewModel ObjectViewModel
   {
     get
     {
       if (_objectProperties == null)
       {
-        _objectProperties = new ObjectPropertiesViewModel(Type!, Value);
+        _objectProperties = new ObjectViewModel(Type!, Value);
         _objectProperties.PropertyChanged += PropertiesViewModel_PropertyChanged; 
         _Value = _objectProperties.ModeledObject;
       }
@@ -339,7 +348,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     NotifyPropertyChanged(nameof(Value));
   }
 
-  private ObjectPropertiesViewModel? _objectProperties;
+  private ObjectViewModel? _objectProperties;
 
-  #endregion IObjectValueProvider implementation
+  #endregion IObjectViewModelProvider implementation
 }

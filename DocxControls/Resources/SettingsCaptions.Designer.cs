@@ -250,6 +250,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom XML.
+        /// </summary>
+        public static string CustomXml {
+            get {
+                return ResourceManager.GetString("CustomXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Decimal symbol.
         /// </summary>
         public static string DecimalSymbol {
@@ -592,11 +601,29 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Identification.
+        /// </summary>
+        public static string Identification {
+            get {
+                return ResourceManager.GetString("Identification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore mixed content.
         /// </summary>
         public static string IgnoreMixedContent {
             get {
                 return ResourceManager.GetString("IgnoreMixedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout and UI.
+        /// </summary>
+        public static string LayoutAndUI {
+            get {
+                return ResourceManager.GetString("LayoutAndUI", resourceCulture);
             }
         }
         
@@ -619,7 +646,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load, Save and Security.
+        ///   Looks up a localized string similar to Load, save, security.
         /// </summary>
         public static string LoadSaveAndSecurity {
             get {
@@ -633,6 +660,15 @@ namespace DocxControls.Resources {
         public static string MailMerge {
             get {
                 return ResourceManager.GetString("MailMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail merge and printing.
+        /// </summary>
+        public static string MailMergeAndPrinting {
+            get {
+                return ResourceManager.GetString("MailMergeAndPrinting", resourceCulture);
             }
         }
         
@@ -727,6 +763,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proof, hyph., automat..
+        /// </summary>
+        public static string ProofingHyphenationAndAutomation {
+            get {
+                return ResourceManager.GetString("ProofingHyphenationAndAutomation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proof state.
         /// </summary>
         public static string ProofState {
@@ -759,6 +804,15 @@ namespace DocxControls.Resources {
         public static string RemovePersonalInformation {
             get {
                 return ResourceManager.GetString("RemovePersonalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revisions and tracking.
+        /// </summary>
+        public static string RevisionsAndTracking {
+            get {
+                return ResourceManager.GetString("RevisionsAndTracking", resourceCulture);
             }
         }
         
@@ -934,7 +988,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theming and Styles.
+        ///   Looks up a localized string similar to Theming and styles.
         /// </summary>
         public static string ThemingAndStyles {
             get {
