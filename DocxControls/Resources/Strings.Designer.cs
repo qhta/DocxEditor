@@ -187,6 +187,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contents:.
+        /// </summary>
+        public static string Contents_ {
+            get {
+                return ResourceManager.GetString("Contents_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content status.
         /// </summary>
         public static string ContentStatus {
@@ -250,6 +259,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elements:.
+        /// </summary>
+        public static string Elements_ {
+            get {
+                return ResourceManager.GetString("Elements_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid value for the specified type.
         /// </summary>
         public static string InvalidValueForSpecifiedType {
@@ -273,6 +291,15 @@ namespace DocxControls.Resources {
         public static string MailMergeAndPrinting {
             get {
                 return ResourceManager.GetString("MailMergeAndPrinting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members:.
+        /// </summary>
+        public static string Members_ {
+            get {
+                return ResourceManager.GetString("Members_", resourceCulture);
             }
         }
         

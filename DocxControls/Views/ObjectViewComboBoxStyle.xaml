@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:DocxControls"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:cnv="clr-namespace:Qhta.WPF.Converters;assembly=Qhta.WPF.Converters"
-                    >
+                    xmlns:resources="clr-namespace:DocxControls.Resources">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
   </ResourceDictionary.MergedDictionaries>
@@ -49,29 +49,36 @@
                         Width="auto"/>
                     </DataGrid.Columns>
                   </DataGrid>
-                  <DataGrid ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers, RelativeSource={RelativeSource TemplatedParent}}"
-                            Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"
-                            HeadersVisibility="None" AutoGenerateColumns="true" 
+                  <StackPanel
+                    Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"                    
+                    >
+
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke" Padding="5,0">
+                      <TextBlock Text="{x:Static resources:Strings.Elements_}" Foreground="Black"/>
+                    </Border>
+                    <DataGrid ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers, RelativeSource={RelativeSource TemplatedParent}}"
+                            HeadersVisibility="None" AutoGenerateColumns="false" 
                             CanUserAddRows="True" 
                             CanUserDeleteRows="True"
                             Background="Aquamarine"
                             MinHeight="50" MinWidth="100">
-                    <DataGrid.Resources>
-                      <Style TargetType="DataGridCell">
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Padding" Value="0" />
-                      </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                      <DataGridTemplateColumn
-                        CellTemplate="{StaticResource PropertyCaptionTemplate}" 
-                        MinWidth="100"/>
-                      <!--<DataGridTemplateColumn 
-                        CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
-                        MinWidth="50"
-                        Width="auto"/>-->
-                    </DataGrid.Columns>
-                  </DataGrid>
+                      <DataGrid.Resources>
+                        <Style TargetType="DataGridCell">
+                          <Setter Property="BorderThickness" Value="0" />
+                          <Setter Property="Padding" Value="0" />
+                        </Style>
+                      </DataGrid.Resources>
+                      <DataGrid.Columns>
+                        <DataGridTemplateColumn
+                          CellTemplate="{StaticResource ObjectTypeNameTemplate}" 
+                          MinWidth="100"/>
+                        <DataGridTemplateColumn 
+                          CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
+                          MinWidth="50"
+                          Width="auto"/>
+                      </DataGrid.Columns>
+                    </DataGrid>
+                  </StackPanel>
                 </StackPanel>
               </Border>
             </Popup>

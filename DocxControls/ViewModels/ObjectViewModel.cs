@@ -1,18 +1,25 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
+using DocumentFormat.OpenXml.Wordprocessing;
+
 namespace DocxControls;
 
 
 /// <summary>
 /// View model for complex object properties
 /// </summary>
-public class ObjectViewModel : PropertiesViewModel, IObjectViewModel
+public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider
 {
   /// <summary>
   ///  Type of the object which properties are modeled
   /// </summary>
   public Type ObjectType { get; init; }
+
+  /// <summary>
+  /// Gets the name of the modeled object type.
+  /// </summary>
+  public string ObjectTypeName => ObjectType.Name;
 
   /// <summary>
   /// Determines if the modeled object can contain members.
@@ -26,8 +33,8 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel
   /// <param name="modeledObject">object which properties are modeled</param>
   public ObjectViewModel(Type objectType, Object? modeledObject)
   {
-    //if (objectType.Name=="DocumentVariables")
-    //  Debug.Assert(true);
+    if (objectType.Name == "Rsids")
+      Debug.Assert(true);
     ObjectType = objectType;
     ModeledObject = modeledObject;
     ModeledObject ??= Activator.CreateInstance(ObjectType);
@@ -113,4 +120,50 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel
   /// Members of the object.
   /// </summary>
   public ObservableCollection<ObjectViewModel> ObjectMembers { get; } = new();
+
+
+  #region IToolTipProvider implementation
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  public bool HasTooltip => false;
+
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  public string? TooltipTitle => null;
+
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  public string? TooltipDescription => null;
+  #endregion IToolTipProvider implementation
+
+  #region IPropertyProvider implementation
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  public bool IsReadOnly => false;
+
+  /// <summary>
+  /// Value of the property.
+  /// </summary>
+  public object? Value
+  {
+    get => _modeledObject;
+    set
+    {
+      if (value != _modeledObject)
+      {
+        _modeledObject = value;
+        NotifyPropertyChanged(nameof(Value));
+      }
+    }
+  }
+
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  public bool IsObsolete => false;
+  #endregion IPropertyProvider implementation
 }

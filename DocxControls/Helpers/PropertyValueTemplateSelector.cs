@@ -43,6 +43,8 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
+    if (item?.GetType()?.Name=="RsidRoot")
+      return TextTemplate;
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)

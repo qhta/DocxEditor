@@ -43,7 +43,7 @@
        Padding="5,0">
     </local:CheckBoxComboBox>
   </DataTemplate>
-  <DataTemplate x:Key="PropertiesViewComboBoxTemplate" DataType="local:PropertyViewModel">
+  <DataTemplate x:Key="ObjectViewComboBoxTemplate" DataType="local:PropertyViewModel">
     <local:ObjectViewComboBox 
        Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},
        UpdateSourceTrigger=Default}"
@@ -57,7 +57,7 @@
      CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
      ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
-     ObjectViewComboBoxTemplate="{StaticResource PropertiesViewComboBoxTemplate}"
+     ObjectViewComboBoxTemplate="{StaticResource ObjectViewComboBoxTemplate}"
      />
 
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
@@ -81,6 +81,32 @@
           <local:CustomToolTipView
              DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
              />
+        </ToolTip>
+      </TextBlock.ToolTip>
+    </TextBlock>
+  </DataTemplate>
+
+  <DataTemplate x:Key="ObjectTypeNameTemplate" DataType="local:PropertyViewModel" >
+    <TextBlock 
+      Text="{Binding ObjectTypeName}" 
+      Padding="5,0">
+      <TextBlock.Style>
+        <Style TargetType="TextBlock">
+          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Foreground" Value="Black"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsObsolete}" Value="True">
+              <Setter Property="Foreground" Value="DarkSlateGray"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
+      <TextBlock.ToolTip>
+        <ToolTip  Style="{StaticResource CustomToolTipStyle}"
+                  >
+          <local:CustomToolTipView
+            DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
+          />
         </ToolTip>
       </TextBlock.ToolTip>
     </TextBlock>
