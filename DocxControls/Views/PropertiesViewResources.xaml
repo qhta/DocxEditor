@@ -1,12 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:DocxControls">
+                    xmlns:local="clr-namespace:DocxControls"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    >
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-  <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
+  <!--<DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
     <TextBox 
        Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
        IsReadOnly="{Binding IsReadOnly}"
@@ -17,6 +19,19 @@
         </Style>
       </TextBox.Style>
     </TextBox>
+  </DataTemplate>-->
+  <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
+    <xctk:WatermarkTextBox 
+      Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
+      Watermark="{Binding Watermark}"
+      IsReadOnly="{Binding IsReadOnly}"
+      Padding="5,0">
+      <TextBox.Style>
+        <Style TargetType="TextBox">
+          <Setter Property="BorderThickness" Value="0" />
+        </Style>
+      </TextBox.Style>
+    </xctk:WatermarkTextBox>
   </DataTemplate>
   <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
     <CheckBox 

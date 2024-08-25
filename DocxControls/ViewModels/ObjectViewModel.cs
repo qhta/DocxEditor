@@ -165,5 +165,15 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// Not implemented
   /// </summary>
   public bool IsObsolete => false;
+
+  /// <summary>
+  /// Mask to use with <c>Exceed MaskedTextBox</c>.
+  /// </summary>
+  public string? EditMask => PropertyViewModel.GetEditMask(ObjectType!);
+
+  /// <summary>
+  /// Watermark to display in the control.
+  /// </summary>
+  public string? Watermark => PropertyViewModel.GetWatermark(ObjectType!);
   #endregion IPropertyProvider implementation
 }

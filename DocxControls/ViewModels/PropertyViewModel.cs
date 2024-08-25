@@ -25,6 +25,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public virtual Type? Type { get; set; }
 
+  #region INotifyPropertyChanged implementation
   /// <summary>
   /// Is the property value read-only?
   /// </summary>
@@ -47,6 +48,92 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   }
 
   private object? _Value;
+
+
+  /// <summary>
+  /// Is the property obsolete?
+  /// </summary>
+  public bool IsObsolete => PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false;
+
+  /// <summary>
+  /// Mask to use with <c>Exceed MaskedTextBox</c>.
+  /// </summary>
+  public string? EditMask => GetEditMask(Type!);
+
+  /// <summary>
+  /// Get the edit mask for a type.
+  /// </summary>
+  /// <param name="type"></param>
+  /// <returns></returns>
+  public static string? GetEditMask(Type type)
+  {
+    if (type == typeof(DateTime))
+      return "0000-00-00 90:00:00";
+    if (type == typeof(TimeSpan))
+      return "90:00:00";
+    if (type == typeof(int))
+      return "0000000000";
+    if (type == typeof(decimal))
+      return "0000000000.00";
+    if (type == typeof(double))
+      return "0000000000.00";
+    if (type == typeof(float))
+      return "0000000000.00";
+    if (type == typeof(long))
+      return "000000000000000000";
+    if (type == typeof(short))
+      return "00000";
+    if (type == typeof(byte))
+      return "000";
+    if (type == typeof(bool))
+      return "L";
+    if (type == typeof(Guid))
+      return "{00000000-0000-0000-0000-000000000000}";
+    if (type == typeof(HexInt))
+      return "HHHHHHHH";
+    return null;
+  }
+
+  /// <summary>
+  /// Watermark to display in the control.
+  /// </summary>
+  public string? Watermark=> GetWatermark(Type!);
+
+  /// <summary>
+  /// Get the watermark for a type.
+  /// </summary>
+  /// <param name="type"></param>
+  /// <returns></returns>
+  public static string? GetWatermark(Type type)
+  {
+    if (type == typeof(DateTime))
+      return "yyyy-MM-dd hh:mm:ss";
+    if (type == typeof(TimeSpan))
+      return "hh:mm:ss";
+    if (type == typeof(int))
+      return "0";
+    if (type == typeof(decimal))
+      return "0.00";
+    if (type == typeof(double))
+      return "0.00";
+    if (type == typeof(float))
+      return "0.00";
+    if (type == typeof(long))
+      return "0";
+    if (type == typeof(short))
+      return "0";
+    if (type == typeof(byte))
+      return "0";
+    if (type == typeof(bool))
+      return "true/false";
+    if (type == typeof(Guid))
+      return "00000000-0000-0000-0000-000000000000";
+    if (type == typeof(HexInt))
+      return "HHHHHHHH";
+    return null;
+  }
+  #endregion INotifyPropertyChanged implementation
 
   /// <summary>
   /// Not nullable type of the property.
@@ -74,12 +161,6 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// Original value of the property.
   /// </summary>
   public object? OriginalValue { get; set; }
-
-  /// <summary>
-  /// Is the property obsolete?
-  /// </summary>
-  public bool IsObsolete => PropertiesDescriptions.ResourceManager
-    .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false;
 
   #region IToolTipProvider implementation
 
