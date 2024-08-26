@@ -36,6 +36,8 @@ public class DocumentSettingsViewModel
       var openXmlType = DocumentSettings.GetType(name);
       var type = openXmlType.ToSystemType();
       var category = DocumentSettings.GetCategory(name);
+      var setting = DocumentSettings.GetValue(name);
+      var value = setting.ToSystemValue(openXmlType);
       if (categories == null || categories.Contains(category))
       {
         var settingViewModel = new SettingViewModel
@@ -44,8 +46,8 @@ public class DocumentSettingsViewModel
           Category = category,
           Type = type,
           OriginalType = openXmlType,
-          Value = DocumentSettings.GetValue(name).ToSystemValue(openXmlType),
-
+          Value = value,
+          OriginalValue = setting,
         };
         settingViewModel.PropertyChanged += SettingsViewModel_PropertyChanged;
         Items.Add(settingViewModel);

@@ -31,5 +31,5 @@ public interface IObjectViewModel
   /// <summary>
   /// Members of the object.
   /// </summary>
-  public ObservableCollection<ObjectViewModel> ObjectMembers { get; }
+  public ObservableCollection<ObjectMemberViewModel> ObjectMembers { get; }
 }

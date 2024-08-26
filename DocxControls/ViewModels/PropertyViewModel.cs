@@ -29,12 +29,12 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property value read-only?
   /// </summary>
-  public bool IsReadOnly { get; init; }
+  public virtual bool IsReadOnly { get; init; }
 
   /// <summary>
   /// Value of the property.
   /// </summary>
-  public object? Value
+  public virtual object? Value
   {
     get => _Value;
     set
@@ -59,7 +59,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Mask to use with <c>Exceed MaskedTextBox</c>.
   /// </summary>
-  public string? EditMask => GetEditMask(Type!);
+  public virtual string? EditMask => GetEditMask(Type!);
 
   /// <summary>
   /// Get the edit mask for a type.

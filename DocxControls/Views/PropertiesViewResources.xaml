@@ -7,25 +7,14 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
+  <Thickness x:Key="PropertyPadding">5,0,0,0</Thickness>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-  <!--<DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
-    <TextBox 
-       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-       IsReadOnly="{Binding IsReadOnly}"
-       Padding="5,0">
-      <TextBox.Style>
-        <Style TargetType="TextBox">
-          <Setter Property="BorderThickness" Value="0" />
-        </Style>
-      </TextBox.Style>
-    </TextBox>
-  </DataTemplate>-->
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
     <xctk:WatermarkTextBox 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"
       IsReadOnly="{Binding IsReadOnly}"
-      Padding="5,0">
+      Padding="{StaticResource PropertyPadding}">
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
@@ -37,7 +26,7 @@
     <CheckBox 
        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
        IsThreeState="{Binding IsThreeState}"
-       Margin="5,0"/>
+       Margin="{StaticResource PropertyPadding}"/>
   </DataTemplate>
   <DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
     <ComboBox 
@@ -45,7 +34,7 @@
        ItemsSource="{Binding EnumValues}"
        DisplayMemberPath="Caption"
        SelectedValuePath="Value"
-       Padding="5,0">
+       Padding="{StaticResource PropertyPadding}">
     </ComboBox>
   </DataTemplate>
   <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="local:PropertyViewModel">
@@ -55,7 +44,7 @@
        ItemsSource="{Binding EnumValues}"
        DisplayMemberPath="Caption"
        SelectedValuePath="Value"
-       Padding="5,0">
+       Padding="{StaticResource PropertyPadding}">
     </local:CheckBoxComboBox>
   </DataTemplate>
   <DataTemplate x:Key="ObjectViewComboBoxTemplate" DataType="local:PropertyViewModel">
@@ -78,7 +67,7 @@
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
     <TextBlock 
        Text="{Binding Caption}" 
-       Padding="5,0">
+       Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
           <Setter Property="Background" Value="Silver"/>
@@ -104,7 +93,7 @@
   <DataTemplate x:Key="ObjectTypeNameTemplate" DataType="local:PropertyViewModel" >
     <TextBlock 
       Text="{Binding ObjectTypeName}" 
-      Padding="5,0">
+      Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
           <Setter Property="Background" Value="Silver"/>

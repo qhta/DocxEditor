@@ -41,7 +41,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     var properties = objectType.GetOpenXmlProperties().ToArray();
     foreach (var prop in properties)
     {
-      if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType!=typeof(string)))
+      if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
       {
         var propName = prop.Name;
         var origType = prop.PropertyType;
@@ -49,11 +49,11 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
         if (type == typeof(bool))
           type = typeof(bool?);
         object? value = null;
+        object? originalValue = null;
         if (ModeledObject != null)
         {
-          value = prop.GetValue(ModeledObject);
-          if (origType != type)
-            value = value.ToSystemValue(origType);
+          originalValue = prop.GetValue(ModeledObject);
+          value = originalValue.ToSystemValue(origType);
         }
         var propertyViewModel = new PropertyViewModel
         {
@@ -61,17 +61,23 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
           Type = type,
           OriginalType = origType,
           Value = value,
-          OriginalValue = modeledObject
+          OriginalValue = originalValue
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        Items.Add(propertyViewModel);
+        ObjectProperties.Add(propertyViewModel);
       }
     }
     if (IsContainer)
       foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
       {
-        var memberViewModel = new ObjectViewModel(member.GetType(), member);
+        var type = member.GetType();
+        if (type.Name == "RsidRoot")
+          Debug.Assert(true);
+        if (ObjectProperties.Any(p=>p.OriginalValue==member))
+          continue;
+        var memberViewModel = new ObjectMemberViewModel(this, member.GetType(), member);
         ObjectMembers.Add(memberViewModel);
+        memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
       }
   }
 
@@ -90,6 +96,26 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
           prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
           NotifyPropertyChanged(nameof(ModeledObject));
         }
+      }
+    }
+  }
+
+  private void PropertiesViewModel_MemberChanged(object? sender, PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName == nameof(PropertyViewModel.Value))
+    {
+      var objectMemberViewModel = (ObjectMemberViewModel)sender!;
+      if (objectMemberViewModel.Container == null)
+      {
+        var member = objectMemberViewModel.ModeledObject;
+        if (member != null)
+        {
+
+        }
+      }
+      else
+      {
+        NotifyPropertyChanged(nameof(ModeledObject));
       }
     }
   }
@@ -119,7 +145,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   /// Members of the object.
   /// </summary>
-  public ObservableCollection<ObjectViewModel> ObjectMembers { get; } = new();
+  public ObservableCollection<ObjectMemberViewModel> ObjectMembers { get; } = new();
 
 
   #region IToolTipProvider implementation
@@ -148,14 +174,15 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   /// Value of the property.
   /// </summary>
-  public object? Value
+  public virtual object? Value
   {
-    get => _modeledObject;
+    get => (ModeledObject as DX.OpenXmlElement)?.ToSystemValue(ObjectType) ?? ModeledObject!;
     set
     {
-      if (value != _modeledObject)
+      var val = value.ToOpenXmlValue(ObjectType);
+      if (val != _modeledObject)
       {
-        _modeledObject = value;
+        _modeledObject = val;
         NotifyPropertyChanged(nameof(Value));
       }
     }

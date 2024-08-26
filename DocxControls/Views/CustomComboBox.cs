@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 namespace DocxControls;
 
 /// <summary>
@@ -11,4 +12,5 @@ public class CustomComboBox : ComboBox
   {
     DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomComboBox), new FrameworkPropertyMetadata(typeof(CustomComboBox)));
   }
+
 }
