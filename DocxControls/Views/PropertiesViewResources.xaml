@@ -80,17 +80,15 @@
         </Style>
       </TextBlock.Style>
       <TextBlock.ToolTip>
-        <ToolTip  Style="{StaticResource CustomToolTipStyle}"
-                   >
+        <ToolTip  Style="{StaticResource CustomToolTipStyle}">
           <local:CustomToolTipView
-             DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
-             />
+             DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}" />
         </ToolTip>
       </TextBlock.ToolTip>
     </TextBlock>
   </DataTemplate>
 
-  <DataTemplate x:Key="ObjectTypeNameTemplate" DataType="local:PropertyViewModel" >
+  <DataTemplate x:Key="ObjectTypeNameTemplate" DataType="local:ObjectViewModel" >
     <TextBlock 
       Text="{Binding ObjectTypeName}" 
       Padding="{StaticResource PropertyPadding}">
@@ -106,13 +104,29 @@
         </Style>
       </TextBlock.Style>
       <TextBlock.ToolTip>
-        <ToolTip  Style="{StaticResource CustomToolTipStyle}"
-                  >
+        <ToolTip  Style="{StaticResource CustomToolTipStyle}">
           <local:CustomToolTipView
-            DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}"
-          />
+            DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}" />
         </ToolTip>
       </TextBlock.ToolTip>
     </TextBlock>
   </DataTemplate>
+
+
+  <DataTemplate x:Key="NewMemberTypeTemplate" DataType="local:ObjectMemberViewModel">
+    <ComboBox 
+      SelectedValue="{Binding ObjectType, UpdateSourceTrigger=PropertyChanged}"
+      ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+      DisplayMemberPath="Name"
+      SelectedValuePath="Name"
+      Padding="{StaticResource PropertyPadding}">
+    </ComboBox>
+  </DataTemplate>
+
+  <local:PropertyCaptionTemplateSelector 
+    x:Key="PropertyCaptionTemplateSelector"
+    CaptionTemplate="{StaticResource PropertyCaptionTemplate}"
+    ObjectTemplate="{StaticResource ObjectTypeNameTemplate}"
+    NewMemberTemplate="{StaticResource NewMemberTypeTemplate}"
+  />
 </ResourceDictionary>

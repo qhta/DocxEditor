@@ -1,5 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+
+using Qhta.WPF.Utils;
 
 namespace DocxControls;
 
@@ -11,12 +14,18 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// <summary>
   /// Template for all but object properties.
   /// </summary>
-  public DataTemplate NormalTemplate { get; set; } = null!;
+  public DataTemplate CaptionTemplate { get; set; } = null!;
 
   /// <summary>
   /// Template for object properties.
   /// </summary>
-  public DataTemplate ObjectTemplate { get; set; } = null!;
+  public DataTemplate? ObjectTemplate { get; set; } = null!;
+
+
+  /// <summary>
+  /// Template for object properties.
+  /// </summary>
+  public DataTemplate? NewMemberTemplate { get; set; }
 
   /// <summary>
   /// Template selection logic.
@@ -26,13 +35,24 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
+    Debug.WriteLine($"PropertyCaptionTemplateSelector.SelectTemplate({item}, {container})");
+    if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
+    {
+      var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
+      if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers!=null)
+        return NewMemberTemplate ?? CaptionTemplate;
+    }
+    if (item is ObjectMemberViewModel)
+    {
+      return ObjectTemplate ?? CaptionTemplate;
+    }
     if (item is PropertyViewModel propertyViewModel)
     {
       Type type = propertyViewModel.Type!;
       if (type.IsClass && type != typeof(string))
-        return ObjectTemplate;
-      return NormalTemplate;
+        return ObjectTemplate ?? CaptionTemplate;
+      return CaptionTemplate;
     }
-    return NormalTemplate;
+    return CaptionTemplate;
   }
 }

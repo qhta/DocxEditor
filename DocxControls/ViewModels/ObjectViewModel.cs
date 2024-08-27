@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace DocxControls;
 
 
@@ -76,7 +74,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
         if (ObjectProperties.Any(p=>p.OriginalValue==member))
           continue;
         var memberViewModel = new ObjectMemberViewModel(this, member.GetType(), member);
-        ObjectMembers.Add(memberViewModel);
+        ObjectMembers!.Add(memberViewModel);
         memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
       }
   }
@@ -142,10 +140,28 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// </summary>
   public ObservableCollection<PropertyViewModel> ObjectProperties => Items;
 
+  private ObjectMembersViewModel? _objectMembers;
+
   /// <summary>
   /// Members of the object.
   /// </summary>
-  public ObservableCollection<ObjectMemberViewModel> ObjectMembers { get; } = new();
+  public ObjectMembersViewModel? ObjectMembers
+  {
+    get
+    {
+      if (!IsContainer)
+        return null;
+      _objectMembers ??= new ObjectMembersViewModel{ MemberTypes = ObjectType.GetMemberTypes()};
+      var result =_objectMembers;
+      //Debug.WriteLine($"ObjectMembers={result}");
+      return result;
+    }
+    set
+    {
+      _objectMembers = value; 
+      NotifyPropertyChanged(nameof(ObjectMembers));
+    }
+  }
 
 
   #region IToolTipProvider implementation

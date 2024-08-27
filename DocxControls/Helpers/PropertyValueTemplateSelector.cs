@@ -27,13 +27,11 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// Template for enum flags properties.
   /// </summary>
   public DataTemplate? FlagsComboBoxTemplate { get; set; }
-
-
+ 
   /// <summary>
   /// Template for object properties.
   /// </summary>
   public DataTemplate? ObjectViewComboBoxTemplate { get; set; }
-
 
   /// <summary>
   /// Template selection logic.

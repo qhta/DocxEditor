@@ -1,4 +1,6 @@
-﻿namespace DocxControls;
+﻿using System.Collections.ObjectModel;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for an object member. Replaces <see cref="PropertyViewModel"/> in the properties view.
@@ -6,7 +8,14 @@
 public class ObjectMemberViewModel : ObjectViewModel
 {
   /// <summary>
-  /// Creates a new instance of <see cref="ObjectMemberViewModel"/>.
+  /// Default constructor.
+  /// </summary>
+  public ObjectMemberViewModel() : base(typeof(object), null)
+  {
+  }
+
+  /// <summary>
+  /// Initializing
   /// </summary>
   /// <param name="container"></param>
   /// <param name="memberType"></param>
@@ -20,6 +29,16 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// Gets or sets the container of the object member.
   /// </summary>
   public ObjectViewModel? Container { get; set; }
+
+  /// <summary>
+  /// Collection of object members.
+  /// </summary>
+  public ObjectMembersViewModel? Collection { get; internal set; }
+
+  /// <summary>
+  /// Acceptable types of members.
+  /// </summary>
+  public IEnumerable<Type>? MemberTypes => Collection?.MemberTypes;
 
   /// <summary>
   /// Value of the property.

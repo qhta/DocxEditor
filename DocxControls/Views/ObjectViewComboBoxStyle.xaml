@@ -70,17 +70,29 @@
                       HeadersVisibility="None" AutoGenerateColumns="false" 
                       CanUserAddRows="True" 
                       CanUserDeleteRows="True"
-                      MinHeight="20">
+                      MinHeight="200">
                     <DataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="Padding" Value="{StaticResource PropertyPadding}" />
                       </Style>
                     </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                      <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsNewItem}" Value="True">
+                            <Setter Property="Background" Value="LightGreen" />
+                            <Setter Property="FontStyle" Value="Italic" />
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
                       <DataGridTemplateColumn
-                          CellTemplate="{StaticResource ObjectTypeNameTemplate}" 
-                          MinWidth="100"/>
+                          CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
+                          MinWidth="100">
+
+                      </DataGridTemplateColumn>
                       <DataGridTemplateColumn 
                           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
                           MinWidth="100"
