@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// View model for an object member. Replaces <see cref="PropertyViewModel"/> in the properties view.
@@ -10,35 +8,48 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// <summary>
   /// Default constructor.
   /// </summary>
-  public ObjectMemberViewModel() : base(typeof(object), null)
+  public ObjectMemberViewModel() : base()
   {
+    Debug.WriteLine($"ObjectMemberViewModel.Created");
   }
 
   /// <summary>
   /// Initializing
   /// </summary>
   /// <param name="container"></param>
-  /// <param name="memberType"></param>
   /// <param name="member"></param>
-  public ObjectMemberViewModel(ObjectViewModel? container, Type memberType, object? member) : base(memberType, member)
+  public ObjectMemberViewModel(ObjectViewModel? container, object? member) : base(member)
   {
     Container = container;
   }
 
   /// <summary>
-  /// Gets or sets the container of the object member.
+  ///  Type of the member object which properties are modeled
   /// </summary>
-  public ObjectViewModel? Container { get; set; }
+  public Type MemberType
+
+  {
+    get => base.ObjectType;
+    set
+    {
+      if (value != base.ObjectType)
+      {
+        base.ModeledObject = Activator.CreateInstance(value);
+        NotifyPropertyChanged(nameof(ObjectType));
+      }
+    }
+  }
+
+
+/// <summary>
+/// Gets or sets the container of the object member.
+/// </summary>
+public ObjectViewModel? Container { get; set; }
 
   /// <summary>
   /// Collection of object members.
   /// </summary>
   public ObjectMembersViewModel? Collection { get; internal set; }
-
-  /// <summary>
-  /// Acceptable types of members.
-  /// </summary>
-  public IEnumerable<Type>? MemberTypes => Collection?.MemberTypes;
 
   /// <summary>
   /// Value of the property.
@@ -66,4 +77,9 @@ public class ObjectMemberViewModel : ObjectViewModel
       }
     }
   }
+
+  /// <summary>
+  /// Checks if the object value is null.
+  /// </summary>
+  public bool IsEmpty => Value == null;
 }

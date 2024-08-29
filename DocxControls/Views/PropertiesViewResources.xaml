@@ -9,7 +9,8 @@
   </ResourceDictionary.MergedDictionaries>
   <Thickness x:Key="PropertyPadding">5,0,0,0</Thickness>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-  <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel">
+
+  <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
     <xctk:WatermarkTextBox 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"
@@ -18,8 +19,41 @@
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
+          <!--<EventSetter Event="PreviewKeyDown" Handler="{x:Static local:EventHandlers.PreviewKeyDown}"/>-->
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+              <Setter Property="Foreground" Value="Gray"/>
+            </DataTrigger>
+          </Style.Triggers>
         </Style>
       </TextBox.Style>
+      <!--<TextBox.InputBindings>
+        <KeyBinding Key="Enter" Command="{x:Static local:Executables.EnterKeyCommand}" />
+      </TextBox.InputBindings>-->
+    </xctk:WatermarkTextBox>
+  </DataTemplate>
+
+  <DataTemplate x:Key="NemMemberTextTemplate" DataType="local:PropertyViewModel" >
+    <xctk:WatermarkTextBox 
+      Text="{Binding DataContext.ObjectViewModel.ObjectMembers.NewMemberValue, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
+      Watermark="{Binding Watermark}"
+      IsReadOnly="{Binding IsReadOnly}"
+      Padding="{StaticResource PropertyPadding}">
+      <TextBox.Style>
+        <Style TargetType="TextBox">
+          <Setter Property="BorderThickness" Value="0" />
+          <Setter Property="Foreground" Value="Red"/>
+          <!--<EventSetter Event="PreviewKeyDown" Handler="{x:Static local:EventHandlers.PreviewKeyDown}"/>-->
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+              <Setter Property="Foreground" Value="Gray"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBox.Style>
+      <!--<TextBox.InputBindings>
+        <KeyBinding Key="Enter" Command="{x:Static local:Executables.EnterKeyCommand}" />
+      </TextBox.InputBindings>-->
     </xctk:WatermarkTextBox>
   </DataTemplate>
   <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
@@ -62,6 +96,7 @@
      ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
      ObjectViewComboBoxTemplate="{StaticResource ObjectViewComboBoxTemplate}"
+     NewMemberValueTemplate="{StaticResource NemMemberTextTemplate}"
      />
 
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
@@ -114,11 +149,10 @@
 
 
   <DataTemplate x:Key="NewMemberTypeTemplate" DataType="local:ObjectMemberViewModel">
-    <ComboBox 
-      SelectedValue="{Binding ObjectType, UpdateSourceTrigger=PropertyChanged}"
+    <ComboBox
+      SelectedValue="{Binding DataContext.ObjectViewModel.ObjectMembers.NewMemberType, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
       ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
       DisplayMemberPath="Name"
-      SelectedValuePath="Name"
       Padding="{StaticResource PropertyPadding}">
     </ComboBox>
   </DataTemplate>
@@ -127,6 +161,6 @@
     x:Key="PropertyCaptionTemplateSelector"
     CaptionTemplate="{StaticResource PropertyCaptionTemplate}"
     ObjectTemplate="{StaticResource ObjectTypeNameTemplate}"
-    NewMemberTemplate="{StaticResource NewMemberTypeTemplate}"
+    NewMemberTypeTemplate="{StaticResource NewMemberTypeTemplate}"
   />
 </ResourceDictionary>

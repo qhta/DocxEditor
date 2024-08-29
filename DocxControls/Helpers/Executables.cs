@@ -1,8 +1,10 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 using DocumentFormat.OpenXml.Packaging;
 
 using Microsoft.Win32;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -57,5 +59,15 @@ public static class Executables
     window.SetTitle(filePath);
     window.ShowDocumentView(documentView);
   }
+
+  public static ICommand EnterKeyCommand { get; }
+  = new RelayCommand(HandleEnterKey);
+
+
+  private static void HandleEnterKey()
+  {
+    //AddNewItem();
+  }
+
 
 }

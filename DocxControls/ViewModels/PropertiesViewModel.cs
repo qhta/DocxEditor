@@ -3,6 +3,7 @@
 using DocumentFormat.OpenXml.Packaging;
 
 using Qhta.MVVM;
+using Xceed.Wpf.Toolkit;
 
 namespace DocxControls;
 
@@ -11,7 +12,6 @@ namespace DocxControls;
 /// </summary>
 public abstract class PropertiesViewModel : ViewModel
 {
-
   /// <summary>
   /// Internal Wordprocessing document
   /// </summary>

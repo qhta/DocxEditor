@@ -19,7 +19,7 @@ public class ObjectViewComboBox : ComboBox
   /// </summary>
   public ObjectViewComboBox()
   {
-    Loaded += CustomComboBox_Loaded;
+    Loaded += ComboBox_Loaded;
   }
 
   /// <summary>
@@ -36,7 +36,7 @@ public class ObjectViewComboBox : ComboBox
     get => (IObjectViewModel)GetValue(ObjectViewModelProperty);
     set => SetValue(ObjectViewModelProperty, value);
   }
-  private void CustomComboBox_Loaded(object sender, RoutedEventArgs e)
+  private void ComboBox_Loaded(object sender, RoutedEventArgs e)
   {
     if (Template.FindName("Popup_Thumb", this) is Thumb thumb)
     {

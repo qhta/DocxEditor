@@ -1,6 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
 
+using Qhta.WPF.Utils;
+
 namespace DocxControls;
 
 /// <summary>
@@ -34,6 +36,11 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   public DataTemplate? ObjectViewComboBoxTemplate { get; set; }
 
   /// <summary>
+  /// Template for a new member value field.
+  /// </summary>
+  public DataTemplate? NewMemberValueTemplate { get; set; }
+
+  /// <summary>
   /// Template selection logic.
   /// </summary>
   /// <param name="item"></param>
@@ -41,8 +48,12 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item?.GetType()?.Name=="RsidRoot")
-      return TextTemplate;
+    if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
+    {
+      var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
+      if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers != null)
+        return NewMemberValueTemplate ?? TextTemplate;
+    }
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)

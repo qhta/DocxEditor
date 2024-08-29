@@ -21,11 +21,10 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? ObjectTemplate { get; set; } = null!;
 
-
   /// <summary>
-  /// Template for object properties.
+  /// Template for a new member type selector.
   /// </summary>
-  public DataTemplate? NewMemberTemplate { get; set; }
+  public DataTemplate? NewMemberTypeTemplate { get; set; }
 
   /// <summary>
   /// Template selection logic.
@@ -35,12 +34,11 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    Debug.WriteLine($"PropertyCaptionTemplateSelector.SelectTemplate({item}, {container})");
     if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
     {
       var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
       if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers!=null)
-        return NewMemberTemplate ?? CaptionTemplate;
+        return NewMemberTypeTemplate ?? CaptionTemplate;
     }
     if (item is ObjectMemberViewModel)
     {

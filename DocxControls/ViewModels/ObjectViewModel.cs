@@ -12,7 +12,9 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   ///  Type of the object which properties are modeled
   /// </summary>
-  public Type ObjectType { get; init; }
+  public Type ObjectType => ModeledObject?.GetType() ?? _ObjectType ?? typeof(object);
+
+  private Type? _ObjectType;
 
   /// <summary>
   /// Gets the name of the modeled object type.
@@ -25,15 +27,43 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   public bool IsContainer => ObjectType.IsSubclassOf(typeof(DX.OpenXmlCompositeElement));
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="ObjectViewModel"/> class.
+  /// Initializes a new instance of the <see cref="ObjectViewModel"/> class for the new item placeholder view model when the type of the modeled object is unknown.
+  /// </summary>
+  public ObjectViewModel()
+  {
+     _ObjectType = typeof(object);
+  }
+
+  /// <summary>
+  /// Creates a new instance of the <see cref="ObjectViewModel"/> class when the type of the modeled object is unknown, but the object may be known.
+  /// </summary>
+  public ObjectViewModel(Object? modeledObject)
+  {
+    _ObjectType = modeledObject?.GetType() ?? typeof(object);
+    if (modeledObject!=null)
+      Initialize(_ObjectType, modeledObject);
+  }
+
+  /// <summary>
+  /// Creates a new instance of the <see cref="ObjectViewModel"/> class when the type of the modeled object is known.
   /// </summary>
   /// <param name="objectType">Type of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>
   public ObjectViewModel(Type objectType, Object? modeledObject)
   {
+    Initialize(objectType, modeledObject);
+  }
+
+  /// <summary>
+  /// Initializes a new instance of the <see cref="ObjectViewModel"/> class when the type of the modeled object is known.
+  /// </summary>
+  /// <param name="objectType"></param>
+  /// <param name="modeledObject"></param>
+  protected void Initialize(Type objectType, object? modeledObject)
+  {
     if (objectType.Name == "Rsids")
       Debug.Assert(true);
-    ObjectType = objectType;
+    _ObjectType = objectType;
     ModeledObject = modeledObject;
     ModeledObject ??= Activator.CreateInstance(ObjectType);
     var properties = objectType.GetOpenXmlProperties().ToArray();
@@ -66,6 +96,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
       }
     }
     if (IsContainer)
+    {
       foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
       {
         var type = member.GetType();
@@ -73,10 +104,65 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
           Debug.Assert(true);
         if (ObjectProperties.Any(p=>p.OriginalValue==member))
           continue;
-        var memberViewModel = new ObjectMemberViewModel(this, member.GetType(), member);
+        var memberViewModel = new ObjectMemberViewModel(this, member);
         ObjectMembers!.Add(memberViewModel);
         memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
       }
+      ObjectMembers!.CollectionChanged += ObjectMembers_CollectionChanged;
+    }
+  }
+
+  private void ObjectMembers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+  {
+    if (e.Action == NotifyCollectionChangedAction.Add)
+    {
+      foreach (ObjectMemberViewModel memberViewModel in e.NewItems!)
+      {
+        //if (memberViewModel.IsEmpty)
+        //  ObjectMembers.Initialize(memberViewModel);
+        //if (memberViewModel.Obj != null &&
+        //    memberViewModel.Type != null && memberViewModel.Validate() && ValidateName(memberViewModel))
+        if (ModeledObject is DX.OpenXmlCompositeElement container)
+        {
+          var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
+          if (member is DX.OpenXmlElement element)
+            container.AppendChild(element); 
+          NotifyPropertyChanged(nameof(ModeledObject));
+        }
+        memberViewModel.Container = this;
+        memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
+        Debug.WriteLine($"memberViewModel.Collection={memberViewModel.Collection}");
+      }
+    }
+    else if (e.Action == NotifyCollectionChangedAction.Remove)
+    {
+      // do nothing
+      //foreach (CustomPropertyViewModel propertyViewModel in e.OldItems!)
+      //{
+      //  if (propertyViewModel.Name != null)
+      //    CustomProperties.Remove(propertyViewModel.Name);
+      //}
+    }
+    else if (e.Action == NotifyCollectionChangedAction.Reset)
+    {
+      // do nothing
+      //CustomProperties.Clear();
+    }
+    else if (e.Action == NotifyCollectionChangedAction.Replace)
+    {
+      // do nothing
+      //var propertyViewModel = (CustomPropertyViewModel)e.NewItems![0]!;
+      //if (propertyViewModel.Name != null && propertyViewModel.Validate())
+      //  CustomProperties.SetValue(propertyViewModel.Name, propertyViewModel.Value);
+    }
+    else if (e.Action == NotifyCollectionChangedAction.Move)
+    {
+      // do nothing
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
   }
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -108,7 +194,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
         var member = objectMemberViewModel.ModeledObject;
         if (member != null)
         {
-
+          NotifyPropertyChanged(nameof(Value));
         }
       }
       else

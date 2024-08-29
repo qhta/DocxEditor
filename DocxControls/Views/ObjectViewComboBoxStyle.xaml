@@ -8,7 +8,7 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <cnv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-  <Style TargetType="{x:Type local:ObjectViewComboBox}">
+  <Style TargetType="{x:Type local:ObjectViewComboBox}" >
     <Setter Property="Padding" Value="{StaticResource PropertyPadding}"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -66,7 +66,7 @@
                       Grid.Row="2" 
                       Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
                       HorizontalAlignment="Stretch"
-                      ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers, RelativeSource={RelativeSource TemplatedParent}}"
+                      ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.Items, RelativeSource={RelativeSource TemplatedParent}}"
                       HeadersVisibility="None" AutoGenerateColumns="false" 
                       CanUserAddRows="True" 
                       CanUserDeleteRows="True"
@@ -91,7 +91,6 @@
                       <DataGridTemplateColumn
                           CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
                           MinWidth="100">
-
                       </DataGridTemplateColumn>
                       <DataGridTemplateColumn 
                           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
