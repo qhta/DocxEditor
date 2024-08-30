@@ -20,7 +20,6 @@
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
-          <!--<EventSetter Event="PreviewKeyDown" Handler="{x:Static local:EventHandlers.PreviewKeyDown}"/>-->
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
               <Setter Property="Foreground" Value="Gray"/>
@@ -28,30 +27,9 @@
           </Style.Triggers>
         </Style>
       </TextBox.Style>
-      <!--<TextBox.InputBindings>
-        <KeyBinding Key="Enter" Command="{x:Static local:Executables.EnterKeyCommand}" />
-      </TextBox.InputBindings>-->
     </xctk:WatermarkTextBox>
   </DataTemplate>
 
-  <DataTemplate x:Key="NewMemberTextTemplate" DataType="local:PropertyViewModel" >
-    <xctk:WatermarkTextBox 
-      Text="{Binding DataContext.ObjectViewModel.ObjectMembers.NewMemberValue, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-      Watermark="{Binding Watermark}"
-      IsReadOnly="{Binding IsReadOnly}"
-      Padding="{StaticResource PropertyPadding}">
-      <TextBox.Style>
-        <Style TargetType="TextBox">
-          <Setter Property="BorderThickness" Value="0" />
-          <Style.Triggers>
-            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
-              <Setter Property="Foreground" Value="Gray"/>
-            </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </TextBox.Style>
-    </xctk:WatermarkTextBox>
-  </DataTemplate>
   <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
     <CheckBox 
        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
@@ -92,7 +70,6 @@
      ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
      ObjectViewComboBoxTemplate="{StaticResource ObjectViewComboBoxTemplate}"
-     NewMemberValueTemplate="{StaticResource NewMemberTextTemplate}"
      />
 
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
@@ -152,7 +129,7 @@
 
   <DataTemplate x:Key="NewMemberTypeTemplate" DataType="local:ObjectMemberViewModel">
     <ComboBox
-      SelectedValue="{Binding DataContext.ObjectViewModel.ObjectMembers.NewMemberType, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+      SelectedValue="{Binding MemberType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
       ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
       DisplayMemberPath="Name"
       Padding="{StaticResource PropertyPadding}">

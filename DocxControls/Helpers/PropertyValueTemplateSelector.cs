@@ -35,10 +35,10 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? ObjectViewComboBoxTemplate { get; set; }
 
-  /// <summary>
-  /// Template for a new member value field.
-  /// </summary>
-  public DataTemplate? NewMemberValueTemplate { get; set; }
+  ///// <summary>
+  ///// Template for a new member value field.
+  ///// </summary>
+  //public DataTemplate? NewMemberValueTemplate { get; set; }
 
   /// <summary>
   /// Template selection logic.
@@ -48,12 +48,12 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
-    {
-      var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
-      if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers != null)
-        return NewMemberValueTemplate ?? TextTemplate;
-    }
+    //if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
+    //{
+    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
+    //  if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers != null)
+    //    return NewMemberValueTemplate ?? TextTemplate;
+    //}
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)

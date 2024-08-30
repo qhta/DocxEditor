@@ -25,13 +25,13 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// <summary>
   ///  Type of the member object which properties are modeled
   /// </summary>
-  public Type MemberType
+  public Type? MemberType
 
   {
     get => base.ObjectType;
     set
     {
-      if (value != base.ObjectType)
+      if (value != base.ObjectType && value != null)
       {
         base.ModeledObject = Activator.CreateInstance(value);
         NotifyPropertyChanged(nameof(ObjectType));
@@ -39,11 +39,10 @@ public class ObjectMemberViewModel : ObjectViewModel
     }
   }
 
-
-/// <summary>
-/// Gets or sets the container of the object member.
-/// </summary>
-public ObjectViewModel? Container { get; set; }
+  /// <summary>
+  /// Gets or sets the container of the object member.
+  /// </summary>
+  public ObjectViewModel? Container { get; set; }
 
   /// <summary>
   /// Collection of object members.
@@ -55,7 +54,12 @@ public ObjectViewModel? Container { get; set; }
   /// </summary>
   public override object? Value
   {
-    get => (ModeledObject as DX.OpenXmlElement)?.ToSystemValue(ObjectType) ?? ModeledObject!;
+    get
+    {
+      if (IsNew)
+        return null;
+      return (ModeledObject as DX.OpenXmlElement)?.ToSystemValue(ObjectType) ?? ModeledObject!;
+    }
     set
     {
       bool updated = false;
@@ -73,6 +77,13 @@ public ObjectViewModel? Container { get; set; }
           ModeledObject = val;
           NotifyPropertyChanged(nameof(Value));
         }
+      }
+      if (IsNew)
+      {
+        var newValue = ModeledObject;
+        var newMember = new ObjectMemberViewModel(Container, newValue);
+        Collection?.Add(newMember);
+
       }
     }
   }

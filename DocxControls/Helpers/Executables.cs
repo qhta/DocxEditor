@@ -60,14 +60,4 @@ public static class Executables
     window.ShowDocumentView(documentView);
   }
 
-  public static ICommand EnterKeyCommand { get; }
-  = new RelayCommand(HandleEnterKey);
-
-
-  private static void HandleEnterKey()
-  {
-    //AddNewItem();
-  }
-
-
 }

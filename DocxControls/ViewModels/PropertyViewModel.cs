@@ -131,6 +131,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       return "00000000-0000-0000-0000-000000000000";
     if (type == typeof(HexInt))
       return "HHHHHHHH";
+    if (type?.BaseType==typeof(DXW.LongHexNumberType))
+      return "HHHHHHHH";
     return null;
   }
   #endregion INotifyPropertyChanged implementation

@@ -33,15 +33,15 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate SelectTemplate(object? item, DependencyObject container)
   {
-    if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
+    //if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
+    //{
+    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
+    //  if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers!=null)
+    //    return NewMemberTypeTemplate ?? CaptionTemplate;
+    //}
+    if (item is ObjectMemberViewModel objectMemberViewModel)
     {
-      var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
-      if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers!=null)
-        return NewMemberTypeTemplate ?? CaptionTemplate;
-    }
-    if (item is ObjectMemberViewModel)
-    {
-      return ObjectTemplate ?? CaptionTemplate;
+      return ((objectMemberViewModel.IsNew) ? NewMemberTypeTemplate : ObjectTemplate) ?? CaptionTemplate;
     }
     if (item is PropertyViewModel propertyViewModel)
     {

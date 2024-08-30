@@ -44,16 +44,24 @@ public class ObjectViewComboBox : ComboBox
     }
     if (Template.FindName("MembersDataGrid", this) is DataGrid membersDataGrid)
     {
+      MembersDataGrid = membersDataGrid;
       membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
     }
   }
 
+  private DataGrid? MembersDataGrid;
+
   private void MembersDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
   {
     if (e.Row.IsNewItem)
+    {
       e.Row.Header = ">";
+      e.Row.Item = new ObjectMemberViewModel { IsNew = true, Collection = (MembersDataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers };
+    }
     else
-      e.Row.Header = (e.Row.GetIndex() + 1).ToString(); 
+    {
+      e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+    }
   }
 
   private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)

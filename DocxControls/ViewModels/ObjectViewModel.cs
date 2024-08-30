@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace DocxControls;
 
@@ -13,26 +12,26 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   ///  Type of the object which properties are modeled
   /// </summary>
-  public Type ObjectType => ModeledObject?.GetType() ?? _ObjectType ?? typeof(object);
+  public Type? ObjectType => ModeledObject?.GetType() ?? _ObjectType;
 
   private Type? _ObjectType;
 
   /// <summary>
   /// Gets the name of the modeled object type.
   /// </summary>
-  public string ObjectTypeName => ObjectType.Name;
+  public string? ObjectTypeName => ObjectType?.Name;
 
   /// <summary>
   /// Determines if the modeled object can contain members.
   /// </summary>
-  public bool IsContainer => ObjectType.IsSubclassOf(typeof(DX.OpenXmlCompositeElement));
+  public bool IsContainer => ObjectType?.IsSubclassOf(typeof(DX.OpenXmlCompositeElement)) ?? false;
 
   /// <summary>
   /// Initializes a new instance of the <see cref="ObjectViewModel"/> class for the new item placeholder view model when the type of the modeled object is unknown.
   /// </summary>
   public ObjectViewModel()
   {
-     _ObjectType = typeof(object);
+     _ObjectType = null;
   }
 
   /// <summary>
@@ -40,7 +39,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// </summary>
   public ObjectViewModel(Object? modeledObject)
   {
-    _ObjectType = modeledObject?.GetType() ?? typeof(object);
+    _ObjectType = modeledObject?.GetType();
     if (modeledObject!=null)
       Initialize(_ObjectType, modeledObject);
   }
@@ -60,14 +59,14 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// </summary>
   /// <param name="objectType"></param>
   /// <param name="modeledObject"></param>
-  protected void Initialize(Type objectType, object? modeledObject)
+  protected void Initialize(Type? objectType, object? modeledObject)
   {
-    if (objectType.Name == "Rsids")
-      Debug.Assert(true);
-    _ObjectType = objectType;
+    _ObjectType = objectType ?? modeledObject?.GetType();
     ModeledObject = modeledObject;
-    ModeledObject ??= Activator.CreateInstance(ObjectType);
-    var properties = objectType.GetOpenXmlProperties().ToArray();
+    if (_ObjectType == null)
+      return;
+    ModeledObject ??= Activator.CreateInstance(_ObjectType);
+    var properties = _ObjectType.GetOpenXmlProperties().ToArray();
     foreach (var prop in properties)
     {
       if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
@@ -100,9 +99,6 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     {
       foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
       {
-        var type = member.GetType();
-        if (type.Name == "RsidRoot")
-          Debug.Assert(true);
         if (ObjectProperties.Any(p=>p.OriginalValue==member))
           continue;
         var memberViewModel = new ObjectMemberViewModel(this, member);
@@ -181,9 +177,9 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     {
       var propertyViewModel = (PropertyViewModel)sender!;
       var propertyName = propertyViewModel.Name;
-      if (propertyName != null)
+      if (propertyName != null && _ObjectType!=null)
       {
-        ModeledObject ??= Activator.CreateInstance(ObjectType);
+        ModeledObject ??= Activator.CreateInstance(_ObjectType);
         var prop = ModeledObject!.GetType().GetProperty(propertyName);
         if (prop != null && prop.CanWrite)
         {
@@ -226,6 +222,8 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
       {
         _modeledObject = value;
         NotifyPropertyChanged(nameof(ModeledObject));
+        NotifyPropertyChanged(nameof(Value));
+        NotifyPropertyChanged(nameof(Watermark));
       }
     }
   }
@@ -247,7 +245,9 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     {
       if (!IsContainer)
         return null;
-      _objectMembers ??= new ObjectMembersViewModel{ MemberTypes = ObjectType.GetMemberTypes()};
+      _objectMembers ??= new ObjectMembersViewModel();
+      if (ObjectType != null)
+        _objectMembers.MemberTypes = ObjectType.GetMemberTypes();
       var result =_objectMembers;
       //Debug.WriteLine($"ObjectMembers={result}");
       return result;
@@ -331,6 +331,22 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
       }
     }
   }
-
   private bool _IsSelected;
+
+  /// <summary>
+  /// Determines if the object is new.
+  /// </summary>
+  public bool IsNew
+  {
+    get => _IsNew;
+    set
+    {
+      if (value != _IsNew)
+      {
+        _IsNew = value;
+        NotifyPropertyChanged(nameof(IsNew));
+      }
+    }
+  }
+  private bool _IsNew;
 }

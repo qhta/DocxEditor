@@ -10,7 +10,7 @@ public interface IObjectViewModel
   /// <summary>
   ///  Type of the object which properties are modeled
   /// </summary>
-  public Type ObjectType { get; }
+  public Type? ObjectType { get; }
 
 
   /// <summary>
