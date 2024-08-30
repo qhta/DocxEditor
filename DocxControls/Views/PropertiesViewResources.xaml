@@ -15,7 +15,8 @@
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"
       IsReadOnly="{Binding IsReadOnly}"
-      Padding="{StaticResource PropertyPadding}">
+      Padding="{StaticResource PropertyPadding}"
+      TextWrapping="WrapWithOverflow">
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
@@ -33,7 +34,7 @@
     </xctk:WatermarkTextBox>
   </DataTemplate>
 
-  <DataTemplate x:Key="NemMemberTextTemplate" DataType="local:PropertyViewModel" >
+  <DataTemplate x:Key="NewMemberTextTemplate" DataType="local:PropertyViewModel" >
     <xctk:WatermarkTextBox 
       Text="{Binding DataContext.ObjectViewModel.ObjectMembers.NewMemberValue, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"
@@ -42,8 +43,6 @@
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
-          <Setter Property="Foreground" Value="Red"/>
-          <!--<EventSetter Event="PreviewKeyDown" Handler="{x:Static local:EventHandlers.PreviewKeyDown}"/>-->
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
               <Setter Property="Foreground" Value="Gray"/>
@@ -51,9 +50,6 @@
           </Style.Triggers>
         </Style>
       </TextBox.Style>
-      <!--<TextBox.InputBindings>
-        <KeyBinding Key="Enter" Command="{x:Static local:Executables.EnterKeyCommand}" />
-      </TextBox.InputBindings>-->
     </xctk:WatermarkTextBox>
   </DataTemplate>
   <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
@@ -96,7 +92,7 @@
      ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
      FlagsComboBoxTemplate="{StaticResource CheckBoxComboBoxTemplate}"
      ObjectViewComboBoxTemplate="{StaticResource ObjectViewComboBoxTemplate}"
-     NewMemberValueTemplate="{StaticResource NemMemberTextTemplate}"
+     NewMemberValueTemplate="{StaticResource NewMemberTextTemplate}"
      />
 
   <DataTemplate x:Key="PropertyCaptionTemplate" DataType="local:PropertyViewModel" >
@@ -135,9 +131,15 @@
             <DataTrigger Binding="{Binding IsObsolete}" Value="True">
               <Setter Property="Foreground" Value="DarkSlateGray"/>
             </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+              <Setter Property="Foreground" Value="Blue"/>
+            </DataTrigger>
           </Style.Triggers>
         </Style>
       </TextBlock.Style>
+      <!--<TextBlock.InputBindings>
+        <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.SelectItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+      </TextBlock.InputBindings>-->
       <TextBlock.ToolTip>
         <ToolTip  Style="{StaticResource CustomToolTipStyle}">
           <local:CustomToolTipView
@@ -163,4 +165,10 @@
     ObjectTemplate="{StaticResource ObjectTypeNameTemplate}"
     NewMemberTypeTemplate="{StaticResource NewMemberTypeTemplate}"
   />
+
+  <DataTemplate x:Key="NumberingRowHeaderTemplate">
+    <TextBlock 
+      TextAlignment="Right"
+      Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
+  </DataTemplate>
 </ResourceDictionary>

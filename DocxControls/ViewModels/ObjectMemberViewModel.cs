@@ -10,7 +10,6 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// </summary>
   public ObjectMemberViewModel() : base()
   {
-    Debug.WriteLine($"ObjectMemberViewModel.Created");
   }
 
   /// <summary>

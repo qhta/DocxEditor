@@ -37,7 +37,7 @@
                   <DataGrid 
                     ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                     HorizontalAlignment="Stretch"
-                    HeadersVisibility="None" AutoGenerateColumns="False" 
+                    HeadersVisibility="Row" AutoGenerateColumns="False" 
                     CanUserAddRows="False" 
                     CanUserDeleteRows="False">
                     <DataGrid.Resources>
@@ -64,10 +64,13 @@
                   </Border>
                   <DataGrid 
                       Grid.Row="2" 
+                      x:Name="MembersDataGrid"
                       Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
                       HorizontalAlignment="Stretch"
                       ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.Items, RelativeSource={RelativeSource TemplatedParent}}"
-                      HeadersVisibility="None" AutoGenerateColumns="false" 
+                      HeadersVisibility="Row" 
+                      RowHeaderTemplate="{StaticResource NumberingRowHeaderTemplate}"
+                      AutoGenerateColumns="false" 
                       CanUserAddRows="True" 
                       CanUserDeleteRows="True"
                       MinHeight="200">

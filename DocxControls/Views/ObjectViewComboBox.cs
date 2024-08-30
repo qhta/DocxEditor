@@ -42,6 +42,18 @@ public class ObjectViewComboBox : ComboBox
     {
       thumb.DragDelta += Thumb_DragDelta;
     }
+    if (Template.FindName("MembersDataGrid", this) is DataGrid membersDataGrid)
+    {
+      membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
+    }
+  }
+
+  private void MembersDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
+  {
+    if (e.Row.IsNewItem)
+      e.Row.Header = ">";
+    else
+      e.Row.Header = (e.Row.GetIndex() + 1).ToString(); 
   }
 
   private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)

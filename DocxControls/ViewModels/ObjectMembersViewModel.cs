@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 using Qhta.MVVM;
 
@@ -14,6 +15,7 @@ public class ObjectMembersViewModel : ViewModel, INotifyCollectionChanged
   /// </summary>
   public ObjectMembersViewModel()
   {
+    SelectItemCommand = new RelayCommand<ObjectMemberViewModel>(SelectItem);
   }
 
   /// <summary>
@@ -128,4 +130,33 @@ public class ObjectMembersViewModel : ViewModel, INotifyCollectionChanged
     add => Items.CollectionChanged += value;
     remove => Items.CollectionChanged -= value;
   }
+
+  /// <summary>
+  /// Command to select an item.
+  /// </summary>
+  public ICommand SelectItemCommand { get; }
+
+  private void SelectItem(ObjectMemberViewModel? item)
+  {
+    if (item == null)
+      return;
+    if (SelectedItem!=null)
+      SelectedItem.IsSelected = false;
+    SelectedItem = item;
+    SelectedItem.IsSelected = true;
+  }
+
+  /// <summary>
+  /// Selected item.
+  /// </summary>
+  public ObjectMemberViewModel? SelectedItem
+  {
+    get => _selectedItem;
+    set
+    {
+      _selectedItem = value;
+      NotifyPropertyChanged(nameof(SelectedItem));
+    }
+  }
+  private ObjectMemberViewModel? _selectedItem;
 }

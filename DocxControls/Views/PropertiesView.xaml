@@ -9,7 +9,7 @@
   <Grid>
     <DataGrid 
       ItemsSource="{Binding Items}" 
-      HeadersVisibility="None" AutoGenerateColumns="False" 
+      HeadersVisibility="Row" AutoGenerateColumns="False" 
       CanUserAddRows="False" 
       CanUserDeleteRows="False">
       <DataGrid.Resources>

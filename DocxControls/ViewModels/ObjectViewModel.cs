@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace DocxControls;
 
@@ -131,17 +132,20 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
         }
         memberViewModel.Container = this;
         memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
-        Debug.WriteLine($"memberViewModel.Collection={memberViewModel.Collection}");
       }
     }
     else if (e.Action == NotifyCollectionChangedAction.Remove)
     {
-      // do nothing
-      //foreach (CustomPropertyViewModel propertyViewModel in e.OldItems!)
-      //{
-      //  if (propertyViewModel.Name != null)
-      //    CustomProperties.Remove(propertyViewModel.Name);
-      //}
+      //do nothing
+      foreach (ObjectMemberViewModel memberViewModel in e.OldItems!)
+      {
+        if (ModeledObject is DX.OpenXmlCompositeElement container)
+        {
+          var member = memberViewModel.ModeledObject;
+          if (member is DX.OpenXmlElement element && element.Parent==container)
+            element.Remove(); 
+        }
+      }
     }
     else if (e.Action == NotifyCollectionChangedAction.Reset)
     {
@@ -151,9 +155,15 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     else if (e.Action == NotifyCollectionChangedAction.Replace)
     {
       // do nothing
-      //var propertyViewModel = (CustomPropertyViewModel)e.NewItems![0]!;
-      //if (propertyViewModel.Name != null && propertyViewModel.Validate())
-      //  CustomProperties.SetValue(propertyViewModel.Name, propertyViewModel.Value);
+      //var oldMemberViewModel = (ObjectMemberViewModel)e.OldItems![0]!;
+      //var memberViewModel = (ObjectMemberViewModel)e.NewItems![0]!;
+      //if (ModeledObject is DX.OpenXmlCompositeElement container)
+      //{
+      //  var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
+      //  if (member is DX.OpenXmlElement element)
+      //    container.AppendChild(element);
+      //  NotifyPropertyChanged(nameof(ModeledObject));
+      //}
     }
     else if (e.Action == NotifyCollectionChangedAction.Move)
     {
@@ -305,4 +315,22 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// </summary>
   public string? Watermark => PropertyViewModel.GetWatermark(ObjectType!);
   #endregion IPropertyProvider implementation
+
+  /// <summary>
+  /// Determines if the object is selected.
+  /// </summary>
+  public bool IsSelected
+  {
+    get => _IsSelected;
+    set
+    {
+      if (value != _IsSelected)
+      {
+        _IsSelected = value;
+        NotifyPropertyChanged(nameof(IsSelected));
+      }
+    }
+  }
+
+  private bool _IsSelected;
 }
