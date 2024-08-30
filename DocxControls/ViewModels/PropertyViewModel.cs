@@ -275,7 +275,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property type an enum?
   /// </summary>
-  public bool IsEnum => Type != null && (Type.IsEnum || Type.Name.EndsWith("Values"));
+  public bool IsEnum => Type != null && (Type.IsEnum || Type.IsOpenXmlEnum());
 
   /// <summary>
   /// Is the property type an enum treated as separate bits?
@@ -314,16 +314,14 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     get
     {
-      //DXW.DocumentProtectionValues
-
       if (Type != null)
       {
-        if (Type.Name.EndsWith("Values"))
+        if (Type.IsOpenXmlEnum())
         {
           var result = new List<EnumValueViewModel>();
           result.Add(new EnumValueViewModel());
           result.AddRange(
-            Type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public)
+            Type.GetOpenXmlProperties()
               .Select(CreateEnumPropValueViewModel));
           return result;
         }
