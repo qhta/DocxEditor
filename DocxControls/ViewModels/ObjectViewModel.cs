@@ -24,7 +24,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   /// Determines if the modeled object can contain members.
   /// </summary>
-  public bool IsContainer => ObjectType?.IsSubclassOf(typeof(DX.OpenXmlCompositeElement)) ?? false;
+  public bool IsContainer => ObjectType?.IsContainer() ?? false;
 
   /// <summary>
   /// Initializes a new instance of the <see cref="ObjectViewModel"/> class for the new item placeholder view model when the type of the modeled object is unknown.
