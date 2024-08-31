@@ -26,17 +26,25 @@
               IsOpen="{TemplateBinding IsDropDownOpen}"
               AllowsTransparency="True"
               Focusable="False"
-              PopupAnimation="Slide">
-              <Border BorderBrush="Black" BorderThickness="1" Background="White" MinWidth="204">
-                <Grid>
+              PopupAnimation="Slide"
+              MaxHeight="600">
+              <Border 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Background="White" 
+                MinWidth="204" 
+                Height="auto">
+                <Grid 
+                  x:Name="PopupGrid"
+                  Height="auto">
                   <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                   </Grid.RowDefinitions>
                   <DataGrid 
                     ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                     HorizontalAlignment="Stretch"
+                    MaxHeight="400"
                     HeadersVisibility="Row" AutoGenerateColumns="False" 
                     CanUserAddRows="False" 
                     CanUserDeleteRows="False">
@@ -55,25 +63,33 @@
                         Width="*"/>
                     </DataGrid.Columns>
                   </DataGrid>
-                  <Border 
+                  <!--<Border 
                       Grid.Row="1" 
                       Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
                       HorizontalAlignment="Stretch"
                       BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke" Padding="{StaticResource PropertyPadding}">
                     <TextBlock Text="{x:Static resources:Strings.Elements_}" Foreground="Black"/>
-                  </Border>
+                  </Border>-->
+                  <!--<GridSplitter 
+                    Grid.Row="1"
+                    Background="DarkSlateGray"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
+                    Height="5"/>-->
                   <DataGrid 
-                      Grid.Row="2" 
+                      Grid.Row="1" 
                       x:Name="MembersDataGrid"
+                      Margin="0,2,0,0"
                       Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
                       HorizontalAlignment="Stretch"
                       ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.Items, RelativeSource={RelativeSource TemplatedParent}}"
                       HeadersVisibility="Row" 
+                      MaxHeight="300"
                       RowHeaderTemplate="{StaticResource NumberingRowHeaderTemplate}"
                       AutoGenerateColumns="false" 
                       CanUserAddRows="True" 
-                      CanUserDeleteRows="True"
-                      MinHeight="200">
+                      CanUserDeleteRows="True">
                     <DataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
@@ -84,7 +100,6 @@
                       <Style TargetType="DataGridRow">
                         <Style.Triggers>
                           <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsNewItem}" Value="True">
-                            <Setter Property="Background" Value="LightGreen" />
                             <Setter Property="FontStyle" Value="Italic" />
                           </DataTrigger>
                         </Style.Triggers>

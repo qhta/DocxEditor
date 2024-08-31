@@ -47,6 +47,23 @@ public class ObjectViewComboBox : ComboBox
       MembersDataGrid = membersDataGrid;
       membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
     }
+    if (Template.FindName("PopupGrid", this) is Grid grid)
+    {
+      grid.DataContextChanged += Grid_DataContextChanged;
+    }
+  }
+
+  private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+  {
+    if (sender is Grid grid && grid.DataContext is PropertyViewModel propertyViewModel && propertyViewModel.ObjectViewModel is ObjectViewModel objectViewModel)
+    {
+      if (!objectViewModel.IsContainer)
+      {
+        //grid.RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
+        grid.RowDefinitions[1].Height = new GridLength(0);
+      }
+    }
+
   }
 
   private DataGrid? MembersDataGrid;
@@ -71,12 +88,23 @@ public class ObjectViewComboBox : ComboBox
       if (comboBox.Template.FindName("PART_Popup", comboBox) is Popup popup && popup.Child is FrameworkElement popupChild)
       {
         double newWidth = popupChild.ActualWidth + e.HorizontalChange;
-
-        if (newWidth > popupChild.MinWidth)
+        var minWidth = popupChild.MinWidth;
+        if (Double.IsNaN(minWidth))
+          minWidth = 0;
+        var maxWidth = popupChild.MaxWidth;
+        if (Double.IsNaN(maxWidth))
+          maxWidth = Double.MaxValue;
+        if (newWidth > minWidth && newWidth < maxWidth)
           popupChild.Width = newWidth;
 
         //double newHeight = popupChild.ActualHeight + e.VerticalChange;
-        //if (newHeight > popupChild.MinHeight)
+        //var minHeight = popupChild.MinHeight;
+        //if (Double.IsNaN(minHeight))
+        //  minHeight = 0;
+        //var maxHeight = popup.MaxHeight;
+        //if (Double.IsNaN(maxHeight))
+        //  maxHeight = Double.MaxValue;
+        //if (newHeight > minHeight && newHeight < maxHeight)
         //  popupChild.Height = newHeight;
       }
     }
