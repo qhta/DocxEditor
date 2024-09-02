@@ -7,7 +7,7 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
-  <Thickness x:Key="PropertyPadding">5,0,0,0</Thickness>
+  <Thickness x:Key="PropertyPadding">5,0,5,0</Thickness>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
 
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
@@ -88,11 +88,35 @@
         </Style>
       </TextBlock.Style>
       <TextBlock.ToolTip>
-        <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+        <ToolTip Style="{StaticResource CustomToolTipStyle}">
           <local:CustomToolTipView
              DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}" />
         </ToolTip>
       </TextBlock.ToolTip>
+    </TextBlock>
+  </DataTemplate>
+
+  <DataTemplate x:Key="PropertyTypeTemplate" DataType="local:PropertyViewModel" >
+    <TextBlock 
+      Text="{Binding Type.Name}" 
+      Padding="{StaticResource PropertyPadding}">
+      <TextBlock.Style>
+        <Style TargetType="TextBlock">
+          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Foreground" Value="Black"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsObsolete}" Value="True">
+              <Setter Property="Foreground" Value="DarkSlateGray"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
+      <!--<TextBlock.ToolTip>
+        <ToolTip Style="{StaticResource CustomToolTipStyle}">
+          <local:CustomToolTipView
+            DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}" />
+        </ToolTip>
+      </TextBlock.ToolTip>-->
     </TextBlock>
   </DataTemplate>
 
@@ -118,7 +142,7 @@
         <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.SelectItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
       </TextBlock.InputBindings>-->
       <TextBlock.ToolTip>
-        <ToolTip  Style="{StaticResource CustomToolTipStyle}">
+        <ToolTip Style="{StaticResource CustomToolTipStyle}">
           <local:CustomToolTipView
             DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ToolTip}}" />
         </ToolTip>

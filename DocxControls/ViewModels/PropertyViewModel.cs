@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-
+using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -49,6 +49,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 
   private object? _Value;
 
+  /// <summary>
+  /// String value of the property for sorting.
+  /// </summary>
+  public virtual String? ValueString => (String?)Converter.Convert(Value, Type, null, CultureInfo.CurrentUICulture);
+  static readonly PropertyValueConverter Converter = new();
 
   /// <summary>
   /// Is the property obsolete?

@@ -234,4 +234,13 @@
   <data name="Contents_" xml:space="preserve">
     <value>Zawartość:</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Wartość</value>
+  </data>
 </root>

@@ -4,12 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
+             xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
   <Grid>
     <DataGrid 
       ItemsSource="{Binding Items}" 
-      HeadersVisibility="Row" AutoGenerateColumns="False" 
+      HeadersVisibility="All" AutoGenerateColumns="False" 
+      CanUserSortColumns="True"
+      Sorting="DataGrid_Sorting"
       CanUserAddRows="False" 
       CanUserDeleteRows="False">
       <DataGrid.Resources>
@@ -20,10 +23,20 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTemplateColumn
+          Header="{x:Static resources:Strings.Name}"
           CellTemplate="{StaticResource PropertyCaptionTemplate}" 
+          SortMemberPath="Caption"
           MinWidth="100"/>
+        <DataGridTemplateColumn
+          Header="{x:Static resources:Strings.Type}"
+          CellTemplate="{StaticResource PropertyTypeTemplate}"
+          SortMemberPath="Type.Name"
+          MinWidth="80"
+        />
         <DataGridTemplateColumn 
+          Header="{x:Static resources:Strings.Value}"
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
+          SortMemberPath="Value"
           MinWidth="50"
           Width="*"/>
       </DataGrid.Columns>

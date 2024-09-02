@@ -17,6 +17,6 @@ public partial class DocumentPropertiesView : UserControl
 
   private void DocumentPropertiesView_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
   {
-    Debug.WriteLine($"DataContextChanged({DataContext})");
+    //Debug.WriteLine($"DataContextChanged({DataContext})");
   }
 }
