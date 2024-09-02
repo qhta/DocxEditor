@@ -6,7 +6,7 @@
 public class DocumentViewModel
 {
   /// <summary>
-  /// Initializes a new instance of the <see cref="DocumentViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="filePath"></param>
   /// <param name="isEditable"></param>
@@ -39,7 +39,7 @@ public class DocumentViewModel
     {
       if (_BodyElements == null)
       {
-        _BodyElements = new BodyElementsViewModel(WordDocument);
+        _BodyElements = new BodyElementsViewModel(this);
       }
       return _BodyElements;
     }
@@ -268,4 +268,20 @@ public class DocumentViewModel
   }
   private DocumentSettingsViewModel? _CompatibilitySettings;
 
+  /// <summary>
+  /// Access to the document bookmarks collection
+  /// </summary>
+  // ReSharper disable once UnusedMember.Global
+  public BookmarksViewModel Bookmarks
+  {
+    get
+    {
+      if (_Bookmarks == null)
+      {
+        _Bookmarks = new BookmarksViewModel(WordDocument);
+      }
+      return _Bookmarks;
+    }
+  }
+  private BookmarksViewModel? _Bookmarks;
 }

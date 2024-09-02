@@ -27,7 +27,8 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   public bool IsContainer => ObjectType?.IsContainer() ?? false;
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="ObjectViewModel"/> class for the new item placeholder view model when the type of the modeled object is unknown.
+  /// Initializing constructor
+  /// for the new item placeholder view model when the type of the modeled object is unknown.
   /// </summary>
   public ObjectViewModel()
   {
@@ -35,7 +36,8 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   }
 
   /// <summary>
-  /// Creates a new instance of the <see cref="ObjectViewModel"/> class when the type of the modeled object is unknown, but the object may be known.
+  /// Initializing constructor
+  /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
   public ObjectViewModel(Object? modeledObject)
   {
@@ -45,7 +47,8 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   }
 
   /// <summary>
-  /// Creates a new instance of the <see cref="ObjectViewModel"/> class when the type of the modeled object is known.
+  /// Initializing constructor.
+  /// when the type of the modeled object is known.
   /// </summary>
   /// <param name="objectType">Type of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>

@@ -7,19 +7,26 @@ namespace DocxControls;
 /// </summary>
 public class ParagraphViewModel : ElementViewModel
 {
-  /// <summary>
-  /// Default constructor. Creates a new <see cref="Paragraph"/>
-  /// </summary>
-  public ParagraphViewModel() : this(new DXW.Paragraph())
-  {
-  }
+  ///// <summary>
+  ///// Default constructor. Creates a new <see cref="Paragraph"/>
+  ///// </summary>
+  //public ParagraphViewModel() : this(new DXW.Paragraph())
+  //{
+  //}
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="ParagraphViewModel"/> class.
+  /// Internal Wordprocessing document view model
   /// </summary>
+  public DocumentViewModel DocumentViewModel { get; init; }
+
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="documentViewModel"></param>
   /// <param name="paragraph"></param>
-  public ParagraphViewModel(DXW.Paragraph paragraph) : base(paragraph)
+  public ParagraphViewModel(DocumentViewModel documentViewModel, DXW.Paragraph paragraph) : base(paragraph)
   {
+    DocumentViewModel = documentViewModel;
     foreach (var element in paragraph.Elements())
     {
       if (element is DXW.ParagraphProperties properties)
@@ -29,8 +36,8 @@ public class ParagraphViewModel : ElementViewModel
         ElementViewModel paragraphViewModel = element switch
         {
           DXW.Run run => new RunViewModel(run),
-          DXW.BookmarkStart bookmarkStart => new BookmarkStartViewModel(bookmarkStart),
-          DXW.BookmarkEnd bookmarkEnd => new BookmarkEndViewModel(bookmarkEnd),
+          DXW.BookmarkStart bookmarkStart => DocumentViewModel.Bookmarks.RegisterBookmarkStart(bookmarkStart),
+          DXW.BookmarkEnd bookmarkEnd => DocumentViewModel.Bookmarks.RegisterBookmarkEnd(bookmarkEnd),
           _ => new ElementViewModel(element)
         };
         Elements.Add(paragraphViewModel);
@@ -38,6 +45,8 @@ public class ParagraphViewModel : ElementViewModel
     }
     Properties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());
   }
+
+
 
   /// <summary>
   /// Paragraph element of the document

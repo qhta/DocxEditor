@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -59,6 +58,15 @@ public class WrapItemsControl : ListBox
     set => SetValue(ItemMarginProperty, value);
   }
 
+  /// <summary>
+  /// Opens the properties window for the selected item
+  /// </summary>
+  /// <param name="e"></param>
+  protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
+  {
+    Executables.ShowProperties(DataContext);
+    e.Handled = true;
+  }
   ///// <summary>
   ///// Handles the mouse left button down event to select the item
   ///// </summary>

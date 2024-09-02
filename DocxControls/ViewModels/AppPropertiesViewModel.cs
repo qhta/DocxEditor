@@ -11,7 +11,7 @@ public class AppPropertiesViewModel : PropertiesViewModel
 {
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="AppPropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="wordDocument"></param>
   public AppPropertiesViewModel(WordprocessingDocument wordDocument)

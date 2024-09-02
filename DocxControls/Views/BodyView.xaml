@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <ResourceDictionary>
+    <ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/Resources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
   <Grid>
     <ListView 
       x:Name="ListView" 
@@ -13,10 +20,14 @@
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}">
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
-          <Setter Property="HorizontalAlignment" Value="Left" />
+          <Setter Property="HorizontalAlignment" Value="Stretch" />
           <Setter Property="Height" Value="Auto" />
           <Setter Property="Width" Value="{Binding ActualWidth, 
-            RelativeSource={RelativeSource AncestorType=ListView}}" />
+            RelativeSource={RelativeSource AncestorType=ListView}, 
+            Converter={StaticResource ItemWidthConverter},
+            ConverterParameter=4}" />
+          <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+          <Setter Property="Padding" Value="0"/>
         </Style>
       </ListView.ItemContainerStyle>
     </ListView>

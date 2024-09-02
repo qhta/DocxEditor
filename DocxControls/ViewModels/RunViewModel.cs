@@ -15,7 +15,7 @@ public class RunViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="RunViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="run"></param>
   public RunViewModel(DXW.Run run): base (run)

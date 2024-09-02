@@ -11,7 +11,7 @@ public class StatPropertiesViewModel : PropertiesViewModel
 {
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="StatPropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="wordDocument"></param>
   public StatPropertiesViewModel(WordprocessingDocument wordDocument)

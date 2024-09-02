@@ -6,7 +6,7 @@
 public class RunPropertiesViewModel : ElementViewModel
 {
   /// <summary>
-  /// Initializes a new instance of the <see cref="RunPropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="properties"></param>
   public RunPropertiesViewModel(DXW.RunProperties properties): base(properties)

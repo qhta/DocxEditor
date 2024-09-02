@@ -23,7 +23,7 @@ public class ItemWidthConverter : IValueConverter
       if (parameter is not double decrement)
       {
         if (!double.TryParse(parameter?.ToString(), out decrement))
-          decrement = 22;
+          decrement = 0;
       }
       var result = width - decrement;
       if (result < 10)

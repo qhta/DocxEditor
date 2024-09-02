@@ -6,8 +6,23 @@
              xmlns:local="clr-namespace:DocxControls"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
-  <TextBlock Text="[" Margin="0,-4,0,0"
-             FontSize="18"
-             FontWeight="Bold"
-             ToolTip="{Binding ToolTip}"/>
+  <Grid>
+    <Grid.Style>
+      <Style TargetType="{x:Type Grid}">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding IsSelected}" Value="True">
+            <Setter Property="Background" Value="LightGray"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </Grid.Style>
+    <TextBlock Text="[" Margin="0,-4,0,0"
+               FontSize="18"
+               FontWeight="Bold"
+               ToolTip="{Binding ToolTip}"
+               ToolTipService.ToolTipOpening="Bookmark_ToolTipOpening"
+               ToolTipService.ToolTipClosing="Bookmark_ToolTipClosing">
+
+  </TextBlock>
+  </Grid>
 </UserControl>

@@ -13,7 +13,8 @@
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
-          <WrapPanel />
+          <WrapPanel 
+            Background="{Binding Background, RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}}"/>
         </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>

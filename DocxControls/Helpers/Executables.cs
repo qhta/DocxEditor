@@ -60,4 +60,17 @@ public static class Executables
     window.ShowDocumentView(documentView);
   }
 
+  /// <summary>
+  /// Open a properties window for the sender object.
+  /// </summary>
+  /// <param name="sender"></param>
+  public static void ShowProperties(object sender)
+  {
+    var window = Application.Current.MainWindow;
+    if (window == null) return;
+    var propertiesWindow = new PropertiesWindow();
+    propertiesWindow.Owner = window;
+    propertiesWindow.DataContext = sender;
+    propertiesWindow.ShowDialog();
+  }
 }

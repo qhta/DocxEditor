@@ -13,7 +13,7 @@ public class TextViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="TextViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="text"></param>
   public TextViewModel(DXW.Text text): base (text)

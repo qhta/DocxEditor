@@ -9,7 +9,7 @@ namespace DocxControls;
 public class CorePropertiesViewModel : PropertiesViewModel
 {
   /// <summary>
-  /// Initializes a new instance of the <see cref="CorePropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="wordDocument"></param>
   public CorePropertiesViewModel(WordprocessingDocument wordDocument)

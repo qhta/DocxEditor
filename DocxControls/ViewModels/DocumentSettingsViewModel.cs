@@ -22,7 +22,7 @@ public class DocumentSettingsViewModel
   public ObservableCollection<SettingViewModel> Items { get; } = new();
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="AppPropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="wordDocument"></param>
   /// <param name="categories">Determines which categories to accept. Null for all</param>

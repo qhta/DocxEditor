@@ -30,12 +30,7 @@ public class CustomPropertiesViewModel
   }
 
   /// <summary>
-  /// Gets the count of the custom properties in the document.
-  /// </summary>
-  public int Count => WordDocument.GetCustomFileProperties().Elements().Count();
-
-  /// <summary>
-  /// Initializes a new instance of the <see cref="CustomPropertiesViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="wordDocument"></param>
   public CustomPropertiesViewModel(WordprocessingDocument wordDocument)

@@ -13,9 +13,9 @@ public class BodyElementsViewModel : ViewModel
 {
 
   /// <summary>
-  /// Internal Wordprocessing document
+  /// Internal Wordprocessing document view model
   /// </summary>
-  public WordprocessingDocument WordDocument { get; init; }
+  public DocumentViewModel DocumentViewModel { get; init; }
 
   /// <summary>
   /// Observable collection of properties
@@ -23,17 +23,18 @@ public class BodyElementsViewModel : ViewModel
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="BodyElementsViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public BodyElementsViewModel(WordprocessingDocument wordDocument)
+  /// <param name="documentViewModel"></param>
+  public BodyElementsViewModel(DocumentViewModel documentViewModel)
   {
-    WordDocument = wordDocument;
+    DocumentViewModel = documentViewModel;
+    var wordDocument = documentViewModel.WordDocument;
     foreach (var element in wordDocument.GetBody())
     {
       ElementViewModel bodyElementViewModel = element switch
       {
-        DXW.Paragraph paragraph => new ParagraphViewModel(paragraph),
+        DXW.Paragraph paragraph => new ParagraphViewModel(documentViewModel, paragraph),
         DXW.Table table => new TableViewModel(table),
         _ => new ElementViewModel(element)
       };

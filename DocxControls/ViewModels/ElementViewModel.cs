@@ -13,7 +13,7 @@ public class ElementViewModel : ViewModel
   public DX.OpenXmlElement Element { get; init; }
 
   /// <summary>
-  /// Initializes a new instance of the <see cref="ElementViewModel"/> class.
+  /// Initializing constructor.
   /// </summary>
   /// <param name="element"></param>
   public ElementViewModel(DX.OpenXmlElement element)
