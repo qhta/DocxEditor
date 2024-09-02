@@ -16,6 +16,11 @@ public class BookmarksViewModel
   public WordprocessingDocument WordDocument { get; init; }
 
   /// <summary>
+  /// Items collection of bookmarks.
+  /// </summary>
+  public ObservableCollection<BookmarkStartViewModel> Items { get; } = new();
+
+  /// <summary>
   /// Dictionary of bookmarks indexed by ID.
   /// </summary>
   public Dictionary<string, (BookmarkStartViewModel? start, BookmarkEndViewModel? end)> Bookmarks { get; } = new();
@@ -73,6 +78,7 @@ public class BookmarksViewModel
       {
         value = (new BookmarkStartViewModel(this, bookmarkStart), null);
         Bookmarks.Add(id, value);
+        Items.Add(value.start); 
       }
       else
       {
@@ -80,6 +86,7 @@ public class BookmarksViewModel
         {
           value.start = new BookmarkStartViewModel(this, bookmarkStart);
           Bookmarks[id] = value;
+          Items.Add(value.start);
         }
       }
       return value.start;

@@ -4,16 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
+             xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
-  <UserControl.Resources>
-    <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-    </UserControl.Resources>
   <Grid>
     <DataGrid
-      x:Name="PropertiesGrid"
       ItemsSource="{Binding Items}" 
-      HeadersVisibility="None" AutoGenerateColumns="False" 
+      HeadersVisibility="All" 
+      AutoGenerateColumns="False" 
+      CanUserSortColumns="True"
       CanUserAddRows="True" 
       CanUserDeleteRows="True"
       >
@@ -31,19 +30,13 @@
       </DataGrid.Resources>
       <DataGrid.Columns>
         <DataGridTextColumn 
+          Header="{x:Static resources:Strings.Id}"
+          MinWidth=" 50" Binding="{Binding Id, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+        </DataGridTextColumn>
+        <DataGridTextColumn 
+          Header="{x:Static resources:Strings.Name}"
           MinWidth=" 100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
         </DataGridTextColumn>
-        <DataGridComboBoxColumn
-          ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"
-          DisplayMemberPath="Name"
-          SelectedItemBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
-          SelectedValuePath="Name"
-          MinWidth="80"
-          />
-        <DataGridTextColumn 
-          Binding="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-          MinWidth="10"
-          Width="*"/>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

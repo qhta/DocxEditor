@@ -27,6 +27,9 @@
       </TabItem>
       <TabItem Header="{x:Static resources:Strings.Properties}" ContentTemplate="{StaticResource DocumentPropertiesTemplate}" />
       <TabItem Header="{x:Static resources:Strings.Settings}" ContentTemplate="{StaticResource DocumentSettingsTemplate}"/>
+      <TabItem Header="{x:Static resources:Strings.Bookmarks}">
+        <local:BookmarksView DataContext="{Binding Bookmarks}"/>
+      </TabItem>
     </TabControl>
   </Grid>
 </UserControl>

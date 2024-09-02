@@ -243,4 +243,10 @@
   <data name="Value" xml:space="preserve">
     <value>Wartość</value>
   </data>
+  <data name="Bookmarks" xml:space="preserve">
+    <value>Zakładki</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
 </root>
