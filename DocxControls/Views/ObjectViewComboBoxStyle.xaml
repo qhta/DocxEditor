@@ -42,10 +42,12 @@
                     <RowDefinition Height="*"></RowDefinition>
                   </Grid.RowDefinitions>
                   <DataGrid 
+                    x:Name="PropertiesDataGrid"
                     ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                     HorizontalAlignment="Stretch"
                     MaxHeight="400"
-                    HeadersVisibility="Row" AutoGenerateColumns="False" 
+                    HeadersVisibility="All" AutoGenerateColumns="False" 
+                    CanUserSortColumns="True"
                     CanUserAddRows="False" 
                     CanUserDeleteRows="False">
                     <DataGrid.Resources>
@@ -55,28 +57,24 @@
                     </DataGrid.Resources>
                     <DataGrid.Columns>
                       <DataGridTemplateColumn
+                        Header="{x:Static resources:Strings.Name}"
                         CellTemplate="{StaticResource PropertyCaptionTemplate}" 
+                        SortMemberPath="Name"
                         MinWidth="100"/>
+                      <DataGridTemplateColumn
+                        Header="{x:Static resources:Strings.Type}"
+                        CellTemplate="{StaticResource PropertyTypeTemplate}"
+                        SortMemberPath="Type.Name"
+                        MinWidth="80"
+                      />
                       <DataGridTemplateColumn 
+                        Header="{x:Static resources:Strings.Value}"
                         CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}"
+                        SortMemberPath="Value"
                         MinWidth="100"
                         Width="*"/>
                     </DataGrid.Columns>
                   </DataGrid>
-                  <!--<Border 
-                      Grid.Row="1" 
-                      Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
-                      HorizontalAlignment="Stretch"
-                      BorderBrush="DarkGray" BorderThickness="1" Background="WhiteSmoke" Padding="{StaticResource PropertyPadding}">
-                    <TextBlock Text="{x:Static resources:Strings.Elements_}" Foreground="Black"/>
-                  </Border>-->
-                  <!--<GridSplitter 
-                    Grid.Row="1"
-                    Background="DarkSlateGray"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Stretch"
-                    Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
-                    Height="5"/>-->
                   <DataGrid 
                       Grid.Row="1" 
                       x:Name="MembersDataGrid"
@@ -84,10 +82,11 @@
                       Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
                       HorizontalAlignment="Stretch"
                       ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.Items, RelativeSource={RelativeSource TemplatedParent}}"
-                      HeadersVisibility="Row" 
+                      HeadersVisibility="All" 
                       MaxHeight="300"
                       RowHeaderTemplate="{StaticResource NumberingRowHeaderTemplate}"
                       AutoGenerateColumns="false" 
+                      CanUserSortColumns="True"
                       CanUserAddRows="True" 
                       CanUserDeleteRows="True">
                     <DataGrid.Resources>
@@ -108,17 +107,28 @@
                     <DataGrid.Columns>
                       <DataGridTemplateColumn
                           CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
+                          Header="{x:Static resources:Strings.Name}"
+                          SortMemberPath="Name"
                           MinWidth="100">
                       </DataGridTemplateColumn>
+                      <DataGridTemplateColumn
+                        Header="{x:Static resources:Strings.Type}"
+                        CellTemplate="{StaticResource PropertyTypeTemplate}"
+                        SortMemberPath="Type.Name"
+                        MinWidth="80"
+                      />
                       <DataGridTemplateColumn 
                           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
+                          Header="{x:Static resources:Strings.Value}"
+                          SortMemberPath="Value"
                           MinWidth="100"
                           Width="*"/>
                     </DataGrid.Columns>
                   </DataGrid>
-                  <Thumb 
+                  <Thumb  
+                    Grid.Row="0" 
+                    Grid.RowSpan="2"
                     x:Name="Popup_Thumb"
-                    Grid.Row="2" 
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Bottom" 
                     Width="10" 

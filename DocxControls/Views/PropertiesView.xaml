@@ -10,9 +10,10 @@
   <Grid>
     <DataGrid 
       ItemsSource="{Binding Items}" 
-      HeadersVisibility="All" AutoGenerateColumns="False" 
-      CanUserSortColumns="True"
+      HeadersVisibility="All" 
+      AutoGenerateColumns="False" 
       Sorting="DataGrid_Sorting"
+      CanUserSortColumns="True"
       CanUserAddRows="False" 
       CanUserDeleteRows="False">
       <DataGrid.Resources>

@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 
 namespace DocxControls;
 
@@ -42,9 +44,14 @@ public class ObjectViewComboBox : ComboBox
     {
       thumb.DragDelta += Thumb_DragDelta;
     }
+    if (Template.FindName("PropertiesDataGrid", this) is DataGrid propertiesDataGrid)
+    {
+      propertiesDataGrid.Sorting += DataGrid_Sorting;
+    }
     if (Template.FindName("MembersDataGrid", this) is DataGrid membersDataGrid)
     {
       MembersDataGrid = membersDataGrid;
+      membersDataGrid.Sorting += DataGrid_Sorting;
       membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
     }
     if (Template.FindName("PopupGrid", this) is Grid grid)
@@ -109,4 +116,34 @@ public class ObjectViewComboBox : ComboBox
       }
     }
   }
+
+  private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+  {
+    if (sender is DataGrid dataGrid)
+    {
+      e.Handled = true; // Prevent the default sorting
+
+      ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
+        ListSortDirection.Ascending : ListSortDirection.Descending;
+      SortDescription sortDescription;
+      if (e.Column.Header.ToString() == Strings.Name)
+        sortDescription = new SortDescription("Caption", direction);
+      else
+      if (e.Column.Header.ToString() == Strings.Type)
+        sortDescription = new SortDescription("Type.Name", direction);
+      else
+      if (e.Column.Header.ToString() == Strings.Value)
+        sortDescription = new SortDescription("ValueString", direction);
+      else
+        return;
+
+      var collectionView = CollectionViewSource.GetDefaultView(dataGrid.ItemsSource);
+      collectionView.SortDescriptions.Clear();
+      collectionView.SortDescriptions.Add(sortDescription);
+      collectionView.Refresh();
+
+      e.Column.SortDirection = direction;
+    }
+  }
+
 }

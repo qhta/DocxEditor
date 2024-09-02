@@ -9,7 +9,7 @@
   </ResourceDictionary.MergedDictionaries>
   <Thickness x:Key="PropertyPadding">5,0,5,0</Thickness>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-
+  <local:TypeNameConverter x:Key="TypeNameConverter"/>
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
     <xctk:WatermarkTextBox 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
@@ -98,7 +98,7 @@
 
   <DataTemplate x:Key="PropertyTypeTemplate" DataType="local:PropertyViewModel" >
     <TextBlock 
-      Text="{Binding Type.Name}" 
+      Text="{Binding Type, Converter={StaticResource TypeNameConverter}}" 
       Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
