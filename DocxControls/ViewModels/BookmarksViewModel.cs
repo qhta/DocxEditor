@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+
+using DocxControls.Helpers;
 
 namespace DocxControls;
 
@@ -35,6 +38,7 @@ public class BookmarksViewModel
     var mainDocumentPart = wordDocument.MainDocumentPart;
     if (mainDocumentPart == null)
       return;
+
     Task.Run(() =>
     {
       var body = mainDocumentPart.Document.Body;
@@ -159,6 +163,14 @@ public class BookmarksViewModel
 
   //}
 
+  /// <summary>
+  /// Helper for DataGridComboBoxColumn
+  /// </summary>
+  private EnumValuesHelper DisplacedByCustomXmlHelper { get; } = new EnumValuesHelper(typeof(BookmarkStart).GetProperty("DisplacedByCustomXml")!);
 
+  /// <summary>
+  /// Enum values for DisplacedByCustomXml property.
+  /// </summary>
+  public IEnumerable<Object> DisplacedByCustomXmlValues => DisplacedByCustomXmlHelper.EnumValues;
 
 }

@@ -1,4 +1,7 @@
-﻿namespace DocxControls;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using DocxControls.Helpers;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for a paragraph run element
@@ -21,6 +24,7 @@ public class BookmarkStartViewModel : ElementViewModel
   {
     _bookmarksViewModel = bookmarksViewModel;
   }
+
 
   private readonly BookmarksViewModel _bookmarksViewModel;
 
@@ -70,11 +74,58 @@ public class BookmarkStartViewModel : ElementViewModel
     get => BookmarkStart.Name;
     set
     {
+      if (BookmarkStart.Name == value) return;
       BookmarkStart.Name = value;
       NotifyPropertyChanged(nameof(Name));
       NotifyPropertyChanged(nameof(ToolTip));
     }
   }
+
+  /// <summary>
+  /// First column of the bookmark range
+  /// </summary>
+  public int? ColumnFirst
+  {
+    get => BookmarkStart.ColumnFirst?.Value;
+    set
+    {
+      if (BookmarkStart.ColumnFirst?.Value == value) return;
+      BookmarkStart.ColumnFirst = value;
+      NotifyPropertyChanged(nameof(ColumnFirst));
+    }
+  }
+
+  /// <summary>
+  /// Last column of the bookmark range
+  /// </summary>
+  public int? ColumnLast
+  {
+    get => BookmarkStart.ColumnLast?.Value;
+    set
+    {
+      if (BookmarkStart.ColumnLast?.Value == value) return;
+      BookmarkStart.ColumnLast = value;
+      NotifyPropertyChanged(nameof(ColumnLast));
+    }
+  }
+
+  /// <summary>
+  /// Determines if the bookmark is displaced by custom XML and how
+  /// </summary>
+  public DisplacedByCustomXmlValues? DisplacedByCustomXml
+  {
+    get => BookmarkStart.DisplacedByCustomXml?.Value;
+    set
+    {
+      if (BookmarkStart.DisplacedByCustomXml?.Value == value) return;
+      if (value == null)
+        BookmarkStart.DisplacedByCustomXml = null;
+      else
+        BookmarkStart.DisplacedByCustomXml = value;
+      NotifyPropertyChanged(nameof(DisplacedByCustomXml));
+    }
+  }
+
 
   /// <summary>
   /// Displayed tooltip with the name of the bookmark

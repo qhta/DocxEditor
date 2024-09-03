@@ -52,7 +52,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// String value of the property for sorting.
   /// </summary>
-  public virtual String? ValueString => (String?)Converter.Convert(Value, Type, null, CultureInfo.CurrentUICulture);
+  public virtual String? ValueString => (String?)Converter.Convert(Value, Type!, null, CultureInfo.CurrentUICulture);
   static readonly PropertyValueConverter Converter = new();
 
   /// <summary>
@@ -287,17 +287,17 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public bool IsFlags => Type != null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
 
-  /// <summary>
-  /// Integer value of the property.
-  /// </summary>
-  public int? AsInteger
-  {
-    get => Value as int?;
-    set => Value = value;
-  }
+  ///// <summary>
+  ///// Integer value of the property.
+  ///// </summary>
+  //public int? AsInteger
+  //{
+  //  get => Value as int?;
+  //  set => Value = value;
+  //}
 
   /// <summary>
-  /// 
+  /// Selected enum value of the property.
   /// </summary>
   public object? SelectedEnum
   {

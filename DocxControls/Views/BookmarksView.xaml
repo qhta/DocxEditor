@@ -5,8 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls"
              xmlns:resources="clr-namespace:DocxControls.Resources"
+             xmlns:wordprocessing="clr-namespace:DocumentFormat.OpenXml.Wordprocessing;assembly=DocumentFormat.OpenXml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <local:BindingProxy x:Key="Proxy" Data="{Binding}" />
+      <!--<ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type wordprocessing:DisplacedByCustomXmlValues}" x:Key="DisplacedByCustomXmlValues">
+        <ObjectDataProvider.MethodParameters>
+          <x:Type TypeName="wordprocessing:DisplacedByCustomXmlValues" />
+        </ObjectDataProvider.MethodParameters>
+      </ObjectDataProvider>-->
+    </ResourceDictionary>
+  </UserControl.Resources>
   <Grid>
     <DataGrid
       ItemsSource="{Binding Items}" 
@@ -31,12 +46,30 @@
       <DataGrid.Columns>
         <DataGridTextColumn 
           Header="{x:Static resources:Strings.Id}"
-          MinWidth=" 50" Binding="{Binding Id, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+          MinWidth="50" Binding="{Binding Id, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
         </DataGridTextColumn>
         <DataGridTextColumn 
           Header="{x:Static resources:Strings.Name}"
-          MinWidth=" 100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+          MinWidth="100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
         </DataGridTextColumn>
+        <DataGridTextColumn 
+          Header="{x:Static resources:Strings.ColumnFirst}"
+          MinWidth="100" Binding="{Binding ColumnFirst, Converter={StaticResource PropertyValueConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+        </DataGridTextColumn>
+        <DataGridTextColumn 
+          Header="{x:Static resources:Strings.ColumnLast}"
+          MinWidth="100" Binding="{Binding ColumnLast, Converter={StaticResource PropertyValueConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+        </DataGridTextColumn>
+        <DataGridTemplateColumn Header="{x:Static resources:Strings.DisplacedByCustomXml}">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <ComboBox ItemsSource="{Binding Data.DisplacedByCustomXmlValues, Source={StaticResource Proxy}}"
+                        SelectedValue="{Binding DisplacedByCustomXml, Mode=TwoWay, Converter={StaticResource EnumValuesConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedValuePath="Value"
+                        DisplayMemberPath="Caption" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

@@ -187,6 +187,24 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First column.
+        /// </summary>
+        public static string ColumnFirst {
+            get {
+                return ResourceManager.GetString("ColumnFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last column.
+        /// </summary>
+        public static string ColumnLast {
+            get {
+                return ResourceManager.GetString("ColumnLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compatibility.
         /// </summary>
         public static string Compatibility {
@@ -246,6 +264,15 @@ namespace DocxControls.Resources {
         public static string CustomXml {
             get {
                 return ResourceManager.GetString("CustomXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displaced by CustomXml.
+        /// </summary>
+        public static string DisplacedByCustomXml {
+            get {
+                return ResourceManager.GetString("DisplacedByCustomXml", resourceCulture);
             }
         }
         

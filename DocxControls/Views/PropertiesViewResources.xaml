@@ -10,6 +10,7 @@
   <Thickness x:Key="PropertyPadding">5,0,5,0</Thickness>
   <local:PropertyValueConverter x:Key="PropertyValueConverter" />
   <local:TypeNameConverter x:Key="TypeNameConverter"/>
+  <local:EnumValuesConverter x:Key="EnumValuesConverter"/>
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
     <xctk:WatermarkTextBox 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 

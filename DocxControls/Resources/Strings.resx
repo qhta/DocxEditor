@@ -249,4 +249,13 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="ColumnFirst" xml:space="preserve">
+    <value>First column</value>
+  </data>
+  <data name="ColumnLast" xml:space="preserve">
+    <value>Last column</value>
+  </data>
+  <data name="DisplacedByCustomXml" xml:space="preserve">
+    <value>Displaced by CustomXml</value>
+  </data>
 </root>

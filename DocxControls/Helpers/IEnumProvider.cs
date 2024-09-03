@@ -16,10 +16,10 @@ public interface IEnumProvider
   /// </summary>
   public bool IsFlags { get; }
 
-  /// <summary>
-  /// Gets or sets the value of the property as integer.
-  /// </summary>
-  public int? AsInteger { get; set; }
+  ///// <summary>
+  ///// Gets or sets the value of the property as integer.
+  ///// </summary>
+  //public int? AsInteger { get; set; }
 
   /// <summary>
   /// Selected enum value of the property.

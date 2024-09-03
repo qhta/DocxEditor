@@ -1,4 +1,5 @@
 ﻿using System.Windows.Data;
+
 using Qhta.TypeUtils;
 
 namespace DocxControls;
@@ -6,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// Converts a property type to a type name
 /// </summary>
-public class PropertyTypeConverter : IValueConverter
+public class EnumValuesConverter : IValueConverter
 {
 
   /// <summary>
@@ -19,11 +20,17 @@ public class PropertyTypeConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (value is Type type)
-    {
-      return type.Name;
-    }
-    return value?.AsString();
+    if (value== null)
+      return null;
+    //var sourceType = value.GetType();
+    //if (sourceType.IsOpenXmlEnum())
+    //{
+    //  var props = sourceType.GetOpenXmlProperties();
+    //  var prop = props.FirstOrDefault(p => p.GetValue(null)?.Equals(value)==true);
+    //  return prop?.Name;
+    //}
+    var result = value?.AsString();
+    return result;
   }
 
   /// <summary>
@@ -36,7 +43,18 @@ public class PropertyTypeConverter : IValueConverter
   /// <returns></returns>
   public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    throw new NotImplementedException();
+    if (value == null)
+      return null;
+    if (targetType.IsNullable(out var baseType))
+      targetType = baseType;
+    if (value is string str)
+    {
+      if (str == string.Empty)
+        return null;
+
+      return str.FromString(targetType);
+    }
+    return value;
   }
 
 }
