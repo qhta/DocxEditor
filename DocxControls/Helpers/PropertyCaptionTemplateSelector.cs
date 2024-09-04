@@ -35,8 +35,8 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   {
     //if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
     //{
-    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
-    //  if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers!=null)
+    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(owner);
+    //  if ((dataGrid?.DataContext as PropertyViewModel)?.OwnerObjectViewModel?.ObjectMembers!=null)
     //    return NewMemberTypeTemplate ?? CaptionTemplate;
     //}
     if (item is ObjectMemberViewModel objectMemberViewModel)

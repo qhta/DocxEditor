@@ -24,9 +24,9 @@ public interface IObjectViewModel
   public object? ModeledObject { get; }
 
   /// <summary>
-  /// Properties of the object.
+  /// RunProperties of the object.
   /// </summary>
-  public ObservableCollection<PropertyViewModel> ObjectProperties {get; }
+  public ObjectPropertiesViewModel ObjectProperties {get; }
 
   /// <summary>
   /// Members of the object.

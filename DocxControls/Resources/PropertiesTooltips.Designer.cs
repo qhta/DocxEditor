@@ -286,7 +286,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enforce Document Protection Properties.
+        ///   Looks up a localized string similar to Enforce Document Protection RunProperties.
         /// </summary>
         public static string Enforcement {
             get {

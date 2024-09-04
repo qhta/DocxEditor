@@ -266,7 +266,7 @@
     <value>Document Editing Restrictions</value>
   </data>
   <data name="Enforcement" xml:space="preserve">
-    <value>Enforce Document Protection Properties</value>
+    <value>Enforce Document Protection RunProperties</value>
   </data>
   <data name="Formatting" xml:space="preserve">
     <value>Only Allow Formatting With Unlocked Styles</value>

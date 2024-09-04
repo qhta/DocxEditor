@@ -24,7 +24,7 @@ public partial class CustomPropertiesView : UserControl
   //  Debug.WriteLine($"PropertiesGrid_DataContextChanged type is {PropertiesGrid.DataContext?.GetType().ToString() ?? "null"}");
   //  SetValidationRule();
   //  if (PropertiesGrid.DataContext is CustomPropertiesViewModel customPropertiesViewModel)
-  //    SubscribeToCollectionChanged(customPropertiesViewModel.Properties);
+  //    SubscribeToCollectionChanged(customPropertiesViewModel.RunProperties);
   //}
 
   //private void SetValidationRule()

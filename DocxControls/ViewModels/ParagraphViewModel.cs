@@ -30,7 +30,7 @@ public class ParagraphViewModel : ElementViewModel
     foreach (var element in paragraph.Elements())
     {
       if (element is DXW.ParagraphProperties properties)
-        Properties = new ParagraphPropertiesViewModel(properties);
+        ParagraphProperties = new ParagraphPropertiesViewModel(properties);
       else
       {
         ElementViewModel paragraphViewModel = element switch
@@ -43,7 +43,7 @@ public class ParagraphViewModel : ElementViewModel
         Elements.Add(paragraphViewModel);
       }
     }
-    Properties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());
+    ParagraphProperties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());
   }
 
 
@@ -56,7 +56,7 @@ public class ParagraphViewModel : ElementViewModel
   /// <summary>
   /// Paragraph properties view model
   /// </summary>
-  public ParagraphPropertiesViewModel Properties { get; set; }
+  public ParagraphPropertiesViewModel ParagraphProperties { get; set; }
 
   /// <summary>
   /// Observable collection of element view models

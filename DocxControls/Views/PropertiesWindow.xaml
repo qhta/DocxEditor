@@ -8,6 +8,6 @@
         d:DesignHeight="150"
         Title="PropertiesWindow" Height="auto" Width="300">
     <Grid>
-      <TextBlock Text="{Binding}"/>  
+      <local:PropertiesView DataContext="{Binding ObjectProperties}"/>
     </Grid>
 </Window>

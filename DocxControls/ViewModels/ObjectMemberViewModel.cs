@@ -40,7 +40,7 @@ public class ObjectMemberViewModel : ObjectViewModel
   }
 
   /// <summary>
-  /// Gets or sets the container of the object member.
+  /// Gets or sets the owner of the object member.
   /// </summary>
   public ObjectViewModel? Container { get; set; }
 

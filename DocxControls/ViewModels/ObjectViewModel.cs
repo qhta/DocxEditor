@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -7,7 +8,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for complex object properties
 /// </summary>
-public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider
+public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider, ISelectable
 {
   /// <summary>
   ///  Type of the object which properties are modeled
@@ -86,7 +87,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
           originalValue = prop.GetValue(ModeledObject);
           value = originalValue.ToSystemValue(origType);
         }
-        var propertyViewModel = new PropertyViewModel
+        var propertyViewModel = new ObjectPropertyViewModel (this)
         {
           Name = propName,
           Type = type,
@@ -102,7 +103,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     {
       foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
       {
-        if (ObjectProperties.Any(p=>p.OriginalValue==member))
+        if (ObjectProperties.Items.Any(p=>p.OriginalValue==member))
           continue;
         var memberViewModel = new ObjectMemberViewModel(this, member);
         ObjectMembers!.Add(memberViewModel);
@@ -156,11 +157,11 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
       // do nothing
       //var oldMemberViewModel = (ObjectMemberViewModel)e.OldItems![0]!;
       //var memberViewModel = (ObjectMemberViewModel)e.NewItems![0]!;
-      //if (ModeledObject is DX.OpenXmlCompositeElement container)
+      //if (ModeledObject is DX.OpenXmlCompositeElement owner)
       //{
       //  var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
       //  if (member is DX.OpenXmlElement element)
-      //    container.AppendChild(element);
+      //    owner.AppendChild(element);
       //  NotifyPropertyChanged(nameof(ModeledObject));
       //}
     }
@@ -235,9 +236,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   /// <summary>
   /// Properties of the object.
   /// </summary>
-  public ObservableCollection<PropertyViewModel> ObjectProperties => Items;
-
-  private ObjectMembersViewModel? _objectMembers;
+  public ObjectPropertiesViewModel ObjectProperties { get; } = new();
 
   /// <summary>
   /// Members of the object.
@@ -261,7 +260,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
       NotifyPropertyChanged(nameof(ObjectMembers));
     }
   }
-
+  private ObjectMembersViewModel? _objectMembers;
 
   #region IToolTipProvider implementation
   /// <summary>
@@ -319,6 +318,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
   public string? Watermark => PropertyViewModel.GetWatermark(ObjectType!);
   #endregion IPropertyProvider implementation
 
+  #region ISelectable implementation
   /// <summary>
   /// Determines if the object is selected.
   /// </summary>
@@ -335,6 +335,7 @@ public class ObjectViewModel : PropertiesViewModel, IObjectViewModel, IToolTipPr
     }
   }
   private bool _IsSelected;
+  #endregion
 
   /// <summary>
   /// Determines if the object is new.

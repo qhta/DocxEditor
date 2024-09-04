@@ -254,7 +254,7 @@
     <value>Specifies the set of editing restrictions which shall be enforced on a given WordprocessingML document.</value>
   </data>
   <data name="Enforcement" xml:space="preserve">
-    <value>Specifies if the document protection Properties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced.</value>
+    <value>Specifies if the document protection RunProperties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced.</value>
   </data>
   <data name="Formatting" xml:space="preserve">
     <value>Specifies if formatting restrictions are in effect for a given WordprocessingML document. This enables the document to restrict the types of styles that can exist in a given WordprocessingML document. Specifically, by setting this attribute's value equal to true, every style whose locked element (§17.7.4.7) has a value of true (or latent styles (§17.7.4.5) whose locked attribute is true) shall not be available for use in the application, nor should any direct formatting. Only styles with a locked value of false can be used.</value>

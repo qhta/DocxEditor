@@ -28,12 +28,12 @@
           CellTemplate="{StaticResource PropertyCaptionTemplate}" 
           SortMemberPath="Caption"
           MinWidth="100"/>
-        <DataGridTemplateColumn
+        <!--<DataGridTemplateColumn
           Header="{x:Static resources:Strings.Type}"
           CellTemplate="{StaticResource PropertyTypeTemplate}"
           SortMemberPath="Type.Name"
           MinWidth="80"
-        />
+        />-->
         <DataGridTemplateColumn 
           Header="{x:Static resources:Strings.Value}"
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 

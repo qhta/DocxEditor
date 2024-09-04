@@ -1,5 +1,4 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
-using DocxControls.Helpers;
 
 namespace DocxControls;
 
@@ -25,8 +24,8 @@ public class BookmarkStartViewModel : ElementViewModel
     _bookmarksViewModel = bookmarksViewModel;
   }
 
-
   private readonly BookmarksViewModel _bookmarksViewModel;
+
 
   /// <summary>
   /// <c>BookmarkStart</c> element
@@ -133,20 +132,15 @@ public class BookmarkStartViewModel : ElementViewModel
   public string ToolTip => Strings.Bookmark_ + BookmarkStart.Name;
 
   /// <summary>
-  /// Determines if the bookmark is selected
+  /// Initializes the object properties
   /// </summary>
-  public bool IsSelected
+  protected override void InitObjectProperties()
   {
-    get => _IsSelected;
-    set
-    {
-      if (_IsSelected != value)
-      {
-        _IsSelected = value;
-        NotifyPropertyChanged(nameof(IsSelected));
-        if (BookmarkEndViewModel != null) BookmarkEndViewModel.IsSelected = value;
-      }
-    }
+    base.InitObjectProperties();
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnFirst)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnLast)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DisplacedByCustomXml)));
   }
-  private bool _IsSelected;
 }

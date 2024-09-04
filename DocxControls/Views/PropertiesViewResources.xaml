@@ -60,7 +60,7 @@
     <local:ObjectViewComboBox 
        Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},
        UpdateSourceTrigger=Default}"
-       ItemsSource="{Binding ObjectViewModel.ObjectProperties}"
+       ItemsSource="{Binding ObjectViewModel.ObjectProperties.Items}"
        >
     </local:ObjectViewComboBox>
   </DataTemplate>
@@ -155,7 +155,7 @@
   <DataTemplate x:Key="NewMemberTypeTemplate" DataType="local:ObjectMemberViewModel">
     <ComboBox
       SelectedValue="{Binding MemberType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-      ItemsSource="{Binding DataContext.ObjectViewModel.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+      ItemsSource="{Binding DataContext.OwnerObjectViewModel.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
       DisplayMemberPath="Name"
       Padding="{StaticResource PropertyPadding}">
     </ComboBox>

@@ -1,16 +1,18 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
 /// </summary>
-public class ElementViewModel : ViewModel
+public class ElementViewModel : ObjectViewModel
 {
   /// <summary>
   /// Element of the document
   /// </summary>
-  public DX.OpenXmlElement Element { get; init; }
+  public DX.OpenXmlElement Element
+  {
+    get => (DX.OpenXmlElement)ModeledObject!;
+    set => ModeledObject = value;
+  }
 
   /// <summary>
   /// Initializing constructor.
@@ -19,6 +21,8 @@ public class ElementViewModel : ViewModel
   public ElementViewModel(DX.OpenXmlElement element)
   {
     Element = element;
+    // ReSharper disable once VirtualMemberCallInConstructor
+    InitObjectProperties();
   }
 
   /// <summary>
@@ -35,4 +39,13 @@ public class ElementViewModel : ViewModel
   {
     return xml.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
   }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected virtual void InitObjectProperties()
+  {
+
+  }
+
 }

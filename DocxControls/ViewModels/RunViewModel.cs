@@ -23,7 +23,7 @@ public class RunViewModel : ElementViewModel
     foreach (var element in run.Elements())
     {
       if (element is DXW.RunProperties properties)
-        Properties = new RunPropertiesViewModel(properties);
+        RunProperties = new RunPropertiesViewModel(properties);
       else
       {
         ElementViewModel runViewModel = element switch
@@ -34,7 +34,7 @@ public class RunViewModel : ElementViewModel
         Elements.Add(runViewModel);
       }
     }
-    Properties ??= new RunPropertiesViewModel(run.GetProperties());
+    RunProperties ??= new RunPropertiesViewModel(run.GetProperties());
   }
 
   /// <summary>
@@ -45,7 +45,7 @@ public class RunViewModel : ElementViewModel
   /// <summary>
   /// Run properties view model
   /// </summary>
-  public RunPropertiesViewModel Properties { get; set; }
+  public RunPropertiesViewModel RunProperties { get; set; }
 
   /// <summary>
   /// Observable collection of element view models

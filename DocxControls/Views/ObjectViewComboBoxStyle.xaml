@@ -61,12 +61,12 @@
                         CellTemplate="{StaticResource PropertyCaptionTemplate}" 
                         SortMemberPath="Name"
                         MinWidth="100"/>
-                      <DataGridTemplateColumn
+                      <!--<DataGridTemplateColumn
                         Header="{x:Static resources:Strings.Type}"
                         CellTemplate="{StaticResource PropertyTypeTemplate}"
                         SortMemberPath="Type.Name"
                         MinWidth="80"
-                      />
+                      />-->
                       <DataGridTemplateColumn 
                         Header="{x:Static resources:Strings.Value}"
                         CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}"
@@ -111,12 +111,12 @@
                           SortMemberPath="Name"
                           MinWidth="100">
                       </DataGridTemplateColumn>
-                      <DataGridTemplateColumn
+                      <!--<DataGridTemplateColumn
                         Header="{x:Static resources:Strings.Type}"
                         CellTemplate="{StaticResource PropertyTypeTemplate}"
                         SortMemberPath="Type.Name"
                         MinWidth="80"
-                      />
+                      />-->
                       <DataGridTemplateColumn 
                           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
                           Header="{x:Static resources:Strings.Value}"

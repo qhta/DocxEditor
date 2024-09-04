@@ -50,10 +50,14 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   {
     //if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
     //{
-    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(container);
-    //  if ((dataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers != null)
+    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(owner);
+    //  if ((dataGrid?.DataContext as PropertyViewModel)?.OwnerObjectViewModel?.ObjectMembers != null)
     //    return NewMemberValueTemplate ?? TextTemplate;
     //}
+    if (item?.GetType().Name.StartsWith("Displaced")==true)
+    {
+      Debug.Assert(true);
+    }
     if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
     {
       if (enumProvider.IsFlags)

@@ -82,22 +82,5 @@ public class BookmarkEndViewModel : ElementViewModel
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
   public string ToolTip => Strings.Bookmark_ + BookmarkStart?.Name;
-
-  /// <summary>
-  /// Determines if the bookmark is selected
-  /// </summary>
-  public bool IsSelected
-  {
-    get => _IsSelected;
-    set
-    {
-      if (_IsSelected != value)
-      {
-        _IsSelected = value;
-        NotifyPropertyChanged(nameof(IsSelected));
-        if (BookmarkStartViewModel != null) BookmarkStartViewModel.IsSelected = value;
-      }
-    }
-  }
-  private bool _IsSelected;
+    
 }

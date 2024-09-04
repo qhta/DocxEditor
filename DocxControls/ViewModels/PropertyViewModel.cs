@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
-using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
+
 using Qhta.MVVM;
+using Qhta.TypeUtils;
 
 namespace DocxControls;
 
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable
 {
   /// <summary>
   /// Display caption for the property.
@@ -112,11 +113,29 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   public static string? GetWatermark(Type type)
   {
+    if (type.IsNullable(out var baseType))
+      type = baseType;
+    if (type == typeof(string))
+      return null;
     if (type == typeof(DateTime))
       return "yyyy-MM-dd hh:mm:ss";
     if (type == typeof(TimeSpan))
       return "hh:mm:ss";
     if (type == typeof(int))
+      return "0";
+    if (type == typeof(short))
+      return "0";
+    if (type == typeof(sbyte))
+      return "0";
+    if (type == typeof(Int64))
+      return "0";
+    if (type == typeof(uint))
+      return "0";
+    if (type == typeof(ushort))
+      return "0";
+    if (type == typeof(byte))
+      return "0";
+    if (type == typeof(UInt64))
       return "0";
     if (type == typeof(decimal))
       return "0.00";
@@ -141,6 +160,25 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     return null;
   }
   #endregion INotifyPropertyChanged implementation
+
+  #region ISelectable implementation
+  /// <summary>
+  /// Determines if the object is selected.
+  /// </summary>
+  public bool IsSelected
+  {
+    get => _IsSelected;
+    set
+    {
+      if (value != _IsSelected)
+      {
+        _IsSelected = value;
+        NotifyPropertyChanged(nameof(IsSelected));
+      }
+    }
+  }
+  private bool _IsSelected;
+  #endregion
 
   /// <summary>
   /// Not nullable type of the property.
