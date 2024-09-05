@@ -30,7 +30,7 @@ public partial class BookmarkStartView : UserControl
   {
     if (DataContext is BookmarkStartViewModel bookmarkViewModel)
     {
-      bookmarkViewModel.IsSelected = true;
+      bookmarkViewModel.IsHighlighted = true;
     }
   }
 
@@ -38,16 +38,8 @@ public partial class BookmarkStartView : UserControl
   {
     if (DataContext is BookmarkStartViewModel bookmarkViewModel)
     {
-      bookmarkViewModel.IsSelected = false;
+      bookmarkViewModel.IsHighlighted = false;
     }
   }
-  /// <summary>
-  /// Open the properties window.
-  /// </summary>
-  /// <param name="e"></param>
-  protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
-  {
-    Executables.ShowProperties(DataContext);
-    e.Handled = true;
-  }
+
 }

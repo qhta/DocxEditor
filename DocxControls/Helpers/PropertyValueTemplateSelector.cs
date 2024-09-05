@@ -54,17 +54,16 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
     //  if ((dataGrid?.DataContext as PropertyViewModel)?.OwnerObjectViewModel?.ObjectMembers != null)
     //    return NewMemberValueTemplate ?? TextTemplate;
     //}
-    if (item?.GetType().Name.StartsWith("Displaced")==true)
+    if (item is IEnumProvider enumProvider )
     {
-      Debug.Assert(true);
-    }
-    if (item is IEnumProvider enumProvider && enumProvider.IsEnum)
-    {
-      if (enumProvider.IsFlags)
+      if (enumProvider.IsEnum)
       {
-        return FlagsComboBoxTemplate ?? ComboBoxTemplate ?? TextTemplate;
+        if (enumProvider.IsFlags)
+        {
+          return FlagsComboBoxTemplate ?? ComboBoxTemplate ?? TextTemplate;
+        }
+        return ComboBoxTemplate ?? TextTemplate;
       }
-      return ComboBoxTemplate ?? TextTemplate;
     }
     if (item is IBooleanProvider booleanProvider && booleanProvider.IsBoolean)
     {

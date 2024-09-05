@@ -3,7 +3,7 @@ using System.Windows.Controls;
 namespace DocxControls;
 
 /// <summary>
-///  ComboBox that allows to select multiple items.
+///  ComboBox with custom style
 /// </summary>
 public class CustomComboBox : ComboBox
 {

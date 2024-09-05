@@ -322,7 +322,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is selected.
   /// </summary>
-  public bool IsSelected
+  public virtual bool IsSelected
   {
     get => _IsSelected;
     set
@@ -336,6 +336,24 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   }
   private bool _IsSelected;
   #endregion
+
+
+  /// <summary>
+  /// Determines if the object is highlighted (temporary selected).
+  /// </summary>
+  public virtual bool IsHighlighted
+  {
+    get => _IsHighlighted;
+    set
+    {
+      if (value != _IsHighlighted)
+      {
+        _IsHighlighted = value;
+        NotifyPropertyChanged(nameof(IsHighlighted));
+      }
+    }
+  }
+  private bool _IsHighlighted;
 
   /// <summary>
   /// Determines if the object is new.

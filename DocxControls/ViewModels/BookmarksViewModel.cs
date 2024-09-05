@@ -173,4 +173,15 @@ public class BookmarksViewModel
   /// </summary>
   public IEnumerable<Object> DisplacedByCustomXmlValues => DisplacedByCustomXmlHelper.EnumValues;
 
+
+  /// <summary>
+  /// Notifies 
+  /// </summary>
+  /// <param name="id"></param>
+  /// <param name="propertyName"></param>
+  public void NotifyBookmarkEndPropertyChanged(int id, String propertyName)
+  {
+    
+  }
+
 }

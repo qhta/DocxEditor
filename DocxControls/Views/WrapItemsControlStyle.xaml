@@ -14,6 +14,7 @@
       <Setter.Value>
         <ItemsPanelTemplate>
           <WrapPanel 
+            x:Name="PART_WrapPanel"
             Background="{Binding Background, RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}}"/>
         </ItemsPanelTemplate>
       </Setter.Value>
@@ -24,6 +25,7 @@
           <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}, Path=ItemMargin}" />
           <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}, Path=ItemBorderBrush}" />
           <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}, Path=ItemBorderThickness}" />
+          <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
           <Setter Property="Template">
             <Setter.Value>
               <ControlTemplate TargetType="ListBoxItem">
@@ -38,6 +40,7 @@
               </ControlTemplate>
             </Setter.Value>
           </Setter>
+          <Setter Property="local:ListBoxItemBehaviors.RightMouseUpCommand" Value="{Binding RightMouseUpCommand}" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
               <Setter Property="Background" Value="#2000FFFF" />

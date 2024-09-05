@@ -37,7 +37,9 @@ public class BookmarkEndViewModel : ElementViewModel
     get
     {
       if (_BookmarkStart==null)
+      {
         _BookmarkStart = BookmarkEnd.GetBookmarkStart();
+      }
       return _BookmarkStart;
     }
     set => _BookmarkStart = value;
@@ -75,6 +77,8 @@ public class BookmarkEndViewModel : ElementViewModel
       BookmarkStart.Name = value;
       NotifyPropertyChanged(nameof(Name));
       NotifyPropertyChanged(nameof(ToolTip));
+      BookmarkStartViewModel?.NotifyPropertyChanged(nameof(Name));
+      BookmarkStartViewModel?.NotifyPropertyChanged(nameof(ToolTip));
     }
   }
 
@@ -82,5 +86,56 @@ public class BookmarkEndViewModel : ElementViewModel
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
   public string ToolTip => Strings.Bookmark_ + BookmarkStart?.Name;
-    
+
+  /// <summary>
+  /// Allows other classes to notify about property changes
+  /// </summary>
+  /// <param name="propertyName"></param>
+  public new void NotifyPropertyChanged(string propertyName)
+  {
+    base.NotifyPropertyChanged(propertyName);
+  }
+
+  /// <summary>
+  /// Selects this and the corresponding <c>BookmarkStartViewModel</c> element
+  /// </summary>
+  public override bool IsSelected
+  {
+    get => base.IsSelected;
+    set
+    {
+      if (value != base.IsSelected)
+      {
+        base.IsSelected = value;
+        if (BookmarkStartViewModel != null)
+          BookmarkStartViewModel.IsSelected = value;
+      }
+    }
+  }
+
+  /// <summary>
+  /// Selects this and the corresponding <c>BookmarkStartViewModel</c> element
+  /// </summary>
+  public override bool IsHighlighted
+  {
+    get => base.IsHighlighted;
+    set
+    {
+      if (value != base.IsHighlighted)
+      {
+        base.IsHighlighted = value;
+        if (BookmarkStartViewModel != null)
+          BookmarkStartViewModel.IsHighlighted = value;
+      }
+    }
+  }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
+  }
 }

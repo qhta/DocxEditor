@@ -1,4 +1,7 @@
-﻿namespace DocxControls;
+﻿using Qhta.MVVM;
+using System.Windows.Input;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
@@ -23,6 +26,9 @@ public class ElementViewModel : ObjectViewModel
     Element = element;
     // ReSharper disable once VirtualMemberCallInConstructor
     InitObjectProperties();
+    DoubleClickCommand = new RelayCommand<object>(OnItemDoubleClicked);
+    LeftMouseDownCommand = new RelayCommand<object>(OnItemLeftMouseDown);
+    RightMouseUpCommand = new RelayCommand<object>(OnItemRightMouseUp);
   }
 
   /// <summary>
@@ -46,6 +52,45 @@ public class ElementViewModel : ObjectViewModel
   protected virtual void InitObjectProperties()
   {
 
+  }
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand DoubleClickCommand { get; }
+
+  private void OnItemDoubleClicked(object? parameter)
+  {
+    if (parameter is ElementViewModel item)
+    {
+      // Do something with the item
+    }
+  }
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand LeftMouseDownCommand { get; }
+
+  private void OnItemLeftMouseDown(object? parameter)
+  {
+    if (parameter is ElementViewModel item)
+    {
+      item.IsSelected = !item.IsSelected;
+    }
+  }
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand RightMouseUpCommand { get; }
+
+  private void OnItemRightMouseUp(object? parameter)
+  {
+    if (parameter is ElementViewModel item)
+    {
+      Executables.ShowProperties(item);
+    }
   }
 
 }

@@ -10,7 +10,7 @@
     <Grid.Style>
       <Style TargetType="{x:Type Grid}">
         <Style.Triggers>
-          <DataTrigger Binding="{Binding IsSelected}" Value="True">
+          <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
             <Setter Property="Background" Value="LightGray"/>
           </DataTrigger>
         </Style.Triggers>

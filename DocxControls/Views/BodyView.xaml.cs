@@ -15,13 +15,4 @@ public partial class BodyView : UserControl
     InitializeComponent();
   }
 
-  /// <summary>
-  /// Ope
-  /// </summary>
-  /// <param name="e"></param>
-  protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
-  {
-    Executables.ShowProperties(DataContext);
-    e.Handled = true;
-  }
 }

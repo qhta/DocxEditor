@@ -315,15 +315,30 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   #endregion IBooleanProvider implementation
 
   #region IEnumProvider implementation
+
   /// <summary>
   /// Is the property type an enum?
   /// </summary>
-  public bool IsEnum => Type != null && (Type.IsEnum || Type.IsOpenXmlEnum());
+  public virtual bool IsEnum
+  {
+    get
+    {
+      var type = NotNullableType;
+      if (type != null)
+      {
+        if (type.IsEnum)
+          return true;
+        if (type.IsOpenXmlEnum())
+          return true;
+      }
+      return false;
+    }
+  }
 
   /// <summary>
   /// Is the property type an enum treated as separate bits?
   /// </summary>
-  public bool IsFlags => Type != null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
+  public virtual bool IsFlags => Type != null && Type.IsEnum && Type.GetCustomAttributes(typeof(FlagsAttribute), false).Any();
 
   ///// <summary>
   ///// Integer value of the property.
@@ -357,22 +372,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     get
     {
-      if (Type != null)
+      var type = NotNullableType;
+      if (type != null)
       {
-        if (Type.IsOpenXmlEnum())
+        if (type.IsOpenXmlEnum())
         {
           var result = new List<EnumValueViewModel>();
           result.Add(new EnumValueViewModel());
           result.AddRange(
-            Type.GetOpenXmlProperties()
+            type.GetOpenXmlProperties()
               .Select(CreateEnumPropValueViewModel));
           return result;
         }
-        if (Type.IsEnum)
+        if (type.IsEnum)
         {
           if (IsFlags)
-            return Enum.GetValues(Type).Cast<object>().Select(CreateEnumFlagValueViewModel);
-          return Enum.GetValues(Type).Cast<object>().Select(CreateEnumValueViewModel);
+            return Enum.GetValues(type).Cast<object>().Select(CreateEnumFlagValueViewModel);
+          return Enum.GetValues(type).Cast<object>().Select(CreateEnumValueViewModel);
         }
       }
       return [];
@@ -412,12 +428,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 
   private string? GetEnumCaption(object value)
   {
-    if (Type != null)
+    var type = NotNullableType;
+    if (type != null)
     {
       string? str = value as String;
-      if (Type.IsEnum)
+      if (type.IsEnum)
       {
-        str = Enum.GetName(Type, value);
+        str = Enum.GetName(type, value);
       }
       if (str != null)
         str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
@@ -428,12 +445,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 
   private string? GetEnumTooltip(object value)
   {
-    if (Type != null)
+    var type = NotNullableType;
+    if (type != null)
     {
       string? str = value as String;
-      if (Type.IsEnum)
+      if (type.IsEnum)
       {
-        str = Enum.GetName(Type, value);
+        str = Enum.GetName(type, value);
       }
       if (str != null)
         str = PropertiesTooltips.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;

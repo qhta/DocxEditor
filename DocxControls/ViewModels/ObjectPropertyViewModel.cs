@@ -48,6 +48,17 @@ public class ObjectPropertyViewModel : PropertyViewModel
     base.OriginalType = origType;
     base.Value = value;
     base.OriginalValue = originalValue;
+    PropertyChanged += ObjectPropertyViewModel_PropertyChanged;
+  }
+
+  private void ObjectPropertyViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName == nameof(Value))
+    {
+      var value = Value;
+      var val = value!.ToOpenXmlValue(OriginalType);
+      Property?.SetValue(OwnerObjectViewModel, val);
+    }
   }
 
   /// <summary>
@@ -70,4 +81,5 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// </summary>
   public PropertyInfo? Property { get; set; }
 
+  
 }

@@ -41,13 +41,5 @@ public partial class BookmarkEndView : UserControl
       bookmarkViewModel.IsSelected = false;
     }
   }
-  /// <summary>
-  /// Open the properties window.
-  /// </summary>
-  /// <param name="e"></param>
-  protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
-  {
-    Executables.ShowProperties(DataContext);
-    e.Handled = true;
-  }
+
 }

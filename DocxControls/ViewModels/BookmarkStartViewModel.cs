@@ -77,6 +77,8 @@ public class BookmarkStartViewModel : ElementViewModel
       BookmarkStart.Name = value;
       NotifyPropertyChanged(nameof(Name));
       NotifyPropertyChanged(nameof(ToolTip));
+      BookmarkEndViewModel?.NotifyPropertyChanged(nameof(Name));
+      BookmarkEndViewModel?.NotifyPropertyChanged(nameof(ToolTip));
     }
   }
 
@@ -132,11 +134,53 @@ public class BookmarkStartViewModel : ElementViewModel
   public string ToolTip => Strings.Bookmark_ + BookmarkStart.Name;
 
   /// <summary>
+  /// Allows other classes to notify about property changes
+  /// </summary>
+  /// <param name="propertyName"></param>
+  public new void NotifyPropertyChanged(string propertyName)
+  {
+    base.NotifyPropertyChanged(propertyName);
+  }
+
+  /// <summary>
+  /// Selects this and the corresponding <c>BookmarkEndViewModel</c> element
+  /// </summary>
+  public override bool IsSelected
+  {
+    get => base.IsSelected;
+    set
+    {
+      if (value != base.IsSelected)
+      {
+        base.IsSelected = value;
+        if (BookmarkEndViewModel != null)
+          BookmarkEndViewModel.IsSelected = value;
+      }
+    }
+  }
+
+  /// <summary>
+  /// Selects this and the corresponding <c>BookmarkEndViewModel</c> element
+  /// </summary>
+  public override bool IsHighlighted
+  {
+    get => base.IsHighlighted;
+    set
+    {
+      if (value != base.IsHighlighted)
+      {
+        base.IsHighlighted = value;
+        if (BookmarkEndViewModel != null)
+          BookmarkEndViewModel.IsHighlighted = value;
+      }
+    }
+  }
+
+  /// <summary>
   /// Initializes the object properties
   /// </summary>
   protected override void InitObjectProperties()
   {
-    base.InitObjectProperties();
     ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
     ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
     ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnFirst)));
