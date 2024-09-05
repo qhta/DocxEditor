@@ -20,8 +20,8 @@
              FontSize="18"
              FontWeight="Bold"
              ToolTip="{Binding ToolTip}"
-             ToolTipService.ToolTipOpening="Bookmark_ToolTipOpening"
-             ToolTipService.ToolTipClosing="Bookmark_ToolTipClosing">
+             ToolTipService.ToolTipOpening="OnToolTipOpening"
+             ToolTipService.ToolTipClosing="OnToolTipClosing">
     </TextBlock>
   </Grid>
 </UserControl>

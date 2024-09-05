@@ -1,28 +1,17 @@
 ﻿using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace DocxControls;
 /// <summary>
-/// Interaction logic for BookmarkStartView.xaml
+/// Interaction logic for SectionPropertiesView.xaml
 /// </summary>
-public partial class BookmarkStartView : UserControl
+public partial class SectionPropertiesView : UserControl
 {
   /// <summary>
   /// Default constructor
   /// </summary>
-  public BookmarkStartView()
+  public SectionPropertiesView()
   {
     InitializeComponent();
-    DataContextChanged += BookmarkView_DataContextChanged;
-  }
-
-  private void BookmarkView_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-  {
-    if (DataContext is BookmarkStartViewModel bookmarkViewModel)
-    {
-      var id = bookmarkViewModel.Id;
-      Foreground = new SolidColorBrush(BaseColors.GetDarkColor(id));
-    }
   }
 
   private void OnToolTipOpening(object sender, ToolTipEventArgs e)

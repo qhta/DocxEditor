@@ -33,6 +33,8 @@ public class RunViewModel : ElementViewModel
         };
         if (runViewModel != null)
           Elements.Add(runViewModel);
+        else
+          Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
       }
     }
     RunProperties ??= new RunPropertiesViewModel(run.GetProperties());

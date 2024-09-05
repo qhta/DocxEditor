@@ -39,6 +39,11 @@ public class ElementTemplateSelector : DataTemplateSelector
   public DataTemplate? BookmarkEndTemplate { get; set; }
 
   /// <summary>
+  /// Template for section properties.
+  /// </summary>
+  public DataTemplate? SectionPropertiesTemplate { get; set; }
+
+  /// <summary>
   /// Template for an unknown element.
   /// </summary>
   public DataTemplate? UnknownElementTemplate { get; set; }
@@ -63,6 +68,8 @@ public class ElementTemplateSelector : DataTemplateSelector
       return BookmarkStartTemplate ?? UnknownElementTemplate;
     if (item is BookmarkEndViewModel)
       return BookmarkEndTemplate ?? UnknownElementTemplate;
+    if (item is SectionPropertiesViewModel)
+      return SectionPropertiesTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;
   }
 }

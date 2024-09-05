@@ -26,19 +26,19 @@ public partial class BookmarkEndView : UserControl
     }
   }
 
-  private void Bookmark_ToolTipOpening(object sender, ToolTipEventArgs e)
+  private void OnToolTipOpening(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is BookmarkEndViewModel bookmarkViewModel)
+    if (DataContext is ElementViewModel viewModel)
     {
-      bookmarkViewModel.IsSelected = true;
+      viewModel.IsHighlighted = true;
     }
   }
 
-  private void Bookmark_ToolTipClosing(object sender, ToolTipEventArgs e)
+  private void OnToolTipClosing(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is BookmarkEndViewModel bookmarkViewModel)
+    if (DataContext is ElementViewModel viewModel)
     {
-      bookmarkViewModel.IsSelected = false;
+      viewModel.IsHighlighted = false;
     }
   }
 

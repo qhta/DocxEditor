@@ -48,6 +48,9 @@
   <DataTemplate x:Key="TableTemplate" DataType="{x:Type local:TableViewModel}">
     <TextBlock Text="{Binding OuterXml}" />
   </DataTemplate>
+  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type local:SectionPropertiesViewModel}">
+    <local:SectionPropertiesView/>
+  </DataTemplate>
   <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
     <TextBlock Text="{Binding OuterXml}" TextWrapping="Wrap"/>
   </DataTemplate>
@@ -58,7 +61,8 @@
     TextTemplate="{StaticResource TextTemplate}"
     BookmarkStartTemplate="{StaticResource BookmarkStartTemplate}"
     BookmarkEndTemplate="{StaticResource BookmarkEndTemplate}"
-    TableTemplate="{StaticResource TableTemplate}" 
+    TableTemplate="{StaticResource TableTemplate}"
+    SectionPropertiesTemplate="{StaticResource SectionPropertiesTemplate}"
     UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
   />
 </ResourceDictionary>

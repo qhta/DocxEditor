@@ -1,4 +1,6 @@
-﻿using Qhta.MVVM;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+
+using Qhta.MVVM;
 using System.Windows.Input;
 
 namespace DocxControls;
@@ -91,4 +93,8 @@ public abstract class ElementViewModel : ObjectViewModel
     }
   }
 
+  /// <summary>
+  /// Displayed tooltip with the name of the bookmark
+  /// </summary>
+  public string? ToolTip => ModeledObject?.GetType().Name;
 }

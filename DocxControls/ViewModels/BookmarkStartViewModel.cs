@@ -131,7 +131,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// <summary>
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
-  public string ToolTip => Strings.Bookmark_ + BookmarkStart.Name;
+  public new string ToolTip => ModeledObject?.GetType().Name + ": "+ BookmarkStart.Name;
 
   /// <summary>
   /// Allows other classes to notify about property changes

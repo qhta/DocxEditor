@@ -42,6 +42,8 @@ public class ParagraphViewModel : ElementViewModel
         };
         if (paragraphViewModel != null)
           Elements.Add(paragraphViewModel);
+        else
+          Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
       }
     }
     ParagraphProperties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());

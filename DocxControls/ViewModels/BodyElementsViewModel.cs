@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 
-using DocumentFormat.OpenXml.Packaging;
-
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -36,10 +34,13 @@ public class BodyElementsViewModel : ViewModel
       {
         DXW.Paragraph paragraph => new ParagraphViewModel(documentViewModel, paragraph),
         DXW.Table table => new TableViewModel(table),
+        DXW.SectionProperties sectionProperties => new SectionPropertiesViewModel(sectionProperties),
         _ => null
       };
       if (bodyElementViewModel != null)
         Elements.Add(bodyElementViewModel);
+      else
+        Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
     }
   }
 
