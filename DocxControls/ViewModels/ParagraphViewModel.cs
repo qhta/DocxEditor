@@ -33,14 +33,15 @@ public class ParagraphViewModel : ElementViewModel
         ParagraphProperties = new ParagraphPropertiesViewModel(properties);
       else
       {
-        ElementViewModel paragraphViewModel = element switch
+        ElementViewModel? paragraphViewModel = element switch
         {
           DXW.Run run => new RunViewModel(run),
           DXW.BookmarkStart bookmarkStart => DocumentViewModel.Bookmarks.RegisterBookmarkStart(bookmarkStart),
           DXW.BookmarkEnd bookmarkEnd => DocumentViewModel.Bookmarks.RegisterBookmarkEnd(bookmarkEnd),
-          _ => new ElementViewModel(element)
+          _ => null
         };
-        Elements.Add(paragraphViewModel);
+        if (paragraphViewModel != null)
+          Elements.Add(paragraphViewModel);
       }
     }
     ParagraphProperties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());
@@ -63,4 +64,10 @@ public class ParagraphViewModel : ElementViewModel
   /// </summary>
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+  }
 }

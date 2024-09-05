@@ -26,12 +26,13 @@ public class RunViewModel : ElementViewModel
         RunProperties = new RunPropertiesViewModel(properties);
       else
       {
-        ElementViewModel runViewModel = element switch
+        ElementViewModel? runViewModel = element switch
         {
           DXW.Text text => new TextViewModel(text),
-          _ => new ElementViewModel(element)
+          _ => null
         };
-        Elements.Add(runViewModel);
+        if (runViewModel != null)
+          Elements.Add(runViewModel);
       }
     }
     RunProperties ??= new RunPropertiesViewModel(run.GetProperties());
@@ -66,4 +67,11 @@ public class RunViewModel : ElementViewModel
   /// Check if the run is underlined
   /// </summary>
   public bool IsUnderline => Run.IsItalic();
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+  }
 }

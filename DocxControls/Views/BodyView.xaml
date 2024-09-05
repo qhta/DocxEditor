@@ -28,6 +28,9 @@
             ConverterParameter=4}" />
           <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
           <Setter Property="Padding" Value="0"/>
+          <Setter Property="local:ListBoxItemBehaviors.DoubleClickCommand" Value="{Binding DoubleClickCommand}" />
+          <Setter Property="local:ListBoxItemBehaviors.LeftMouseDownCommand" Value="{Binding LeftMouseDownCommand}" />
+          <Setter Property="local:ListBoxItemBehaviors.RightMouseUpCommand" Value="{Binding RightMouseUpCommand}" />
         </Style>
       </ListView.ItemContainerStyle>
     </ListView>

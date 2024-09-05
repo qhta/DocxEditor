@@ -6,7 +6,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
 /// </summary>
-public class ElementViewModel : ObjectViewModel
+public abstract class ElementViewModel : ObjectViewModel
 {
   /// <summary>
   /// Element of the document
@@ -21,7 +21,7 @@ public class ElementViewModel : ObjectViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="element"></param>
-  public ElementViewModel(DX.OpenXmlElement element)
+  protected ElementViewModel(DX.OpenXmlElement element)
   {
     Element = element;
     // ReSharper disable once VirtualMemberCallInConstructor
@@ -49,15 +49,13 @@ public class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Initializes the object properties
   /// </summary>
-  protected virtual void InitObjectProperties()
-  {
+  protected abstract void InitObjectProperties();
 
-  }
 
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
-  public ICommand DoubleClickCommand { get; }
+  public ICommand? DoubleClickCommand { get; protected set; }
 
   private void OnItemDoubleClicked(object? parameter)
   {
@@ -70,7 +68,7 @@ public class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
-  public ICommand LeftMouseDownCommand { get; }
+  public ICommand? LeftMouseDownCommand { get; protected set; }
 
   private void OnItemLeftMouseDown(object? parameter)
   {
@@ -83,7 +81,7 @@ public class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
-  public ICommand RightMouseUpCommand { get; }
+  public ICommand? RightMouseUpCommand { get; protected set; }
 
   private void OnItemRightMouseUp(object? parameter)
   {

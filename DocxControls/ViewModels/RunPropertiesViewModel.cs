@@ -12,4 +12,11 @@ public class RunPropertiesViewModel : ElementViewModel
   public RunPropertiesViewModel(DXW.RunProperties properties): base(properties)
   {
   }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+  }
 }

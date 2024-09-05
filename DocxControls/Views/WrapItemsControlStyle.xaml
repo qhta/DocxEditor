@@ -40,6 +40,8 @@
               </ControlTemplate>
             </Setter.Value>
           </Setter>
+          <Setter Property="local:ListBoxItemBehaviors.DoubleClickCommand" Value="{Binding DoubleClickCommand}" />
+          <Setter Property="local:ListBoxItemBehaviors.LeftMouseDownCommand" Value="{Binding LeftMouseDownCommand}" />
           <Setter Property="local:ListBoxItemBehaviors.RightMouseUpCommand" Value="{Binding RightMouseUpCommand}" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">

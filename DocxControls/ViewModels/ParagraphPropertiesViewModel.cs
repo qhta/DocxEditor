@@ -12,4 +12,11 @@ public class ParagraphPropertiesViewModel : ElementViewModel
   public ParagraphPropertiesViewModel(DXW.ParagraphProperties properties): base(properties)
   {
   }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+  }
 }

@@ -32,13 +32,14 @@ public class BodyElementsViewModel : ViewModel
     var wordDocument = documentViewModel.WordDocument;
     foreach (var element in wordDocument.GetBody())
     {
-      ElementViewModel bodyElementViewModel = element switch
+      ElementViewModel? bodyElementViewModel = element switch
       {
         DXW.Paragraph paragraph => new ParagraphViewModel(documentViewModel, paragraph),
         DXW.Table table => new TableViewModel(table),
-        _ => new ElementViewModel(element)
+        _ => null
       };
-      Elements.Add(bodyElementViewModel);
+      if (bodyElementViewModel != null)
+        Elements.Add(bodyElementViewModel);
     }
   }
 

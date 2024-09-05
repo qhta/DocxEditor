@@ -1,4 +1,7 @@
-﻿namespace DocxControls;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Qhta.MVVM;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for a run text element
@@ -18,6 +21,9 @@ public class TextViewModel : ElementViewModel
   /// <param name="text"></param>
   public TextViewModel(DXW.Text text): base (text)
   {
+    DoubleClickCommand = null;
+    LeftMouseDownCommand = null;
+    RightMouseUpCommand = null;
   }
 
   /// <summary>
@@ -45,4 +51,11 @@ public class TextViewModel : ElementViewModel
   /// Check if the parent run is underlined
   /// </summary>
   public bool? IsUnderline => (TextElement.Parent as DXW.Run)?.IsUnderline();
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+  }
 }
