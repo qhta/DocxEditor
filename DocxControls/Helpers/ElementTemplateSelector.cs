@@ -43,6 +43,12 @@ public class ElementTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? SectionPropertiesTemplate { get; set; }
 
+
+  /// <summary>
+  /// Template for last rendered page break.
+  /// </summary>
+  public DataTemplate? LastRenderedPageBreakTemplate { get; set; }
+
   /// <summary>
   /// Template for an unknown element.
   /// </summary>
@@ -70,6 +76,8 @@ public class ElementTemplateSelector : DataTemplateSelector
       return BookmarkEndTemplate ?? UnknownElementTemplate;
     if (item is SectionPropertiesViewModel)
       return SectionPropertiesTemplate ?? UnknownElementTemplate;
+    if (item is LastRenderedPageBreakViewModel)
+      return LastRenderedPageBreakTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;
   }
 }

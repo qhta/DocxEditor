@@ -29,6 +29,7 @@ public class RunViewModel : ElementViewModel
         ElementViewModel? runViewModel = element switch
         {
           DXW.Text text => new TextViewModel(text),
+          DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(lastRenderedPageBreak),
           _ => null
         };
         if (runViewModel != null)

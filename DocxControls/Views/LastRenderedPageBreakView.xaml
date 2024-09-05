@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DocxControls.LastRenderedPageBreakView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocxControls"
+             mc:Ignorable="d" 
+             Height="10" d:DesignWidth="50">
+  <Grid>
+    <Grid.Style>
+      <Style TargetType="{x:Type Grid}">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+            <Setter Property="Background" Value="LightGray"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </Grid.Style>
+    <Line 
+      Stroke="Black"
+      StrokeThickness="2"
+      X1="0"
+      Y1="0"
+      X2="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+      Y2="0"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Center"
+      ToolTip="{Binding ToolTip}"
+      ToolTipService.ToolTipOpening="OnToolTipOpening"
+      ToolTipService.ToolTipClosing="OnToolTipClosing">
+      <Line.StrokeDashArray>
+        <DoubleCollection>1, 2, 1, 2</DoubleCollection>
+      </Line.StrokeDashArray>
+    </Line>
+  </Grid>
+</UserControl>

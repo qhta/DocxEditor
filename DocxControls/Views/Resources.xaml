@@ -51,6 +51,9 @@
   <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type local:SectionPropertiesViewModel}">
     <local:SectionPropertiesView/>
   </DataTemplate>
+  <DataTemplate x:Key="LastRenderedPageBreakTemplate" DataType="{x:Type local:LastRenderedPageBreakViewModel}">
+    <local:LastRenderedPageBreakView/>
+  </DataTemplate>
   <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
     <TextBlock Text="{Binding OuterXml}" TextWrapping="Wrap"/>
   </DataTemplate>
@@ -63,6 +66,7 @@
     BookmarkEndTemplate="{StaticResource BookmarkEndTemplate}"
     TableTemplate="{StaticResource TableTemplate}"
     SectionPropertiesTemplate="{StaticResource SectionPropertiesTemplate}"
+    LastRenderedPageBreakTemplate="{StaticResource LastRenderedPageBreakTemplate}"
     UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
   />
 </ResourceDictionary>
