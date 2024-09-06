@@ -7,12 +7,6 @@ namespace DocxControls;
 /// </summary>
 public class ParagraphViewModel : ElementViewModel
 {
-  ///// <summary>
-  ///// Default constructor. Creates a new <see cref="Paragraph"/>
-  ///// </summary>
-  //public ParagraphViewModel() : this(new DXW.Paragraph())
-  //{
-  //}
 
   /// <summary>
   /// Internal Wordprocessing document view model
@@ -40,10 +34,12 @@ public class ParagraphViewModel : ElementViewModel
           DXW.BookmarkEnd bookmarkEnd => DocumentViewModel.Bookmarks.RegisterBookmarkEnd(bookmarkEnd),
           _ => null
         };
-        if (paragraphViewModel != null)
-          Elements.Add(paragraphViewModel);
-        else
-          Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
+        if (paragraphViewModel == null)
+        {
+          //Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
+          paragraphViewModel = new UnknownElementViewModel(element);
+        }
+        Elements.Add(paragraphViewModel);
       }
     }
     ParagraphProperties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());

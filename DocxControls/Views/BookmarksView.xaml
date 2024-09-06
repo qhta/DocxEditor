@@ -24,7 +24,7 @@
   </UserControl.Resources>
   <Grid>
     <DataGrid
-      ItemsSource="{Binding Items}" 
+      ItemsSource="{Binding .Items}" 
       HeadersVisibility="All" 
       AutoGenerateColumns="False" 
       CanUserSortColumns="True"

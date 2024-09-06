@@ -18,6 +18,9 @@
       <DataTemplate x:Key="DocumentSettingsTemplate">
         <local:DocumentSettingsView DataContext="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext}"/>
       </DataTemplate>
+      <DataTemplate x:Key="BookmarksTemplate">
+        <local:BookmarksView DataContext="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext.Bookmarks}"/>
+      </DataTemplate>
     </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
@@ -27,9 +30,7 @@
       </TabItem>
       <TabItem Header="{x:Static resources:Strings.Properties}" ContentTemplate="{StaticResource DocumentPropertiesTemplate}" />
       <TabItem Header="{x:Static resources:Strings.Settings}" ContentTemplate="{StaticResource DocumentSettingsTemplate}"/>
-      <TabItem Header="{x:Static resources:Strings.Bookmarks}">
-        <local:BookmarksView DataContext="{Binding Bookmarks}"/>
-      </TabItem>
+      <TabItem Header="{x:Static resources:Strings.Bookmarks}" ContentTemplate="{StaticResource BookmarksTemplate}"/>
     </TabControl>
   </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 using Qhta.MVVM;
 
@@ -28,20 +29,57 @@ public class BodyElementsViewModel : ViewModel
   {
     DocumentViewModel = documentViewModel;
     var wordDocument = documentViewModel.WordDocument;
-    foreach (var element in wordDocument.GetBody())
-    {
-      ElementViewModel? bodyElementViewModel = element switch
-      {
-        DXW.Paragraph paragraph => new ParagraphViewModel(documentViewModel, paragraph),
-        DXW.Table table => new TableViewModel(table),
-        DXW.SectionProperties sectionProperties => new SectionPropertiesViewModel(sectionProperties),
-        _ => null
-      };
-      if (bodyElementViewModel != null)
-        Elements.Add(bodyElementViewModel);
-      else
-        Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
-    }
+    var body = wordDocument.GetBody();
+    currentElement = body.FirstChild;
+    LoadMoreCommand = new RelayCommand(async () => await LoadMoreItems(), () => !isLoading && currentElement!=null);
+    LoadMoreItems().ConfigureAwait(false);
+
+
   }
 
+  /// <summary>
+  /// Command to load more elements. Used in lazy loading.
+  /// </summary>
+  public ICommand LoadMoreCommand { get; }
+
+  private const int PageSize = 20;
+  private bool isLoading;
+  private int currentElementIndex = 0;
+
+  private DX.OpenXmlElement? currentElement;
+
+  private async Task LoadMoreItems()
+  {
+    if (isLoading) return;
+
+    isLoading = true;
+
+    Debug.WriteLine($"LoadMoreItems start");
+    int i = PageSize;
+    while (i-- > 0 && currentElement != null)
+    {
+      CreateChildViewModel(currentElement);
+      currentElement = currentElement.NextSibling();
+      currentElementIndex++;
+    }
+    Debug.WriteLine($"LoadMoreItems end. CurrentElementIndex = {currentElementIndex}");
+    isLoading = false;
+  }
+
+  private void CreateChildViewModel(DX.OpenXmlElement element)
+  {
+    ElementViewModel? bodyElementViewModel = element switch
+    {
+      DXW.Paragraph paragraph => new ParagraphViewModel(DocumentViewModel, paragraph),
+      DXW.Table table => new TableViewModel(table),
+      DXW.SectionProperties sectionProperties => new SectionPropertiesViewModel(sectionProperties),
+      _ => null
+    };
+    if (bodyElementViewModel == null)
+    {
+      //Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
+      bodyElementViewModel = new UnknownElementViewModel(element);
+    }
+    Elements.Add(bodyElementViewModel);
+  }
 }

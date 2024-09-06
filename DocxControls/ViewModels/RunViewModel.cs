@@ -10,7 +10,7 @@ public class RunViewModel : ElementViewModel
   /// <summary>
   /// Default constructor. Creates a new <see cref="Run"/>
   /// </summary>
-  public RunViewModel(): this(new DXW.Run())
+  public RunViewModel() : this(new DXW.Run())
   {
   }
 
@@ -18,7 +18,7 @@ public class RunViewModel : ElementViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="run"></param>
-  public RunViewModel(DXW.Run run): base (run)
+  public RunViewModel(DXW.Run run) : base(run)
   {
     foreach (var element in run.Elements())
     {
@@ -29,13 +29,15 @@ public class RunViewModel : ElementViewModel
         ElementViewModel? runViewModel = element switch
         {
           DXW.Text text => new TextViewModel(text),
-          DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(lastRenderedPageBreak),
+          //DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(lastRenderedPageBreak),
           _ => null
         };
-        if (runViewModel != null)
-          Elements.Add(runViewModel);
-        else
-          Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
+        if (runViewModel == null)
+        {
+          //Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
+          runViewModel = new UnknownElementViewModel(element);
+        }
+        Elements.Add(runViewModel);
       }
     }
     RunProperties ??= new RunPropertiesViewModel(run.GetProperties());

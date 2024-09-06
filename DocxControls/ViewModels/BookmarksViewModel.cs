@@ -75,26 +75,34 @@ public class BookmarksViewModel
   /// <param name="bookmarkStart"></param>
   public BookmarkStartViewModel RegisterBookmarkStart(DXW.BookmarkStart bookmarkStart)
   {
-    lock (Bookmarks)
+    BookmarkStartViewModel? result = null;
+    System.Windows.Application.Current.Dispatcher.Invoke(() =>
     {
-      var id = bookmarkStart.Id?.Value ?? "";
-      if (!Bookmarks.TryGetValue(id, out var value))
+      lock (Bookmarks)
       {
-        value = (new BookmarkStartViewModel(this, bookmarkStart), null);
-        Bookmarks.Add(id, value);
-        Items.Add(value.start); 
-      }
-      else
-      {
-        if (value.start == null)
+        var id = bookmarkStart.Id?.Value ?? "";
+        if (!Bookmarks.TryGetValue(id, out var value))
         {
-          value.start = new BookmarkStartViewModel(this, bookmarkStart);
-          Bookmarks[id] = value;
+          result = new BookmarkStartViewModel(this, bookmarkStart);
+          value = (result, null);
+          Bookmarks.Add(id, value);
           Items.Add(value.start);
         }
+        else
+        {
+          if (value.start == null)
+          {
+            result = new BookmarkStartViewModel(this, bookmarkStart);
+            value.start = result;
+            Bookmarks[id] = value;
+            Items.Add(value.start);
+          }
+          else
+            result = value.start;
+        }
       }
-      return value.start;
-    }
+    });
+    return result!;
   }
 
   /// <summary>
@@ -105,24 +113,32 @@ public class BookmarksViewModel
   /// <param name="bookmarkEnd"></param>
   public BookmarkEndViewModel RegisterBookmarkEnd(DXW.BookmarkEnd bookmarkEnd)
   {
-    lock (Bookmarks)
+    BookmarkEndViewModel? result = null;
+    System.Windows.Application.Current.Dispatcher.Invoke(() =>
     {
-      var id = bookmarkEnd.Id?.Value ?? "";
-      if (!Bookmarks.TryGetValue(id, out var value))
+      lock (Bookmarks)
       {
-        value = (null,new BookmarkEndViewModel(this, bookmarkEnd));
-        Bookmarks.Add(id, value);
-      }
-      else
-      {
-        if (value.end == null)
+        var id = bookmarkEnd.Id?.Value ?? "";
+        if (!Bookmarks.TryGetValue(id, out var value))
         {
-          value.end = new BookmarkEndViewModel(this, bookmarkEnd);
-          Bookmarks[id] = value;
+          result = new BookmarkEndViewModel(this, bookmarkEnd);
+          value = (null, result);
+          Bookmarks.Add(id, value);
+        }
+        else
+        {
+          if (value.end == null)
+          {
+            result = new BookmarkEndViewModel(this, bookmarkEnd);
+            value.end = result;
+            Bookmarks[id] = value;
+          }
+          else
+            result = value.end;
         }
       }
-      return value.end;
-    }
+    });
+    return result!;
   }
 
   /// <summary>
@@ -181,7 +197,7 @@ public class BookmarksViewModel
   /// <param name="propertyName"></param>
   public void NotifyBookmarkEndPropertyChanged(int id, String propertyName)
   {
-    
+
   }
 
 }
