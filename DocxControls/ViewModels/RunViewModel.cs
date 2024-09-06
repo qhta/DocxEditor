@@ -8,39 +8,33 @@ namespace DocxControls;
 public class RunViewModel : ElementViewModel
 {
   /// <summary>
-  /// Default constructor. Creates a new <see cref="Run"/>
-  /// </summary>
-  public RunViewModel() : this(new DXW.Run())
-  {
-  }
-
-  /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="run"></param>
-  public RunViewModel(DXW.Run run) : base(run)
+  /// <param name="propertiesViewModel">Owner view model. Must be <see cref="ParagraphViewModel"/></param>
+  /// <param name="run">Modeled run element</param>
+  public RunViewModel(ParagraphViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
   {
     foreach (var element in run.Elements())
     {
       if (element is DXW.RunProperties properties)
-        RunProperties = new RunPropertiesViewModel(properties);
+        RunProperties = new RunPropertiesViewModel(this, properties);
       else
       {
         ElementViewModel? runViewModel = element switch
         {
-          DXW.Text text => new TextViewModel(text),
-          //DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(lastRenderedPageBreak),
+          DXW.Text text => new TextViewModel(this, text),
+          DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(this, lastRenderedPageBreak),
           _ => null
         };
         if (runViewModel == null)
         {
           //Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
-          runViewModel = new UnknownElementViewModel(element);
+          runViewModel = new UnknownElementViewModel(this, element);
         }
         Elements.Add(runViewModel);
       }
     }
-    RunProperties ??= new RunPropertiesViewModel(run.GetProperties());
+    RunProperties ??= new RunPropertiesViewModel(this, run.GetProperties());
   }
 
   /// <summary>

@@ -61,9 +61,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SettingsTooltips.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\LastRenderedPageBreakView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\SectionPropertiesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Qhta.MVVM;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// View model for a run text element
@@ -9,17 +6,11 @@ namespace DocxControls;
 public class TextViewModel : ElementViewModel
 {
   /// <summary>
-  /// Default constructor. Creates a new <see cref="Text"/>
-  /// </summary>
-  public TextViewModel(): this(new DXW.Text())
-  {
-  }
-
-  /// <summary>
   /// Initializing constructor.
   /// </summary>
+  /// <param name="runViewModel">Owner view model. Must be <see cref="RunViewModel"/></param>
   /// <param name="text"></param>
-  public TextViewModel(DXW.Text text): base (text)
+  public TextViewModel(RunViewModel runViewModel, DXW.Text text): base (runViewModel, text)
   {
     DoubleClickCommand = null;
     LeftMouseDownCommand = null;

@@ -17,7 +17,7 @@ public class BookmarkEndViewModel : ElementViewModel
   /// </summary>
   /// <param name="bookmarksViewModel"></param>
   /// <param name="bookmarkEnd"></param>
-  public BookmarkEndViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkEnd bookmarkEnd): base (bookmarkEnd)
+  public BookmarkEndViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkEnd bookmarkEnd): base (bookmarksViewModel,bookmarkEnd)
   {
     _bookmarksViewModel = bookmarksViewModel;
   }

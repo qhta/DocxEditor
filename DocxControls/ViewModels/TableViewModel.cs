@@ -6,17 +6,11 @@
 public class TableViewModel : ElementViewModel
 {
   /// <summary>
-  /// Default constructor. Creates a new <c>Table</c>>
-  /// </summary>
-  public TableViewModel(): this (new DXW.Table())
-  {
-  }
-
-  /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="table"></param>
-  public TableViewModel(DXW.Table table): base(table)
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BodyElementsViewModel"/></param>
+  /// <param name="table">Modeled table element</param>
+  public TableViewModel(BodyElementsViewModel ownerViewModel, DXW.Table table): base(ownerViewModel, table)
   {
   }
 

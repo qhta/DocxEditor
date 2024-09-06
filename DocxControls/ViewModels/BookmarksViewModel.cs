@@ -4,13 +4,14 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using DocxControls.Helpers;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
 /// <summary>
 /// View model for the document settings.
 /// </summary>
-public class BookmarksViewModel
+public class BookmarksViewModel: ViewModel
 {
 
   /// <summary>

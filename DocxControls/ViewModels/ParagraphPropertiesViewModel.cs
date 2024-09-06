@@ -8,8 +8,9 @@ public class ParagraphPropertiesViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="properties"></param>
-  public ParagraphPropertiesViewModel(DXW.ParagraphProperties properties): base(properties)
+  /// <param name="paragraphViewModel">Owner view model. Must be <see cref="ParagraphViewModel"/></param>
+  /// <param name="properties">Modeled paragraph properties element</param>
+  public ParagraphPropertiesViewModel(ParagraphViewModel paragraphViewModel, DXW.ParagraphProperties properties): base(paragraphViewModel, properties)
   {
   }
 

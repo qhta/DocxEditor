@@ -19,7 +19,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   /// <param name="bookmarksViewModel"></param>
   /// <param name="bookmarkStart"></param>
-  public BookmarkStartViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkStart bookmarkStart) : base(bookmarkStart)
+  public BookmarkStartViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkStart bookmarkStart) : base(bookmarksViewModel,bookmarkStart)
   {
     _bookmarksViewModel = bookmarksViewModel;
   }

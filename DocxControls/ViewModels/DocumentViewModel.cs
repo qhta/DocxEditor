@@ -1,9 +1,11 @@
-﻿namespace DocxControls;
+﻿using Qhta.MVVM;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for a document.
 /// </summary>
-public class DocumentViewModel
+public class DocumentViewModel: ViewModel
 {
   /// <summary>
   /// Initializing constructor.
@@ -39,7 +41,7 @@ public class DocumentViewModel
     {
       if (_BodyElements == null)
       {
-        _BodyElements = new BodyElementsViewModel(this);
+        _BodyElements = new BodyElementsViewModel(this, WordDocument.GetBody());
       }
       return _BodyElements;
     }

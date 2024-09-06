@@ -1,7 +1,6 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using System.Windows.Input;
 
 using Qhta.MVVM;
-using System.Windows.Input;
 
 namespace DocxControls;
 
@@ -10,6 +9,11 @@ namespace DocxControls;
 /// </summary>
 public abstract class ElementViewModel : ObjectViewModel
 {
+  /// <summary>
+  /// Owner element view model
+  /// </summary>
+  public ViewModel? Owner { get; }
+
   /// <summary>
   /// Element of the document
   /// </summary>
@@ -22,9 +26,11 @@ public abstract class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
+  /// <param name="owner">owner ViewModel</param>
   /// <param name="element"></param>
-  protected ElementViewModel(DX.OpenXmlElement element)
+  protected ElementViewModel(ViewModel? owner, DX.OpenXmlElement element)
   {
+    Owner = owner;
     Element = element;
     // ReSharper disable once VirtualMemberCallInConstructor
     InitObjectProperties();
@@ -34,16 +40,33 @@ public abstract class ElementViewModel : ObjectViewModel
   }
 
   /// <summary>
-  /// Access to inner Xml of the element
+  /// Recursively gets the top document view model
   /// </summary>
-  public string InnerXml => CleanXml(Element.InnerXml);
+  /// <returns></returns>
+  /// <exception cref="InvalidOperationException"></exception>
+  public DocumentViewModel GetDocumentViewModel() => (Owner as DocumentViewModel) ?? (Owner as ElementViewModel)?.GetDocumentViewModel() 
+    ?? throw new InvalidOperationException("Owner is not a document view model");
 
   /// <summary>
   /// Access to outer Xml of the element
   /// </summary>
-  public string OuterXml => CleanXml(Element.OuterXml);
+  public virtual string DisplayText
+  {
+    get
+    {
+      var str = CleanXml(Element.OuterXml);
+      if (str.Length > 1000)
+        str = str.Substring(0, 996) + " ...";
+      return str;
+    }
+  }
 
-  private string CleanXml(string xml)
+  /// <summary>
+  /// Removes unnecessary tags from xml.
+  /// </summary>
+  /// <param name="xml"></param>
+  /// <returns></returns>
+  protected string CleanXml(string xml)
   {
     return xml.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
   }

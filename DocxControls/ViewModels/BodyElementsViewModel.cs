@@ -8,13 +8,13 @@ namespace DocxControls;
 /// <summary>
 /// View model for the body elements: paragraphs, tables, etc.
 /// </summary>
-public class BodyElementsViewModel : ViewModel
+public class BodyElementsViewModel : ElementViewModel
 {
 
   /// <summary>
   /// Internal Wordprocessing document view model
   /// </summary>
-  public DocumentViewModel DocumentViewModel { get; init; }
+  public DocumentViewModel OwnerViewModel { get; init; }
 
   /// <summary>
   /// Observable collection of properties
@@ -24,12 +24,11 @@ public class BodyElementsViewModel : ViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="documentViewModel"></param>
-  public BodyElementsViewModel(DocumentViewModel documentViewModel)
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="DocumentViewModel"/></param>
+  /// <param name="body">Modeled body element</param>
+  public BodyElementsViewModel(DocumentViewModel ownerViewModel, DXW.Body body): base(ownerViewModel, body)
   {
-    DocumentViewModel = documentViewModel;
-    var wordDocument = documentViewModel.WordDocument;
-    var body = wordDocument.GetBody();
+    OwnerViewModel = ownerViewModel;
     currentElement = body.FirstChild;
     LoadMoreCommand = new RelayCommand( LoadMoreItems, () => !isLoading && currentElement!=null);
  }
@@ -52,7 +51,7 @@ public class BodyElementsViewModel : ViewModel
     Task.Run(() =>
     {
       //Thread.Sleep(100);
-      Debug.WriteLine($"LoadMoreItems start");
+      //Debug.WriteLine($"LoadMoreItems start");
       int i = PageSize;
       while (i-- > 0 && currentElement != null)
       {
@@ -60,7 +59,7 @@ public class BodyElementsViewModel : ViewModel
         currentElement = currentElement.NextSibling();
         currentElementIndex++;
       }
-      Debug.WriteLine($"LoadMoreItems end. CurrentElementIndex = {currentElementIndex}");
+      //Debug.WriteLine($"LoadMoreItems end. CurrentElementIndex = {currentElementIndex}");
       isLoading = false;
     });
   }
@@ -69,19 +68,28 @@ public class BodyElementsViewModel : ViewModel
   {
     ElementViewModel? bodyElementViewModel = element switch
     {
-      DXW.Paragraph paragraph => new ParagraphViewModel(DocumentViewModel, paragraph),
-      DXW.Table table => new TableViewModel(table),
-      DXW.SectionProperties sectionProperties => new SectionPropertiesViewModel(sectionProperties),
+      DXW.Paragraph paragraph => new ParagraphViewModel(this, paragraph),
+      DXW.Table table => new TableViewModel(this, table),
+      DXW.SectionProperties sectionProperties => new SectionPropertiesViewModel(this, sectionProperties),
+      DXW.SdtElement sdtElement => new SdtElementViewModel(this, sdtElement),
       _ => null
     };
     if (bodyElementViewModel == null)
     {
       //Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
-      bodyElementViewModel = new UnknownElementViewModel(element);
+      bodyElementViewModel = new UnknownElementViewModel(this, element);
     }
     System.Windows.Application.Current.Dispatcher.Invoke(() =>
     {
       Elements.Add(bodyElementViewModel);
     });
+  }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override void InitObjectProperties()
+  {
+    //throw new NotImplementedException();
   }
 }

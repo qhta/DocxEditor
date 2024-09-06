@@ -16,20 +16,20 @@ public class ParagraphViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="documentViewModel"></param>
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BodyElementsViewModel"/></param>
   /// <param name="paragraph"></param>
-  public ParagraphViewModel(DocumentViewModel documentViewModel, DXW.Paragraph paragraph) : base(paragraph)
+  public ParagraphViewModel(BodyElementsViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
-    DocumentViewModel = documentViewModel;
+    DocumentViewModel = ownerViewModel.GetDocumentViewModel();
     foreach (var element in paragraph.Elements())
     {
       if (element is DXW.ParagraphProperties properties)
-        ParagraphProperties = new ParagraphPropertiesViewModel(properties);
+        ParagraphProperties = new ParagraphPropertiesViewModel(this, properties);
       else
       {
         ElementViewModel? paragraphViewModel = element switch
         {
-          DXW.Run run => new RunViewModel(run),
+          DXW.Run run => new RunViewModel(this, run),
           DXW.BookmarkStart bookmarkStart => DocumentViewModel.Bookmarks.RegisterBookmarkStart(bookmarkStart),
           DXW.BookmarkEnd bookmarkEnd => DocumentViewModel.Bookmarks.RegisterBookmarkEnd(bookmarkEnd),
           _ => null
@@ -37,12 +37,12 @@ public class ParagraphViewModel : ElementViewModel
         if (paragraphViewModel == null)
         {
           //Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
-          paragraphViewModel = new UnknownElementViewModel(element);
+          paragraphViewModel = new UnknownElementViewModel(this, element);
         }
         Elements.Add(paragraphViewModel);
       }
     }
-    ParagraphProperties ??= new ParagraphPropertiesViewModel(Paragraph.GetProperties());
+    ParagraphProperties ??= new ParagraphPropertiesViewModel(this, Paragraph.GetProperties());
   }
 
 
