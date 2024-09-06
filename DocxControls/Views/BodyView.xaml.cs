@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DocxControls;
 /// <summary>
@@ -22,8 +24,31 @@ public partial class BodyView : UserControl
       {
         var viewModel = documentViewModel.BodyElements;
         if (viewModel.LoadMoreCommand.CanExecute(null))
+        {
           viewModel.LoadMoreCommand.Execute(null);
+          Application.Current.Dispatcher.InvokeAsync(() =>
+          {
+            var scrollViewer = GetScrollViewer(ListView);
+            if (scrollViewer != null)
+            {
+              scrollViewer.ScrollToEnd();
+            }
+          });
+        }
       }
     }
+  }
+
+  private ScrollViewer? GetScrollViewer(DependencyObject depObj)
+  {
+    if (depObj is ScrollViewer) return depObj as ScrollViewer;
+
+    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+    {
+      var child = VisualTreeHelper.GetChild(depObj, i);
+      var result = GetScrollViewer(child);
+      if (result != null) return result;
+    }
+    return null;
   }
 }

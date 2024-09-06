@@ -19,11 +19,11 @@
       ItemsSource="{Binding BodyElements.Elements}"
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
       ScrollViewer.ScrollChanged="ListView_ScrollChanged">
-      <ListView.ItemsPanel>
+      <!--<ListView.ItemsPanel>
         <ItemsPanelTemplate>
           <VirtualizingStackPanel />
         </ItemsPanelTemplate>
-      </ListView.ItemsPanel>
+      </ListView.ItemsPanel>-->
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
           <Setter Property="HorizontalAlignment" Value="Stretch" />

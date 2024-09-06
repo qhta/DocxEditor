@@ -31,11 +31,8 @@ public class BodyElementsViewModel : ViewModel
     var wordDocument = documentViewModel.WordDocument;
     var body = wordDocument.GetBody();
     currentElement = body.FirstChild;
-    LoadMoreCommand = new RelayCommand(async () => await LoadMoreItems(), () => !isLoading && currentElement!=null);
-    LoadMoreItems().ConfigureAwait(false);
-
-
-  }
+    LoadMoreCommand = new RelayCommand( LoadMoreItems, () => !isLoading && currentElement!=null);
+ }
 
   /// <summary>
   /// Command to load more elements. Used in lazy loading.
@@ -48,22 +45,24 @@ public class BodyElementsViewModel : ViewModel
 
   private DX.OpenXmlElement? currentElement;
 
-  private async Task LoadMoreItems()
+  private void LoadMoreItems()
   {
     if (isLoading) return;
-
     isLoading = true;
-
-    Debug.WriteLine($"LoadMoreItems start");
-    int i = PageSize;
-    while (i-- > 0 && currentElement != null)
+    Task.Run(() =>
     {
-      CreateChildViewModel(currentElement);
-      currentElement = currentElement.NextSibling();
-      currentElementIndex++;
-    }
-    Debug.WriteLine($"LoadMoreItems end. CurrentElementIndex = {currentElementIndex}");
-    isLoading = false;
+      //Thread.Sleep(100);
+      Debug.WriteLine($"LoadMoreItems start");
+      int i = PageSize;
+      while (i-- > 0 && currentElement != null)
+      {
+        CreateChildViewModel(currentElement);
+        currentElement = currentElement.NextSibling();
+        currentElementIndex++;
+      }
+      Debug.WriteLine($"LoadMoreItems end. CurrentElementIndex = {currentElementIndex}");
+      isLoading = false;
+    });
   }
 
   private void CreateChildViewModel(DX.OpenXmlElement element)
@@ -80,6 +79,9 @@ public class BodyElementsViewModel : ViewModel
       //Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
       bodyElementViewModel = new UnknownElementViewModel(element);
     }
-    Elements.Add(bodyElementViewModel);
+    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+    {
+      Elements.Add(bodyElementViewModel);
+    });
   }
 }
