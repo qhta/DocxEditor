@@ -71,7 +71,6 @@ public class ObjectViewComboBox : ComboBox
         grid.RowDefinitions[1].Height = new GridLength(0);
       }
     }
-
   }
 
   private DataGrid? MembersDataGrid;

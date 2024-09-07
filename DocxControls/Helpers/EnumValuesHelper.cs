@@ -143,8 +143,8 @@ public class EnumValuesHelper: ViewModel, IEnumProvider
     {
       str = Enum.GetName(ValueType, value);
     }
-    if (str != null)
-      str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
+    //if (str != null)
+    //  str = PropertiesCaptions.ResourceManager.GetString(str, CultureInfo.CurrentUICulture) ?? str;
     return str;
   }
 

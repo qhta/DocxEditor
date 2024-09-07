@@ -33,7 +33,6 @@ public abstract class ElementViewModel : ObjectViewModel
     Owner = owner;
     Element = element;
     // ReSharper disable once VirtualMemberCallInConstructor
-    InitObjectProperties();
     DoubleClickCommand = new RelayCommand<object>(OnItemDoubleClicked);
     LeftMouseDownCommand = new RelayCommand<object>(OnItemLeftMouseDown);
     RightMouseUpCommand = new RelayCommand<object>(OnItemRightMouseUp);
@@ -70,11 +69,6 @@ public abstract class ElementViewModel : ObjectViewModel
   {
     return xml?.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
   }
-
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected abstract void InitObjectProperties();
 
 
   /// <summary>

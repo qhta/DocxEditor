@@ -111,8 +111,10 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   /// <param name="type"></param>
   /// <returns></returns>
-  public static string? GetWatermark(Type type)
+  public static string? GetWatermark(Type? type)
   {
+    if (type == null)
+      return null;
     if (type.IsNullable(out var baseType))
       type = baseType;
     if (type == typeof(string))

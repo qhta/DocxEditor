@@ -14,10 +14,4 @@ public class SdtEndCharPropertiesViewModel : ElementViewModel
   {
   }
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override void InitObjectProperties()
-  {
-  }
 }

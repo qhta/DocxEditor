@@ -133,9 +133,11 @@ public class BookmarkEndViewModel : ElementViewModel
   /// <summary>
   /// Initializes the object properties
   /// </summary>
-  protected override void InitObjectProperties()
+  protected override ObjectPropertiesViewModel InitObjectProperties()
   {
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
+    var objectProperties = new ObjectPropertiesViewModel();
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
+    return objectProperties;
   }
 }

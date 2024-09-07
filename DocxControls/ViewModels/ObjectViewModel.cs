@@ -25,7 +25,19 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the modeled object can contain members.
   /// </summary>
-  public bool IsContainer => ObjectType?.IsContainer() ?? false;
+  public bool IsContainer
+  {
+    get
+    {
+      if (_ObjectType == null)
+        return false;
+      if (_ObjectType.Name.StartsWith("Rs"))
+        Debug.Assert(true);
+      var result = ObjectType?.IsContainer() ?? false;
+      return result;
+    }
+  }
+
 
   /// <summary>
   /// Initializing constructor
@@ -33,17 +45,17 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   public ObjectViewModel()
   {
-     _ObjectType = null;
+    _ObjectType = null;
   }
 
   /// <summary>
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
-  public ObjectViewModel(Object? modeledObject)
+  public ObjectViewModel(Object modeledObject)
   {
     _ObjectType = modeledObject?.GetType();
-    if (modeledObject!=null)
+    if (modeledObject != null)
       Initialize(_ObjectType, modeledObject);
   }
 
@@ -70,47 +82,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     if (_ObjectType == null)
       return;
     ModeledObject ??= Activator.CreateInstance(_ObjectType);
-    var properties = _ObjectType.GetOpenXmlProperties().ToArray();
-    foreach (var prop in properties)
-    {
-      if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
-      {
-        var propName = prop.Name;
-        var origType = prop.PropertyType;
-        var type = origType.ToSystemType();
-        if (type == typeof(bool))
-          type = typeof(bool?);
-        object? value = null;
-        object? originalValue = null;
-        if (ModeledObject != null)
-        {
-          originalValue = prop.GetValue(ModeledObject);
-          value = originalValue.ToSystemValue(origType);
-        }
-        var propertyViewModel = new ObjectPropertyViewModel (this)
-        {
-          Name = propName,
-          Type = type,
-          OriginalType = origType,
-          Value = value,
-          OriginalValue = originalValue
-        };
-        propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-        ObjectProperties.Add(propertyViewModel);
-      }
-    }
-    if (IsContainer)
-    {
-      foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
-      {
-        if (ObjectProperties.Items.Any(p=>p.OriginalValue==member))
-          continue;
-        var memberViewModel = new ObjectMemberViewModel(this, member);
-        ObjectMembers!.Add(memberViewModel);
-        memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
-      }
-      ObjectMembers!.CollectionChanged += ObjectMembers_CollectionChanged;
-    }
   }
 
   private void ObjectMembers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -127,7 +98,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         {
           var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
           if (member is DX.OpenXmlElement element)
-            container.AppendChild(element); 
+            container.AppendChild(element);
           NotifyPropertyChanged(nameof(ModeledObject));
         }
         memberViewModel.Container = this;
@@ -142,8 +113,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         if (ModeledObject is DX.OpenXmlCompositeElement container)
         {
           var member = memberViewModel.ModeledObject;
-          if (member is DX.OpenXmlElement element && element.Parent==container)
-            element.Remove(); 
+          if (member is DX.OpenXmlElement element && element.Parent == container)
+            element.Remove();
         }
       }
     }
@@ -181,7 +152,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       var propertyViewModel = (PropertyViewModel)sender!;
       var propertyName = propertyViewModel.Name;
-      if (propertyName != null && _ObjectType!=null)
+      if (propertyName != null && _ObjectType != null)
       {
         ModeledObject ??= Activator.CreateInstance(_ObjectType);
         var prop = ModeledObject!.GetType().GetProperty(propertyName);
@@ -236,7 +207,60 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Properties of the object.
   /// </summary>
-  public ObjectPropertiesViewModel ObjectProperties { get; } = new();
+  public ObjectPropertiesViewModel ObjectProperties
+  {
+    get
+    {
+      if (_ObjectProperties == null)
+        _ObjectProperties = InitObjectProperties();
+      return _ObjectProperties;
+    }
+  }
+  private ObjectPropertiesViewModel? _ObjectProperties;
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected virtual ObjectPropertiesViewModel InitObjectProperties()
+  {
+    _ObjectProperties = new ObjectPropertiesViewModel();
+    if (ObjectType != null)
+    {
+      var properties = ObjectType.GetOpenXmlProperties().ToArray();
+      foreach (var prop in properties)
+      {
+        if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
+        {
+          var propName = prop.Name;
+          var origType = prop.PropertyType;
+          var type = origType.ToSystemType();
+          if (type == typeof(bool))
+            type = typeof(bool?);
+          object? value = null;
+          object? originalValue = null;
+          var modeledObject = ModeledObject;
+          if (modeledObject != null)
+          {
+            if (modeledObject.GetType().Name == "Properties3D")
+              Debug.WriteLine($"{modeledObject.GetType().Name}.{prop.Name}: {prop.PropertyType}");
+            originalValue = prop.GetValue(modeledObject);
+            value = originalValue?.ToSystemValue(origType);
+          }
+          var propertyViewModel = new ObjectPropertyViewModel(this)
+          {
+            Name = propName,
+            Type = type,
+            OriginalType = origType,
+            Value = value,
+            OriginalValue = originalValue
+          };
+          propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+          _ObjectProperties.Add(propertyViewModel);
+        }
+      }
+    }
+    return _ObjectProperties;
+  }
 
   /// <summary>
   /// Members of the object.
@@ -245,22 +269,38 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   {
     get
     {
-      if (!IsContainer)
-        return null;
-      _objectMembers ??= new ObjectMembersViewModel();
-      if (ObjectType != null)
-        _objectMembers.MemberTypes = ObjectType.GetMemberTypes();
-      var result =_objectMembers;
-      //Debug.WriteLine($"ObjectMembers={result}");
-      return result;
-    }
-    set
-    {
-      _objectMembers = value; 
-      NotifyPropertyChanged(nameof(ObjectMembers));
+      if (IsContainer)
+      {
+        if (_objectMembers == null)
+        {
+          _objectMembers = InitObjectMembers();
+        }
+      }
+      return _objectMembers;
     }
   }
   private ObjectMembersViewModel? _objectMembers;
+
+  /// <summary>
+  /// Initializes the object members
+  /// </summary>
+  /// <returns></returns>
+  protected virtual ObjectMembersViewModel InitObjectMembers()
+  {
+    _objectMembers = new ObjectMembersViewModel();
+    if (ObjectType != null)
+      _objectMembers.MemberTypes = ObjectType.GetMemberTypes();
+    foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
+    {
+      if (ObjectProperties.Items.Any(p => p.OriginalValue == member))
+        continue;
+      var memberViewModel = new ObjectMemberViewModel(this, member);
+      _objectMembers.Add(memberViewModel);
+      memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
+    }
+    _objectMembers.CollectionChanged += ObjectMembers_CollectionChanged;
+    return _objectMembers;
+  }
 
   #region IToolTipProvider implementation
   /// <summary>

@@ -16,10 +16,4 @@ public class UnknownElementViewModel: ElementViewModel
   {
   }
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override void InitObjectProperties()
-  {
-  }
 }

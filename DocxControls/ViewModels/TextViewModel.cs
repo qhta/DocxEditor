@@ -43,10 +43,4 @@ public class TextViewModel : ElementViewModel
   /// </summary>
   public bool? IsUnderline => (TextElement.Parent as DXW.Run)?.IsUnderline();
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override void InitObjectProperties()
-  {
-  }
 }

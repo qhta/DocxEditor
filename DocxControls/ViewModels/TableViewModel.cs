@@ -19,10 +19,5 @@ public class TableViewModel : ElementViewModel
   /// </summary>
   public DXW.Table Table => (DXW.Table)Element!;
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override void InitObjectProperties()
-  {
-  }
+
 }

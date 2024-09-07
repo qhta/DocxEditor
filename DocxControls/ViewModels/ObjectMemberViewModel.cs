@@ -17,7 +17,7 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// </summary>
   /// <param name="container"></param>
   /// <param name="member"></param>
-  public ObjectMemberViewModel(ObjectViewModel? container, object? member) : base(member)
+  public ObjectMemberViewModel(ObjectViewModel? container, object member) : base(member)
   {
     Container = container;
   }
@@ -81,6 +81,8 @@ public class ObjectMemberViewModel : ObjectViewModel
       if (IsNew)
       {
         var newValue = ModeledObject;
+        if (newValue == null)
+          throw new InvalidOperationException("New value cannot be null");
         var newMember = new ObjectMemberViewModel(Container, newValue);
         Collection?.Add(newMember);
 

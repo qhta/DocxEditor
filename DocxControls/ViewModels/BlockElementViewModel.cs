@@ -79,11 +79,4 @@ public class BlockElementViewModel : ElementViewModel
     });
   }
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override void InitObjectProperties()
-  {
-    //throw new NotImplementedException();
-  }
 }

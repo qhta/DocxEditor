@@ -186,12 +186,14 @@ public class BookmarkStartViewModel : ElementViewModel
   /// <summary>
   /// Initializes the object properties
   /// </summary>
-  protected override void InitObjectProperties()
+  protected override ObjectPropertiesViewModel InitObjectProperties()
   {
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnFirst)));
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnLast)));
-    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DisplacedByCustomXml)));
+    var objectProperties = new ObjectPropertiesViewModel();
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(Id)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(Name)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnFirst)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(ColumnLast)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DisplacedByCustomXml)));
+    return objectProperties;
   }
 }
