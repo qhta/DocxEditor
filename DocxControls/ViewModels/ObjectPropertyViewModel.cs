@@ -23,26 +23,25 @@ public class ObjectPropertyViewModel : PropertyViewModel
   public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string propertyName, string? origPropertyName = null)
   {
     OwnerObjectViewModel = ownerObjectViewModel;
-    var property = ownerObjectViewModel.GetType().GetProperty(propertyName);
-    if (property == null)
-      throw new ArgumentException($"Property {propertyName} not found in {ownerObjectViewModel.GetType().Name}");
+    var viewModelProperty = ownerObjectViewModel.GetType().GetProperty(propertyName);
     origPropertyName ??= propertyName;
     var origProperty = ModeledObject.GetType().GetProperty(origPropertyName);
-    if (property == null)
-      throw new ArgumentException($"Property {origPropertyName} not found in {ModeledObject.GetType().Name}");
+    if (origProperty == null && viewModelProperty==null)
+      throw new ArgumentException($"Property {origPropertyName} not found in {ModeledObject.GetType().Name} and not in {ownerObjectViewModel.GetType().Name}");
     //if (!(property.CanWrite))
     //  throw new ArgumentException($"Property {propertyName} is not writable in {ownerObjectViewModel.GetType().Name}");
 
-    Property = property;
-    var propName = property.Name;
-    var origType = property.PropertyType;
-    var type = origType.ToSystemType();
+    ViewModelProperty = viewModelProperty;
+    OriginalProperty = origProperty;
+    var propName = origProperty?.Name ?? viewModelProperty?.Name;
+    var origType = origProperty?.PropertyType;
+    var type = origType?.ToSystemType() ?? viewModelProperty?.PropertyType;
     if (type == typeof(bool))
       type = typeof(bool?);
     object? value = null;
     object? originalValue = null;
     originalValue = origProperty?.GetValue(ModeledObject);
-    value = property.GetValue(OwnerObjectViewModel);
+    value = originalValue.ToSystemValue(origType);
     base.Name = propName;
     base.Type = type;
     base.OriginalType = origType;
@@ -57,7 +56,11 @@ public class ObjectPropertyViewModel : PropertyViewModel
     {
       var value = Value;
       var val = value!.ToOpenXmlValue(OriginalType);
-      Property?.SetValue(OwnerObjectViewModel, val);
+      ViewModelProperty?.SetValue(OwnerObjectViewModel, val);
+      OriginalProperty?.SetValue(ModeledObject, val);
+      var val2 = OriginalProperty?.GetValue(ModeledObject);
+      if (val2 != val)
+        Debug.WriteLine($"Property {Name} of {ModeledObject} not set to {val}");
     }
   }
 
@@ -79,7 +82,12 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Property to get/set the value of the object property.
   /// </summary>
-  public PropertyInfo? Property { get; set; }
+  public PropertyInfo? ViewModelProperty { get; set; }
 
-  
+  /// <summary>
+  /// Property to get/set the value of the object property.
+  /// </summary>
+  public PropertyInfo? OriginalProperty { get; set; }
+
+
 }

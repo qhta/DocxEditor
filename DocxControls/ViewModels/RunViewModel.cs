@@ -35,6 +35,7 @@ public class RunViewModel : ElementViewModel
       }
     }
     RunProperties ??= new RunPropertiesViewModel(this, run.GetProperties());
+    InitMoreObjectProperties();
   }
 
   /// <summary>
@@ -45,7 +46,7 @@ public class RunViewModel : ElementViewModel
   /// <summary>
   /// Run properties view model
   /// </summary>
-  public RunPropertiesViewModel RunProperties { get; set; }
+  public RunPropertiesViewModel? RunProperties { get; set; }
 
   /// <summary>
   /// Observable collection of element view models
@@ -72,5 +73,22 @@ public class RunViewModel : ElementViewModel
   /// </summary>
   protected override void InitObjectProperties()
   {
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunAddition)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunDeletion)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunProperties)));
+  }
+
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected void InitMoreObjectProperties()
+  {
+    if (RunProperties != null)
+    {
+      foreach (var property in RunProperties.ObjectProperties.Items)
+      {
+        ObjectProperties.Add(property);
+      }
+    }
   }
 }

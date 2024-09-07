@@ -15,9 +15,17 @@ public class RunPropertiesViewModel : ElementViewModel
   }
 
   /// <summary>
+  /// Run properties element
+  /// </summary>
+  public DXW.RunProperties RunProperties => (DXW.RunProperties)Element!;
+
+
+  /// <summary>
   /// Initializes the object properties
   /// </summary>
   protected override void InitObjectProperties()
   {
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunProperties.Bold)));
+    ObjectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunProperties.BoldComplexScript)));
   }
 }
