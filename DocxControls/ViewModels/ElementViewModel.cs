@@ -17,9 +17,9 @@ public abstract class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Element of the document
   /// </summary>
-  public DX.OpenXmlElement Element
+  public DX.OpenXmlElement? Element
   {
-    get => (DX.OpenXmlElement)ModeledObject!;
+    get => (DX.OpenXmlElement?)ModeledObject;
     set => ModeledObject = value;
   }
 
@@ -27,8 +27,8 @@ public abstract class ElementViewModel : ObjectViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
-  /// <param name="element"></param>
-  protected ElementViewModel(ViewModel? owner, DX.OpenXmlElement element)
+  /// <param name="element">Modeled OpenXmlElement</param>
+  protected ElementViewModel(ViewModel? owner, DX.OpenXmlElement? element)
   {
     Owner = owner;
     Element = element;
@@ -50,12 +50,12 @@ public abstract class ElementViewModel : ObjectViewModel
   /// <summary>
   /// Access to outer Xml of the element
   /// </summary>
-  public virtual string DisplayText
+  public virtual string? DisplayText
   {
     get
     {
-      var str = CleanXml(Element.OuterXml);
-      if (str.Length > 1000)
+      var str = CleanXml(Element?.OuterXml);
+      if (str!= null && str.Length > 1000)
         str = str.Substring(0, 996) + " ...";
       return str;
     }
@@ -66,9 +66,9 @@ public abstract class ElementViewModel : ObjectViewModel
   /// </summary>
   /// <param name="xml"></param>
   /// <returns></returns>
-  protected string CleanXml(string xml)
+  protected string? CleanXml(string? xml)
   {
-    return xml.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
+    return xml?.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
   }
 
   /// <summary>

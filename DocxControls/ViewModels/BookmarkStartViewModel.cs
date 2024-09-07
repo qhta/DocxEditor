@@ -19,7 +19,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   /// <param name="bookmarksViewModel"></param>
   /// <param name="bookmarkStart"></param>
-  public BookmarkStartViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkStart bookmarkStart) : base(bookmarksViewModel,bookmarkStart)
+  public BookmarkStartViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkStart bookmarkStart) : base(bookmarksViewModel, bookmarkStart)
   {
     _bookmarksViewModel = bookmarksViewModel;
   }
@@ -30,7 +30,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// <summary>
   /// <c>BookmarkStart</c> element
   /// </summary>
-  public DXW.BookmarkStart BookmarkStart => (DXW.BookmarkStart)Element;
+  public DXW.BookmarkStart BookmarkStart => (DXW.BookmarkStart)Element!;
 
   /// <summary>
   /// Corresponding <c>BookmarkEnd</c> element
@@ -50,7 +50,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// <summary>
   /// Corresponding <c>BookmarkEndViewModel</c> element
   /// </summary>
-  public BookmarkEndViewModel? BookmarkEndViewModel => _bookmarksViewModel.GetBookmarkEnd(BookmarkStart.Id?.Value);
+  public BookmarkEndViewModel? BookmarkEndViewModel => _bookmarksViewModel.GetBookmarkEnd(BookmarkStart?.Id?.Value);
 
   /// <summary>
   /// Integer identifier of the bookmark
@@ -59,7 +59,7 @@ public class BookmarkStartViewModel : ElementViewModel
   {
     get
     {
-      if (Int32.TryParse(BookmarkStart.Id?.Value, out var result))
+      if (Int32.TryParse(BookmarkStart?.Id?.Value, out var result))
         return result;
       return 0;
     }
@@ -70,11 +70,12 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   public string? Name
   {
-    get => BookmarkStart.Name;
+    get => BookmarkStart?.Name;
     set
     {
-      if (BookmarkStart.Name == value) return;
-      BookmarkStart.Name = value;
+      if (BookmarkStart?.Name == value) return;
+      if (BookmarkStart != null)
+        BookmarkStart.Name = value;
       NotifyPropertyChanged(nameof(Name));
       NotifyPropertyChanged(nameof(ToolTip));
       BookmarkEndViewModel?.NotifyPropertyChanged(nameof(Name));
@@ -87,11 +88,12 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   public int? ColumnFirst
   {
-    get => BookmarkStart.ColumnFirst?.Value;
+    get => BookmarkStart?.ColumnFirst?.Value;
     set
     {
-      if (BookmarkStart.ColumnFirst?.Value == value) return;
-      BookmarkStart.ColumnFirst = value;
+      if (BookmarkStart?.ColumnFirst?.Value == value) return;
+      if (BookmarkStart != null)
+        BookmarkStart.ColumnFirst = value;
       NotifyPropertyChanged(nameof(ColumnFirst));
     }
   }
@@ -101,11 +103,13 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   public int? ColumnLast
   {
-    get => BookmarkStart.ColumnLast?.Value;
+    get => BookmarkStart?.ColumnLast?.Value;
     set
     {
-      if (BookmarkStart.ColumnLast?.Value == value) return;
-      BookmarkStart.ColumnLast = value;
+
+      if (BookmarkStart?.ColumnLast?.Value == value) return;
+      if (BookmarkStart != null)
+        BookmarkStart.ColumnLast = value;
       NotifyPropertyChanged(nameof(ColumnLast));
     }
   }
@@ -115,14 +119,17 @@ public class BookmarkStartViewModel : ElementViewModel
   /// </summary>
   public DisplacedByCustomXmlValues? DisplacedByCustomXml
   {
-    get => BookmarkStart.DisplacedByCustomXml?.Value;
+    get => BookmarkStart?.DisplacedByCustomXml?.Value;
     set
     {
-      if (BookmarkStart.DisplacedByCustomXml?.Value == value) return;
-      if (value == null)
-        BookmarkStart.DisplacedByCustomXml = null;
-      else
-        BookmarkStart.DisplacedByCustomXml = value;
+      if (BookmarkStart?.DisplacedByCustomXml?.Value == value) return;
+      if (BookmarkStart != null)
+      {
+        if (value == null)
+          BookmarkStart.DisplacedByCustomXml = null;
+        else
+          BookmarkStart.DisplacedByCustomXml = value;
+      }
       NotifyPropertyChanged(nameof(DisplacedByCustomXml));
     }
   }
@@ -131,7 +138,7 @@ public class BookmarkStartViewModel : ElementViewModel
   /// <summary>
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
-  public new string ToolTip => ModeledObject?.GetType().Name + ": "+ BookmarkStart.Name;
+  public new string ToolTip => ModeledObject?.GetType().Name + ": " + BookmarkStart?.Name;
 
   /// <summary>
   /// Allows other classes to notify about property changes

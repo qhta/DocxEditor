@@ -8,13 +8,8 @@ namespace DocxControls;
 /// <summary>
 /// View model for the body elements: paragraphs, tables, etc.
 /// </summary>
-public class BodyElementsViewModel : ElementViewModel
+public class BlockElementViewModel : ElementViewModel
 {
-
-  /// <summary>
-  /// Internal Wordprocessing document view model
-  /// </summary>
-  public DocumentViewModel OwnerViewModel { get; init; }
 
   /// <summary>
   /// Observable collection of properties
@@ -25,10 +20,9 @@ public class BodyElementsViewModel : ElementViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="DocumentViewModel"/></param>
-  /// <param name="body">Modeled body element</param>
-  public BodyElementsViewModel(DocumentViewModel ownerViewModel, DXW.Body body): base(ownerViewModel, body)
+  /// <param name="body">Modeled block element</param>
+  public BlockElementViewModel(ViewModel ownerViewModel, DX.OpenXmlCompositeElement body): base(ownerViewModel, body)
   {
-    OwnerViewModel = ownerViewModel;
     currentElement = body.FirstChild;
     LoadMoreCommand = new RelayCommand( LoadMoreItems, () => !isLoading && currentElement!=null);
  }
@@ -76,7 +70,7 @@ public class BodyElementsViewModel : ElementViewModel
     };
     if (bodyElementViewModel == null)
     {
-      //Debug.WriteLine($"BodyElementsViewModel: Element {element.GetType().Name} not supported");
+      Debug.WriteLine($"BlockElementsViewModel: Element {element.GetType().Name} not supported");
       bodyElementViewModel = new UnknownElementViewModel(this, element);
     }
     System.Windows.Application.Current.Dispatcher.Invoke(() =>

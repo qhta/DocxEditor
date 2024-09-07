@@ -8,38 +8,35 @@ namespace DocxControls;
 public class ParagraphViewModel : ElementViewModel
 {
 
-  /// <summary>
-  /// Internal Wordprocessing document view model
-  /// </summary>
-  public DocumentViewModel DocumentViewModel { get; init; }
+  
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BodyElementsViewModel"/></param>
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BlockElementViewModel"/></param>
   /// <param name="paragraph"></param>
-  public ParagraphViewModel(BodyElementsViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
+  public ParagraphViewModel(BlockElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
-    DocumentViewModel = ownerViewModel.GetDocumentViewModel();
+    var DocumentViewModel = ownerViewModel.GetDocumentViewModel();
     foreach (var element in paragraph.Elements())
     {
       if (element is DXW.ParagraphProperties properties)
         ParagraphProperties = new ParagraphPropertiesViewModel(this, properties);
       else
       {
-        ElementViewModel? paragraphViewModel = element switch
+        ElementViewModel? elementViewModel = element switch
         {
           DXW.Run run => new RunViewModel(this, run),
           DXW.BookmarkStart bookmarkStart => DocumentViewModel.Bookmarks.RegisterBookmarkStart(bookmarkStart),
           DXW.BookmarkEnd bookmarkEnd => DocumentViewModel.Bookmarks.RegisterBookmarkEnd(bookmarkEnd),
           _ => null
         };
-        if (paragraphViewModel == null)
+        if (elementViewModel == null)
         {
-          //Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
-          paragraphViewModel = new UnknownElementViewModel(this, element);
+          Debug.WriteLine($"ParagraphViewModel: Element {element.GetType().Name} not supported");
+          elementViewModel = new UnknownElementViewModel(this, element);
         }
-        Elements.Add(paragraphViewModel);
+        Elements.Add(elementViewModel);
       }
     }
     ParagraphProperties ??= new ParagraphPropertiesViewModel(this, Paragraph.GetProperties());
@@ -50,7 +47,7 @@ public class ParagraphViewModel : ElementViewModel
   /// <summary>
   /// Paragraph element of the document
   /// </summary>
-  public DXW.Paragraph Paragraph => (DXW.Paragraph)Element;
+  public DXW.Paragraph Paragraph => (DXW.Paragraph)Element!;
 
   /// <summary>
   /// Paragraph properties view model

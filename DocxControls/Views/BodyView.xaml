@@ -16,7 +16,7 @@
   <Grid>
     <ListView 
       x:Name="ListView" 
-      ItemsSource="{Binding BodyElements.Elements}"
+      ItemsSource="{Binding Body.Elements}"
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
       ScrollViewer.ScrollChanged="ListView_ScrollChanged">
       <!--<ListView.ItemsPanel>

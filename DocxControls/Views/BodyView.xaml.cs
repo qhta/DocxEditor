@@ -22,7 +22,7 @@ public partial class BodyView : UserControl
     {
       if (DataContext is DocumentViewModel documentViewModel)
       {
-        var viewModel = documentViewModel.BodyElements;
+        var viewModel = documentViewModel.Body;
         if (viewModel.LoadMoreCommand.CanExecute(null))
         {
           viewModel.LoadMoreCommand.Execute(null);

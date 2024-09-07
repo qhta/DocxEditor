@@ -20,7 +20,7 @@ public class TextViewModel : ElementViewModel
   /// <summary>
   /// Run element of the paragraph
   /// </summary>
-  public DXW.Text TextElement => (DXW.Text)Element;
+  public DXW.Text TextElement => (DXW.Text)Element!;
 
   /// <summary>
   /// Text of the element

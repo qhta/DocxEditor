@@ -28,7 +28,7 @@ public class RunViewModel : ElementViewModel
         };
         if (runViewModel == null)
         {
-          //Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
+          Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
           runViewModel = new UnknownElementViewModel(this, element);
         }
         Elements.Add(runViewModel);
@@ -40,7 +40,7 @@ public class RunViewModel : ElementViewModel
   /// <summary>
   /// Run element of the paragraph
   /// </summary>
-  public DXW.Run Run => (DXW.Run)Element;
+  public DXW.Run Run => (DXW.Run)Element!;
 
   /// <summary>
   /// Run properties view model

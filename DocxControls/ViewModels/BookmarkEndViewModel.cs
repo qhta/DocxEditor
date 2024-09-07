@@ -27,7 +27,7 @@ public class BookmarkEndViewModel : ElementViewModel
   /// <summary>
   /// <c>BookmarkEnd</c> element
   /// </summary>
-  public DXW.BookmarkEnd BookmarkEnd => (DXW.BookmarkEnd)Element;
+  public DXW.BookmarkEnd BookmarkEnd => (DXW.BookmarkEnd)Element!;
 
   /// <summary>
   /// Corresponding <c>BookmarkStart</c> element
@@ -38,7 +38,7 @@ public class BookmarkEndViewModel : ElementViewModel
     {
       if (_BookmarkStart==null)
       {
-        _BookmarkStart = BookmarkEnd.GetBookmarkStart();
+        _BookmarkStart = BookmarkEnd?.GetBookmarkStart();
       }
       return _BookmarkStart;
     }
@@ -49,7 +49,7 @@ public class BookmarkEndViewModel : ElementViewModel
   /// <summary>
   /// Corresponding <c>BookmarkStartViewModel</c> element
   /// </summary>
-  public BookmarkStartViewModel? BookmarkStartViewModel => _bookmarksViewModel.GetBookmarkStart(BookmarkEnd.Id?.Value);
+  public BookmarkStartViewModel? BookmarkStartViewModel => _bookmarksViewModel.GetBookmarkStart(BookmarkEnd?.Id?.Value);
 
   /// <summary>
   /// Integer identifier of the bookmark
@@ -58,7 +58,7 @@ public class BookmarkEndViewModel : ElementViewModel
   {
     get
     {
-      if (Int32.TryParse(BookmarkEnd.Id?.Value, out var result))
+      if (Int32.TryParse(BookmarkEnd?.Id?.Value, out var result))
         return result;
       return 0;
     }

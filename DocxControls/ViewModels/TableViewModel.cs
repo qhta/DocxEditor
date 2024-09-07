@@ -8,16 +8,16 @@ public class TableViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BodyElementsViewModel"/></param>
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BlockElementViewModel"/></param>
   /// <param name="table">Modeled table element</param>
-  public TableViewModel(BodyElementsViewModel ownerViewModel, DXW.Table table): base(ownerViewModel, table)
+  public TableViewModel(BlockElementViewModel ownerViewModel, DXW.Table table): base(ownerViewModel, table)
   {
   }
 
   /// <summary>
   /// Table element of the document
   /// </summary>
-  public DXW.Table Table => (DXW.Table)Element;
+  public DXW.Table Table => (DXW.Table)Element!;
 
   /// <summary>
   /// Initializes the object properties

@@ -35,18 +35,18 @@ public class DocumentViewModel: ViewModel
   /// <summary>
   /// Access to the body elements of the document
   /// </summary>
-  public BodyElementsViewModel BodyElements
+  public BodyViewModel Body
   {
     get
     {
       if (_BodyElements == null)
       {
-        _BodyElements = new BodyElementsViewModel(this, WordDocument.GetBody());
+        _BodyElements = new BodyViewModel(this, WordDocument.GetBody());
       }
       return _BodyElements;
     }
   }
-  private BodyElementsViewModel? _BodyElements;
+  private BodyViewModel? _BodyElements;
 
   /// <summary>
   /// Access to the core properties of the document
