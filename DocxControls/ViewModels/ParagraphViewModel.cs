@@ -8,14 +8,15 @@ namespace DocxControls;
 public class ParagraphViewModel : ElementViewModel
 {
 
-  
+
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="BlockElementViewModel"/></param>
   /// <param name="paragraph"></param>
-  public ParagraphViewModel(BlockElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
+  public ParagraphViewModel
+    (BlockElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
     var DocumentViewModel = ownerViewModel.GetDocumentViewModel();
     foreach (var element in paragraph.Elements())
@@ -52,12 +53,35 @@ public class ParagraphViewModel : ElementViewModel
   /// <summary>
   /// Paragraph properties view model
   /// </summary>
-  public ParagraphPropertiesViewModel ParagraphProperties { get; set; }
+  public ParagraphPropertiesViewModel? ParagraphProperties { get; set; }
 
   /// <summary>
   /// Observable collection of element view models
   /// </summary>
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override ObjectPropertiesViewModel InitObjectProperties()
+  {
+    var objectProperties = base.InitObjectProperties();
+    objectProperties.Remove("ParagraphProperties");
+    AddMoreObjectProperties(objectProperties);
+    return objectProperties;
+  }
 
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected void AddMoreObjectProperties(ObjectPropertiesViewModel objectProperties)
+  {
+    if (ParagraphProperties != null)
+    {
+      foreach (var property in ParagraphProperties.ObjectProperties.Items)
+      {
+        objectProperties.Add(property);
+      }
+    }
+  }
 }

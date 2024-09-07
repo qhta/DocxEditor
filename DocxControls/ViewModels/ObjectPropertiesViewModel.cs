@@ -28,6 +28,17 @@ public class ObjectPropertiesViewModel : ViewModel, INotifyCollectionChanged
   }
 
   /// <summary>
+  /// Delegates <c>Remove</c> member method to the internal collection.
+  /// </summary>
+  /// <param name="propertyName"></param>
+  public void Remove(string propertyName)
+  {
+    var item = Items.FirstOrDefault(i => i.Name == propertyName);
+    if (item!=null)
+      Items.Remove(item);
+  }
+
+  /// <summary>
   /// Internal collection of object members.
   /// </summary>
   public CustomObservableCollection<ObjectPropertyViewModel> Items { get; } = new();

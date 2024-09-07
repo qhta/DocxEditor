@@ -211,19 +211,19 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   {
     get
     {
-      if (_ObjectProperties == null)
-        _ObjectProperties = InitObjectProperties();
-      return _ObjectProperties;
+      if (_objectProperties == null)
+        _objectProperties = InitObjectProperties();
+      return _objectProperties;
     }
   }
-  private ObjectPropertiesViewModel? _ObjectProperties;
+  private ObjectPropertiesViewModel? _objectProperties;
 
   /// <summary>
   /// Initializes the object properties
   /// </summary>
   protected virtual ObjectPropertiesViewModel InitObjectProperties()
   {
-    _ObjectProperties = new ObjectPropertiesViewModel();
+    var objectProperties = new ObjectPropertiesViewModel();
     if (ObjectType != null)
     {
       var properties = ObjectType.GetOpenXmlProperties().ToArray();
@@ -255,11 +255,11 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
             OriginalValue = originalValue
           };
           propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-          _ObjectProperties.Add(propertyViewModel);
+          objectProperties.Add(propertyViewModel);
         }
       }
     }
-    return _ObjectProperties;
+    return objectProperties;
   }
 
   /// <summary>
@@ -287,19 +287,19 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <returns></returns>
   protected virtual ObjectMembersViewModel InitObjectMembers()
   {
-    _objectMembers = new ObjectMembersViewModel();
+    var objectMembers = new ObjectMembersViewModel();
     if (ObjectType != null)
-      _objectMembers.MemberTypes = ObjectType.GetMemberTypes();
+      objectMembers.MemberTypes = ObjectType.GetMemberTypes();
     foreach (var member in ((DX.OpenXmlCompositeElement)ModeledObject!).GetMembers())
     {
       if (ObjectProperties.Items.Any(p => p.OriginalValue == member))
         continue;
       var memberViewModel = new ObjectMemberViewModel(this, member);
-      _objectMembers.Add(memberViewModel);
+      objectMembers.Add(memberViewModel);
       memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
     }
-    _objectMembers.CollectionChanged += ObjectMembers_CollectionChanged;
-    return _objectMembers;
+    objectMembers.CollectionChanged += ObjectMembers_CollectionChanged;
+    return objectMembers;
   }
 
   #region IToolTipProvider implementation
