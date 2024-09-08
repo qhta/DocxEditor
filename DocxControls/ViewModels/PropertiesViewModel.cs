@@ -3,7 +3,6 @@
 using DocumentFormat.OpenXml.Packaging;
 
 using Qhta.MVVM;
-using Xceed.Wpf.Toolkit;
 
 namespace DocxControls;
 
@@ -21,5 +20,22 @@ public abstract class PropertiesViewModel : ViewModel
   /// Observable collection of properties
   /// </summary>
   public ObservableCollection<PropertyViewModel> Items { get; } = new();
+
+  /// <summary>
+  /// Width of the data grid in the view
+  /// </summary>
+  public double DataGridWidth
+  {
+    get => _dataGridWidth;
+    set
+    {
+      if (_dataGridWidth != value)
+      {
+        _dataGridWidth = value;
+        NotifyPropertyChanged(nameof(DataGridWidth));
+      }
+    }
+  }
+  private double _dataGridWidth;
 
 }

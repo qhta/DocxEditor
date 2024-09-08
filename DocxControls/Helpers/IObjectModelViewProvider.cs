@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Qhta.MVVM;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// Interface for providing a model view for an object.

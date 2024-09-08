@@ -7,7 +7,7 @@ namespace DocxControls;
 /// Collection of object properties.
 /// Creates a new properties view model for the collection when the type and value of the member are entered by the user.
 /// </summary>
-public class ObjectPropertiesViewModel : ViewModel, INotifyCollectionChanged
+public class ObjectPropertiesViewModel : PropertiesViewModel
 {
   /// <summary>
   /// Default constructor.
@@ -41,7 +41,7 @@ public class ObjectPropertiesViewModel : ViewModel, INotifyCollectionChanged
   /// <summary>
   /// Internal collection of object members.
   /// </summary>
-  public CustomObservableCollection<ObjectPropertyViewModel> Items { get; } = new();
+  public new CustomObservableCollection<ObjectPropertyViewModel> Items { get; } = new();
 
   /// <summary>
   /// Delegates <c>CollectionChanged</c> event to the internal collection.

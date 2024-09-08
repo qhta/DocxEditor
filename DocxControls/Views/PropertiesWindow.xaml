@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:DocxControls"
         mc:Ignorable="d"
         d:DesignHeight="150"
-        Title="PropertiesWindow" Height="auto" Width="300">
-    <Grid>
-      <local:PropertiesView DataContext="{Binding ObjectProperties}"/>
+        Title="PropertiesWindow" 
+        Height="auto"
+        SizeChanged="PropertiesWindow_OnSizeChanged"
+        >
+    <Grid HorizontalAlignment="Stretch">
+      <local:PropertiesView 
+        x:Name="PropertiesView"
+        HorizontalAlignment="Stretch"
+        DataContext="{Binding ObjectProperties}"/>
     </Grid>
 </Window>

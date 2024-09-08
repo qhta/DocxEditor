@@ -6,16 +6,19 @@
              xmlns:local="clr-namespace:DocxControls"
              xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="600"
+             SizeChanged="FrameworkElement_OnSizeChanged">
   <Grid>
     <DataGrid 
+      x:Name="DataGrid"
       ItemsSource="{Binding Items}" 
       HeadersVisibility="All" 
       AutoGenerateColumns="False" 
       Sorting="DataGrid_Sorting"
       CanUserSortColumns="True"
       CanUserAddRows="False" 
-      CanUserDeleteRows="False">
+      CanUserDeleteRows="False"
+      SizeChanged="FrameworkElement_OnSizeChanged">
       <DataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />
@@ -38,8 +41,8 @@
           Header="{x:Static resources:Strings.Value}"
           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
           SortMemberPath="Value"
-          MinWidth="50"
-          Width="*"/>
+          MinWidth="200"
+          Width="Auto"/>
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

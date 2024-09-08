@@ -25,9 +25,9 @@ public class ObjectPropertyViewModel : PropertyViewModel
     OwnerObjectViewModel = ownerObjectViewModel;
     var viewModelProperty = ownerObjectViewModel.GetType().GetProperty(propertyName);
     origPropertyName ??= propertyName;
-    var origProperty = ModeledObject.GetType().GetProperty(origPropertyName);
+    var origProperty = ModeledObjectType!.GetProperty(origPropertyName);
     if (origProperty == null && viewModelProperty==null)
-      throw new ArgumentException($"Property {origPropertyName} not found in {ModeledObject.GetType().Name} and not in {ownerObjectViewModel.GetType().Name}");
+      throw new ArgumentException($"Property {origPropertyName} not found in {ModeledObjectType!.Name} and not in {ownerObjectViewModel.GetType().Name}");
     //if (!(property.CanWrite))
     //  throw new ArgumentException($"Property {propertyName} is not writable in {ownerObjectViewModel.GetType().Name}");
 
@@ -72,7 +72,12 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// OwnerObjectViewModel modeled object.
   /// </summary>
-  public object ModeledObject => OwnerObjectViewModel?.ModeledObject!;
+  public object? ModeledObject => OwnerObjectViewModel?.ModeledObject;
+
+  /// <summary>
+  /// OwnerObjectViewModel modeled object type.
+  /// </summary>
+  public Type? ModeledObjectType => OwnerObjectViewModel?.ObjectType;
 
   /// <summary>
   /// Collection of object properties.

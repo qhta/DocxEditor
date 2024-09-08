@@ -41,24 +41,33 @@ public class ObjectViewComboBox : ComboBox
 
   private void ComboBox_Loaded(object sender, RoutedEventArgs e)
   {
+    SizeChanged += FrameworkElement_OnSizeChanged;
     if (Template.FindName("Popup_Thumb", this) is Thumb thumb)
     {
       thumb.DragDelta += Thumb_DragDelta;
     }
     if (Template.FindName("PropertiesDataGrid", this) is DataGrid propertiesDataGrid)
     {
+      PropertiesDataGrid = propertiesDataGrid;
       propertiesDataGrid.Sorting += DataGrid_Sorting;
+      PropertiesDataGrid.Loaded += (s, e) => UpdateDataGridWidth(propertiesDataGrid);
     }
     if (Template.FindName("MembersDataGrid", this) is DataGrid membersDataGrid)
     {
       MembersDataGrid = membersDataGrid;
       membersDataGrid.Sorting += DataGrid_Sorting;
       membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
+      MembersDataGrid.Loaded += (s, e) => UpdateDataGridWidth(membersDataGrid);
     }
     if (Template.FindName("PopupGrid", this) is Grid grid)
     {
       grid.DataContextChanged += Grid_DataContextChanged;
     }
+  }
+
+  private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
+  {
+    //Debug.WriteLine($"{sender.GetType().Name}_SizeChanged ({e.NewSize.Width},{e.NewSize.Height})");
   }
 
   private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -73,6 +82,7 @@ public class ObjectViewComboBox : ComboBox
     }
   }
 
+  private DataGrid? PropertiesDataGrid;
   private DataGrid? MembersDataGrid;
 
   private void MembersDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
@@ -146,4 +156,17 @@ public class ObjectViewComboBox : ComboBox
     }
   }
 
+  private void UpdateDataGridWidth(DataGrid dataGrid)
+  {
+    // ReSharper disable once InvertIf
+    if (dataGrid.DataContext is IObjectViewModelProvider viewModel)
+    {
+      double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 2;
+      if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
+        if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)
+          totalWidth = viewModel.ObjectViewModel.DataGridWidth;
+      viewModel.ObjectViewModel.DataGridWidth = totalWidth;
+      dataGrid.Columns.Last().Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+    }
+  }
 }

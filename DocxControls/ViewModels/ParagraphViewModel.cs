@@ -60,28 +60,28 @@ public class ParagraphViewModel : ElementViewModel
   /// </summary>
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override ObjectPropertiesViewModel InitObjectProperties()
-  {
-    var objectProperties = base.InitObjectProperties();
-    objectProperties.Remove("ParagraphProperties");
-    AddMoreObjectProperties(objectProperties);
-    return objectProperties;
-  }
+  ///// <summary>
+  ///// Initializes the object properties
+  ///// </summary>
+  //protected override ObjectPropertiesViewModel InitObjectProperties()
+  //{
+  //  var objectProperties = base.InitObjectProperties();
+  //  objectProperties.Remove("ParagraphProperties");
+  //  AddMoreObjectProperties(objectProperties);
+  //  return objectProperties;
+  //}
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected void AddMoreObjectProperties(ObjectPropertiesViewModel objectProperties)
-  {
-    if (ParagraphProperties != null)
-    {
-      foreach (var property in ParagraphProperties.ObjectProperties.Items)
-      {
-        objectProperties.Add(property);
-      }
-    }
-  }
+  ///// <summary>
+  ///// Initializes the object properties
+  ///// </summary>
+  //protected void AddMoreObjectProperties(ObjectPropertiesViewModel objectProperties)
+  //{
+  //  if (ParagraphProperties != null)
+  //  {
+  //    foreach (var property in ParagraphProperties.ObjectProperties.Items)
+  //    {
+  //      objectProperties.Add(property);
+  //    }
+  //  }
+  //}
 }

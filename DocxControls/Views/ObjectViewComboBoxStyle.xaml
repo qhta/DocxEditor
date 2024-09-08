@@ -32,8 +32,9 @@
                 BorderBrush="Black" 
                 BorderThickness="1" 
                 Background="White" 
-                MinWidth="204" 
-                Height="auto">
+                MinWidth="304" 
+                Height="auto"
+                Width="{Binding ObjectViewModel.DataGridWidth}">
                 <Grid 
                   x:Name="PopupGrid"
                   Height="auto">
@@ -46,10 +47,13 @@
                     ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                     HorizontalAlignment="Stretch"
                     MaxHeight="400"
-                    HeadersVisibility="All" AutoGenerateColumns="False" 
+                    HeadersVisibility="All" 
+                    RowHeaderWidth="20"
+                    AutoGenerateColumns="False" 
                     CanUserSortColumns="True"
                     CanUserAddRows="False" 
-                    CanUserDeleteRows="False">
+                    CanUserDeleteRows="False"
+                    >
                     <DataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
@@ -72,7 +76,7 @@
                         CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}"
                         SortMemberPath="Value"
                         MinWidth="100"
-                        Width="*"/>
+                        Width="Auto"/>
                     </DataGrid.Columns>
                   </DataGrid>
                   <DataGrid 
@@ -85,10 +89,12 @@
                       HeadersVisibility="All" 
                       MaxHeight="300"
                       RowHeaderTemplate="{StaticResource NumberingRowHeaderTemplate}"
+                      RowHeaderWidth="20"
                       AutoGenerateColumns="false" 
                       CanUserSortColumns="True"
                       CanUserAddRows="True" 
-                      CanUserDeleteRows="True">
+                      CanUserDeleteRows="True"
+                      >
                     <DataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
@@ -121,8 +127,8 @@
                           CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
                           Header="{x:Static resources:Strings.Value}"
                           SortMemberPath="Value"
-                          MinWidth="100"
-                          Width="*"/>
+                          MinWidth="200"
+                          Width="Auto"/>
                     </DataGrid.Columns>
                   </DataGrid>
                   <Thumb  

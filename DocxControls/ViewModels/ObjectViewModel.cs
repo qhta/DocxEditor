@@ -81,7 +81,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     ModeledObject = modeledObject;
     if (_ObjectType == null)
       return;
-    ModeledObject ??= Activator.CreateInstance(_ObjectType);
+    if (ModeledObject == null)
+      ModeledObject = Activator.CreateInstance(_ObjectType);
   }
 
   private void ObjectMembers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -411,4 +412,21 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     }
   }
   private bool _IsNew;
+
+  /// <summary>
+  /// Width of the data grid in the view
+  /// </summary>
+  public double DataGridWidth
+  {
+    get => _dataGridWidth;
+    set
+    {
+      if (_dataGridWidth != value)
+      {
+        _dataGridWidth = value;
+        NotifyPropertyChanged(nameof(DataGridWidth));
+      }
+    }
+  }
+  private double _dataGridWidth = double.NaN;
 }

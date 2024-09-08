@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -16,6 +17,8 @@ public partial class PropertiesView : UserControl
   public PropertiesView()
   {
     InitializeComponent();
+    DataGrid.Loaded += DataGrid_Loaded;
+    //DataGrid.ColumnWidthChanged += DataGrid_ColumnWidthChanged;
   }
 
   private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
@@ -46,4 +49,26 @@ public partial class PropertiesView : UserControl
       e.Column.SortDirection = direction;
     }
   }
+
+  private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
+  {
+    //Debug.WriteLine($"{sender.GetType().Name}_SizeChanged ({e.NewSize.Width},{e.NewSize.Height})");
+  }
+
+  private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+  {
+    UpdateDataGridWidth();
+  }
+
+
+  private void UpdateDataGridWidth()
+  {
+    if (DataContext is PropertiesViewModel viewModel)
+    {
+      double totalWidth = DataGrid.Columns.Sum(column => column.ActualWidth)+DataGrid.RowHeaderActualWidth+2;
+      viewModel.DataGridWidth = totalWidth;
+      DataGrid.Columns.Last().Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+    }
+  }
+
 }

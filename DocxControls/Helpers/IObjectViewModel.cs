@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// Interface of a view model for a complex object
@@ -32,4 +30,9 @@ public interface IObjectViewModel
   /// Members of the object.
   /// </summary>
   public ObjectMembersViewModel? ObjectMembers { get; }
+
+  /// <summary>
+  /// Width of the data grid in the view
+  /// </summary>
+  public double DataGridWidth { get; set; }
 }
