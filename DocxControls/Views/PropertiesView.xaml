@@ -9,7 +9,7 @@
              d:DesignHeight="400" d:DesignWidth="600"
              SizeChanged="FrameworkElement_OnSizeChanged">
   <Grid>
-    <DataGrid 
+    <local:CustomDataGrid 
       x:Name="DataGrid"
       ItemsSource="{Binding Items}" 
       HeadersVisibility="All" 
@@ -19,13 +19,13 @@
       CanUserAddRows="False" 
       CanUserDeleteRows="False"
       SizeChanged="FrameworkElement_OnSizeChanged">
-      <DataGrid.Resources>
+      <local:CustomDataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />
           <Setter Property="Padding" Value="0" />
         </Style>
-      </DataGrid.Resources>
-      <DataGrid.Columns>
+      </local:CustomDataGrid.Resources>
+      <local:CustomDataGrid.Columns>
         <DataGridTemplateColumn
           Header="{x:Static resources:Strings.Name}"
           CellTemplate="{StaticResource PropertyCaptionTemplate}" 
@@ -43,7 +43,7 @@
           SortMemberPath="Value"
           MinWidth="200"
           Width="Auto"/>
-      </DataGrid.Columns>
-    </DataGrid>
+      </local:CustomDataGrid.Columns>
+    </local:CustomDataGrid>
   </Grid>
 </UserControl>

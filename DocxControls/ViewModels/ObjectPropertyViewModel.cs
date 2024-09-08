@@ -67,7 +67,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Gets or sets the owner of the object property
   /// </summary>
-  public ObjectViewModel? OwnerObjectViewModel { get; set; }
+  public new ObjectViewModel? OwnerObjectViewModel { get; set; }
 
   /// <summary>
   /// OwnerObjectViewModel modeled object.

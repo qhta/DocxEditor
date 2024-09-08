@@ -23,7 +23,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
-    <DataGrid
+    <local:CustomDataGrid
       ItemsSource="{Binding Items}" 
       HeadersVisibility="All" 
       AutoGenerateColumns="False" 
@@ -31,7 +31,7 @@
       CanUserAddRows="True" 
       CanUserDeleteRows="True"
       >
-      <DataGrid.Resources>
+      <local:CustomDataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />
           <Setter Property="Padding" Value="0" />
@@ -42,8 +42,8 @@
             </Trigger>
           </Style.Triggers>
         </Style>
-      </DataGrid.Resources>
-      <DataGrid.Columns>
+      </local:CustomDataGrid.Resources>
+      <local:CustomDataGrid.Columns>
         <DataGridTextColumn 
           Header="{x:Static resources:Strings.Id}"
           MinWidth="50" Binding="{Binding Id, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
@@ -70,7 +70,7 @@
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-      </DataGrid.Columns>
-    </DataGrid>
+      </local:CustomDataGrid.Columns>
+    </local:CustomDataGrid>
   </Grid>
 </UserControl>

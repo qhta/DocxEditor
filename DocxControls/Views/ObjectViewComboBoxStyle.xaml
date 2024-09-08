@@ -42,7 +42,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                   </Grid.RowDefinitions>
-                  <DataGrid 
+                  <local:CustomDataGrid 
                     x:Name="PropertiesDataGrid"
                     ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                     HorizontalAlignment="Stretch"
@@ -54,12 +54,12 @@
                     CanUserAddRows="False" 
                     CanUserDeleteRows="False"
                     >
-                    <DataGrid.Resources>
+                    <local:CustomDataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
                       </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
+                    </local:CustomDataGrid.Resources>
+                    <local:CustomDataGrid.Columns>
                       <DataGridTemplateColumn
                         Header="{x:Static resources:Strings.Name}"
                         CellTemplate="{StaticResource PropertyCaptionTemplate}" 
@@ -77,9 +77,9 @@
                         SortMemberPath="Value"
                         MinWidth="100"
                         Width="Auto"/>
-                    </DataGrid.Columns>
-                  </DataGrid>
-                  <DataGrid 
+                    </local:CustomDataGrid.Columns>
+                  </local:CustomDataGrid>
+                  <local:CustomDataGrid 
                       Grid.Row="1" 
                       x:Name="MembersDataGrid"
                       Margin="0,2,0,0"
@@ -95,13 +95,13 @@
                       CanUserAddRows="True" 
                       CanUserDeleteRows="True"
                       >
-                    <DataGrid.Resources>
+                    <local:CustomDataGrid.Resources>
                       <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="Padding" Value="{StaticResource PropertyPadding}" />
                       </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.RowStyle>
+                    </local:CustomDataGrid.Resources>
+                    <local:CustomDataGrid.RowStyle>
                       <Style TargetType="DataGridRow">
                         <Style.Triggers>
                           <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsNewItem}" Value="True">
@@ -109,8 +109,8 @@
                           </DataTrigger>
                         </Style.Triggers>
                       </Style>
-                    </DataGrid.RowStyle>
-                    <DataGrid.Columns>
+                    </local:CustomDataGrid.RowStyle>
+                    <local:CustomDataGrid.Columns>
                       <DataGridTemplateColumn
                           CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
                           Header="{x:Static resources:Strings.Name}"
@@ -129,8 +129,8 @@
                           SortMemberPath="Value"
                           MinWidth="200"
                           Width="Auto"/>
-                    </DataGrid.Columns>
-                  </DataGrid>
+                    </local:CustomDataGrid.Columns>
+                  </local:CustomDataGrid>
                   <Thumb  
                     Grid.Row="0" 
                     Grid.RowSpan="2"

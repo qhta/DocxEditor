@@ -8,14 +8,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
   <Grid>
-    <DataGrid
+    <local:CustomDataGrid
       x:Name="PropertiesGrid"
       ItemsSource="{Binding Items}" 
       HeadersVisibility="All" AutoGenerateColumns="False" 
       CanUserAddRows="True" 
       CanUserDeleteRows="True"
       >
-      <DataGrid.Resources>
+      <local:CustomDataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />
           <Setter Property="Padding" Value="0" />
@@ -26,8 +26,8 @@
             </Trigger>
           </Style.Triggers>
         </Style>
-      </DataGrid.Resources>
-      <DataGrid.Columns>
+      </local:CustomDataGrid.Resources>
+      <local:CustomDataGrid.Columns>
         <DataGridTextColumn 
           Header="{x:Static resources:Strings.Name}"
           MinWidth=" 100" Binding="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
@@ -45,7 +45,7 @@
           Binding="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
           MinWidth="10"
           Width="*"/>
-      </DataGrid.Columns>
-    </DataGrid>
+      </local:CustomDataGrid.Columns>
+    </local:CustomDataGrid>
   </Grid>
 </UserControl>

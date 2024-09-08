@@ -23,7 +23,7 @@
           <Setter Property="BorderThickness" Value="0" />
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
-              <Setter Property="Foreground" Value="Gray"/>
+              <Setter Property="Foreground" Value="LightGray"/>
             </DataTrigger>
           </Style.Triggers>
         </Style>
@@ -79,7 +79,7 @@
        Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
-          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Background" Value="LightGray"/>
           <Setter Property="Foreground" Value="Black"/>
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsObsolete}" Value="True">
@@ -103,7 +103,7 @@
       Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
-          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Background" Value="LightGray"/>
           <Setter Property="Foreground" Value="Black"/>
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsObsolete}" Value="True">
@@ -127,7 +127,7 @@
       Padding="{StaticResource PropertyPadding}">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
-          <Setter Property="Background" Value="Silver"/>
+          <Setter Property="Background" Value="LightGray"/>
           <Setter Property="Foreground" Value="Black"/>
           <Style.Triggers>
             <DataTrigger Binding="{Binding IsObsolete}" Value="True">
@@ -169,6 +169,7 @@
   />
 
   <Style TargetType="DataGridRowHeader">
+    <Setter Property="Background" Value="Silver" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Margin" Value="0" />
     <Setter Property="MinWidth" Value="20" />
@@ -179,31 +180,67 @@
         <ControlTemplate TargetType="DataGridRowHeader">
           <Border 
             x:Name="HeaderBorder" 
+            Background="{TemplateBinding Background}"
             BorderBrush="Black" 
             BorderThickness="0,0,1,1" >
             <ContentPresenter 
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            <Border.Style>
-              <Style TargetType="Border">
-                <Setter Property="Background" Value="LightGray"/>
-                <Style.Triggers>
-                  <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2000FFFF" />
-                  </Trigger>
-                  <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected}" Value="True">
-                    <Setter Property="Background" Value="LightBlue" />
-                  </DataTrigger>
-                </Style.Triggers>
-              </Style>
-            </Border.Style>
           </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="HeaderBorder" Property="Background" Value="LightBlue"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="HeaderBorder" Property="Background" Value="DarkGray" />
+            </Trigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected}" Value="True">
+              <Setter TargetName="HeaderBorder" Property="Background" Value="DodgerBlue" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
-  <DataTemplate x:Key="NumberingRowHeaderTemplate">
+  <Style TargetType="DataGridColumnHeader">
+    <Setter Property="Background" Value="Silver" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="DataGridColumnHeader">
+          <Border x:Name="HeaderBorder" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+              <ContentPresenter x:Name="SortIndicator" 
+                                Content="{TemplateBinding SortDirection}" 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Center" 
+                                Margin="5,0,5,0" />
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="HeaderBorder" Property="Background" Value="LightBlue"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="HeaderBorder" Property="Background" Value="DarkGray" />
+            </Trigger>
+            <Trigger Property="SortDirection" Value="Ascending">
+              <Setter TargetName="SortIndicator" Property="Content" Value="▲" />
+            </Trigger>
+            <Trigger Property="SortDirection" Value="Descending">
+              <Setter TargetName="SortIndicator" Property="Content" Value="▼" />
+            </Trigger>
+            <Trigger Property="SortDirection" Value="{x:Null}">
+              <Setter TargetName="SortIndicator" Property="Content" Value="" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+<DataTemplate x:Key="NumberingRowHeaderTemplate">
       <TextBlock 
         TextAlignment="Center"
         Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
