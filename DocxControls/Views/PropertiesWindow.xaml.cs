@@ -34,7 +34,7 @@ namespace DocxControls
       if (e.PropertyName == nameof(PropertiesViewModel.DataGridWidth) && sender is PropertiesViewModel propertiesViewModel)
       {
         var desiredWidth = propertiesViewModel.DataGridWidth;
-        Debug.WriteLine($"DataGridWidth={desiredWidth}");
+        //Debug.WriteLine($"DataGridWidth={desiredWidth}");
         if (desiredWidth > 0)
         {
           var windowHandle = new WindowInteropHelper(this).Handle;

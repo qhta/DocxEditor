@@ -168,10 +168,20 @@
     NewMemberTypeTemplate="{StaticResource NewMemberTypeTemplate}"
   />
 
+  <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border Background="Silver" BorderBrush="Black" BorderThickness="1"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style TargetType="DataGridRowHeader">
     <Setter Property="Background" Value="Silver" />
+    <Setter Property="Margin" Value="0,-1,0,0" />
     <Setter Property="Padding" Value="0" />
-    <Setter Property="Margin" Value="0" />
     <Setter Property="MinWidth" Value="20" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -181,8 +191,8 @@
           <Border 
             x:Name="HeaderBorder" 
             Background="{TemplateBinding Background}"
-            BorderBrush="Black" 
-            BorderThickness="0,0,1,1" >
+            BorderBrush="Black" BorderThickness="1,1,1,1"
+             >
             <ContentPresenter 
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -203,12 +213,19 @@
     </Setter>
   </Style>
 
+
   <Style TargetType="DataGridColumnHeader">
     <Setter Property="Background" Value="Silver" />
+    <Setter Property="Margin" Value="-1,0,0,0" />
+    <Setter Property="Padding" Value="0" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="DataGridColumnHeader">
-          <Border x:Name="HeaderBorder" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+          <Border 
+            x:Name="HeaderBorder" 
+            Background="{TemplateBinding Background}" 
+            BorderBrush="Black" BorderThickness="1,1,1,1"
+            >
             <Grid>
               <ContentPresenter x:Name="SortIndicator" 
                                 Content="{TemplateBinding SortDirection}" 
@@ -240,8 +257,8 @@
     </Setter>
   </Style>
 
-<DataTemplate x:Key="NumberingRowHeaderTemplate">
-      <TextBlock 
+  <DataTemplate x:Key="NumberingRowHeaderTemplate">
+    <TextBlock 
         TextAlignment="Center"
         Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
   </DataTemplate>
