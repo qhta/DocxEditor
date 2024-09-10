@@ -9,10 +9,6 @@ namespace DocxControls;
 /// </summary>
 public abstract class ElementViewModel : ObjectViewModel
 {
-  /// <summary>
-  /// Owner element view model
-  /// </summary>
-  public ViewModel? Owner { get; }
 
   /// <summary>
   /// Element of the document
@@ -28,23 +24,12 @@ public abstract class ElementViewModel : ObjectViewModel
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel? owner, DX.OpenXmlElement? element)
+  protected ElementViewModel(ViewModel? owner, object element): base(owner, element)
   {
-    Owner = owner;
-    Element = element;
-    // ReSharper disable once VirtualMemberCallInConstructor
-    DoubleClickCommand = new RelayCommand<object>(OnItemDoubleClicked);
-    LeftMouseDownCommand = new RelayCommand<object>(OnItemLeftMouseDown);
-    RightMouseUpCommand = new RelayCommand<object>(OnItemRightMouseUp);
+    //Owner = owner;
+    //Element = element as DX.OpenXmlElement;
   }
 
-  /// <summary>
-  /// Recursively gets the top document view model
-  /// </summary>
-  /// <returns></returns>
-  /// <exception cref="InvalidOperationException"></exception>
-  public DocumentViewModel GetDocumentViewModel() => (Owner as DocumentViewModel) ?? (Owner as ElementViewModel)?.GetDocumentViewModel() 
-    ?? throw new InvalidOperationException("Owner is not a document view model");
 
   /// <summary>
   /// Access to outer Xml of the element
@@ -71,44 +56,7 @@ public abstract class ElementViewModel : ObjectViewModel
   }
 
 
-  /// <summary>
-  /// Command to handle the double click event
-  /// </summary>
-  public ICommand? DoubleClickCommand { get; protected set; }
 
-  private void OnItemDoubleClicked(object? parameter)
-  {
-    if (parameter is ElementViewModel item)
-    {
-      // Do something with the item
-    }
-  }
-
-  /// <summary>
-  /// Command to handle the double click event
-  /// </summary>
-  public ICommand? LeftMouseDownCommand { get; protected set; }
-
-  private void OnItemLeftMouseDown(object? parameter)
-  {
-    if (parameter is ElementViewModel item)
-    {
-      item.IsSelected = !item.IsSelected;
-    }
-  }
-
-  /// <summary>
-  /// Command to handle the double click event
-  /// </summary>
-  public ICommand? RightMouseUpCommand { get; protected set; }
-
-  private void OnItemRightMouseUp(object? parameter)
-  {
-    if (parameter is ElementViewModel item)
-    {
-      Executables.ShowProperties(item);
-    }
-  }
 
   /// <summary>
   /// Displayed tooltip with the name of the bookmark

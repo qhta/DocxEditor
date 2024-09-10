@@ -7,7 +7,9 @@
              xmlns:resources="clr-namespace:DocxControls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600"
-             SizeChanged="FrameworkElement_OnSizeChanged">
+
+             SizeChanged="FrameworkElement_OnSizeChanged"
+             >
   <Grid>
     <local:CustomDataGrid 
       x:Name="DataGrid"
@@ -18,7 +20,8 @@
       CanUserSortColumns="True"
       CanUserAddRows="False" 
       CanUserDeleteRows="False"
-      SizeChanged="FrameworkElement_OnSizeChanged">
+
+      >
       <local:CustomDataGrid.Resources>
         <Style TargetType="DataGridCell">
           <Setter Property="BorderThickness" Value="0" />

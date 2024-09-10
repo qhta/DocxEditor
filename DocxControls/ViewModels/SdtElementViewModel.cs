@@ -62,4 +62,14 @@ public class SdtElementViewModel : ElementViewModel
   /// </summary>
   public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
+  /// <summary>
+  /// Initializes the object properties
+  /// </summary>
+  protected override ObjectPropertiesViewModel InitObjectProperties()
+  {
+    var objectProperties = new ObjectPropertiesViewModel();
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.SdtElement.SdtProperties)));
+    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.SdtElement.SdtEndCharProperties)));
+    return objectProperties;
+  }
 }

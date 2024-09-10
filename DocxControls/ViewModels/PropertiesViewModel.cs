@@ -32,6 +32,7 @@ public abstract class PropertiesViewModel : ViewModel
       if (_dataGridWidth != value)
       {
         _dataGridWidth = value;
+        //Debug.WriteLine($"{GetType().Name}.SetDataGridWidth({value})");
         NotifyPropertyChanged(nameof(DataGridWidth));
       }
     }

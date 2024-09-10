@@ -67,30 +67,30 @@ public class RunViewModel : ElementViewModel
   /// </summary>
   public bool IsUnderline => Run.IsItalic();
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected override ObjectPropertiesViewModel InitObjectProperties()
-  {
-    var objectProperties = new ObjectPropertiesViewModel();
-    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunAddition)));
-    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunDeletion)));
-    objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunProperties)));
-    AddMoreObjectProperties(objectProperties);
-    return objectProperties;
-  }
+  ///// <summary>
+  ///// Initializes the object properties
+  ///// </summary>
+  //protected override ObjectPropertiesViewModel InitObjectProperties()
+  //{
+  //  var objectProperties = new ObjectPropertiesViewModel();
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunAddition)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunDeletion)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunProperties)));
+  //  AddMoreObjectProperties(objectProperties);
+  //  return objectProperties;
+  //}
 
-  /// <summary>
-  /// Initializes the object properties
-  /// </summary>
-  protected void AddMoreObjectProperties(ObjectPropertiesViewModel objectProperties)
-  {
-    if (RunProperties != null)
-    {
-      foreach (var property in RunProperties.ObjectProperties.Items)
-      {
-        objectProperties.Add(property);
-      }
-    }
-  }
+  ///// <summary>
+  ///// Initializes the object properties
+  ///// </summary>
+  //protected void AddMoreObjectProperties(ObjectPropertiesViewModel objectProperties)
+  //{
+  //  if (RunProperties != null)
+  //  {
+  //    foreach (var property in RunProperties.ObjectProperties.Items)
+  //    {
+  //      objectProperties.Add(property);
+  //    }
+  //  }
+  //}
 }

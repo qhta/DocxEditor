@@ -17,7 +17,7 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// </summary>
   /// <param name="container"></param>
   /// <param name="member"></param>
-  public ObjectMemberViewModel(ObjectViewModel? container, object member) : base(member)
+  public ObjectMemberViewModel(ObjectViewModel? container, object member) : base(container, member)
   {
     Container = container;
   }

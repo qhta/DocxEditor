@@ -10,7 +10,7 @@ public class SdtEndCharPropertiesViewModel : ElementViewModel
   /// </summary>
   /// <param name="sdtViewModel">Owner view model. Must be <see cref="SdtElementViewModel"/></param>
   /// <param name="properties">Modeled Sdt properties element</param>
-  public SdtEndCharPropertiesViewModel(SdtElementViewModel sdtViewModel, DXW.SdtEndCharProperties? properties): base(sdtViewModel, properties)
+  public SdtEndCharPropertiesViewModel(SdtElementViewModel sdtViewModel, DXW.SdtEndCharProperties properties): base(sdtViewModel, properties)
   {
   }
 

@@ -19,13 +19,15 @@ namespace DocxControls
 
     private void PropertiesWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
-      if (DataContext is ObjectViewModel vm)
+      //Debug.WriteLine($"PropertiesWindow.DataContextChanged({DataContext.GetType().Name})");
+      if (DataContext is ObjectViewModel objectViewModel)
       {
-        if (vm.ModeledObject != null)
+        if (objectViewModel.ModeledObject != null)
         {
-          Title = vm.ModeledObject.GetType().Name;
+          Title = objectViewModel.ModeledObject.GetType().Name;
         }
-        vm.ObjectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
+        //Debug.WriteLine($"objectViewModel({objectViewModel.ObjectProperties.GetType()?.Name})");
+        objectViewModel.ObjectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
       }
     }
 
@@ -34,7 +36,7 @@ namespace DocxControls
       if (e.PropertyName == nameof(PropertiesViewModel.DataGridWidth) && sender is PropertiesViewModel propertiesViewModel)
       {
         var desiredWidth = propertiesViewModel.DataGridWidth;
-        //Debug.WriteLine($"DataGridWidth={desiredWidth}");
+        //Debug.WriteLine($"PropertiesWindow.DataGridWidth={desiredWidth}");
         if (desiredWidth > 0)
         {
           var windowHandle = new WindowInteropHelper(this).Handle;

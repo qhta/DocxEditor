@@ -11,7 +11,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param> 
   public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel)
   {
-    OwnerObjectViewModel = ownerObjectViewModel;
+    Owner = ownerObjectViewModel;
   }
 
   /// <summary>
@@ -22,7 +22,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <param name="origPropertyName">Name of property of the modeled object. If null then <paramref name="propertyName"/> is used</param>
   public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string propertyName, string? origPropertyName = null)
   {
-    OwnerObjectViewModel = ownerObjectViewModel;
+    Owner = ownerObjectViewModel;
     var viewModelProperty = ownerObjectViewModel.GetType().GetProperty(propertyName);
     origPropertyName ??= propertyName;
     var origProperty = ModeledObjectType!.GetProperty(origPropertyName);
@@ -56,7 +56,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
     {
       var value = Value;
       var val = value!.ToOpenXmlValue(OriginalType);
-      ViewModelProperty?.SetValue(OwnerObjectViewModel, val);
+      ViewModelProperty?.SetValue(Owner, val);
       OriginalProperty?.SetValue(ModeledObject, val);
       var val2 = OriginalProperty?.GetValue(ModeledObject);
       if (val2 != val)
@@ -67,17 +67,17 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Gets or sets the owner of the object property
   /// </summary>
-  public new ObjectViewModel? OwnerObjectViewModel { get; set; }
+  public new ObjectViewModel? Owner { get; set; }
 
   /// <summary>
-  /// OwnerObjectViewModel modeled object.
+  /// Owner modeled object.
   /// </summary>
-  public object? ModeledObject => OwnerObjectViewModel?.ModeledObject;
+  public object? ModeledObject => Owner?.ModeledObject;
 
   /// <summary>
-  /// OwnerObjectViewModel modeled object type.
+  /// Owner modeled object type.
   /// </summary>
-  public Type? ModeledObjectType => OwnerObjectViewModel?.ObjectType;
+  public Type? ModeledObjectType => Owner?.ObjectType;
 
   /// <summary>
   /// Collection of object properties.

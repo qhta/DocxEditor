@@ -161,7 +161,7 @@ public class ObjectViewComboBox : ComboBox
     // ReSharper disable once InvertIf
     if (dataGrid.DataContext is IObjectViewModelProvider viewModel)
     {
-      double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 2;
+      double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 20;
       if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
         if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)
           totalWidth = viewModel.ObjectViewModel.DataGridWidth;

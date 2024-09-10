@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 
 using Qhta.MVVM;
 
@@ -38,23 +39,80 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     }
   }
 
+  /// <summary>
+  /// Owner ViewModel.
+  /// </summary>
+  public ViewModel? Owner { get; protected set; }
+
+  /// <summary>
+  /// Recursively gets the top document view model
+  /// </summary>
+  /// <returns></returns>
+  /// <exception cref="InvalidOperationException"></exception>
+  public DocumentViewModel GetDocumentViewModel() => (Owner as DocumentViewModel) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
+    ?? throw new InvalidOperationException("Owner is not a document view model");
+
+  /// <summary>
+  /// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
+  /// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
+  /// </summary>
+  /// <param name="owner"></param>
+  /// <param name="modeledObject"></param>
+  /// <returns></returns>
+  public static ObjectViewModel Create(Object? owner, object? modeledObject)
+  {
+    var modeledObjectType = modeledObject?.GetType();
+    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
+      if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
+        viewModelType = typeof(ObjectViewModel);
+    return (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)!;
+  }
+
+  /// <summary>
+  /// ViewModel types declared in this assembly.
+  /// </summary>
+  public static readonly Dictionary<Type, Type> KnownObjectViewModelTypes = new()
+  {
+    { typeof(DXW.Body), typeof(BodyViewModel)},
+    { typeof(DXW.BookmarkStart), typeof(BookmarkStartViewModel)},
+    { typeof(DXW.BookmarkEnd), typeof(BookmarkEndViewModel)},
+    { typeof(DXW.Paragraph), typeof(ParagraphViewModel)},
+    { typeof(DXW.Run), typeof(RunViewModel)},
+    { typeof(DXW.RunProperties), typeof(RunPropertiesViewModel)},
+    { typeof(DXW.Text), typeof(TextViewModel)},
+    { typeof(DXW.Table), typeof(TableViewModel)},
+    //{ typeof(DXW.TableRow), typeof(TableRowViewModel)},
+    //{ typeof(DXW.TableCell), typeof(TableCellViewModel)},
+    //{ typeof(DXW.Drawing), typeof(Drawing
+    { typeof(DXW.SdtElement), typeof(SdtElementViewModel)},
+    { typeof(DXW.SdtProperties), typeof(SdtPropertiesViewModel)},
+    { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreakViewModel)},
+  };
+
 
   /// <summary>
   /// Initializing constructor
   /// for the new item placeholder view model when the type of the modeled object is unknown.
   /// </summary>
-  public ObjectViewModel()
+  protected ObjectViewModel()
   {
     _ObjectType = null;
+    // ReSharper disable once VirtualMemberCallInConstructor
+    DoubleClickCommand = new RelayCommand<object>(OnItemDoubleClicked);
+    LeftMouseDownCommand = new RelayCommand<object>(OnItemLeftMouseDown);
+    RightMouseUpCommand = new RelayCommand<object>(OnItemRightMouseUp);
   }
 
   /// <summary>
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
-  public ObjectViewModel(Object modeledObject)
+  protected ObjectViewModel(ViewModel? owner, Object modeledObject) : this()
   {
+    Owner = owner;
     _ObjectType = modeledObject?.GetType();
+    if (ObjectType?.Name == "SdtProperties")
+      Debug.Assert(true);
     if (modeledObject != null)
       Initialize(_ObjectType, modeledObject);
   }
@@ -65,7 +123,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   /// <param name="objectType">Type of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>
-  public ObjectViewModel(Type objectType, Object? modeledObject)
+  public ObjectViewModel(Type objectType, Object? modeledObject) : this()
   {
     Initialize(objectType, modeledObject);
   }
@@ -91,10 +149,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       foreach (ObjectMemberViewModel memberViewModel in e.NewItems!)
       {
-        //if (memberViewModel.IsEmpty)
-        //  ObjectMembers.Initialize(memberViewModel);
-        //if (memberViewModel.Obj != null &&
-        //    memberViewModel.Type != null && memberViewModel.Validate() && ValidateName(memberViewModel))
         if (ModeledObject is DX.OpenXmlCompositeElement container)
         {
           var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
@@ -260,7 +314,18 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         }
       }
     }
+    objectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
     return objectProperties;
+  }
+
+  private void ObjectProperties_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  {
+    //throw new NotImplementedException();
+    if (e.PropertyName == nameof(ObjectPropertiesViewModel.DataGridWidth) && sender is ObjectPropertiesViewModel propertiesViewModel)
+    {
+      //Debug.WriteLine($"ObjectPropertiesViewModel.PropertyChanged.DataGridWidth={propertiesViewModel.DataGridWidth}");
+      DataGridWidth = propertiesViewModel.DataGridWidth;
+    }
   }
 
   /// <summary>
@@ -424,9 +489,50 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       if (_dataGridWidth != value)
       {
         _dataGridWidth = value;
+        //Debug.WriteLine($"ObjectViewModel({ObjectType?.Name}).SetDataGridWidth({value})");
         NotifyPropertyChanged(nameof(DataGridWidth));
       }
     }
   }
   private double _dataGridWidth = double.NaN;
+
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand? DoubleClickCommand { get; protected set; }
+
+  private void OnItemDoubleClicked(object? parameter)
+  {
+    if (parameter is ObjectViewModel item)
+    {
+      // Do something with the item
+    }
+  }
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand? LeftMouseDownCommand { get; protected set; }
+
+  private void OnItemLeftMouseDown(object? parameter)
+  {
+    if (parameter is ObjectViewModel item)
+    {
+      item.IsSelected = !item.IsSelected;
+    }
+  }
+
+  /// <summary>
+  /// Command to handle the double click event
+  /// </summary>
+  public ICommand? RightMouseUpCommand { get; protected set; }
+
+  private void OnItemRightMouseUp(object? parameter)
+  {
+    if (parameter is ObjectViewModel item)
+    {
+      Executables.ShowProperties(item);
+    }
+  }
 }

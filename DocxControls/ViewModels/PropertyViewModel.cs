@@ -11,7 +11,10 @@ namespace DocxControls;
 public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable
 {
 
-  public ViewModel? OwnerObjectViewModel { get; set; }
+  /// <summary>
+  /// Owner view model
+  /// </summary>
+  public ViewModel? Owner { get; set; }
 
   /// <summary>
   /// Display caption for the property.
@@ -483,7 +486,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       if (_objectProperties == null)
       {
         var value = _Value;
-        _objectProperties = new ObjectViewModel(Type!, value);
+        _objectProperties = DocxControls.ObjectViewModel.Create(Owner, value);
         _objectProperties.PropertyChanged += PropertiesViewModel_PropertyChanged; 
         _Value = _objectProperties.ModeledObject;
       }

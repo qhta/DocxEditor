@@ -18,7 +18,7 @@ public partial class PropertiesView : UserControl
   {
     InitializeComponent();
     DataGrid.Loaded += DataGrid_Loaded;
-    //DataGrid.ColumnWidthChanged += DataGrid_ColumnWidthChanged;
+    DataContextChanged += PropertiesView_DataContextChanged;
   }
 
   private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
@@ -65,10 +65,23 @@ public partial class PropertiesView : UserControl
   {
     if (DataContext is PropertiesViewModel viewModel)
     {
-      double totalWidth = DataGrid.Columns.Sum(column => column.ActualWidth)+DataGrid.RowHeaderActualWidth+2;
+      double totalWidth = DataGrid.Columns.Sum(column => column.ActualWidth) + DataGrid.RowHeaderActualWidth + 20;
       viewModel.DataGridWidth = totalWidth;
       DataGrid.Columns.Last().Width = new DataGridLength(1, DataGridLengthUnitType.Star);
     }
   }
+
+  private void PropertiesView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+  {
+    //Debug.WriteLine($"PropertiesView.DataContextChanged({DataContext.GetType().Name})");
+    if (DataContext is PropertiesViewModel propertiesViewModel)
+      propertiesViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+  }
+
+  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  {
+    //throw new NotImplementedException();
+  }
+
 
 }
