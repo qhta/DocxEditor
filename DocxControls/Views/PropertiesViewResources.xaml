@@ -56,6 +56,14 @@
        Padding="{StaticResource PropertyPadding}">
     </local:CheckBoxComboBox>
   </DataTemplate>
+  <!--<DataTemplate x:Key="ObjectPropertyViewComboBoxTemplate" DataType="local:ObjectPropertyViewModel">
+    <local:ObjectViewComboBox 
+      Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},
+       UpdateSourceTrigger=Default}"
+      ItemsSource="{Binding ObjectViewModel.ObjectProperties.Items}"
+    >
+    </local:ObjectViewComboBox>
+  </DataTemplate>-->
   <DataTemplate x:Key="ObjectViewComboBoxTemplate" DataType="local:PropertyViewModel">
     <local:ObjectViewComboBox 
        Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},

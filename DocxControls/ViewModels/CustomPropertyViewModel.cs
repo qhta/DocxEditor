@@ -7,13 +7,24 @@ namespace DocxControls;
 /// <summary>
 /// View model for a custom property of a document.
 /// </summary>
-public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
+public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyDataErrorInfo
 {
+
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="owner"></param>
+  public CustomPropertyViewModel(ViewModel owner): base(owner)
+  {
+  }
+  //{
+  //  Owner = owner;
+  //}
 
   /// <summary>
   /// Name of the property to get/set.
   /// </summary>
-  public string? Name
+  public new string? Name
   {
     get => _name;
     set
@@ -31,7 +42,7 @@ public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
   /// <summary>
   /// Type of the property.
   /// </summary>
-  public Type? Type
+  public new Type? Type
   {
     get => _type;
     set
@@ -49,7 +60,7 @@ public class CustomPropertyViewModel : ViewModel, INotifyDataErrorInfo
   /// <summary>
   /// Value of the property.
   /// </summary>
-  public object? Value
+  public new object? Value
   {
     get => _value;
     set

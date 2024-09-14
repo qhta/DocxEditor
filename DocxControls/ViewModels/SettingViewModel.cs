@@ -1,10 +1,20 @@
-﻿namespace DocxControls;
+﻿using Qhta.MVVM;
+
+namespace DocxControls;
 
 /// <summary>
 /// View model for a setting of a document.
 /// </summary>
 public class SettingViewModel : PropertyViewModel
 {
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="owner"></param>
+  public SettingViewModel(ViewModel owner) : base(owner)
+  {
+  }
+
   /// <summary>
   /// Display caption for the setting.
   /// </summary>

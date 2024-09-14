@@ -11,16 +11,16 @@ public class CorePropertiesViewModel : PropertiesViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public CorePropertiesViewModel(WordprocessingDocument wordDocument)
+  /// <param name="owner"></param>
+  public CorePropertiesViewModel(DocumentViewModel owner) : base(owner)
   {
-    WordDocument = wordDocument;
-    CoreProperties = wordDocument.PackageProperties;
+    WordDocument = owner.WordDocument;
+    CoreProperties = WordDocument.PackageProperties;
     var names = CoreProperties.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
       var type = CoreProperties.GetType(name);
-      var propertyViewModel = new PropertyViewModel
+      var propertyViewModel = new PropertyViewModel(this)
       {
         Name = name,
         Type = type,

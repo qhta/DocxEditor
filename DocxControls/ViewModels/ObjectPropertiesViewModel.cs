@@ -12,7 +12,7 @@ public class ObjectPropertiesViewModel : PropertiesViewModel
   /// <summary>
   /// Default constructor.
   /// </summary>
-  public ObjectPropertiesViewModel()
+  public ObjectPropertiesViewModel(ViewModel owner) : base(owner)
   {
     SelectItemCommand = new RelayCommand<ObjectPropertyViewModel>(SelectItem);
   }

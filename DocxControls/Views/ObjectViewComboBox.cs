@@ -22,6 +22,33 @@ public class ObjectViewComboBox : ComboBox
   public ObjectViewComboBox()
   {
     Loaded += ComboBox_Loaded;
+    DropDownOpened += ObjectViewComboBox_DropDownOpened;
+    DropDownClosed += ObjectViewComboBox_DropDownClosed;
+  }
+
+  private void ObjectViewComboBox_DropDownOpened(object? sender, EventArgs e)
+  {
+    if (DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
+    {
+      //Debug.WriteLine($"ObjectViewComboBox_DropDownOpened({objectProperty.Caption})");
+      //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
+    }
+  }
+
+  private void ObjectViewComboBox_DropDownClosed(object? sender, EventArgs e)
+  {
+    if (DataContext is ObjectPropertyViewModel objectProperty)
+    {
+      //Debug.WriteLine($"ObjectViewComboBox_DropDownClosed({objectProperty.Caption})");
+      if (objectProperty.IsNew != objectProperty.ObjectViewModel.IsNew)
+        objectProperty.NotifyPropertyChanged(nameof(ObjectPropertyViewModel.IsNew));
+      if (TextBlock != null)
+      {
+        var binding = BindingOperations.GetBindingExpression(TextBlock, FontStyleProperty);
+        if (binding != null)
+          binding.UpdateTarget();
+      }
+    }
   }
 
   /// <summary>
@@ -42,6 +69,14 @@ public class ObjectViewComboBox : ComboBox
   private void ComboBox_Loaded(object sender, RoutedEventArgs e)
   {
     SizeChanged += FrameworkElement_OnSizeChanged;
+    if (Template.FindName("ToggleButton", this) is ToggleButton toggleButton)
+    {
+      ToggleButton = toggleButton;
+    }
+    if (Template.FindName("TextBlock", this) is TextBlock textBlock)
+    {
+      TextBlock = textBlock;
+    }
     if (Template.FindName("Popup_Thumb", this) is Thumb thumb)
     {
       thumb.DragDelta += Thumb_DragDelta;
@@ -49,21 +84,23 @@ public class ObjectViewComboBox : ComboBox
     if (Template.FindName("PropertiesDataGrid", this) is DataGrid propertiesDataGrid)
     {
       PropertiesDataGrid = propertiesDataGrid;
-      propertiesDataGrid.Sorting += DataGrid_Sorting;
-      PropertiesDataGrid.Loaded += (s, e) => UpdateDataGridWidth(propertiesDataGrid);
+      PropertiesDataGrid.Sorting += DataGrid_Sorting;
+      PropertiesDataGrid.LoadingRow += PropertiesDataGrid_LoadingRow;
+      PropertiesDataGrid.Loaded += (s, e) => UpdateDataGridWidth(PropertiesDataGrid);
     }
     if (Template.FindName("MembersDataGrid", this) is DataGrid membersDataGrid)
     {
       MembersDataGrid = membersDataGrid;
-      membersDataGrid.Sorting += DataGrid_Sorting;
-      membersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
-      MembersDataGrid.Loaded += (s, e) => UpdateDataGridWidth(membersDataGrid);
+      MembersDataGrid.Sorting += DataGrid_Sorting;
+      MembersDataGrid.LoadingRow += MembersDataGrid_LoadingRow;
+      MembersDataGrid.Loaded += (s, e) => UpdateDataGridWidth(MembersDataGrid);
     }
     if (Template.FindName("PopupGrid", this) is Grid grid)
     {
       grid.DataContextChanged += Grid_DataContextChanged;
     }
   }
+
 
   private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
   {
@@ -82,8 +119,21 @@ public class ObjectViewComboBox : ComboBox
     }
   }
 
+  private ToggleButton? ToggleButton;
+  private TextBlock? TextBlock;
   private DataGrid? PropertiesDataGrid;
   private DataGrid? MembersDataGrid;
+
+
+  private void PropertiesDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
+  {
+//    Debug.WriteLine($"e.Row.DataContext={e.Row.DataContext}");
+    if (e.Row.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption=="RunFonts")
+    {
+      //Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
+      //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
+    }
+  }
 
   private void MembersDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
   {
@@ -161,6 +211,11 @@ public class ObjectViewComboBox : ComboBox
     // ReSharper disable once InvertIf
     if (dataGrid.DataContext is IObjectViewModelProvider viewModel)
     {
+      //if (dataGrid.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption=="RunFonts")
+      //{
+      //  Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
+      //  Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
+      //}
       double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 20;
       if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
         if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)

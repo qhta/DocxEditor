@@ -24,9 +24,10 @@ public class ViewModelsFactory
   /// <summary>
   /// Creates a new view model for the specified object type.
   /// </summary>
+  /// <param name="owner"></param>
   /// <param name="objectType"></param>
   /// <returns></returns>
-  public ViewModel? CreateViewModel(Type objectType)
+  public ViewModel? CreateViewModel(ViewModel owner, Type objectType)
   {
 #pragma warning disable OOXML0001
     if (objectType == typeof(DXPack.IPackageProperties))

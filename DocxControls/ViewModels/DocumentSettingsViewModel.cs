@@ -2,13 +2,14 @@
 using System.ComponentModel;
 
 using DocumentFormat.OpenXml.Packaging;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
 /// <summary>
 /// View model for the document settings.
 /// </summary>
-public class DocumentSettingsViewModel
+public class DocumentSettingsViewModel: ViewModel
 {
 
   /// <summary>
@@ -40,7 +41,7 @@ public class DocumentSettingsViewModel
       var value = setting.ToSystemValue(openXmlType);
       if (categories == null || categories.Contains(category))
       {
-        var settingViewModel = new SettingViewModel
+        var settingViewModel = new SettingViewModel(this)
         {
           Name = name,
           Category = category,

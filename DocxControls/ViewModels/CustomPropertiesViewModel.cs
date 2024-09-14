@@ -7,36 +7,36 @@ namespace DocxControls;
 /// <summary>
 /// View model for the custom properties
 /// </summary>
-public class CustomPropertiesViewModel
+public class CustomPropertiesViewModel: PropertiesViewModel
 {
 
-  /// <summary>
-  /// Internal Wordprocessing document
-  /// </summary>
-  public WordprocessingDocument WordDocument { get; init; }
+  ///// <summary>
+  ///// Internal Wordprocessing document
+  ///// </summary>
+  //public WordprocessingDocument WordDocument { get; init; }
 
-  /// <summary>
-  /// Observable collection of properties
-  /// </summary>
-  public CustomObservableCollection<CustomPropertyViewModel> Items { get; } = new();
+  ///// <summary>
+  ///// Observable collection of properties
+  ///// </summary>
+  //public CustomObservableCollection<CustomPropertyViewModel> Items { get; } = new();
 
-  /// <summary>
-  /// Default constructor
-  /// </summary>
-  public CustomPropertiesViewModel()
-  {
-    WordDocument = null!;
-    CustomProperties = null!;
-  }
+  ///// <summary>
+  ///// Default constructor
+  ///// </summary>
+  //public CustomPropertiesViewModel()
+  //{
+  //  WordDocument = null!;
+  //  CustomProperties = null!;
+  //}
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public CustomPropertiesViewModel(WordprocessingDocument wordDocument)
+  /// <param name="owner"></param>
+  public CustomPropertiesViewModel(DocumentViewModel owner): base(owner)
   {
-    WordDocument = wordDocument;
-    CustomProperties = wordDocument.GetCustomFileProperties();
+    WordDocument = owner.WordDocument;
+    CustomProperties = WordDocument.GetCustomFileProperties();
     var names = CustomProperties.GetNames();
     foreach (var name in names)
     {
@@ -51,7 +51,7 @@ public class CustomPropertiesViewModel
       {
         Debug.WriteLine(e);
       }
-      var propertyViewModel = new CustomPropertyViewModel
+      var propertyViewModel = new CustomPropertyViewModel(this)
       {
         Name = name,
         Type = type,

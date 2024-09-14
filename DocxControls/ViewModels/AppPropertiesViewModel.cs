@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
 
-using DocumentFormat.OpenXml.Packaging;
-
 namespace DocxControls;
 
 /// <summary>
@@ -13,18 +11,18 @@ public class AppPropertiesViewModel : PropertiesViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public AppPropertiesViewModel(WordprocessingDocument wordDocument)
+  /// <param name="owner"> </param>
+  public AppPropertiesViewModel(DocumentViewModel owner): base(owner)
   {
-    WordDocument = wordDocument;
-    AppProperties = wordDocument.GetExtendedFileProperties();
+    WordDocument = owner.WordDocument;
+    AppProperties = WordDocument.GetExtendedFileProperties();
     var names = AppProperties.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
       if (!AppProperties.IsVolatile(name) && AppProperties.AppliesToApplication(name, AppType.Word))
       {
         var type = AppProperties.GetType(name);
-        var propertyViewModel = new PropertyViewModel
+        var propertyViewModel = new PropertyViewModel(this)
         {
           Name = name,
           Type = type,

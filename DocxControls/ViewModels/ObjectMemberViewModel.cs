@@ -93,5 +93,5 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// <summary>
   /// Checks if the object value is null.
   /// </summary>
-  public bool IsEmpty => Value == null;
+  public new bool IsEmpty => Value == null;
 }

@@ -58,7 +58,7 @@ public class DocumentViewModel: ViewModel
     {
       if (_CoreProperties == null)
       {
-        _CoreProperties = new CorePropertiesViewModel(WordDocument);
+        _CoreProperties = new CorePropertiesViewModel(this);
       }
       return _CoreProperties;
     }
@@ -75,7 +75,7 @@ public class DocumentViewModel: ViewModel
     {
       if (_AppProperties == null)
       {
-        _AppProperties = new AppPropertiesViewModel(WordDocument);
+        _AppProperties = new AppPropertiesViewModel(this);
       }
       return _AppProperties;
     }
@@ -93,7 +93,7 @@ public class DocumentViewModel: ViewModel
     {
       if (_StatProperties == null)
       {
-        _StatProperties = new StatPropertiesViewModel(WordDocument);
+        _StatProperties = new StatPropertiesViewModel(this);
       }
       return _StatProperties;
     }
@@ -110,7 +110,7 @@ public class DocumentViewModel: ViewModel
     {
       if (_CustomProperties == null)
       {
-        _CustomProperties = new CustomPropertiesViewModel(WordDocument);
+        _CustomProperties = new CustomPropertiesViewModel(this);
       }
       return _CustomProperties;
     }

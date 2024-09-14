@@ -8,6 +8,10 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Helpers\ViewModelsFactory.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <None Remove="Resources\TriangleDown.png" />

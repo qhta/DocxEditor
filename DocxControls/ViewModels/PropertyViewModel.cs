@@ -12,6 +12,15 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 {
 
   /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="owner"></param>
+  public PropertyViewModel(ViewModel owner)
+  {
+   Owner = owner;
+  }
+
+  /// <summary>
   /// Owner view model
   /// </summary>
   public ViewModel? Owner { get; set; }
@@ -25,7 +34,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Name of the property to get/set.
   /// </summary>
-  public virtual string? Name { get; set; }
+  public virtual string? Name
+  {
+    get; 
+    set;
+  }
 
   /// <summary>
   /// Type of the property.
@@ -50,11 +63,15 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         _Value = value;
         NotifyPropertyChanged(nameof(Value));
+        if (Owner!=null)
+          Owner.NotifyPropertyChanged(Name);
       }
     }
   }
-
-  private object? _Value;
+  /// <summary>
+  /// Field for the property value.
+  /// </summary>
+  protected object? _Value;
 
   /// <summary>
   /// String value of the property for sorting.
@@ -474,32 +491,62 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property of object type?
   /// </summary>
-  public bool IsObject => (Type != null) && (Type.IsClass && Type != typeof(string));
+  public virtual bool IsObject => (Type != null) && (Type.IsClass && Type != typeof(string));
 
   /// <summary>
   /// Gets the value as an object view model.
   /// </summary>
-  public IObjectViewModel ObjectViewModel
+  public virtual IObjectViewModel ObjectViewModel
   {
     get
     {
-      if (_objectProperties == null)
+      if (_objectViewModel == null)
       {
         var value = _Value;
-        _objectProperties = DocxControls.ObjectViewModel.Create(Owner, value);
-        _objectProperties.PropertyChanged += PropertiesViewModel_PropertyChanged; 
-        _Value = _objectProperties.ModeledObject;
+        _objectViewModel = CreateObjectViewModel(value);
+        _Value = _objectViewModel.ModeledObject;
       }
-      return _objectProperties;
+      return _objectViewModel;
+    }
+    set
+    {
+      if (_objectViewModel != value)
+      {
+        if (_objectViewModel != null)
+          _objectViewModel.PropertyChanged -= ObjectViewModel_PropertyChanged;
+        _objectViewModel = value as ObjectViewModel;
+        _Value = _objectViewModel?.ModeledObject;
+        NotifyPropertyChanged(nameof(Value));
+      }
     }
   }
+  /// <summary>
+  /// Field for the object view model.
+  /// </summary>
+  protected ObjectViewModel? _objectViewModel;
 
-  private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  /// <summary>
+  /// Creates a new ObjectViewModel;
+  /// </summary>
+  /// <param name="value"></param>
+  /// <returns></returns>
+  protected ObjectViewModel CreateObjectViewModel(object? value)
+  {
+    var result = DocxControls.ObjectViewModel.Create(Owner, value);
+    result.PropertyChanged += ObjectViewModel_PropertyChanged;
+    return result;
+  }
+
+  /// <summary>
+  /// Passes the property change event to the view model.
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
+  protected virtual void ObjectViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
     NotifyPropertyChanged(nameof(Value));
   }
 
-  private ObjectViewModel? _objectProperties;
 
   #endregion IObjectViewModelProvider implementation
 }

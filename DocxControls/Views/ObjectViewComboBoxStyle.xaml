@@ -8,6 +8,7 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/PropertiesViewResources.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <cnv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+  <local:FontStyleConverter x:Key="FontStyleConverter"/>
   <Style TargetType="{x:Type local:ObjectViewComboBox}" >
     <Setter Property="Padding" Value="{StaticResource PropertyPadding}"/>
     <Setter Property="Template">
@@ -16,10 +17,35 @@
           <Grid>
             <ToggleButton
               x:Name="ToggleButton"
-              Content="{TemplateBinding Text}"
               HorizontalContentAlignment="Left"
               Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
-              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+              <ToggleButton.Content>
+                <TextBlock 
+                  x:Name="TextBlock"
+                  Text="{TemplateBinding Text}"
+                  FontStyle="{Binding IsNew, Converter={StaticResource FontStyleConverter}}"
+                  >
+                  <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                      <Setter Property="FontStyle" Value="Normal" />
+                      <Setter Property="Foreground" Value="Black" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsNew}" Value="True">
+                          <Setter Property="FontStyle" Value="Italic"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsNew}" Value="False">
+                          <Setter Property="FontStyle" Value="Normal"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsEmpty}" Value="True">
+                          <Setter Property="Foreground" Value="Gray"/>
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBlock.Style>
+                </TextBlock>
+              </ToggleButton.Content>
+            </ToggleButton>
             <Popup
               x:Name="PART_Popup"
               Placement="Bottom"

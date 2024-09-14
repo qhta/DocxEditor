@@ -67,7 +67,7 @@ public class SdtElementViewModel : ElementViewModel
   /// </summary>
   protected override ObjectPropertiesViewModel InitObjectProperties()
   {
-    var objectProperties = new ObjectPropertiesViewModel();
+    var objectProperties = new ObjectPropertiesViewModel(this);
     objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.SdtElement.SdtProperties)));
     objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.SdtElement.SdtEndCharProperties)));
     return objectProperties;

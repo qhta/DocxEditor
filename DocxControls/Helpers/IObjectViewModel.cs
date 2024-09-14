@@ -17,6 +17,17 @@ public interface IObjectViewModel
   public bool IsContainer { get; }
 
   /// <summary>
+  /// Determines if the object is just created.
+  /// </summary>
+  public bool IsNew { get; }
+
+
+  /// <summary>
+  /// Determines if the object is empty.
+  /// </summary>
+  public bool IsEmpty { get; }
+
+  /// <summary>
   /// Object which properties are modeled
   /// </summary>
   public object? ModeledObject { get; }

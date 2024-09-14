@@ -32,8 +32,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       if (_ObjectType == null)
         return false;
-      if (_ObjectType.Name.StartsWith("Rs"))
-        Debug.Assert(true);
       var result = ObjectType?.IsContainer() ?? false;
       return result;
     }
@@ -59,14 +57,40 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <param name="owner"></param>
   /// <param name="modeledObject"></param>
   /// <returns></returns>
-  public static ObjectViewModel Create(Object? owner, object? modeledObject)
+  public static ObjectViewModel Create(ViewModel? owner, object? modeledObject)
   {
     var modeledObjectType = modeledObject?.GetType();
     if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
       if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
-        viewModelType = typeof(ObjectViewModel);
-    return (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)!;
+        viewModelType = null;
+    if (viewModelType == null)
+    {
+      if (modeledObject != null)
+        return new ObjectViewModel(owner, modeledObject);
+      else
+      {
+        throw new InvalidOperationException("Cannot create a view model for the null object");
+      }
+    }
+    var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)!;
+    return result;
   }
+
+  ///// <summary>
+  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
+  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
+  ///// </summary>
+  ///// <param name="owner"></param>
+  ///// <param name="modeledObjectType"></param>
+  ///// <returns></returns>
+  //public static ObjectViewModel Create(Object? owner, Type? modeledObjectType, object? modeledObject)
+  //{
+  //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
+  //    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
+  //      viewModelType = typeof(ObjectViewModel);
+  //  var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, owner)!;
+  //  return result;
+  //}
 
   /// <summary>
   /// ViewModel types declared in this assembly.
@@ -111,8 +135,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   {
     Owner = owner;
     _ObjectType = modeledObject?.GetType();
-    if (ObjectType?.Name == "SdtProperties")
-      Debug.Assert(true);
     if (modeledObject != null)
       Initialize(_ObjectType, modeledObject);
   }
@@ -206,15 +228,41 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     if (e.PropertyName == nameof(PropertyViewModel.Value))
     {
       var propertyViewModel = (PropertyViewModel)sender!;
-      var propertyName = propertyViewModel.Name;
-      if (propertyName != null && _ObjectType != null)
+      var propName = propertyViewModel.Name;
+      //if (propName == "RunFonts")
+      //{
+      //  Debug.WriteLine($"{this}.PropertiesViewModel_PropertyChanged({sender}, {propName})");
+      //  if (ObjectProperties.Items.Any(p => p.Name == propName))
+      //  {
+      //    var prop = ObjectProperties.Items.First(p => p.Name == propName);
+      //    if (prop.Value != propertyViewModel.Value)
+      //    {
+      //      var value = propertyViewModel.Value;
+      //      prop.Value = propertyViewModel.Value;
+      //      NotifyPropertyChanged(nameof(ModeledObject));
+      //      NotifyPropertyChanged(nameof(IsEmpty));
+      //    }
+      //  }
+      //}
+      if (propName != null && _ObjectType != null)
       {
         ModeledObject ??= Activator.CreateInstance(_ObjectType);
-        var prop = ModeledObject!.GetType().GetProperty(propertyName);
+        var prop = ModeledObject!.GetType().GetProperty(propName);
         if (prop != null && prop.CanWrite)
         {
           prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
+          //if (Value!= ModeledObject)
+          //{
+          //  if (ModeledObject is DX.OpenXmlElement modeledElement)
+          //  {
+          //    if (modeledElement.IsEmpty())
+          //      Value = null;
+          //    else
+          //      Value = modeledElement;
+          //  }
+          //}
           NotifyPropertyChanged(nameof(ModeledObject));
+          NotifyPropertyChanged(nameof(IsEmpty));
         }
       }
     }
@@ -278,7 +326,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   protected virtual ObjectPropertiesViewModel InitObjectProperties()
   {
-    var objectProperties = new ObjectPropertiesViewModel();
+    var objectProperties = new ObjectPropertiesViewModel(this);
     if (ObjectType != null)
     {
       var properties = ObjectType.GetOpenXmlProperties().ToArray();
@@ -296,18 +344,17 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
           var modeledObject = ModeledObject;
           if (modeledObject != null)
           {
-            if (modeledObject.GetType().Name == "Properties3D")
-              Debug.WriteLine($"{modeledObject.GetType().Name}.{prop.Name}: {prop.PropertyType}");
             originalValue = prop.GetValue(modeledObject);
             value = originalValue?.ToSystemValue(origType);
           }
           var propertyViewModel = new ObjectPropertyViewModel(this)
           {
+            OriginalProperty = prop,
             Name = propName,
             Type = type,
             OriginalType = origType,
             Value = value,
-            OriginalValue = originalValue
+            OriginalValue = originalValue,
           };
           propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
           objectProperties.Add(propertyViewModel);
@@ -320,10 +367,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
 
   private void ObjectProperties_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    //throw new NotImplementedException();
     if (e.PropertyName == nameof(ObjectPropertiesViewModel.DataGridWidth) && sender is ObjectPropertiesViewModel propertiesViewModel)
     {
-      //Debug.WriteLine($"ObjectPropertiesViewModel.PropertyChanged.DataGridWidth={propertiesViewModel.DataGridWidth}");
       DataGridWidth = propertiesViewModel.DataGridWidth;
     }
   }
@@ -404,6 +449,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       {
         _modeledObject = val;
         NotifyPropertyChanged(nameof(Value));
+        //Debug.WriteLine($"ObjectViewModel.Value={value}");
+        //NotifyPropertyChanged(nameof(ModeledObject));
       }
     }
   }
@@ -466,17 +513,27 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   public bool IsNew
   {
-    get => _IsNew;
+    get
+    {
+      //Debug.WriteLine($"{this}.GetIsNew={_IsNew}");
+      return _IsNew;
+    }
     set
     {
       if (value != _IsNew)
       {
         _IsNew = value;
+        //Debug.WriteLine($"{this}.SetIsNew={value}");
         NotifyPropertyChanged(nameof(IsNew));
       }
     }
   }
   private bool _IsNew;
+
+  /// <summary>
+  /// Determines if the object is new.
+  /// </summary>
+  public bool IsEmpty => (ModeledObject as DX.OpenXmlElement)?.IsEmpty() ?? ModeledObject == null;
 
   /// <summary>
   /// Width of the data grid in the view
@@ -489,7 +546,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       if (_dataGridWidth != value)
       {
         _dataGridWidth = value;
-        //Debug.WriteLine($"ObjectViewModel({ObjectType?.Name}).SetDataGridWidth({value})");
         NotifyPropertyChanged(nameof(DataGridWidth));
       }
     }
@@ -534,5 +590,14 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       Executables.ShowProperties(item);
     }
+  }
+
+  /// <summary>
+  /// Gets the string representation of the instance for debugging purposes.
+  /// </summary>
+  /// <returns></returns>
+  public override string ToString()
+  {
+    return GetType().Name + "(" + (ModeledObject != null ? $"({ModeledObject.GetType().Name})" : "") + ")";
   }
 }

@@ -13,18 +13,18 @@ public class StatPropertiesViewModel : PropertiesViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public StatPropertiesViewModel(WordprocessingDocument wordDocument)
+  /// <param name="owner"></param>
+  public StatPropertiesViewModel(DocumentViewModel owner) : base(owner)
   {
-    WordDocument = wordDocument;
-    StatProperties = wordDocument.GetExtendedFileProperties();
+    WordDocument = owner.WordDocument;
+    StatProperties = WordDocument.GetExtendedFileProperties();
     var names = StatProperties.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
       if (StatProperties.IsVolatile(name) && StatProperties.AppliesToApplication(name, AppType.Word))
       {
         var type = StatProperties.GetType(name);
-        var propertyViewModel = new PropertyViewModel
+        var propertyViewModel = new PropertyViewModel(this)
         {
           Name = name,
           Type = type,
