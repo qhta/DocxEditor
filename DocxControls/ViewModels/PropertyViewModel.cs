@@ -120,7 +120,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     if (type == typeof(Guid))
       return "{00000000-0000-0000-0000-000000000000}";
     if (type == typeof(HexInt))
-      return "HHHHHHHH";
+      return "XXXXXX";
     return null;
   }
 
@@ -136,6 +136,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   public static string? GetWatermark(Type? type)
   {
+    Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
     if (type == null)
       return null;
     if (type.IsNullable(out var baseType))
@@ -179,9 +180,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     if (type == typeof(Guid))
       return "00000000-0000-0000-0000-000000000000";
     if (type == typeof(HexInt))
-      return "HHHHHHHH";
+      return "XXXXXXXX";
     if (type?.BaseType==typeof(DXW.LongHexNumberType))
-      return "HHHHHHHH";
+      return "XXXXXXXX";
+    if (type == typeof(HexRGB))
+      return "XXXXXX";
+    if (type == typeof(HexByte))
+      return "XX";
     return null;
   }
   #endregion INotifyPropertyChanged implementation
@@ -278,7 +283,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         if (type == typeof(bool))
           return true;
-        var systemType = type.ToSystemType();
+        var systemType = type.ToSystemType(Name);
         if (systemType == typeof(bool) || systemType == typeof(bool?))
           return true;
       }

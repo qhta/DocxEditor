@@ -35,7 +35,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
     OriginalProperty = origProperty;
     var propName = origProperty?.Name ?? viewModelProperty?.Name;
     var origType = origProperty?.PropertyType;
-    var type = origType?.ToSystemType() ?? viewModelProperty?.PropertyType;
+    var type = origType?.ToSystemType(propName) ?? viewModelProperty?.PropertyType;
     if (type == typeof(bool))
       type = typeof(bool?);
     object? value = null;

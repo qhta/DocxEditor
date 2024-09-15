@@ -28,6 +28,7 @@
     <PackageReference Include="Qhta.MVVM" Version="4.1.0" />
     <PackageReference Include="Qhta.WPF.Converters" Version="1.3.2" />
     <PackageReference Include="Qhta.WPF.Utils" Version="3.4.0" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="26.2.14" />
   </ItemGroup>
 
   <ItemGroup>

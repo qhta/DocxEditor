@@ -335,8 +335,13 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
         {
           var propName = prop.Name;
+          if (propName=="Val")
+          {
+            if (ObjectType != null)
+              propName = ObjectType.Name +"." + propName;
+          }
           var origType = prop.PropertyType;
-          var type = origType.ToSystemType();
+          var type = origType.ToSystemType(propName);
           if (type == typeof(bool))
             type = typeof(bool?);
           object? value = null;

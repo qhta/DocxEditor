@@ -35,7 +35,7 @@ public class DocumentSettingsViewModel: ViewModel
     foreach (var name in names)
     {
       var openXmlType = DocumentSettings.GetType(name);
-      var type = openXmlType.ToSystemType();
+      var type = openXmlType.ToSystemType(name);
       var category = DocumentSettings.GetCategory(name);
       var setting = DocumentSettings.GetValue(name);
       var value = setting.ToSystemValue(openXmlType);
