@@ -8,7 +8,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable
 {
 
   /// <summary>
@@ -59,13 +59,15 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     get => _Value;
     set
     {
-      if (value != _Value && Name != null)
-      {
-        _Value = value;
-        NotifyPropertyChanged(nameof(Value));
-        if (Owner!=null)
-          Owner.NotifyPropertyChanged(Name);
-      }
+      if (IsEditable)
+        if (value != _Value && Name != null)
+        {
+          _Value = value;
+          NotifyPropertyChanged(nameof(Value));
+          if (Owner!=null)
+            Owner.NotifyPropertyChanged(Name);
+          IsModified = true;
+        }
     }
   }
   /// <summary>
@@ -537,4 +539,32 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 
 
   #endregion IObjectViewModelProvider implementation
+
+  #region IEditable implementation
+  /// <summary>
+  /// Determines if the object is editable.
+  /// </summary>
+  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+
+  /// <summary>
+  /// Was the object modified?
+  /// </summary>
+  public bool IsModified
+  {
+    get => _isModified;
+    set
+    {
+      if (_isModified != value)
+      {
+        _isModified = value;
+        NotifyPropertyChanged(nameof(IsModified));
+        if (value && Owner is IEditable editable)
+        {
+          editable.IsModified = value;
+        }
+      }
+    }
+  }
+  private bool _isModified;
+  #endregion IEditable implementation
 }

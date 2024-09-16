@@ -258,4 +258,10 @@
   <data name="DisplacedByCustomXml" xml:space="preserve">
     <value>Przeniesione przez niestandardowy Xml</value>
   </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Tylko do odczytu</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Zmodyfikowano</value>
+  </data>
 </root>

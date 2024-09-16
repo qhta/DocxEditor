@@ -9,7 +9,7 @@ namespace DocxControls;
 /// <summary>
 /// Abstract class for the properties view model
 /// </summary>
-public abstract class PropertiesViewModel : ViewModel
+public abstract class PropertiesViewModel : ViewModel, IEditable
 {
   /// <summary>
   /// Initializing constructor.
@@ -73,4 +73,31 @@ public abstract class PropertiesViewModel : ViewModel
   }
   private double _dataGridWidth;
 
+  #region IEditable implementation
+  /// <summary>
+  /// Determines if the object is editable.
+  /// </summary>
+  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+
+  /// <summary>
+  /// Was the object modified?
+  /// </summary>
+  public bool IsModified
+  {
+    get => _isModified;
+    set
+    {
+      if (_isModified != value)
+      {
+        _isModified = value;
+        NotifyPropertyChanged(nameof(IsModified));
+        if (value && Owner is IEditable editable)
+        {
+          editable.IsModified = value;
+        }
+      }
+    }
+  }
+  private bool _isModified;
+  #endregion IEditable implementation
 }

@@ -6,7 +6,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a document.
 /// </summary>
-public class DocumentViewModel: ViewModel
+public class DocumentViewModel: ViewModel, IEditable
 {
   /// <summary>
   /// Initializing constructor.
@@ -65,12 +65,43 @@ public class DocumentViewModel: ViewModel
   /// <summary>
   /// File path of the document.
   /// </summary>
-  public string FilePath { get; private set; }
+  public string FilePath
+  {
+    get => _filePath;
+    private set
+    {
+      if (_filePath != value)
+      {
+        _filePath = value;
+        NotifyPropertyChanged(nameof(FilePath));
+        NotifyPropertyChanged(nameof(WindowTitle));
+      }
+    }
+  }
+  private string _filePath = string.Empty;
 
   /// <summary>
   /// Flag indicating if the document is editable.
   /// </summary>
   public bool IsEditable { get; private set; }
+
+  /// <summary>
+  /// Flag indicating if the document is editable.
+  /// </summary>
+  public bool IsModified
+  {
+    get => _isModified;
+    set
+    {
+      if (_isModified != value)
+      {
+        _isModified = value;
+        NotifyPropertyChanged(nameof(IsModified));
+        NotifyPropertyChanged(nameof(WindowTitle));
+      }
+    }
+  }
+  private bool _isModified;
 
   private string? TempFilePath;
 
@@ -81,10 +112,14 @@ public class DocumentViewModel: ViewModel
   {
     get
     {
-      var result = Path.GetFileName(FilePath);
+      var result = FilePath;
       if (!IsEditable)
       {
-        result += " [Read Only]";
+        result += $" [{Strings.ReadOnly}]";
+      }
+      else if (IsModified)
+      {
+        result += $" [{Strings.Modified}]";
       }
       return result;
     }
@@ -104,6 +139,7 @@ public class DocumentViewModel: ViewModel
       return _BodyElements;
     }
   }
+
   private BodyViewModel? _BodyElements;
 
   /// <summary>
@@ -344,4 +380,5 @@ public class DocumentViewModel: ViewModel
     }
   }
   private BookmarksViewModel? _Bookmarks;
+
 }

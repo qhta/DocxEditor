@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Qhta.TypeUtils;
 
 namespace DocxControls;
 
@@ -19,34 +20,54 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param>
-  /// <param name="propertyName">Name of property of the ownerObjectViewModel view model</param>
-  /// <param name="origPropertyName">Name of property of the modeled object. If null then <paramref name="propertyName"/> is used</param>
-  public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string propertyName, string? origPropertyName = null) : base(ownerObjectViewModel)
-  {
-    var viewModelProperty = ownerObjectViewModel.GetType().GetProperty(propertyName);
-    origPropertyName ??= propertyName;
-    var origProperty = ModeledObjectType!.GetProperty(origPropertyName);
-    if (origProperty == null && viewModelProperty == null)
-      throw new ArgumentException($"Property {origPropertyName} not found in {ModeledObjectType!.Name} and not in {ownerObjectViewModel.GetType().Name}");
-    //if (!(property.CanWrite))
-    //  throw new ArgumentException($"Property {propertyName} is not writable in {ownerObjectViewModel.GetType().Name}");
+  /// <param name="propName">Name of property of the ownerObjectViewModel view model</param>
+  /// <param name="origPropName">Name of property of the modeled object.</param>
+  /// <param name="property">PropertyInfo of the view model</param>
+  /// <param name="origProperty">PropertyInfo of the modeled object</param>
+  /// <param name="valueType">Type of the view model value</param>
+  /// <param name="origValueType">Type of the modeled object value</param>
+  /// <param name="value">Value of the view model property</param>
+  /// <param name="origValue">Value of the modeled object</param>
 
-    ViewModelProperty = viewModelProperty;
+  public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string? propName, string? origPropName = null,
+    PropertyInfo? property = null, PropertyInfo? origProperty = null, 
+    Type? valueType = null, Type? origValueType = null, 
+    object? value = null, object? origValue = null) : base(ownerObjectViewModel)
+  {
+    if (property == null && propName != null)
+      property = ownerObjectViewModel.GetType().GetProperty(propName);
+
+    if (origPropName == null && propName!=null)
+      origPropName = propName;
+    else
+    if (propName == null && origPropName != null)
+      propName = origPropName;
+
+    if (origProperty==null)
+      origProperty = ModeledObjectType!.GetProperty(origPropName!);
+    if (origProperty == null && property == null)
+      throw new ArgumentException($"Property {origPropName} not found in {ModeledObjectType!.Name} and not in {ownerObjectViewModel.GetType().Name}");
+    //if (!(property.CanWrite))
+    //  throw new ArgumentException($"Property {propName} is not writable in {ownerObjectViewModel.GetType().Name}");
+
+    ViewModelProperty = property;
     OriginalProperty = origProperty;
-    var propName = origProperty?.Name ?? viewModelProperty?.Name;
-    var origType = origProperty?.PropertyType;
-    var type = origType?.ToSystemType(propName) ?? viewModelProperty?.PropertyType;
-    if (type == typeof(bool))
-      type = typeof(bool?);
-    object? value = null;
-    object? originalValue = null;
-    originalValue = origProperty?.GetValue(ModeledObject);
-    value = originalValue.ToSystemValue(origType);
+    if (propName == null)
+      propName = origProperty?.Name ?? property?.Name;
+    if (origValueType == null)
+      origValueType = origProperty?.PropertyType;
+    if (valueType == null)
+      valueType = origValueType?.ToSystemType(propName) ?? ViewModelProperty?.PropertyType;
+    valueType = valueType!.GetNotNullableType();
+    if (origValue == null)
+      origValue = origProperty?.GetValue(ModeledObject);
+    if (value == null)
+      value = origValue.ToSystemValue(origValueType);
     base.Name = propName;
-    base.Type = type;
-    base.OriginalType = origType;
-    base.Value = value;
-    base.OriginalValue = originalValue;
+    base.Type = valueType;
+    OriginalType = origValueType;
+    _Value = value;
+    OriginalValue = origValue;
     PropertyChanged += ObjectPropertyViewModel_PropertyChanged;
   }
 
@@ -96,12 +117,12 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Property to get/set the value of the object property.
   /// </summary>
-  public PropertyInfo? ViewModelProperty { get; set; }
+  public PropertyInfo? ViewModelProperty { get; private set; }
 
   /// <summary>
   /// Property to get/set the value of the object property.
   /// </summary>
-  public PropertyInfo? OriginalProperty { get; set; }
+  public PropertyInfo? OriginalProperty { get; private set; }
 
   #region IObjectViewModelProvider implementation
 

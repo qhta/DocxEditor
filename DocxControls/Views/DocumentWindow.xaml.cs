@@ -39,7 +39,7 @@ public partial class DocumentWindow : Window
   {
     var documentViewModel = DataContext as DocumentViewModel;
     if (documentViewModel == null) return true;
-    if (documentViewModel.IsEditable)
+    if (documentViewModel.IsEditable && documentViewModel.IsModified)
 
     {
       var message = Strings.SaveChangesInDocument;

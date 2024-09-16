@@ -9,7 +9,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for complex object properties
 /// </summary>
-public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider, ISelectable
+public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider, ISelectable, IEditable
 {
   /// <summary>
   ///  Type of the object which properties are modeled
@@ -335,10 +335,10 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         if (prop.CanRead && (prop.CanWrite || prop.PropertyType.IsClass && prop.PropertyType != typeof(string)))
         {
           var propName = prop.Name;
-          if (propName=="Val")
+          if (propName == "Val")
           {
             if (ObjectType != null)
-              propName = ObjectType.Name +"." + propName;
+              propName = ObjectType.Name + "." + propName;
           }
           var origType = prop.PropertyType;
           var type = origType.ToSystemType(propName);
@@ -352,15 +352,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
             originalValue = prop.GetValue(modeledObject);
             value = originalValue?.ToSystemValue(origType);
           }
-          var propertyViewModel = new ObjectPropertyViewModel(this)
-          {
-            OriginalProperty = prop,
-            Name = propName,
-            Type = type,
-            OriginalType = origType,
-            Value = value,
-            OriginalValue = originalValue,
-          };
+          var propertyViewModel =
+            new ObjectPropertyViewModel(this, null, propName, null, prop, type, origType, value, originalValue);
           propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
           objectProperties.Add(propertyViewModel);
         }
@@ -605,4 +598,32 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   {
     return GetType().Name + "(" + (ModeledObject != null ? $"({ModeledObject.GetType().Name})" : "") + ")";
   }
+
+  #region IEditable implementation
+  /// <summary>
+  /// Determines if the object is editable.
+  /// </summary>
+  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+
+  /// <summary>
+  /// Was the object modified?
+  /// </summary>
+  public bool IsModified
+  {
+    get => _isModified;
+    set
+    {
+      if (_isModified != value)
+      {
+        _isModified = value;
+        NotifyPropertyChanged(nameof(IsModified));
+        if (value && Owner is IEditable editable)
+        {
+          editable.IsModified = value;
+        }
+      }
+    }
+  }
+  private bool _isModified;
+  #endregion IEditable implementation
 }

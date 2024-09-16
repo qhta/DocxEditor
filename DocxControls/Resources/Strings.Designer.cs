@@ -349,6 +349,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modified.
+        /// </summary>
+        public static string Modified {
+            get {
+                return ResourceManager.GetString("Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -390,6 +399,15 @@ namespace DocxControls.Resources {
         public static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read only.
+        /// </summary>
+        public static string ReadOnly {
+            get {
+                return ResourceManager.GetString("ReadOnly", resourceCulture);
             }
         }
         
