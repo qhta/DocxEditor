@@ -95,32 +95,37 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   /// <param name="type"></param>
   /// <returns></returns>
-  public static string? GetEditMask(Type type)
+  public static string? GetEditMask(Type? type)
   {
+    Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
+    if (type == null)
+      return null;
+    if (type.IsNullable(out var baseType))
+      type = baseType;
+    if (type == typeof(string))
+      return null;
+    if (type.BaseType == typeof(DXW.LongHexNumberType))
+      type = typeof(HexInt);
     if (type == typeof(DateTime))
-      return "0000-00-00 90:00:00";
+      return @"[1-2][X-9][X-9][X-9]-[X-1][X-9]-[X-3][X-9] [X-2][X-9]:[X-5][X-9]:[X-5][X-9]";
     if (type == typeof(TimeSpan))
-      return "90:00:00";
-    if (type == typeof(int))
-      return "0000000000";
-    if (type == typeof(decimal))
-      return "0000000000.00";
-    if (type == typeof(double))
-      return "0000000000.00";
-    if (type == typeof(float))
-      return "0000000000.00";
-    if (type == typeof(long))
-      return "000000000000000000";
-    if (type == typeof(short))
-      return "00000";
-    if (type == typeof(byte))
-      return "000";
+      return @"(X[X-9]|1[X-9]|2[X-3]):[X-5][X-9]";
+    if (type == typeof(uint) || type == typeof(byte) || type == typeof(ushort) || type == typeof(ulong))
+      return @"\d+";
+    if (type == typeof(int) || type == typeof(sbyte) || type == typeof(short) || type == typeof(long))
+      return @"-?\d+";
+    if (type == typeof(decimal) || type == typeof(double) || type == typeof(float))
+      return @"-?\d+\.?\d*";
     if (type == typeof(bool))
       return "L";
     if (type == typeof(Guid))
-      return "{00000000-0000-0000-0000-000000000000}";
+      return "[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]-[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]-[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]-[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]-[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]";
     if (type == typeof(HexInt))
-      return "XXXXXX";
+      return "[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]";
+    if (type == typeof(HexRGB))
+      return "[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]";
+    if (type == typeof(HexByte))
+      return "[0-9A-Fa-f][0-9A-Fa-f]";
     return null;
   }
 
@@ -143,45 +148,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       type = baseType;
     if (type == typeof(string))
       return null;
+    if (type.BaseType == typeof(DXW.LongHexNumberType))
+      type = typeof(HexInt);
     if (type == typeof(DateTime))
       return "yyyy-MM-dd hh:mm:ss";
     if (type == typeof(TimeSpan))
       return "hh:mm:ss";
-    if (type == typeof(int))
-      return "0";
-    if (type == typeof(short))
-      return "0";
-    if (type == typeof(sbyte))
-      return "0";
-    if (type == typeof(Int64))
-      return "0";
-    if (type == typeof(uint))
-      return "0";
-    if (type == typeof(ushort))
-      return "0";
-    if (type == typeof(byte))
-      return "0";
-    if (type == typeof(UInt64))
-      return "0";
-    if (type == typeof(decimal))
-      return "0.00";
-    if (type == typeof(double))
-      return "0.00";
-    if (type == typeof(float))
-      return "0.00";
-    if (type == typeof(long))
-      return "0";
-    if (type == typeof(short))
-      return "0";
-    if (type == typeof(byte))
-      return "0";
+    if (type == typeof(uint) || type == typeof(byte) || type == typeof(ushort) || type == typeof(ulong))
+      return @"0";
+    if (type == typeof(int) || type == typeof(sbyte) || type == typeof(short) || type == typeof(long))
+      return @"0";
+    if (type == typeof(decimal) || type == typeof(double) || type == typeof(float))
+      return @"0";
     if (type == typeof(bool))
       return "true/false";
     if (type == typeof(Guid))
-      return "00000000-0000-0000-0000-000000000000";
+      return "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
     if (type == typeof(HexInt))
-      return "XXXXXXXX";
-    if (type?.BaseType==typeof(DXW.LongHexNumberType))
       return "XXXXXXXX";
     if (type == typeof(HexRGB))
       return "XXXXXX";

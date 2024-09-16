@@ -1,4 +1,5 @@
-﻿using Qhta.MVVM;
+﻿using System.IO;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -14,6 +15,7 @@ public class DocumentViewModel: ViewModel
   /// <param name="isEditable"></param>
   public DocumentViewModel(string filePath, bool isEditable)
   {
+    FilePath = filePath;
     Open(filePath, isEditable);
   }
 
@@ -29,7 +31,63 @@ public class DocumentViewModel: ViewModel
   /// <param name="isEditable"></param>
   public void Open(string filePath, bool isEditable)
   {
-    WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(filePath, isEditable);
+    FilePath = filePath;
+    IsEditable = isEditable;
+    if (isEditable)
+    {
+      TempFilePath = System.IO.Path.GetTempFileName();
+      File.Copy(FilePath, TempFilePath, true);
+      WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(TempFilePath, isEditable);
+    }
+    else
+    {
+      WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(filePath, isEditable);
+    }
+  }
+
+  /// <summary>
+  /// Close the document.
+  /// </summary>
+  /// <param name="saveChanges">If <c>true</c> and <see cref="IsEditable"/> then temporary file is copied to the original file path</param>
+  public void Close(bool saveChanges)
+  {
+    WordDocument.Dispose();
+    if (TempFilePath != null)
+    {
+      if (IsEditable)
+      {
+        File.Copy(TempFilePath, FilePath, true);
+      }
+      File.Delete(TempFilePath);
+    }
+  }
+
+  /// <summary>
+  /// File path of the document.
+  /// </summary>
+  public string FilePath { get; private set; }
+
+  /// <summary>
+  /// Flag indicating if the document is editable.
+  /// </summary>
+  public bool IsEditable { get; private set; }
+
+  private string? TempFilePath;
+
+  /// <summary>
+  /// Title for the window
+  /// </summary>
+  public string WindowTitle
+  {
+    get
+    {
+      var result = Path.GetFileName(FilePath);
+      if (!IsEditable)
+      {
+        result += " [Read Only]";
+      }
+      return result;
+    }
   }
 
   /// <summary>

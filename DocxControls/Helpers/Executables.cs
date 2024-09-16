@@ -1,10 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Input;
-
-using DocumentFormat.OpenXml.Packaging;
 
 using Microsoft.Win32;
-using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -16,8 +12,12 @@ public static class Executables
   /// <summary>
   /// List of opened documents.
   /// </summary>
-  public static List<WordprocessingDocument> Documents { get; } = new();
+  public static List<DocumentViewModel> Documents { get; } = new();
 
+  /// <summary>
+  /// List of opened document Windows.
+  /// </summary>
+  public static List<DocumentWindow> DocumentWindows { get; } = new();
 
   /// <summary>
   /// Execute the FileNew command.
@@ -37,10 +37,12 @@ public static class Executables
     // ReSharper disable once UseObjectOrCollectionInitializer
     OpenFileDialog openFileDialog = new ();
     openFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
+    openFileDialog.ShowReadOnly = true;
     if (openFileDialog.ShowDialog() == true)
     {
       string filePath = openFileDialog.FileName;
-      OpenDocument(filePath, true);
+      var editable = !openFileDialog.ReadOnlyChecked;
+      OpenDocument(filePath, editable);
     }
   }
 
@@ -51,13 +53,9 @@ public static class Executables
   /// <param name="isEditable"></param>
   public static void OpenDocument(string filePath, bool isEditable)
   {
-    var window = Application.Current.MainWindow as IMainWindow;
-    if (window == null) return;
-    var documentView = new DocumentView(filePath, isEditable);
-
-    Documents.Add(documentView.DocumentViewModel.WordDocument);
-    window.SetTitle(filePath);
-    window.ShowDocumentView(documentView);
+    var mainWindow = Application.Current.MainWindow as IMainWindow;
+    if (mainWindow == null) return;
+    mainWindow.OpenDocument(filePath, isEditable);
   }
 
   /// <summary>
@@ -68,9 +66,54 @@ public static class Executables
   {
     var window = Application.Current.MainWindow;
     if (window == null) return;
-    var propertiesWindow = new PropertiesWindow();
-    propertiesWindow.Owner = window;
-    propertiesWindow.DataContext = sender;
+    var propertiesWindow = new PropertiesWindow
+    {
+      Owner = window,
+      DataContext = sender
+    };
     propertiesWindow.ShowDialog();
+  }
+
+
+  /// <summary>
+  /// Creates a new document.
+  /// </summary>
+  /// <param name="sender"></param>
+  public static void NewDocument(object sender)
+  {
+    // ReSharper disable once UseObjectOrCollectionInitializer
+    SaveFileDialog saveFileDialog = new();
+    saveFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
+    if (saveFileDialog.ShowDialog() == true)
+    {
+      string filePath = saveFileDialog.FileName;
+      CreateDocument(filePath);
+    }
+  }
+
+  /// <summary>
+  /// Create a new document in the specified path.
+  /// </summary>
+  /// <param name="filePath"></param>
+  public static void CreateDocument(string filePath)
+  {
+
+  }
+
+
+  /// <summary>
+  /// Extract the first paragraphs of each section of the document and creates a new document with them.
+  /// </summary>
+  /// <param name="sender"></param>
+  public static void ExtractFirstParagraphs(object sender)
+  {
+    // ReSharper disable once UseObjectOrCollectionInitializer
+    SaveFileDialog saveFileDialog = new();
+    saveFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
+    if (saveFileDialog.ShowDialog() == true)
+    {
+      string filePath = saveFileDialog.FileName;
+      CreateDocument(filePath);
+    }
   }
 }

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-using DocumentFormat.OpenXml.Packaging;
 using DocxControls;
 using DocxControls.Resources;
 
@@ -54,33 +53,27 @@ public partial class MainWindow : Window, IMainWindow
 
   protected override void OnClosing(CancelEventArgs e)
   {
-    var documents = Executables.Documents;
-    var documentCount = documents.Count();
-    if (documentCount == 0) return;
-    var message = documentCount == 1 ? Strings.SaveChangesInDocument : Strings.SaveChangesInDocuments;
-    if (documentCount == 1)
+    foreach (var window in Executables.DocumentWindows.ToArray())
     {
-      var result = MessageBox.Show(message, Strings.ApplicationClosing, MessageBoxButton.YesNoCancel);
-      if (result == MessageBoxResult.Cancel)
+      if (!window.CloseDocument())
       {
         e.Cancel = true;
         return;
       }
-      if (result == MessageBoxResult.Yes)
-        foreach (var doc in documents)
-        {
-          doc.Dispose();
-        }
     }
   }
 
-  public void SetTitle(string title)
+  public void OpenDocument(string filePath, bool isEditable)
   {
-    Title = title;
-  }
+    var documents = Executables.Documents;
 
-  public void ShowDocumentView(DocumentView documentView)
-  {
-    MainPanel.Content = documentView;
+    var documentViewModel = new DocumentViewModel(filePath, isEditable);
+
+    documents.Add(documentViewModel);
+
+    var documentWindow = new DocumentWindow { DataContext = documentViewModel };
+    Executables.DocumentWindows.Add(documentWindow);
+    documentWindow.Owner = this;
+    documentWindow.Show();
   }
 }

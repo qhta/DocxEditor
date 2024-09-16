@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DocxControls"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
                     >
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
@@ -12,6 +13,25 @@
   <local:TypeNameConverter x:Key="TypeNameConverter"/>
   <local:EnumValuesConverter x:Key="EnumValuesConverter"/>
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
+    <!--<syncfusion:SfMaskedEdit 
+      Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
+      Watermark="{Binding Watermark}"
+      Mask="{Binding EditMask}"
+      MaskType = "RegEx"
+      IsReadOnly="{Binding IsReadOnly}"
+      TextWrapping="WrapWithOverflow"
+      AcceptsReturn="False">
+      <TextBox.Style>
+        <Style TargetType="TextBox">
+          <Setter Property="BorderThickness" Value="0" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+              <Setter Property="Foreground" Value="LightGray"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBox.Style>
+    </syncfusion:SfMaskedEdit>-->
     <xctk:WatermarkTextBox 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"

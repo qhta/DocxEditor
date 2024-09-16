@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:DocxControls;assembly=DocxControls"
         xmlns:resources="clr-namespace:DocxControls.Resources;assembly=DocxControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" WindowState="Maximized">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
