@@ -19,20 +19,11 @@ public static class Executables
   /// </summary>
   public static List<DocumentWindow> DocumentWindows { get; } = new();
 
-  /// <summary>
-  /// Execute the FileNew command.
-  /// </summary>
-  /// <param name="sender"></param>
-  public static void FileNewExecute(object sender)
-  {
-    MessageBox.Show("FileNew clicked");
-  }
 
   /// <summary>
-  /// Execute the FileOpen command.
+  /// Execute the OpenFile command.
   /// </summary>
-  /// <param name="sender"></param>
-  public static void FileOpenExecute(object sender)
+  public static void OpenFile()
   {
     // ReSharper disable once UseObjectOrCollectionInitializer
     OpenFileDialog openFileDialog = new ();
@@ -47,19 +38,24 @@ public static class Executables
   }
 
   /// <summary>
-  /// Open a document for viewing/editing.
+  /// OpenDocument a document for viewing/editing.
   /// </summary>
   /// <param name="filePath"></param>
   /// <param name="isEditable"></param>
   public static void OpenDocument(string filePath, bool isEditable)
   {
-    var mainWindow = Application.Current.MainWindow as IMainWindow;
-    if (mainWindow == null) return;
-    mainWindow.OpenDocument(filePath, isEditable);
+    var documentViewModel = new DocumentViewModel();
+    documentViewModel.OpenDocument(filePath, isEditable);
+    Documents.Add(documentViewModel);
+
+    var documentWindow = new DocumentWindow { DataContext = documentViewModel };
+    DocumentWindows.Add(documentWindow);
+    documentWindow.Owner = Application.Current.MainWindow;
+    documentWindow.Show();
   }
 
   /// <summary>
-  /// Open a properties window for the sender object.
+  /// OpenDocument a properties window for the sender object.
   /// </summary>
   /// <param name="sender"></param>
   public static void ShowProperties(object sender)
@@ -78,17 +74,32 @@ public static class Executables
   /// <summary>
   /// Creates a new document.
   /// </summary>
-  /// <param name="sender"></param>
-  public static void NewDocument(object sender)
+  public static void NewDocument()
   {
-    // ReSharper disable once UseObjectOrCollectionInitializer
-    SaveFileDialog saveFileDialog = new();
-    saveFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
-    if (saveFileDialog.ShowDialog() == true)
+    var documentViewModel = new DocumentViewModel();
+    documentViewModel.NewDocument();
+    Documents.Add(documentViewModel);
+
+    var documentWindow = new DocumentWindow { DataContext = documentViewModel };
+    DocumentWindows.Add(documentWindow);
+    documentWindow.Owner = Application.Current.MainWindow;
+    documentWindow.Show();
+  }
+
+  /// <summary>
+  /// Close all opened documents.
+  /// </summary>
+  /// <returns></returns>
+  public static bool CloseAllDocuments()
+  {
+    foreach (var window in DocumentWindows.ToArray())
     {
-      string filePath = saveFileDialog.FileName;
-      CreateDocument(filePath);
+      if (!window.CloseDocument())
+      {
+        return false;
+      }
     }
+    return true;
   }
 
   /// <summary>

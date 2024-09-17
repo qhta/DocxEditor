@@ -2,13 +2,12 @@
 using System.Windows;
 
 using DocxControls;
-using DocxControls.Resources;
 
 namespace DocxEditor;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window, IMainWindow
+public partial class MainWindow : Window
 {
 
   public MainWindow()
@@ -18,17 +17,18 @@ public partial class MainWindow : Window, IMainWindow
 
   private void New_Click(object sender, RoutedEventArgs e)
   {
-    Executables.FileNewExecute(this);
+    Executables.NewDocument();
   }
 
   private void Open_Click(object sender, RoutedEventArgs e)
   {
-    Executables.FileOpenExecute(this);
+    Executables.OpenFile();
   }
 
   private void Exit_Click(object sender, RoutedEventArgs e)
   {
-    Application.Current.Shutdown();
+    if (Executables.CloseAllDocuments())
+      Application.Current.Shutdown();
   }
 
   private void Cut_Click(object sender, RoutedEventArgs e)
@@ -53,27 +53,9 @@ public partial class MainWindow : Window, IMainWindow
 
   protected override void OnClosing(CancelEventArgs e)
   {
-    foreach (var window in Executables.DocumentWindows.ToArray())
-    {
-      if (!window.CloseDocument())
-      {
+     if (!Executables.CloseAllDocuments())
         e.Cancel = true;
-        return;
-      }
-    }
   }
 
-  public void OpenDocument(string filePath, bool isEditable)
-  {
-    var documents = Executables.Documents;
 
-    var documentViewModel = new DocumentViewModel(filePath, isEditable);
-
-    documents.Add(documentViewModel);
-
-    var documentWindow = new DocumentWindow { DataContext = documentViewModel };
-    Executables.DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = this;
-    documentWindow.Show();
-  }
 }

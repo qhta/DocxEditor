@@ -9,14 +9,10 @@ namespace DocxControls;
 public class DocumentViewModel: ViewModel, IEditable
 {
   /// <summary>
-  /// Initializing constructor.
+  /// Default constructor.
   /// </summary>
-  /// <param name="filePath"></param>
-  /// <param name="isEditable"></param>
-  public DocumentViewModel(string filePath, bool isEditable)
+  public DocumentViewModel()
   {
-    FilePath = filePath;
-    Open(filePath, isEditable);
   }
 
   /// <summary>
@@ -25,11 +21,11 @@ public class DocumentViewModel: ViewModel, IEditable
   public DocumentFormat.OpenXml.Packaging.WordprocessingDocument WordDocument { get; set; } = null!;
 
   /// <summary>
-  /// Open a document for viewing/editing.
+  /// OpenDocument a wordprocessing document for viewing/editing.
   /// </summary>
   /// <param name="filePath"></param>
   /// <param name="isEditable"></param>
-  public void Open(string filePath, bool isEditable)
+  public void OpenDocument(string filePath, bool isEditable)
   {
     FilePath = filePath;
     IsEditable = isEditable;
@@ -46,6 +42,16 @@ public class DocumentViewModel: ViewModel, IEditable
   }
 
   /// <summary>
+  /// Creates a new wordprocessing document.
+  /// </summary>
+  public void NewDocument()
+  {
+    IsEditable = true;
+    TempFilePath = System.IO.Path.GetTempFileName();
+    WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Create(TempFilePath, DX.WordprocessingDocumentType.Document);
+  }
+
+  /// <summary>
   /// Close the document.
   /// </summary>
   /// <param name="saveChanges">If <c>true</c> and <see cref="IsEditable"/> then temporary file is copied to the original file path</param>
@@ -54,7 +60,7 @@ public class DocumentViewModel: ViewModel, IEditable
     WordDocument.Dispose();
     if (TempFilePath != null)
     {
-      if (IsEditable)
+      if (IsEditable && FilePath!=null)
       {
         File.Copy(TempFilePath, FilePath, true);
       }
@@ -65,7 +71,7 @@ public class DocumentViewModel: ViewModel, IEditable
   /// <summary>
   /// File path of the document.
   /// </summary>
-  public string FilePath
+  public string? FilePath
   {
     get => _filePath;
     private set
@@ -78,7 +84,7 @@ public class DocumentViewModel: ViewModel, IEditable
       }
     }
   }
-  private string _filePath = string.Empty;
+  private string? _filePath = null;
 
   /// <summary>
   /// Flag indicating if the document is editable.
@@ -112,7 +118,7 @@ public class DocumentViewModel: ViewModel, IEditable
   {
     get
     {
-      var result = FilePath;
+      var result = FilePath ?? TempFilePath ?? String.Empty;
       if (!IsEditable)
       {
         result += $" [{Strings.ReadOnly}]";

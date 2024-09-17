@@ -353,7 +353,7 @@
     <value>Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to IEEE/IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications.</value>
   </data>
   <data name="SchemaLibrary" xml:space="preserve">
-    <value>Specifies the set of XML namespaces which have been associated with the contents of the custom XML markup within the current Office Open XML document. Each unique namespace which is referenced within the document can be referenced within this element by a single schema element, regardless of the number of constituent XML schemas which comprise that namespace.</value>
+    <value>Specifies the set of XML namespaces which have been associated with the contents of the custom XML markup within the current Office OpenDocument XML document. Each unique namespace which is referenced within the document can be referenced within this element by a single schema element, regardless of the number of constituent XML schemas which comprise that namespace.</value>
   </data>
   <data name="ShapeDefaults" xml:space="preserve">
     <value>Specifies the default parameters for object using the VML syntax (§14.1) inserted in the body (the main document story, comments, footnotes, and endnotes) of the WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of IEEE/IEC 29500.</value>

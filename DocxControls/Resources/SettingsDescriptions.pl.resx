@@ -353,7 +353,7 @@
     <value>Określa, że zawartość tego dokumentu zostanie zapisana jako plik XML zawierający tylko niestandardowe znaczniki XML w tym dokumencie w jego zwykłej formie. Wynikowy dokument nie jest zgodny z normą IEEE/IEC 29500 (tj. jest to opcja zapisywania tylko do eksportu dla dokumentu WordprocessingML).&lt;p/&gt;Uzasadnienie: To ustawienie jest zwykle używane do wyodrębniania niestandardowych znaczników XML z dokumentu WordprocessingML w celu dalszego przetwarzania przez aplikacje obsługujące XML.</value>
   </data>
   <data name="SchemaLibrary" xml:space="preserve">
-    <value>Określa zestaw przestrzeni nazw XML, które zostały skojarzone z zawartością niestandardowych znaczników XML w bieżącym dokumencie Office Open XML. Do każdej unikatowej przestrzeni nazw, do której odwołuje się dokument, można odwoływać się w tym elemencie za pomocą pojedynczego elementu schematu, niezależnie od liczby składowych schematów XML, które składają się na tę przestrzeń nazw.</value>
+    <value>Określa zestaw przestrzeni nazw XML, które zostały skojarzone z zawartością niestandardowych znaczników XML w bieżącym dokumencie Office OpenDocument XML. Do każdej unikatowej przestrzeni nazw, do której odwołuje się dokument, można odwoływać się w tym elemencie za pomocą pojedynczego elementu schematu, niezależnie od liczby składowych schematów XML, które składają się na tę przestrzeń nazw.</value>
   </data>
   <data name="ShapeDefaults" xml:space="preserve">
     <value>Określa domyślne parametry obiektu przy użyciu składni VML (§14.1) wstawionej w treści (główny wątek dokumentu, komentarze, przypisy dolne i końcowe) dokumentu WordprocessingML. Definicja i semantyka tych parametrów jest opisana w podpunkcie VML - Office Drawing (§14.2) normy IEEE/IEC 29500.</value>

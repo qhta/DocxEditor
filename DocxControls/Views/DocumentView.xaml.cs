@@ -32,13 +32,14 @@ public partial class DocumentView : UserControl
   public DocumentViewModel DocumentViewModel { get; set; } = null!;
 
   /// <summary>
-  /// Open a document for viewing/editing.
+  /// OpenDocument a document for viewing/editing.
   /// </summary>
   /// <param name="filePath"></param>
   /// <param name="isEditable"></param>
   public void Open(string filePath, bool isEditable)
   {
-    DocumentViewModel = new DocumentViewModel(filePath, isEditable);
+    DocumentViewModel = new DocumentViewModel();
+    DocumentViewModel.OpenDocument(filePath, isEditable);
     DataContext = DocumentViewModel;
   }
 
