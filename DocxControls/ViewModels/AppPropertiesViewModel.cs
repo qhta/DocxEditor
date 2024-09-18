@@ -12,7 +12,7 @@ public class AppPropertiesViewModel : PropertiesViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"> </param>
-  public AppPropertiesViewModel(DocumentViewModel owner): base(owner)
+  public AppPropertiesViewModel(Document owner): base(owner)
   {
     WordDocument = owner.WordDocument;
     AppProperties = WordDocument.GetExtendedFileProperties();

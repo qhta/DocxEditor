@@ -6,19 +6,30 @@ namespace DocxControls;
 /// <summary>
 /// View model for a document.
 /// </summary>
-public class DocumentViewModel: ViewModel, IEditable
+public class Document: ViewModel, DA.Document, IEditable
 {
   /// <summary>
   /// Default constructor.
   /// </summary>
-  public DocumentViewModel()
+  public Document()
   {
   }
+
+  /// <summary>
+  /// Returns an Application object that represents the DocxControls application.
+  /// </summary>
+  public DA.Application Application => throw new NotImplementedException();
+
+  /// <summary>
+  /// Returns the parent object for the specified object.
+  /// </summary>
+  public object? Parent => null;
 
   /// <summary>
   /// Internal WordprocessingDocument object
   /// </summary>
   public DocumentFormat.OpenXml.Packaging.WordprocessingDocument WordDocument { get; set; } = null!;
+
 
   /// <summary>
   /// OpenDocument a wordprocessing document for viewing/editing.
@@ -374,17 +385,18 @@ public class DocumentViewModel: ViewModel, IEditable
   /// Access to the document bookmarks collection
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public BookmarksViewModel Bookmarks
+  public Bookmarks Bookmarks
   {
     get
     {
       if (_Bookmarks == null)
       {
-        _Bookmarks = new BookmarksViewModel(WordDocument);
+        _Bookmarks = new Bookmarks(Body);
       }
       return _Bookmarks;
     }
   }
-  private BookmarksViewModel? _Bookmarks;
+  private Bookmarks? _Bookmarks;
+
 
 }

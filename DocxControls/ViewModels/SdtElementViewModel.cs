@@ -13,9 +13,9 @@ public class SdtElementViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="ownerViewModel">Owner view model</param>
+  /// <param name="parentViewModel">Parent view model</param>
   /// <param name="sdtElement">Modeled SdtElement</param>
-  public SdtElementViewModel(ViewModel ownerViewModel, DXW.SdtElement sdtElement) : base(ownerViewModel, sdtElement)
+  public SdtElementViewModel(ViewModel parentViewModel, DXW.SdtElement sdtElement) : base(parentViewModel, sdtElement)
   {
     foreach (var element in sdtElement.Elements())
     {

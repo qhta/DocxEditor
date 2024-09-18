@@ -13,12 +13,12 @@ public class ParagraphViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BlockElementViewModel"/></param>
+  /// <param name="parentViewModel">Parent view model. Must be <see cref="BlockElementViewModel"/></param>
   /// <param name="paragraph"></param>
   public ParagraphViewModel
-    (BlockElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
+    (BlockElementViewModel parentViewModel, DXW.Paragraph paragraph) : base(parentViewModel, paragraph)
   {
-    var DocumentViewModel = ownerViewModel.GetDocumentViewModel();
+    var DocumentViewModel = parentViewModel.GetDocumentViewModel();
     foreach (var element in paragraph.Elements())
     {
       if (element is DXW.ParagraphProperties properties)

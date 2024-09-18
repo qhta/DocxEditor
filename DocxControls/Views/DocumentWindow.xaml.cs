@@ -21,7 +21,7 @@ public partial class DocumentWindow : Window
   /// <param name="e"></param>
   protected override void OnClosing(CancelEventArgs e)
   {
-    var documentViewModel = DataContext as DocumentViewModel;
+    var documentViewModel = DataContext as Document;
     if (documentViewModel == null) return;
 
     if (!CloseDocument())
@@ -37,7 +37,7 @@ public partial class DocumentWindow : Window
   /// <returns></returns>
   public bool CloseDocument()
   {
-    var documentViewModel = DataContext as DocumentViewModel;
+    var documentViewModel = DataContext as Document;
     if (documentViewModel == null) return true;
     if (documentViewModel.IsEditable && documentViewModel.IsModified)
 
@@ -49,14 +49,14 @@ public partial class DocumentWindow : Window
         return false;
       }
       documentViewModel.Close(result == MessageBoxResult.Yes);
-      Executables.Documents.Remove(documentViewModel);
+      Application.Instance.Documents.Remove(documentViewModel);
     }
     else
     {
       documentViewModel.Close(false);
-      Executables.Documents.Remove(documentViewModel);
+      Application.Instance.Documents.Remove(documentViewModel);
     }
-    Executables.DocumentWindows.Remove(this);
+    //Application.Instance.Windows.Remove(this);
     return true;
   }
 }

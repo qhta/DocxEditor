@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DocxEditor.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0" />
     <PackageReference Include="Qhta.MVVM" Version="4.1.0" />
     <PackageReference Include="Qhta.WPF.Utils" Version="3.4.0" />
@@ -17,6 +21,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DocxControls\DocxControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DocxEditor.ico" />
   </ItemGroup>
 
 </Project>

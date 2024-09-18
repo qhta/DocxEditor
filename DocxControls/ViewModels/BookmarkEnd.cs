@@ -3,42 +3,36 @@
 /// <summary>
 /// View model for a paragraph run element
 /// </summary>
-public class BookmarkEndViewModel : ElementViewModel
+public class BookmarkEnd : ElementViewModel, DA.BookmarkEnd
 {
-  ///// <summary>
-  ///// Default constructor. Creates a new <see cref="BookmarkEnd"/>
-  ///// </summary>
-  //public BookmarkEndViewModel(): this(new DXW.BookmarkEnd())
-  //{
-  //}
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="bookmarksViewModel"></param>
   /// <param name="bookmarkEnd"></param>
-  public BookmarkEndViewModel(BookmarksViewModel bookmarksViewModel, DXW.BookmarkEnd bookmarkEnd): base (bookmarksViewModel,bookmarkEnd)
+  public BookmarkEnd(Bookmarks bookmarksViewModel, DXW.BookmarkEnd bookmarkEnd): base (bookmarksViewModel,bookmarkEnd)
   {
     _bookmarksViewModel = bookmarksViewModel;
   }
 
-  private readonly BookmarksViewModel _bookmarksViewModel;
+  private readonly Bookmarks _bookmarksViewModel;
 
   /// <summary>
-  /// <c>BookmarkEnd</c> element
+  /// <c>BookmarkEndElementElement</c> element
   /// </summary>
-  public DXW.BookmarkEnd BookmarkEnd => (DXW.BookmarkEnd)Element!;
+  public DXW.BookmarkEnd BookmarkEndElement => (DXW.BookmarkEnd)Element!;
 
   /// <summary>
-  /// Corresponding <c>BookmarkStart</c> element
+  /// Corresponding <c>BookmarkStartElement</c> element
   /// </summary>
-  public DXW.BookmarkStart? BookmarkStart
+  public DXW.BookmarkStart? BookmarkStartElement
   {
     get
     {
       if (_BookmarkStart==null)
       {
-        _BookmarkStart = BookmarkEnd?.GetBookmarkStart();
+        _BookmarkStart = BookmarkEndElement?.GetBookmarkStart();
       }
       return _BookmarkStart;
     }
@@ -49,7 +43,7 @@ public class BookmarkEndViewModel : ElementViewModel
   /// <summary>
   /// Corresponding <c>BookmarkStartViewModel</c> element
   /// </summary>
-  public BookmarkStartViewModel? BookmarkStartViewModel => _bookmarksViewModel.GetBookmarkStart(BookmarkEnd?.Id?.Value);
+  public BookmarkStart? BookmarkStartViewModel => _bookmarksViewModel.GetBookmarkStart(BookmarkEndElement?.Id?.Value);
 
   /// <summary>
   /// Integer identifier of the bookmark
@@ -58,23 +52,28 @@ public class BookmarkEndViewModel : ElementViewModel
   {
     get
     {
-      if (Int32.TryParse(BookmarkEnd?.Id?.Value, out var result))
+      if (Int32.TryParse(BookmarkEndElement?.Id?.Value, out var result))
         return result;
       return 0;
     }
   }
+
+  #region explicit BookmarkEndElementElement interface implementations
+  DA.Bookmark DA.BookmarkEnd.Bookmark => BookmarkStartViewModel!;
+  DA.BookmarkStart DA.BookmarkEnd.BookmarkStart => BookmarkStartViewModel!;
+  #endregion
 
   /// <summary>
   /// Name of the bookmark
   /// </summary>
   public string? Name
   {
-    get => BookmarkStart?.Name;
+    get => BookmarkStartElement?.Name;
     set
     {
-      if (BookmarkStart == null)
+      if (BookmarkStartElement == null)
         return;
-      BookmarkStart.Name = value;
+      BookmarkStartElement.Name = value;
       NotifyPropertyChanged(nameof(Name));
       NotifyPropertyChanged(nameof(ToolTip));
       BookmarkStartViewModel?.NotifyPropertyChanged(nameof(Name));
@@ -85,7 +84,7 @@ public class BookmarkEndViewModel : ElementViewModel
   /// <summary>
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
-  public new string ToolTip => ModeledObject?.GetType().Name + ": " + BookmarkStart?.Name;
+  public new string ToolTip => ModeledObject?.GetType().Name + ": " + BookmarkStartElement?.Name;
 
   /// <summary>
   /// Allows other classes to notify about property changes

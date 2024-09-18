@@ -1,60 +1,42 @@
-﻿using System.Collections.ObjectModel;
-
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-using DocxControls.Helpers;
-using Qhta.MVVM;
+﻿using DocxControls.Helpers;
 
 namespace DocxControls;
 
 /// <summary>
 /// View model for the document settings.
 /// </summary>
-public class BookmarksViewModel: ViewModel
+public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
 {
 
   /// <summary>
-  /// Internal Wordprocessing document
+  /// The parent story of bookmarks collection.
   /// </summary>
-  public WordprocessingDocument WordDocument { get; init; }
-
-  /// <summary>
-  /// Items collection of bookmarks.
-  /// </summary>
-  public ObservableCollection<BookmarkStartViewModel> Items { get; } = new();
+  public DA.IStory? ParentStory { get; set; }
 
   /// <summary>
   /// Dictionary of bookmarks indexed by ID.
   /// </summary>
-  public Dictionary<string, (BookmarkStartViewModel? start, BookmarkEndViewModel? end)> Bookmarks { get; } = new();
+  public Dictionary<string, (BookmarkStart? start, BookmarkEnd? end)> BookmarkIds { get; } = new();
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
-  public BookmarksViewModel(WordprocessingDocument wordDocument)
+  public Bookmarks(BlockElementViewModel parent) : base(parent)
   {
-    WordDocument = wordDocument;
-    var mainDocumentPart = wordDocument.MainDocumentPart;
-    if (mainDocumentPart == null)
-      return;
-
-    Task.Run(() =>
-    {
-      var body = mainDocumentPart.Document.Body;
-      if (body != null)
-        GetBookmarks(body);
-      foreach (var part in mainDocumentPart.HeaderParts)
-        GetBookmarks(part.Header);
-      foreach (var part in mainDocumentPart.FooterParts)
-        GetBookmarks(part.Footer);
-    });
+    if (parent.Element != null)
+      Task.Run(() =>
+      {
+        GetBookmarks(parent.Element);
+      });
   }
 
-  private void GetBookmarks(DX.OpenXmlElement body)
+  /// <summary>
+  /// Scan the descendants of the block element for bookmarks start and end elements.
+  /// </summary>
+  /// <param name="blockElement"></param>
+  private void GetBookmarks(DX.OpenXmlElement blockElement)
   {
-    var elements = body.Descendants();
+    var elements = blockElement.Descendants();
     foreach (var element in elements)
     {
       if (element is DXW.BookmarkStart bookmarkStart)
@@ -74,28 +56,28 @@ public class BookmarksViewModel: ViewModel
   /// Get the bookmark start view model if it already exists.
   /// </summary>
   /// <param name="bookmarkStart"></param>
-  public BookmarkStartViewModel RegisterBookmarkStart(DXW.BookmarkStart bookmarkStart)
+  public BookmarkStart RegisterBookmarkStart(DXW.BookmarkStart bookmarkStart)
   {
-    BookmarkStartViewModel? result = null;
+    BookmarkStart? result = null;
     System.Windows.Application.Current.Dispatcher.Invoke(() =>
     {
-      lock (Bookmarks)
+      lock (BookmarkIds)
       {
         var id = bookmarkStart.Id?.Value ?? "";
-        if (!Bookmarks.TryGetValue(id, out var value))
+        if (!BookmarkIds.TryGetValue(id, out var value))
         {
-          result = new BookmarkStartViewModel(this, bookmarkStart);
+          result = new BookmarkStart(this, bookmarkStart);
           value = (result, null);
-          Bookmarks.Add(id, value);
+          BookmarkIds.Add(id, value);
           Items.Add(value.start);
         }
         else
         {
           if (value.start == null)
           {
-            result = new BookmarkStartViewModel(this, bookmarkStart);
+            result = new BookmarkStart(this, bookmarkStart);
             value.start = result;
-            Bookmarks[id] = value;
+            BookmarkIds[id] = value;
             Items.Add(value.start);
           }
           else
@@ -112,27 +94,27 @@ public class BookmarksViewModel: ViewModel
   /// Get the bookmark end view model if it already exists.
   /// </summary>
   /// <param name="bookmarkEnd"></param>
-  public BookmarkEndViewModel RegisterBookmarkEnd(DXW.BookmarkEnd bookmarkEnd)
+  public BookmarkEnd RegisterBookmarkEnd(DXW.BookmarkEnd bookmarkEnd)
   {
-    BookmarkEndViewModel? result = null;
+    BookmarkEnd? result = null;
     System.Windows.Application.Current.Dispatcher.Invoke(() =>
     {
-      lock (Bookmarks)
+      lock (BookmarkIds)
       {
         var id = bookmarkEnd.Id?.Value ?? "";
-        if (!Bookmarks.TryGetValue(id, out var value))
+        if (!BookmarkIds.TryGetValue(id, out var value))
         {
-          result = new BookmarkEndViewModel(this, bookmarkEnd);
+          result = new BookmarkEnd(this, bookmarkEnd);
           value = (null, result);
-          Bookmarks.Add(id, value);
+          BookmarkIds.Add(id, value);
         }
         else
         {
           if (value.end == null)
           {
-            result = new BookmarkEndViewModel(this, bookmarkEnd);
+            result = new BookmarkEnd(this, bookmarkEnd);
             value.end = result;
-            Bookmarks[id] = value;
+            BookmarkIds[id] = value;
           }
           else
             result = value.end;
@@ -147,13 +129,13 @@ public class BookmarksViewModel: ViewModel
   /// </summary>
   /// <param name="id"></param>
   /// <returns></returns>
-  public BookmarkStartViewModel? GetBookmarkStart(string? id)
+  public BookmarkStart? GetBookmarkStart(string? id)
   {
     if (id == null)
       return null;
-    lock (Bookmarks)
+    lock (BookmarkIds)
     {
-      if (Bookmarks.TryGetValue(id, out var value))
+      if (BookmarkIds.TryGetValue(id, out var value))
         return value.start;
       return null;
     }
@@ -164,13 +146,13 @@ public class BookmarksViewModel: ViewModel
   /// </summary>
   /// <param name="id"></param>
   /// <returns></returns>
-  public BookmarkEndViewModel? GetBookmarkEnd(string? id)
+  public BookmarkEnd? GetBookmarkEnd(string? id)
   {
     if (id == null)
       return null;
-    lock (Bookmarks)
+    lock (BookmarkIds)
     {
-      if (Bookmarks.TryGetValue(id, out var value))
+      if (BookmarkIds.TryGetValue(id, out var value))
         return value.end;
       return null;
     }
@@ -183,7 +165,7 @@ public class BookmarksViewModel: ViewModel
   /// <summary>
   /// Helper for DataGridComboBoxColumn
   /// </summary>
-  private EnumValuesHelper DisplacedByCustomXmlHelper { get; } = new EnumValuesHelper(typeof(BookmarkStart).GetProperty("DisplacedByCustomXml")!);
+  private EnumValuesHelper DisplacedByCustomXmlHelper { get; } = new EnumValuesHelper(typeof(DXW.BookmarkStart).GetProperty("DisplacedByCustomXml")!);
 
   /// <summary>
   /// Enum values for DisplacedByCustomXml property.
@@ -200,5 +182,8 @@ public class BookmarksViewModel: ViewModel
   {
 
   }
+
+  // ReSharper disable once NotDisposedResourceIsReturned
+  IEnumerator<DA.Bookmark> IEnumerable<DA.Bookmark>.GetEnumerator() => Items.Cast<DA.Bookmark>().GetEnumerator();
 
 }

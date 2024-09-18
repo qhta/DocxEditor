@@ -1,29 +1,41 @@
-﻿using System.Windows;
-
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 namespace DocxControls;
 
 /// <summary>
 /// Static class for executing commands.
 /// </summary>
-public static class Executables
+public class Application: DA.Application
 {
+  /// <summary>
+  ///  Default private constructor prevents creating instances of the class by other classes.
+  /// </summary>
+  private Application()
+  {
+  }
+
+  /// <summary>
+  /// Singleton instance of the class.
+  /// </summary>
+  public static Application Instance { get; } = new();
+
   /// <summary>
   /// List of opened documents.
   /// </summary>
-  public static List<DocumentViewModel> Documents { get; } = new();
+  public Documents Documents { get; } = new();
+
+  DA.Documents DA.Application.Documents => Documents;
 
   /// <summary>
   /// List of opened document Windows.
   /// </summary>
-  public static List<DocumentWindow> DocumentWindows { get; } = new();
+  public List<DocumentWindow> DocumentWindows { get; } = new();
 
 
   /// <summary>
   /// Execute the OpenFile command.
   /// </summary>
-  public static void OpenFile()
+  public void OpenFile()
   {
     // ReSharper disable once UseObjectOrCollectionInitializer
     OpenFileDialog openFileDialog = new ();
@@ -40,27 +52,29 @@ public static class Executables
   /// <summary>
   /// OpenDocument a document for viewing/editing.
   /// </summary>
-  /// <param name="filePath"></param>
-  /// <param name="isEditable"></param>
-  public static void OpenDocument(string filePath, bool isEditable)
+  /// <param name="fileName">The full filename of the document.</param>
+  /// <param name="readOnly">True to open the document as read-only. The default value is False.</param>
+  /// <param name="visible">True to open the document in a visible window. The default value is True.</param>
+  public Document OpenDocument(string fileName, bool readOnly = false, bool visible = true)
   {
-    var documentViewModel = new DocumentViewModel();
-    documentViewModel.OpenDocument(filePath, isEditable);
-    Documents.Add(documentViewModel);
-
+    Documents.Open(fileName, readOnly, visible);
+    var documentViewModel = Documents.Last() as Document;
+    if (documentViewModel == null)
+      throw new InvalidOperationException($"Document \"{fileName}\" not opened");
     var documentWindow = new DocumentWindow { DataContext = documentViewModel };
     DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = Application.Current.MainWindow;
+    documentWindow.Owner = System.Windows.Application.Current.MainWindow;
     documentWindow.Show();
+    return documentViewModel;
   }
 
   /// <summary>
   /// OpenDocument a properties window for the sender object.
   /// </summary>
   /// <param name="sender"></param>
-  public static void ShowProperties(object sender)
+  public void ShowProperties(object sender)
   {
-    var window = Application.Current.MainWindow;
+    var window = System.Windows.Application.Current.MainWindow;
     if (window == null) return;
     var propertiesWindow = new PropertiesWindow
     {
@@ -74,23 +88,24 @@ public static class Executables
   /// <summary>
   /// Creates a new document.
   /// </summary>
-  public static void NewDocument()
+  public Document NewDocument()
   {
-    var documentViewModel = new DocumentViewModel();
-    documentViewModel.NewDocument();
-    Documents.Add(documentViewModel);
-
+    Documents.Add();
+    var documentViewModel = Documents.Last() as Document;
+    if (documentViewModel == null)
+      throw new InvalidOperationException($"New document not created");
     var documentWindow = new DocumentWindow { DataContext = documentViewModel };
     DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = Application.Current.MainWindow;
+    documentWindow.Owner = System.Windows.Application.Current.MainWindow;
     documentWindow.Show();
+    return documentViewModel;
   }
 
   /// <summary>
   /// Close all opened documents.
   /// </summary>
   /// <returns></returns>
-  public static bool CloseAllDocuments()
+  public bool CloseAllDocuments()
   {
     foreach (var window in DocumentWindows.ToArray())
     {
@@ -102,29 +117,5 @@ public static class Executables
     return true;
   }
 
-  /// <summary>
-  /// Create a new document in the specified path.
-  /// </summary>
-  /// <param name="filePath"></param>
-  public static void CreateDocument(string filePath)
-  {
 
-  }
-
-
-  /// <summary>
-  /// Extract the first paragraphs of each section of the document and creates a new document with them.
-  /// </summary>
-  /// <param name="sender"></param>
-  public static void ExtractFirstParagraphs(object sender)
-  {
-    // ReSharper disable once UseObjectOrCollectionInitializer
-    SaveFileDialog saveFileDialog = new();
-    saveFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
-    if (saveFileDialog.ShowDialog() == true)
-    {
-      string filePath = saveFileDialog.FileName;
-      CreateDocument(filePath);
-    }
-  }
 }

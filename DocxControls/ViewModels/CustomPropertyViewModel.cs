@@ -18,7 +18,7 @@ public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyData
   {
   }
   //{
-  //  Owner = owner;
+  //  Parent = owner;
   //}
 
   /// <summary>

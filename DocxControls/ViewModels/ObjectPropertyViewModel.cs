@@ -100,12 +100,12 @@ public class ObjectPropertyViewModel : PropertyViewModel
   public new ObjectViewModel? Owner => (ObjectViewModel?)base.Owner;
 
   /// <summary>
-  /// Owner modeled object.
+  /// Parent modeled object.
   /// </summary>
   public object? ModeledObject => Owner?.ModeledObject;
 
   /// <summary>
-  /// Owner modeled object type.
+  /// Parent modeled object type.
   /// </summary>
   public Type? ModeledObjectType => Owner?.ObjectType;
 

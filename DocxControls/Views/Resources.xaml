@@ -39,10 +39,10 @@
       </TextBlock.Style>
     </TextBlock>
   </DataTemplate>
-  <DataTemplate x:Key="BookmarkStartTemplate" DataType="{x:Type local:BookmarkStartViewModel}">
+  <DataTemplate x:Key="BookmarkStartTemplate" DataType="{x:Type local:BookmarkStart}">
     <local:BookmarkStartView/>
   </DataTemplate>
-  <DataTemplate x:Key="BookmarkEndTemplate" DataType="{x:Type local:BookmarkEndViewModel}">
+  <DataTemplate x:Key="BookmarkEndTemplate" DataType="{x:Type local:BookmarkEnd}">
     <local:BookmarkEndView/>
   </DataTemplate>
   <DataTemplate x:Key="TableTemplate" DataType="{x:Type local:TableViewModel}">

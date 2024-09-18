@@ -12,7 +12,7 @@ public class CorePropertiesViewModel : PropertiesViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
-  public CorePropertiesViewModel(DocumentViewModel owner) : base(owner)
+  public CorePropertiesViewModel(Document owner) : base(owner)
   {
     WordDocument = owner.WordDocument;
     CoreProperties = WordDocument.PackageProperties;

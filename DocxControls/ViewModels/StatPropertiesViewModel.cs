@@ -14,7 +14,7 @@ public class StatPropertiesViewModel : PropertiesViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
-  public StatPropertiesViewModel(DocumentViewModel owner) : base(owner)
+  public StatPropertiesViewModel(Document owner) : base(owner)
   {
     WordDocument = owner.WordDocument;
     StatProperties = WordDocument.GetExtendedFileProperties();

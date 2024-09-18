@@ -21,7 +21,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   }
 
   /// <summary>
-  /// Owner view model
+  /// Parent view model
   /// </summary>
   public ViewModel? Owner { get; set; }
 

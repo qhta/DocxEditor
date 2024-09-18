@@ -33,7 +33,7 @@ public class CustomPropertiesViewModel: PropertiesViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
-  public CustomPropertiesViewModel(DocumentViewModel owner): base(owner)
+  public CustomPropertiesViewModel(Document owner): base(owner)
   {
     WordDocument = owner.WordDocument;
     CustomProperties = WordDocument.GetCustomFileProperties();

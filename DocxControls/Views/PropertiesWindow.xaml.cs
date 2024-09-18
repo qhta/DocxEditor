@@ -22,10 +22,6 @@ namespace DocxControls
       //Debug.WriteLine($"PropertiesWindow.DataContextChanged({DataContext.GetType().Name})");
       if (DataContext is ObjectViewModel objectViewModel)
       {
-        if (objectViewModel.ModeledObject != null)
-        {
-          Title = objectViewModel.ModeledObject.GetType().Name;
-        }
         //Debug.WriteLine($"objectViewModel({objectViewModel.ObjectProperties.GetType()?.Name})");
         objectViewModel.ObjectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
       }

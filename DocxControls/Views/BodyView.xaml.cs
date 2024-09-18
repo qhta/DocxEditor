@@ -20,13 +20,13 @@ public partial class BodyView : UserControl
   {
     if (e.VerticalOffset == e.ExtentHeight - e.ViewportHeight)
     {
-      if (DataContext is DocumentViewModel documentViewModel)
+      if (DataContext is Document documentViewModel)
       {
         var viewModel = documentViewModel.Body;
         if (viewModel.LoadMoreCommand.CanExecute(null))
         {
           viewModel.LoadMoreCommand.Execute(null);
-          Application.Current.Dispatcher.InvokeAsync(() =>
+                    System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
           {
             var scrollViewer = GetScrollViewer(ListView);
             if (scrollViewer != null)

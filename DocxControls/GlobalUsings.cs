@@ -21,6 +21,7 @@ global using System.Xml.Serialization;
 global using Qhta.OpenXmlTools;
 //global using Qhta.TypeUtils;
 
+global using DA = DocxControls.Automation;
 global using DocxControls.Resources;
 
 global using DX = DocumentFormat.OpenXml;

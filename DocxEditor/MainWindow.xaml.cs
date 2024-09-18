@@ -15,20 +15,22 @@ public partial class MainWindow : Window
     InitializeComponent();
   }
 
+  private DocxControls.Application Application => DocxControls.Application.Instance;
+
   private void New_Click(object sender, RoutedEventArgs e)
   {
-    Executables.NewDocument();
+        Application.NewDocument();
   }
 
   private void Open_Click(object sender, RoutedEventArgs e)
   {
-    Executables.OpenFile();
+        Application.OpenFile();
   }
 
   private void Exit_Click(object sender, RoutedEventArgs e)
   {
-    if (Executables.CloseAllDocuments())
-      Application.Current.Shutdown();
+    if (Application.CloseAllDocuments())
+            System.Windows.Application.Current.Shutdown();
   }
 
   private void Cut_Click(object sender, RoutedEventArgs e)
@@ -53,7 +55,7 @@ public partial class MainWindow : Window
 
   protected override void OnClosing(CancelEventArgs e)
   {
-     if (!Executables.CloseAllDocuments())
+     if (!Application.CloseAllDocuments())
         e.Cancel = true;
   }
 

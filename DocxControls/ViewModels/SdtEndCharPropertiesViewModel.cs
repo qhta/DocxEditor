@@ -8,7 +8,7 @@ public class SdtEndCharPropertiesViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="sdtViewModel">Owner view model. Must be <see cref="SdtElementViewModel"/></param>
+  /// <param name="sdtViewModel">Parent view model. Must be <see cref="SdtElementViewModel"/></param>
   /// <param name="properties">Modeled Sdt properties element</param>
   public SdtEndCharPropertiesViewModel(SdtElementViewModel sdtViewModel, DXW.SdtEndCharProperties properties): base(sdtViewModel, properties)
   {

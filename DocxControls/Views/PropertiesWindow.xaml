@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DocxControls"
         mc:Ignorable="d"
         d:DesignHeight="150"
-        Title="PropertiesWindow" 
+        Title="{Binding WindowTitle}" 
         Height="auto"
         SizeChanged="PropertiesWindow_OnSizeChanged"
         >

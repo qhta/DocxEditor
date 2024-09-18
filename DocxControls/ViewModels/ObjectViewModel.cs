@@ -43,11 +43,31 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   public ViewModel? Owner { get; protected set; }
 
   /// <summary>
+  /// Title for the window
+  /// </summary>
+  public string WindowTitle
+  {
+    get
+    {
+      var result = ObjectTypeName ?? String.Empty;
+      if (!IsEditable)
+      {
+        result += $" [{Strings.ReadOnly}]";
+      }
+      else if (IsModified)
+      {
+        result += $" [{Strings.Modified}]";
+      }
+      return result;
+    }
+  }
+
+  /// <summary>
   /// Recursively gets the top document view model
   /// </summary>
   /// <returns></returns>
   /// <exception cref="InvalidOperationException"></exception>
-  public DocumentViewModel GetDocumentViewModel() => (Owner as DocumentViewModel) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
+  public Document GetDocumentViewModel() => (Owner as Document) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
     ?? throw new InvalidOperationException("Owner is not a document view model");
 
   /// <summary>
@@ -98,8 +118,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   public static readonly Dictionary<Type, Type> KnownObjectViewModelTypes = new()
   {
     { typeof(DXW.Body), typeof(BodyViewModel)},
-    { typeof(DXW.BookmarkStart), typeof(BookmarkStartViewModel)},
-    { typeof(DXW.BookmarkEnd), typeof(BookmarkEndViewModel)},
+    { typeof(DXW.BookmarkStart), typeof(BookmarkStart)},
+    { typeof(DXW.BookmarkEnd), typeof(BookmarkEnd)},
     { typeof(DXW.Paragraph), typeof(ParagraphViewModel)},
     { typeof(DXW.Run), typeof(RunViewModel)},
     { typeof(DXW.RunProperties), typeof(RunPropertiesViewModel)},
@@ -586,7 +606,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   {
     if (parameter is ObjectViewModel item)
     {
-      Executables.ShowProperties(item);
+      Application.Instance.ShowProperties(item);
     }
   }
 
@@ -617,6 +637,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       {
         _isModified = value;
         NotifyPropertyChanged(nameof(IsModified));
+        NotifyPropertyChanged(nameof(WindowTitle));
         if (value && Owner is IEditable editable)
         {
           editable.IsModified = value;

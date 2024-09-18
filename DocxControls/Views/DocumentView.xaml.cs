@@ -29,7 +29,7 @@ public partial class DocumentView : UserControl
   /// <summary>
   /// View model for the document
   /// </summary>
-  public DocumentViewModel DocumentViewModel { get; set; } = null!;
+  public Document DocumentViewModel { get; set; } = null!;
 
   /// <summary>
   /// OpenDocument a document for viewing/editing.
@@ -38,7 +38,7 @@ public partial class DocumentView : UserControl
   /// <param name="isEditable"></param>
   public void Open(string filePath, bool isEditable)
   {
-    DocumentViewModel = new DocumentViewModel();
+    DocumentViewModel = new Document();
     DocumentViewModel.OpenDocument(filePath, isEditable);
     DataContext = DocumentViewModel;
   }

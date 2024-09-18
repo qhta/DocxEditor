@@ -8,7 +8,7 @@ public class TextViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="runViewModel">Owner view model. Must be <see cref="RunViewModel"/></param>
+  /// <param name="runViewModel">Parent view model. Must be <see cref="RunViewModel"/></param>
   /// <param name="text"></param>
   public TextViewModel(RunViewModel runViewModel, DXW.Text text): base (runViewModel, text)
   {

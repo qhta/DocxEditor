@@ -37,7 +37,7 @@ public abstract class PropertiesViewModel : ViewModel, IEditable
   }
 
   /// <summary>
-  /// Owner of the properties view model
+  /// Parent of the properties view model
   /// </summary>
   public ViewModel? Owner { get; private set; }
 

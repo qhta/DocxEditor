@@ -7,7 +7,8 @@
         xmlns:controls="clr-namespace:DocxControls;assembly=DocxControls"
         xmlns:resources="clr-namespace:DocxControls.Resources;assembly=DocxControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
+        Title="Docx Editor" Height="450" Width="800" WindowStyle="ThreeDBorderWindow"
+        Icon="pack://application:,,,/DocxEditor.ico">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>

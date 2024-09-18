@@ -1,11 +1,13 @@
-﻿using Qhta.MVVM;
+﻿using DocxControls.Automation;
+
+using Qhta.MVVM;
 
 namespace DocxControls;
 
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
 /// </summary>
-public abstract class ElementViewModel : ObjectViewModel
+public abstract class ElementViewModel : ObjectViewModel, IElement
 {
 
   /// <summary>
@@ -22,12 +24,19 @@ public abstract class ElementViewModel : ObjectViewModel
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel? owner, object element): base(owner, element)
+  protected ElementViewModel(ViewModel? owner, object element) : base(owner, element)
   {
-    //Owner = owner;
-    //Element = element as DX.OpenXmlElement;
   }
 
+  /// <summary>
+  /// Returns an Application object that represents the DocxControls application.
+  /// </summary>
+  public DA.Application Application => throw new NotImplementedException();
+
+  /// <summary>
+  /// Returns the parent object for the specified object.
+  /// </summary>
+  public object? Parent => Owner;
 
   /// <summary>
   /// Access to outer Xml of the element
@@ -37,7 +46,7 @@ public abstract class ElementViewModel : ObjectViewModel
     get
     {
       var str = CleanXml(Element?.OuterXml);
-      if (str!= null && str.Length > 1000)
+      if (str != null && str.Length > 1000)
         str = str.Substring(0, 996) + " ...";
       return str;
     }
@@ -52,7 +61,7 @@ public abstract class ElementViewModel : ObjectViewModel
   {
     return xml?.Replace(" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"", "").Replace("<w:", "<").Replace("</w:", "</");
   }
-   
+
   /// <summary>
   /// Displayed tooltip with the name of the bookmark
   /// </summary>

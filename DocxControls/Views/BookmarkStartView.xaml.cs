@@ -18,7 +18,7 @@ public partial class BookmarkStartView : UserControl
 
   private void BookmarkView_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
   {
-    if (DataContext is BookmarkStartViewModel bookmarkViewModel)
+    if (DataContext is BookmarkStart bookmarkViewModel)
     {
       var id = bookmarkViewModel.Id;
       Foreground = new SolidColorBrush(BaseColors.GetDarkColor(id));

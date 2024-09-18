@@ -70,9 +70,9 @@ public class ElementTemplateSelector : DataTemplateSelector
       return RunTemplate ?? UnknownElementTemplate;
     if (item is TextViewModel)
       return TextTemplate ?? UnknownElementTemplate;
-    if (item is BookmarkStartViewModel)
+    if (item is BookmarkStart)
       return BookmarkStartTemplate ?? UnknownElementTemplate;
-    if (item is BookmarkEndViewModel)
+    if (item is BookmarkEnd)
       return BookmarkEndTemplate ?? UnknownElementTemplate;
     if (item is SectionPropertiesViewModel)
       return SectionPropertiesTemplate ?? UnknownElementTemplate;
