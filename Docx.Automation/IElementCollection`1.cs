@@ -1,9 +1,10 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public interface IElement
+/// <typeparam name="T"></typeparam>
+public interface IElementCollection<T>: IEnumerable<T> where T : IElement
 {
   /// <summary>
   /// Returns an Application object that represents the DocxControls application.
@@ -15,4 +16,8 @@ public interface IElement
   /// </summary>
   public object? Parent { get; }
 
+  /// <summary>
+  /// Returns the number of items in the collection.
+  /// </summary>
+  public int Count { get; }
 }

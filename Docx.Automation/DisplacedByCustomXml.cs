@@ -1,4 +1,4 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Specifies the displacement of an item by custom XML markup.

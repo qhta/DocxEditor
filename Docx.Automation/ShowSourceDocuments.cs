@@ -1,4 +1,4 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 /// <summary>
 /// Specifies how to display source documents when two documents are compared using the Word Compare functions.
 /// </summary>

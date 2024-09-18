@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DocxControls.Automation;
+namespace Docx.Automation;
 
 /// <summary>
 /// Window that visualizes a document.

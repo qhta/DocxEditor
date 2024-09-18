@@ -1,4 +1,4 @@
-﻿using DocxControls.Automation;
+﻿using Docx.Automation;
 
 using Qhta.MVVM;
 

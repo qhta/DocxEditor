@@ -58,7 +58,7 @@ public class Documents: ElementCollection<Document>, DA.Documents
   /// Closes all the documents in the Documents collection.
   /// </summary>
   /// <param name="SaveChanges">Specifies the save action for the document. Can be one of the following WdSaveOptions constants: wdDoNotSaveChanges, wdPromptToSaveChanges, or wdSaveChanges.</param>
-  public void Close(SaveOptions SaveChanges = SaveOptions.PromptToSaveChanges)
+  public void Close(DA.SaveOptions SaveChanges = DA.SaveOptions.PromptToSaveChanges)
   {
 
   }

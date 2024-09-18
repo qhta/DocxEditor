@@ -1,9 +1,9 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
-/// Element that marks the end of a bookmark.
+/// Element that marks a start of a bookmark.
 /// </summary>
-public interface BookmarkEnd: IElement, IEditable
+public interface BookmarkStart: IElement
 {
   /// <summary>
   /// Integer identifier of the bookmark
@@ -16,9 +16,8 @@ public interface BookmarkEnd: IElement, IEditable
   public Bookmark Bookmark { get; }
 
   /// <summary>
-  /// Reference to the element that starts the bookmark.
+  /// Reference to the element that ends the bookmark.
   /// </summary>
-  public BookmarkStart BookmarkStart { get; }
-
+  public BookmarkEnd BookmarkEnd { get; }
 
 }

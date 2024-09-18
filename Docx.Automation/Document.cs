@@ -1,9 +1,9 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// View model for a document.
 /// </summary>
-public interface Document: IElement, IEditable
+public interface Document: IElement
 {
 
   //ActiveTheme

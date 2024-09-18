@@ -1,11 +1,10 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Collection of documents.
 /// </summary>
 public interface Documents: IElementCollection<Document>
 {
-
 
   /// <summary>
   /// Adds a new Document to the Documents collection.

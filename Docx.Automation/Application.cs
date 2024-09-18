@@ -1,4 +1,4 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Represents the DocxEditor application.

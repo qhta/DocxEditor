@@ -1,4 +1,4 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 /// <summary>
 /// Specifies a value that determines the Input Method Editor (IME) status of an object when the object is selected.
 /// </summary>

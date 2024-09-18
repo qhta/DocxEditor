@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MyLib\Qhta.OpenXmlTools\Qhta.OpenXmlTools.csproj" />
+    <ProjectReference Include="..\Docx.Automation\Docx.Automation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

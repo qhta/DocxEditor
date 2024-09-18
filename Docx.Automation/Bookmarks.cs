@@ -1,4 +1,4 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// A collection of Bookmark objects that represent the bookmarks in the specified selection, range, or document.

@@ -1,9 +1,9 @@
-﻿namespace DocxControls.Automation;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Bookmark in a document.
 /// </summary>
-public interface Bookmark: IElement, IEditable
+public interface Bookmark: IElement
 {
   /// <summary>
   /// Integer identifier of the bookmark

@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace Docx.Automation;
 
 /// <summary>
 /// Options for saving a document.
