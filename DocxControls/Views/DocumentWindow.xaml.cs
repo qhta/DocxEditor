@@ -56,7 +56,7 @@ public partial class DocumentWindow : Window
       documentViewModel.Close(false);
       Application.Instance.Documents.Remove(documentViewModel);
     }
-    //Application.Instance.Windows.Remove(this);
+    Application.Instance.DocumentWindows.Remove(this);
     return true;
   }
 }

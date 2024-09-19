@@ -7,19 +7,24 @@ namespace DocxControls;
 /// <summary>
 /// View model for a custom property of a document.
 /// </summary>
-public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyDataErrorInfo
+public class CustomDocumentProperty : PropertyViewModel
 {
+
+
+  /// <summary>
+  /// Default constructor needed to allow adding new properties.
+  /// </summary>
+  public CustomDocumentProperty()
+  {
+  }
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner"></param>
-  public CustomPropertyViewModel(ViewModel owner): base(owner)
+  /// <param name="parent"></param>
+  public CustomDocumentProperty(ViewModel parent): base(parent)
   {
   }
-  //{
-  //  Parent = owner;
-  //}
 
   /// <summary>
   /// Name of the property to get/set.
@@ -42,6 +47,23 @@ public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyData
   /// <summary>
   /// Type of the property.
   /// </summary>
+  public bool LinkToContent
+  {
+    get => _linkToContent;
+    set
+    {
+      if (value != _linkToContent)
+      {
+        _linkToContent = value!;
+        NotifyPropertyChanged(nameof(_linkToContent));
+      }
+    }
+  }
+  private bool _linkToContent;
+
+  /// <summary>
+  /// Type of the property.
+  /// </summary>
   public new Type? Type
   {
     get => _type;
@@ -56,6 +78,47 @@ public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyData
     }
   }
   private Type? _type;
+
+  //DA.PropertyType? DA.CustomDocumentProperty.Type
+  //{
+  //  get
+  //  {
+  //    if (Type == typeof(string))
+  //      return DA.PropertyType.String;
+  //    if (Type == typeof(bool))
+  //      return DA.PropertyType.Boolean;
+  //    if (Type == typeof(int))
+  //      return DA.PropertyType.Number;
+  //    if (Type == typeof(float))
+  //      return DA.PropertyType.Float;
+  //    if (Type == typeof(DateTime))
+  //      return DA.PropertyType.Date;
+  //    return null;
+  //  }
+  //  set
+  //  {
+  //    switch (value)
+  //    {
+  //      case DA.PropertyType.String:
+  //        Type = typeof(string);
+  //        break;
+  //      case DA.PropertyType.Boolean:
+  //        Type = typeof(bool);
+  //        break;
+  //      case DA.PropertyType.Number:
+  //        Type = typeof(int);
+  //        break;
+  //      case DA.PropertyType.Float:
+  //        Type = typeof(float);
+  //        break;
+  //      case DA.PropertyType.Date:
+  //        Type = typeof(DateTime);
+  //        break;
+  //    }
+  //    if (value==null)
+  //      Type = null;
+  //  }
+  //}
 
   /// <summary>
   /// Value of the property.
@@ -72,6 +135,7 @@ public class CustomPropertyViewModel : PropertyViewModel//ViewModel, INotifyData
         {
           _value = value;
           NotifyPropertyChanged(nameof(Value));
+          IsModified = true;
         }
       }
     }

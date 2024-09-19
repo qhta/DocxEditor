@@ -14,6 +14,6 @@ public interface IObjectViewModelProvider
   /// <summary>
   /// Provided view model for the object.
   /// </summary>
-  public IObjectViewModel ObjectViewModel { get; }
+  public IObjectViewModel? ObjectViewModel { get; }
 
 }

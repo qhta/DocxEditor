@@ -12,6 +12,13 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
 {
 
   /// <summary>
+  /// Default constructor needed to allow adding new properties.
+  /// </summary>
+  public PropertyViewModel()
+  {
+  }
+
+  /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
@@ -28,8 +35,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Display caption for the property.
   /// </summary>
-  public virtual string? Caption =>
-    PropertiesCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public virtual string? Caption
+  {
+    get
+    {
+      try
+      {
+        if (Name!=null)
+          return PropertiesCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture) ?? Name;
+        return "Unnamed property";
+      } catch
+      {
+        return Name;
+      }
+
+    }
+  }
+
 
   /// <summary>
   /// Name of the property to get/set.
@@ -59,15 +81,14 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     get => _Value;
     set
     {
-      if (IsEditable)
-        if (value != _Value && Name != null)
-        {
-          _Value = value;
-          NotifyPropertyChanged(nameof(Value));
-          if (Owner!=null)
-            Owner.NotifyPropertyChanged(Name);
-          IsModified = true;
-        }
+      if (value != _Value && Name != null)
+      {
+        _Value = value;
+        NotifyPropertyChanged(nameof(Value));
+        if (Owner!=null)
+          Owner.NotifyPropertyChanged(Name);
+        IsModified = true;
+      }
     }
   }
   /// <summary>
@@ -84,8 +105,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property obsolete?
   /// </summary>
-  public bool IsObsolete => PropertiesDescriptions.ResourceManager
-    .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false;
+  public bool IsObsolete => Name!=null && (PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false);
 
   /// <summary>
   /// Mask to use with <c>Exceed MaskedTextBox</c>.
@@ -99,7 +120,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   public static string? GetEditMask(Type? type)
   {
-    Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
+    //Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
     if (type == null)
       return null;
     if (type.IsNullable(out var baseType))
@@ -143,7 +164,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   public static string? GetWatermark(Type? type)
   {
-    Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
+    //Debug.WriteLine($"PropertyViewModel.GetWatermark({type})");
     if (type == null)
       return null;
     if (type.IsNullable(out var baseType))
@@ -227,20 +248,20 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Does the property have a tooltip?
   /// </summary>
-  public virtual bool HasTooltip =>
-    PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) != null;
+  public virtual bool HasTooltip => Name!= null &&
+    PropertiesTooltips.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture) != null;
 
   /// <summary>
   /// Tooltip for the property
   /// </summary>
-  public virtual string? TooltipTitle =>
-    PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture);
+  public virtual string? TooltipTitle => (Name != null) ?
+    PropertiesTooltips.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture) : null;
 
   /// <summary>
   /// Description of the property
   /// </summary>
-  public virtual string? TooltipDescription => FixDescription(PropertiesDescriptions.ResourceManager
-    .GetString(Name!, CultureInfo.CurrentUICulture));
+  public virtual string? TooltipDescription => (Name != null) ? FixDescription(PropertiesDescriptions.ResourceManager
+    .GetString(Name!, CultureInfo.CurrentUICulture)) : null;
 
   /// <summary>
   /// 
@@ -486,7 +507,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Gets the value as an object view model.
   /// </summary>
-  public virtual IObjectViewModel ObjectViewModel
+  public virtual IObjectViewModel? ObjectViewModel
   {
     get
     {
@@ -494,7 +515,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         var value = _Value;
         _objectViewModel = CreateObjectViewModel(value);
-        _Value = _objectViewModel.ModeledObject;
+        if (_objectViewModel != null)
+          _Value = _objectViewModel.ModeledObject;
       }
       return _objectViewModel;
     }
@@ -520,10 +542,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   /// <param name="value"></param>
   /// <returns></returns>
-  protected ObjectViewModel CreateObjectViewModel(object? value)
+  protected ObjectViewModel? CreateObjectViewModel(object? value)
   {
     var result = DocxControls.ObjectViewModel.Create(Owner, value);
-    result.PropertyChanged += ObjectViewModel_PropertyChanged;
+    if (result != null)
+      result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;
   }
 
@@ -554,6 +577,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     get => _isModified;
     set
     {
+      if (IsModifiedInternal) return;
       if (_isModified != value)
       {
         _isModified = value;
@@ -566,5 +590,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     }
   }
   private bool _isModified;
+
+  /// <summary>
+  /// Is the object modified internally?
+  /// </summary>
+  public bool IsModifiedInternal => (Owner as IEditable)?.IsModifiedInternal ?? true;
+
   #endregion IEditable implementation
 }

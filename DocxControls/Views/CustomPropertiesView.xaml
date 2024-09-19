@@ -11,7 +11,7 @@
     <local:CustomDataGrid
       x:Name="PropertiesGrid"
       ItemsSource="{Binding Items}" 
-      HeadersVisibility="All" AutoGenerateColumns="False" 
+      HeadersVisibility="All" AutoGenerateColumns="false" 
       CanUserAddRows="True" 
       CanUserDeleteRows="True"
       >

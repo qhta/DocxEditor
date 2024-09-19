@@ -1,4 +1,5 @@
-﻿using Qhta.MVVM;
+﻿using System.Collections.ObjectModel;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -29,7 +30,7 @@ public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T :
   /// <summary>
   ///  Collection of Elements objects.
   /// </summary>
-  public CustomObservableCollection<T> Items { get; } = new();
+  public ObservableCollection<T> Items { get; } = new();
 
 
   /// <summary>

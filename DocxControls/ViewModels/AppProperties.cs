@@ -5,34 +5,36 @@ namespace DocxControls;
 /// <summary>
 /// View model for the application-specific properties
 /// </summary>
-public class AppPropertiesViewModel : PropertiesViewModel
+public class AppProperties : PropertiesViewModel<PropertyViewModel>
 {
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner"> </param>
-  public AppPropertiesViewModel(Document owner): base(owner)
+  /// <param name="parent"> </param>
+  public AppProperties(Document parent): base(parent)
   {
-    WordDocument = owner.WordDocument;
-    AppProperties = WordDocument.GetExtendedFileProperties();
-    var names = AppProperties.GetNames(ItemFilter.All);
+    IsModifiedInternal = true;
+    WordDocument = parent.WordDocument;
+    AppPropertiesElement = WordDocument.GetExtendedFileProperties();
+    var names = AppPropertiesElement.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
-      if (!AppProperties.IsVolatile(name) && AppProperties.AppliesToApplication(name, AppType.Word))
+      if (!AppPropertiesElement.IsVolatile(name) && AppPropertiesElement.AppliesToApplication(name, AppType.Word))
       {
-        var type = AppProperties.GetType(name);
+        var type = AppPropertiesElement.GetType(name);
         var propertyViewModel = new PropertyViewModel(this)
         {
           Name = name,
           Type = type,
-          Value = AppProperties.GetValue(name),
+          Value = AppPropertiesElement.GetValue(name),
 
         };
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
         Items.Add(propertyViewModel);
       }
     }
+    IsModifiedInternal = false;
   }
 
   private void PropertiesViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -43,12 +45,12 @@ public class AppPropertiesViewModel : PropertiesViewModel
       var propertyName = propertyViewModel.Name;
       if (propertyName != null)
       {
-        AppProperties.SetValue(propertyName, propertyViewModel.Value);
+        AppPropertiesElement.SetValue(propertyName, propertyViewModel.Value);
       }
     }
   }
 
 
-  private readonly DXEP.Properties AppProperties;
+  private readonly DXEP.Properties AppPropertiesElement;
 
 }

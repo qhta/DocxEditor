@@ -1,4 +1,5 @@
 ﻿using System.IO;
+
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -6,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for a document.
 /// </summary>
-public class Document: ViewModel, DA.Document, IEditable
+public class Document : ViewModel, DA.Document, IEditable
 {
   /// <summary>
   /// Default constructor.
@@ -69,9 +70,9 @@ public class Document: ViewModel, DA.Document, IEditable
   public void Close(bool saveChanges)
   {
     WordDocument.Dispose();
-    if (TempFilePath != null)
+    if (TempFilePath != null && File.Exists(TempFilePath))
     {
-      if (IsEditable && FilePath!=null)
+      if (IsEditable && FilePath != null)
       {
         File.Copy(TempFilePath, FilePath, true);
       }
@@ -97,6 +98,7 @@ public class Document: ViewModel, DA.Document, IEditable
   }
   private string? _filePath = null;
 
+  #region IEditable implementation
   /// <summary>
   /// Flag indicating if the document is editable.
   /// </summary>
@@ -119,6 +121,12 @@ public class Document: ViewModel, DA.Document, IEditable
     }
   }
   private bool _isModified;
+
+  /// <summary>
+  /// Flag indicating if the document is modified internally.
+  /// </summary>
+  public bool IsModifiedInternal { get; set; }
+  #endregion
 
   private string? TempFilePath;
 
@@ -163,70 +171,70 @@ public class Document: ViewModel, DA.Document, IEditable
   /// Access to the core properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public PropertiesViewModel CoreProperties
+  public CoreProperties CoreProperties
   {
     get
     {
       if (_CoreProperties == null)
       {
-        _CoreProperties = new CorePropertiesViewModel(this);
+        _CoreProperties = new CoreProperties(this);
       }
       return _CoreProperties;
     }
   }
-  private PropertiesViewModel? _CoreProperties;
+  private CoreProperties? _CoreProperties;
 
   /// <summary>
   /// Access to the application-specific properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public PropertiesViewModel AppProperties
+  public AppProperties AppProperties
   {
     get
     {
       if (_AppProperties == null)
       {
-        _AppProperties = new AppPropertiesViewModel(this);
+        _AppProperties = new AppProperties(this);
       }
       return _AppProperties;
     }
   }
-  private PropertiesViewModel? _AppProperties;
+  private AppProperties? _AppProperties;
 
 
   /// <summary>
   /// Access to the statistics properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public PropertiesViewModel StatProperties
+  public StatProperties StatProperties
   {
     get
     {
       if (_StatProperties == null)
       {
-        _StatProperties = new StatPropertiesViewModel(this);
+        _StatProperties = new StatProperties(this);
       }
       return _StatProperties;
     }
   }
-  private PropertiesViewModel? _StatProperties;
+  private StatProperties? _StatProperties;
 
   /// <summary>
   /// Access to the custom properties of the document
   /// </summary>
   // ReSharper disable once UnusedMember.Global
-  public CustomPropertiesViewModel CustomProperties
+  public CustomDocumentProperties CustomProperties
   {
     get
     {
       if (_CustomProperties == null)
       {
-        _CustomProperties = new CustomPropertiesViewModel(this);
+        _CustomProperties = new CustomDocumentProperties(this);
       }
       return _CustomProperties;
     }
   }
-  private CustomPropertiesViewModel? _CustomProperties;
+  private CustomDocumentProperties? _CustomProperties;
 
   /// <summary>
   /// Access to the document settings in the LayoutAndUI categories

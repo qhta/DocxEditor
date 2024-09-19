@@ -37,7 +37,7 @@ public class ObjectMembersViewModel : ViewModel, INotifyCollectionChanged
   /// <summary>
   /// Internal collection of object members.
   /// </summary>
-  public CustomObservableCollection<ObjectMemberViewModel> Items { get; } = new();
+  public ObservableCollection<ObjectMemberViewModel> Items { get; } = new();
 
   /// <summary>
   /// Delegates <c>CollectionChanged</c> event to the internal collection.

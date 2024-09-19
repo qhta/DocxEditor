@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+
 using DocumentFormat.OpenXml.Packaging;
 
 using Qhta.MVVM;
@@ -9,7 +10,7 @@ namespace DocxControls;
 /// <summary>
 /// Abstract class for the properties view model
 /// </summary>
-public abstract class PropertiesViewModel : ViewModel, IEditable
+public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCompanion where T : PropertyViewModel
 {
   /// <summary>
   /// Initializing constructor.
@@ -54,7 +55,7 @@ public abstract class PropertiesViewModel : ViewModel, IEditable
   /// <summary>
   /// Observable collection of properties
   /// </summary>
-  public CustomObservableCollection<PropertyViewModel> Items { get; } = new();
+  public ObservableCollection<T> Items { get; } = new();
 
   /// <summary>
   /// Width of the data grid in the view
@@ -87,6 +88,7 @@ public abstract class PropertiesViewModel : ViewModel, IEditable
     get => _isModified;
     set
     {
+      if (IsModifiedInternal) return;
       if (_isModified != value)
       {
         _isModified = value;
@@ -99,5 +101,12 @@ public abstract class PropertiesViewModel : ViewModel, IEditable
     }
   }
   private bool _isModified;
+
+  /// <summary>
+  /// Is the object modified internally?
+  /// </summary>
+  public bool IsModifiedInternal { get; set; }
+
+
   #endregion IEditable implementation
 }

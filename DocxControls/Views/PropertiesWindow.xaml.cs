@@ -29,7 +29,7 @@ namespace DocxControls
 
     private void ObjectProperties_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == nameof(PropertiesViewModel.DataGridWidth) && sender is PropertiesViewModel propertiesViewModel)
+      if (e.PropertyName == nameof(IDataGridCompanion.DataGridWidth) && sender is IDataGridCompanion propertiesViewModel)
       {
         var desiredWidth = propertiesViewModel.DataGridWidth;
         //Debug.WriteLine($"PropertiesWindow.DataGridWidth={desiredWidth}");

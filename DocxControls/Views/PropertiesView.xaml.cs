@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Qhta.MVVM;
 
 namespace DocxControls;
 
@@ -63,7 +64,7 @@ public partial class PropertiesView : UserControl
 
   private void UpdateDataGridWidth()
   {
-    if (DataContext is PropertiesViewModel viewModel)
+    if (DataContext is IDataGridCompanion viewModel)
     {
       double totalWidth = DataGrid.Columns.Sum(column => column.ActualWidth) + DataGrid.RowHeaderActualWidth + 20;
       viewModel.DataGridWidth = totalWidth;
@@ -74,7 +75,7 @@ public partial class PropertiesView : UserControl
   private void PropertiesView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
   {
     //Debug.WriteLine($"PropertiesView.DataContextChanged({DataContext.GetType().Name})");
-    if (DataContext is PropertiesViewModel propertiesViewModel)
+    if (DataContext is IViewModel propertiesViewModel)
       propertiesViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
   }
 

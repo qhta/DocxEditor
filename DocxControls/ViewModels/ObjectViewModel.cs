@@ -38,7 +38,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   }
 
   /// <summary>
-  /// Owner ViewModel.
+  /// Parent ViewModel.
   /// </summary>
   public ViewModel? Owner { get; protected set; }
 
@@ -68,7 +68,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <returns></returns>
   /// <exception cref="InvalidOperationException"></exception>
   public Document GetDocumentViewModel() => (Owner as Document) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
-    ?? throw new InvalidOperationException("Owner is not a document view model");
+    ?? throw new InvalidOperationException("Parent is not a document view model");
 
   /// <summary>
   /// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
@@ -77,7 +77,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <param name="owner"></param>
   /// <param name="modeledObject"></param>
   /// <returns></returns>
-  public static ObjectViewModel Create(ViewModel? owner, object? modeledObject)
+  public static ObjectViewModel? Create(ViewModel? owner, object? modeledObject)
   {
     var modeledObjectType = modeledObject?.GetType();
     if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
@@ -87,12 +87,12 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       if (modeledObject != null)
         return new ObjectViewModel(owner, modeledObject);
-      else
-      {
-        throw new InvalidOperationException("Cannot create a view model for the null object");
-      }
+      //else
+      //{
+      //  throw new InvalidOperationException("Cannot create a view model for the null object");
+      //}
     }
-    var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)!;
+    var result = viewModelType!= null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)! : null;
     return result;
   }
 
@@ -100,15 +100,15 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
   ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
   ///// </summary>
-  ///// <param name="owner"></param>
+  ///// <param name="parent"></param>
   ///// <param name="modeledObjectType"></param>
   ///// <returns></returns>
-  //public static ObjectViewModel Create(Object? owner, Type? modeledObjectType, object? modeledObject)
+  //public static ObjectViewModel Create(Object? parent, Type? modeledObjectType, object? modeledObject)
   //{
   //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
   //    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
   //      viewModelType = typeof(ObjectViewModel);
-  //  var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, owner)!;
+  //  var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, parent)!;
   //  return result;
   //}
 
@@ -225,11 +225,11 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       // do nothing
       //var oldMemberViewModel = (ObjectMemberViewModel)e.OldItems![0]!;
       //var memberViewModel = (ObjectMemberViewModel)e.NewItems![0]!;
-      //if (ModeledObject is DX.OpenXmlCompositeElement owner)
+      //if (ModeledObject is DX.OpenXmlCompositeElement parent)
       //{
       //  var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
       //  if (member is DX.OpenXmlElement element)
-      //    owner.AppendChild(element);
+      //    parent.AppendChild(element);
       //  NotifyPropertyChanged(nameof(ModeledObject));
       //}
     }
@@ -633,6 +633,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     get => _isModified;
     set
     {
+      if (IsModifiedInternal) return;
       if (_isModified != value)
       {
         _isModified = value;
@@ -646,5 +647,11 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     }
   }
   private bool _isModified;
+
+  /// <summary>
+  /// Is the object modified internally?
+  /// </summary>
+  public bool IsModifiedInternal { get; set; }
+
   #endregion IEditable implementation
 }

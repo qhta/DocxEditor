@@ -1,7 +1,7 @@
 ﻿namespace DocxControls;
 
 /// <summary>
-/// View model for a paragraph run element
+/// View model for a bookmark start element.
 /// </summary>
 public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
 {

@@ -44,8 +44,8 @@ public class Application: DA.Application
     if (openFileDialog.ShowDialog() == true)
     {
       string filePath = openFileDialog.FileName;
-      var editable = !openFileDialog.ReadOnlyChecked;
-      OpenDocument(filePath, editable);
+      var readOnly = openFileDialog.ReadOnlyChecked;
+      OpenDocument(filePath, readOnly);
     }
   }
 

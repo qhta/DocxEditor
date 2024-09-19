@@ -22,7 +22,7 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner">owner ViewModel</param>
+  /// <param name="owner">parent ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
   protected ElementViewModel(ViewModel? owner, object element) : base(owner, element)
   {

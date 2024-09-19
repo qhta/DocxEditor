@@ -10,8 +10,8 @@ public class SettingViewModel : PropertyViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner"></param>
-  public SettingViewModel(ViewModel owner) : base(owner)
+  /// <param name="parent"></param>
+  public SettingViewModel(ViewModel parent) : base(parent)
   {
   }
 

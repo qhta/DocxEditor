@@ -40,7 +40,7 @@ public class ObjectViewComboBox : ComboBox
     if (DataContext is ObjectPropertyViewModel objectProperty)
     {
       //Debug.WriteLine($"ObjectViewComboBox_DropDownClosed({objectProperty.Caption})");
-      if (objectProperty.IsNew != objectProperty.ObjectViewModel.IsNew)
+      if (objectProperty.IsNew != objectProperty.ObjectViewModel?.IsNew)
         objectProperty.NotifyPropertyChanged(nameof(ObjectPropertyViewModel.IsNew));
       if (TextBlock != null)
       {
@@ -217,10 +217,13 @@ public class ObjectViewComboBox : ComboBox
       //  Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
       //}
       double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 20;
-      if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
-        if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)
-          totalWidth = viewModel.ObjectViewModel.DataGridWidth;
-      viewModel.ObjectViewModel.DataGridWidth = totalWidth;
+      if (viewModel.ObjectViewModel != null)
+      {
+        if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
+          if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)
+            totalWidth = viewModel.ObjectViewModel.DataGridWidth;
+        viewModel.ObjectViewModel.DataGridWidth = totalWidth;
+      }
       dataGrid.Columns.Last().Width = new DataGridLength(1, DataGridLengthUnitType.Star);
     }
   }

@@ -14,4 +14,9 @@ public interface IEditable
   /// Was the view model modified?
   /// </summary>
   public bool IsModified { get; set; }
+
+  /// <summary>
+  /// Is the view model modified internally? If so, do not set the IsModified property.
+  /// </summary>
+  public bool IsModifiedInternal { get; }
 }
