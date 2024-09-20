@@ -14,10 +14,14 @@
 
 
   <ItemGroup>
+    <None Remove="Resources\Delete.png" />
     <None Remove="Resources\TriangleDown.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\TriangleDown.png" />
     <Resource Include="Resources\TriangleUp.png" />
   </ItemGroup>

@@ -18,11 +18,12 @@
           <Grid>
             <ToggleButton
               x:Name="ToggleButton"
-              HorizontalContentAlignment="Left"
+              HorizontalContentAlignment="Stretch"
               Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
               <ToggleButton.Content>
-                <TextBlock 
+                <Grid>
+                  <TextBlock 
                   x:Name="TextBlock"
                   Text="{TemplateBinding Text}"
                   FontStyle="{Binding IsNew, Converter={StaticResource FontStyleConverter}}"
@@ -45,7 +46,17 @@
                       </Style.Triggers>
                     </Style>
                   </TextBlock.Style>-->
-                </TextBlock>
+                  </TextBlock>
+                  <Button
+                    x:Name="DeleteButton"
+                    Width="16"
+                    HorizontalAlignment="Right"
+                    BorderThickness="0">
+                    <Image
+                      Source="pack://application:,,,/DocxControls;component/Resources/Delete.png"
+                    />
+                  </Button>
+                </Grid>
               </ToggleButton.Content>
             </ToggleButton>
             <Popup

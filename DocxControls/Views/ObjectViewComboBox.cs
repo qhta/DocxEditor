@@ -30,11 +30,6 @@ public class ObjectViewComboBox : ComboBox
   {
     if (DataContext is PropertyViewModel propertyViewModel)
     {
-      //Debug.WriteLine($"ObjectViewComboBox_DropDownOpened({propertyViewModel.Name})");
-      //Debug.WriteLine($"propertyViewModel.OriginalType={propertyViewModel.OriginalType?.Name}");
-      //Debug.WriteLine($"propertyViewModel.OriginalValue={propertyViewModel.OriginalValue}");
-      //Debug.WriteLine($"propertyViewModel.Type={propertyViewModel.Type?.Name}");
-      //Debug.WriteLine($"propertyViewModel.Value={propertyViewModel.Value}");
       if (propertyViewModel.IsObject)
       {
         if (propertyViewModel.ObjectViewModel == null && propertyViewModel.OriginalType != null)
@@ -82,6 +77,13 @@ public class ObjectViewComboBox : ComboBox
     if (Template.FindName("ToggleButton", this) is ToggleButton toggleButton)
     {
       ToggleButton = toggleButton;
+      ToggleButton.Focusable = true;
+      ToggleButton.PreviewKeyUp += ToggleButton_KeyDown;
+    }
+    if (Template.FindName("DeleteButton", this) is Button deleteButton)
+    {
+      DeleteButton = deleteButton;
+      DeleteButton.Click += DeleteButton_Click;
     }
     if (Template.FindName("TextBlock", this) is TextBlock textBlock)
     {
@@ -111,6 +113,56 @@ public class ObjectViewComboBox : ComboBox
     }
   }
 
+  private void ToggleButton_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+  {
+    if (e.Key == System.Windows.Input.Key.Enter)
+    {
+      if (Template.FindName("Popup", this) is Popup popup)
+      {
+        popup.IsOpen = !popup.IsOpen;
+      }
+    }
+    else
+    if (e.Key == System.Windows.Input.Key.Escape)
+    {
+      if (Template.FindName("Popup", this) is Popup popup)
+      {
+        popup.IsOpen = false;
+      }
+    }
+    else
+    if (e.Key == System.Windows.Input.Key.F2)
+    {
+      if (Template.FindName("Popup", this) is Popup popup)
+      {
+        popup.IsOpen = true;
+      }
+    }
+    else
+    if (e.Key == System.Windows.Input.Key.Delete)
+    {
+      DeleteButton_Click(sender, new RoutedEventArgs());
+    }
+  }
+
+  private void DeleteButton_Click(object sender, RoutedEventArgs e)
+  {
+    if (DataContext is PropertyViewModel propertyViewModel)
+    {
+      if (propertyViewModel.IsObject)
+      {
+        if (propertyViewModel.ObjectViewModel != null)
+        {
+          propertyViewModel.ObjectViewModel = null;
+        }
+        if (propertyViewModel.Value != null)
+        {
+          propertyViewModel.Value = null;
+        }
+      }
+    }
+  }
+
   private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
   {
     //Debug.WriteLine($"{sender.GetType().Name}_SizeChanged ({e.NewSize.Width},{e.NewSize.Height})");
@@ -129,6 +181,7 @@ public class ObjectViewComboBox : ComboBox
   }
 
   private ToggleButton? ToggleButton;
+  private Button? DeleteButton;
   private TextBlock? TextBlock;
   private DataGrid? PropertiesDataGrid;
   private DataGrid? MembersDataGrid;
