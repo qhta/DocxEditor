@@ -9,6 +9,7 @@
   </ResourceDictionary.MergedDictionaries>
   <cnv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
   <local:FontStyleConverter x:Key="FontStyleConverter"/>
+  <local:IsEmptyConverter x:Key="IsEmptyConverter"/>
   <Style TargetType="{x:Type local:ObjectViewComboBox}" >
     <Setter Property="Padding" Value="{StaticResource PropertyPadding}"/>
     <Setter Property="Template">
@@ -25,8 +26,9 @@
                   x:Name="TextBlock"
                   Text="{TemplateBinding Text}"
                   FontStyle="{Binding IsNew, Converter={StaticResource FontStyleConverter}}"
+                  Foreground="{Binding IsEmpty, Converter={StaticResource IsEmptyConverter}, Mode=OneWay}"
                   >
-                  <TextBlock.Style>
+                  <!--<TextBlock.Style>
                     <Style TargetType="TextBlock">
                       <Setter Property="FontStyle" Value="Normal" />
                       <Setter Property="Foreground" Value="Black" />
@@ -42,7 +44,7 @@
                         </DataTrigger>
                       </Style.Triggers>
                     </Style>
-                  </TextBlock.Style>
+                  </TextBlock.Style>-->
                 </TextBlock>
               </ToggleButton.Content>
             </ToggleButton>

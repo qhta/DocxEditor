@@ -6,7 +6,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for the core document properties
 /// </summary>
-public class CoreProperties : PropertiesViewModel<PropertyViewModel>
+public class CoreProperties : DocumentProperties
 {
   /// <summary>
   /// Initializing constructor.
@@ -17,12 +17,12 @@ public class CoreProperties : PropertiesViewModel<PropertyViewModel>
     IsModifiedInternal = true;
     WordDocument = parent.WordDocument;
     CorePropertiesElement = WordDocument.PackageProperties;
-    var names = CorePropertiesElement.GetNames(ItemFilter.All);
+    var names = GetNames();
     foreach (var name in names)
     {
       var type = CorePropertiesElement.GetType(name);
       var value = CorePropertiesElement.GetValue(name);
-      var propertyViewModel = new PropertyViewModel(this)
+      var propertyViewModel = new DocumentProperty(this)
       {
         Name = name,
         Type = type,
@@ -47,6 +47,12 @@ public class CoreProperties : PropertiesViewModel<PropertyViewModel>
       }
     }
   }
+
+  /// <summary>
+  /// Get names of the core properties.
+  /// </summary>
+  /// <returns></returns>
+  protected sealed override string[] GetNames() => CorePropertiesElement.GetNames(ItemFilter.All);
 
 #pragma warning disable OOXML0001
   private readonly IPackageProperties CorePropertiesElement;

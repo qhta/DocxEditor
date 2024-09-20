@@ -23,7 +23,7 @@ public class ObjectMemberViewModel : ObjectViewModel
   }
 
   /// <summary>
-  ///  Type of the member object which properties are modeled
+  ///  ValueType of the member object which properties are modeled
   /// </summary>
   public Type? MemberType
 

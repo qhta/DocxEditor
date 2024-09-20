@@ -196,7 +196,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cryptographic Algorithm Type.
+        ///   Looks up a localized string similar to Cryptographic Algorithm ValueType.
         /// </summary>
         public static string CryptographicAlgorithmType {
             get {
@@ -214,7 +214,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cryptographic Provider Type.
+        ///   Looks up a localized string similar to Cryptographic Provider ValueType.
         /// </summary>
         public static string CryptographicProviderType {
             get {
@@ -223,7 +223,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cryptographic Provider Type Extensibility.
+        ///   Looks up a localized string similar to Cryptographic Provider ValueType Extensibility.
         /// </summary>
         public static string CryptographicProviderTypeExtensibility {
             get {
@@ -232,7 +232,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provider Type Extensibility Source.
+        ///   Looks up a localized string similar to Provider ValueType Extensibility Source.
         /// </summary>
         public static string CryptographicProviderTypeExtSource {
             get {

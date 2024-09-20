@@ -15,9 +15,9 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  protected PropertiesViewModel(ViewModel? owner)
+  protected PropertiesViewModel(object? parent)
   {
-    Owner = owner;
+    Parent = parent;
     Items.CollectionChanged += (sender, e) =>
     {
       if (e.Action == NotifyCollectionChangedAction.Add)
@@ -40,7 +40,12 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
   /// <summary>
   /// Parent of the properties view model
   /// </summary>
-  public ViewModel? Owner { get; private set; }
+  public object? Parent { get; }
+
+  /// <summary>
+  /// Application instance
+  /// </summary>
+  public DA.Application Application => DocxControls.Application.Instance;
 
   private void PropertyViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
@@ -52,10 +57,16 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
   /// </summary>
   public WordprocessingDocument WordDocument { get; init; } = null!;
 
+
   /// <summary>
   /// Observable collection of properties
   /// </summary>
   public ObservableCollection<T> Items { get; } = new();
+
+  /// <summary>
+  /// Number of items in the collection
+  /// </summary>
+  public int Count => Items.Count;
 
   /// <summary>
   /// Width of the data grid in the view
@@ -78,7 +89,7 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
   /// <summary>
   /// Determines if the object is editable.
   /// </summary>
-  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+  public bool IsEditable => (Parent as IEditable)?.IsEditable ?? true;
 
   /// <summary>
   /// Was the object modified?
@@ -93,7 +104,7 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
       {
         _isModified = value;
         NotifyPropertyChanged(nameof(IsModified));
-        if (value && Owner is IEditable editable)
+        if (value && Parent is IEditable editable)
         {
           editable.IsModified = value;
         }

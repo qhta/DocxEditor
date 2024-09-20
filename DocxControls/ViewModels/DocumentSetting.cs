@@ -1,17 +1,15 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls;
+﻿namespace DocxControls;
 
 /// <summary>
 /// View model for a setting of a document.
 /// </summary>
-public class SettingViewModel : PropertyViewModel
+public class DocumentSetting : DocumentProperty, DA.DocumentSetting
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="parent"></param>
-  public SettingViewModel(ViewModel parent) : base(parent)
+  public DocumentSetting(object? parent) : base(parent)
   {
   }
 
@@ -23,7 +21,7 @@ public class SettingViewModel : PropertyViewModel
   /// <summary>
   /// Category of the property.
   /// </summary>
-  public virtual SettingCategory Category { get; set; }
+  public DA.SettingCategory Category { get; set; }
 
   /// <summary>
   /// Does the property have a tooltip?

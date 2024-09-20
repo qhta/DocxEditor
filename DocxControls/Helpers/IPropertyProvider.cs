@@ -49,4 +49,15 @@ public interface IPropertyProvider
   /// Watermark to display in the control.
   /// </summary>
   public string? Watermark { get; }
+
+  /// <summary>
+  /// Determines if the property is just created.
+  /// </summary>
+  public bool IsNew { get; }
+
+  /// <summary>
+  /// Determines if the property is empty.
+  /// </summary>
+  public bool IsEmpty { get; }
+
 }

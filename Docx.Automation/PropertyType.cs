@@ -6,6 +6,7 @@
 public enum PropertyType
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+  Variant = 0,
   String = 1,
   Boolean = 2,
   Number = 3,

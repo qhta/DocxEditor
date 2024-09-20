@@ -208,7 +208,7 @@
     <value>Identyfikator dokumentu</value>
   </data>
   <data name="DocumentProtection" xml:space="preserve">
-    <value>Ochrona dokumentów</value>
+    <value>Ochrona dokumentu</value>
   </data>
   <data name="DocumentType" xml:space="preserve">
     <value>Typ dokumentu</value>

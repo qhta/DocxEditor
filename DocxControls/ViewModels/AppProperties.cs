@@ -5,7 +5,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for the application-specific properties
 /// </summary>
-public class AppProperties : PropertiesViewModel<PropertyViewModel>
+public class AppProperties : DocumentProperties
 {
 
   /// <summary>
@@ -23,7 +23,7 @@ public class AppProperties : PropertiesViewModel<PropertyViewModel>
       if (!AppPropertiesElement.IsVolatile(name) && AppPropertiesElement.AppliesToApplication(name, AppType.Word))
       {
         var type = AppPropertiesElement.GetType(name);
-        var propertyViewModel = new PropertyViewModel(this)
+        var propertyViewModel = new DocumentProperty(this)
         {
           Name = name,
           Type = type,
@@ -50,6 +50,11 @@ public class AppProperties : PropertiesViewModel<PropertyViewModel>
     }
   }
 
+  /// <summary>
+  /// Get names of the core properties.
+  /// </summary>
+  /// <returns></returns>
+  protected sealed override string[] GetNames() => AppPropertiesElement.GetNames(ItemFilter.All);
 
   private readonly DXEP.Properties AppPropertiesElement;
 

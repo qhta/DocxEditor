@@ -85,7 +85,7 @@ public partial class BookmarksView : UserControl
   //    while (!customPropertiesViewModel.IsValidName(name))
   //      name = name0 + (++i);
   //    viewModel.Name = name;
-  //    viewModel.Type = typeof(string);
+  //    viewModel.ValueType = typeof(string);
   //  }
   //}
 }

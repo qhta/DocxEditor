@@ -24,8 +24,8 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <param name="origPropName">Name of property of the modeled object.</param>
   /// <param name="property">PropertyInfo of the view model</param>
   /// <param name="origProperty">PropertyInfo of the modeled object</param>
-  /// <param name="valueType">Type of the view model value</param>
-  /// <param name="origValueType">Type of the modeled object value</param>
+  /// <param name="valueType">ValueType of the view model value</param>
+  /// <param name="origValueType">ValueType of the modeled object value</param>
   /// <param name="value">Value of the view model property</param>
   /// <param name="origValue">Value of the modeled object</param>
 
@@ -95,19 +95,14 @@ public class ObjectPropertyViewModel : PropertyViewModel
   }
 
   /// <summary>
-  /// Gets or sets the parent of the object property
-  /// </summary>
-  public ObjectViewModel? Parent => (ObjectViewModel?)base.Owner;
-
-  /// <summary>
   /// Parent modeled object.
   /// </summary>
-  public object? ModeledObject => Parent?.ModeledObject;
+  public object? ModeledObject => (Parent as ObjectViewModel)?.ModeledObject;
 
   /// <summary>
   /// Parent modeled object type.
   /// </summary>
-  public Type? ModeledObjectType => Parent?.ObjectType;
+  public Type? ModeledObjectType => (Parent as ObjectViewModel)?.ObjectType;
 
   /// <summary>
   /// Collection of object properties.
@@ -186,12 +181,12 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Determines if the property <see cref="ObjectViewModel"/> is new.
   /// </summary>
-  public bool? IsNew => ObjectViewModel?.IsNew;
+  public new bool? IsNew => ObjectViewModel?.IsNew;
 
   /// <summary>
   /// Determines if the property <see cref="ObjectViewModel"/> is empty.
   /// </summary>
-  public bool? IsEmpty => ObjectViewModel?.IsEmpty;
+  public new bool? IsEmpty => ObjectViewModel?.IsEmpty;
 
 
   /// <summary>

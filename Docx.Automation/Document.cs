@@ -5,6 +5,25 @@
 /// </summary>
 public interface Document: IElement
 {
+  /// <summary>
+  /// Properties stored in CoreProperties part of the document.
+  /// </summary>
+  public DocumentProperties CoreProperties { get; }
+
+  /// <summary>
+  /// Properties stored in ExtendedFileProperties part of the document (except of StatProperties).
+  /// </summary>
+  public DocumentProperties AppProperties { get; }
+
+  /// <summary>
+  /// Properties stored in ExtendedFileProperties part of the document that represent document statistics.
+  /// </summary>
+  public DocumentProperties StatProperties { get; }
+
+  /// <summary>
+  /// Properties stored in CustomProperties part of the document.
+  /// </summary>
+  public CustomDocumentProperties CustomDocumentProperties { get;}
 
   //ActiveTheme
   //ActiveThemeDisplayName
@@ -18,7 +37,6 @@ public interface Document: IElement
   //  Bibliography
   //  Bookmarks
   //  Broadcast
-  //  BuiltInDocumentProperties
   //  Characters
   //  ChartDataPointTrack
   //  ClickAndTypeParagraphStyle
@@ -35,7 +53,7 @@ public interface Document: IElement
   //  ContentTypeProperties
 
   //  CurrentRsid
-  //  CustomDocumentProperties
+
   //  CustomXMLParts
   //  DefaultTableStyle
   //  DefaultTabStop

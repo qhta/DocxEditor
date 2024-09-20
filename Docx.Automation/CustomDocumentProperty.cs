@@ -1,23 +1,16 @@
 ﻿namespace Docx.Automation;
 /// <summary>
-/// Represents a single instance of a custom property.
+/// Represents a single instance of a custom document property.
 /// </summary>
-public interface CustomDocumentProperty: IElement
+public interface CustomDocumentProperty: DocumentProperty
 {
   /// <summary>
-  /// Returns the name of the custom property.
+  /// Specifies whether the LinkToContent property is linked to the contents of the container document.
   /// </summary>
-  public string? Name { get; set; }
-
+  bool LinkToContent { get; set; }
 
   /// <summary>
-  /// Type of the property.
+  /// Specifies the source of the link. Used when LinkToContent is true.
   /// </summary>
-  public PropertyType? Type { get; set; }
-
-
-  /// <summary>
-  /// The data value of the Value property
-  /// </summary>
-  public object? Value { get; set; }
+  string? LinkSource { get; set; }
 }

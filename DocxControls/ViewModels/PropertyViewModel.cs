@@ -21,16 +21,16 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner"></param>
-  public PropertyViewModel(ViewModel owner)
+  /// <param name="parent"></param>
+  public PropertyViewModel(object? parent)
   {
-   Owner = owner;
+   Parent = parent;
   }
 
   /// <summary>
   /// Parent view model
   /// </summary>
-  public ViewModel? Owner { get; set; }
+  public Object? Parent { get; set; }
 
   /// <summary>
   /// Display caption for the property.
@@ -63,11 +63,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   }
 
   /// <summary>
-  /// Type of the property.
+  /// ValueType of the property.
   /// </summary>
   public virtual Type? Type { get; set; }
 
-  #region INotifyPropertyChanged implementation
+  #region IPropertyProvider implementation
   /// <summary>
   /// Is the property value read-only?
   /// </summary>
@@ -85,8 +85,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         _Value = value;
         NotifyPropertyChanged(nameof(Value));
-        if (Owner!=null)
-          Owner.NotifyPropertyChanged(Name);
+        if (Parent is ViewModel viewModel)
+          viewModel.NotifyPropertyChanged(Name);
         IsModified = true;
       }
     }
@@ -195,7 +195,26 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       return "XX";
     return null;
   }
-  #endregion INotifyPropertyChanged implementation
+
+  /// <summary>
+  /// Determines if the property value is null.
+  /// </summary>
+  public bool IsEmpty {
+    get
+    {
+      var result = ObjectViewModel?.IsEmpty ?? Value == null;
+      //if (Name == "DocumentProtection")
+      //  Debug.WriteLine($"PropertyViewModel.IsEmpty({Name})={result}");
+      return result;
+    }
+  }
+
+  /// <summary>
+  /// Determines if the property Parent is null.
+  /// </summary>
+  public bool IsNew => Parent == null || (ObjectViewModel?.IsNew ?? true);
+
+  #endregion IPropertyProvider implementation
 
   #region ISelectable implementation
   /// <summary>
@@ -527,11 +546,17 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
         if (_objectViewModel != null)
           _objectViewModel.PropertyChanged -= ObjectViewModel_PropertyChanged;
         _objectViewModel = value as ObjectViewModel;
+        if (_objectViewModel != null)
+        {
+          _objectViewModel.Parent = this;
+          _objectViewModel.PropertyChanged += ObjectViewModel_PropertyChanged;
+        }
         _Value = _objectViewModel?.ModeledObject;
-        NotifyPropertyChanged(nameof(Value));
+        NotifyPropertyChanged(nameof(ObjectViewModel));
       }
     }
   }
+  
   /// <summary>
   /// Field for the object view model.
   /// </summary>
@@ -544,7 +569,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   protected ObjectViewModel? CreateObjectViewModel(object? value)
   {
-    var result = DocxControls.ObjectViewModel.Create(Owner, value);
+    var result = DocxControls.ObjectViewModel.Create(Parent, value);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;
@@ -557,6 +582,21 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <param name="e"></param>
   protected virtual void ObjectViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
+    //Debug.WriteLine($"{this}.ObjectViewModel_PropertyChanged({sender}, {e.PropertyName})");
+    if (sender is ObjectViewModel objectViewModel)
+    {
+      if (e.PropertyName == nameof(IObjectViewModel.IsEmpty))
+      {
+        var value = objectViewModel.IsEmpty ? null : objectViewModel.ModeledObject;
+        if (Value != value)
+        {
+          Value = value;
+          NotifyPropertyChanged(nameof(IsEmpty));
+          objectViewModel.IsNew = false;
+          NotifyPropertyChanged(nameof(IsNew));
+        }
+      }
+    }
     NotifyPropertyChanged(nameof(Value));
   }
 
@@ -567,7 +607,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Determines if the object is editable.
   /// </summary>
-  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+  public bool IsEditable => (Parent as IEditable)?.IsEditable ?? true;
 
   /// <summary>
   /// Was the object modified?
@@ -578,11 +618,12 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     set
     {
       if (IsModifiedInternal) return;
+      NotifyPropertyChanged(nameof(IsEmpty));
       if (_isModified != value)
       {
         _isModified = value;
         NotifyPropertyChanged(nameof(IsModified));
-        if (value && Owner is IEditable editable)
+        if (value && Parent is IEditable editable)
         {
           editable.IsModified = value;
         }
@@ -594,7 +635,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the object modified internally?
   /// </summary>
-  public bool IsModifiedInternal => (Owner as IEditable)?.IsModifiedInternal ?? true;
+  public bool IsModifiedInternal => (Parent as IEditable)?.IsModifiedInternal ?? true;
 
   #endregion IEditable implementation
 }

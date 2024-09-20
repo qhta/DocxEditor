@@ -5,7 +5,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for the statistics properties
 /// </summary>
-public class StatProperties : PropertiesViewModel<PropertyViewModel>
+public class StatProperties : DocumentProperties
 {
 
   /// <summary>
@@ -17,13 +17,13 @@ public class StatProperties : PropertiesViewModel<PropertyViewModel>
     IsModifiedInternal = true;
     WordDocument = parent.WordDocument;
     StatPropertiesElement = WordDocument.GetExtendedFileProperties();
-    var names = StatPropertiesElement.GetNames(ItemFilter.All);
+    var names = GetNames();
     foreach (var name in names)
     {
       if (StatPropertiesElement.IsVolatile(name) && StatPropertiesElement.AppliesToApplication(name, AppType.Word))
       {
         var type = StatPropertiesElement.GetType(name);
-        var propertyViewModel = new PropertyViewModel(this)
+        var propertyViewModel = new DocumentProperty(this)
         {
           Name = name,
           Type = type,
@@ -44,6 +44,12 @@ public class StatProperties : PropertiesViewModel<PropertyViewModel>
     var propertyName = e.PropertyName!;
     StatPropertiesElement.SetValue(propertyName, propertyViewModel.Value);
   }
+
+  /// <summary>
+  /// Get names of the statistics properties.
+  /// </summary>
+  /// <returns></returns>
+  protected sealed override string[] GetNames() => StatPropertiesElement.GetNames(ItemFilter.All);
 
 
   private readonly DocumentFormat.OpenXml.ExtendedProperties.Properties StatPropertiesElement;

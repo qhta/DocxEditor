@@ -7,7 +7,7 @@ namespace DocxControls;
 /// <summary>
 /// View model for the custom properties
 /// </summary>
-public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentProperty>//, DA.CustomDocumentProperties, ICollection<CustomDocumentProperty>
+public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentProperty>, DA.CustomDocumentProperties
 {
   /// <summary>
   /// Initializing constructor.
@@ -35,7 +35,7 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
       var propertyViewModel = new CustomDocumentProperty(this)
       {
         Name = name,
-        Type = type,
+        ValueType = type,
         Value = value,
 
       };
@@ -88,7 +88,7 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
     while (!IsUniqueName(name))
       name = name0 + (++i);
     viewModel.Name = name;
-    viewModel.Type = typeof(string);
+    viewModel.ValueType = typeof(string);
   }
 
   private void ItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -100,9 +100,9 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
         if (propertyViewModel.IsEmpty)
           Initialize(propertyViewModel);
         if (propertyViewModel.Name != null &&
-            propertyViewModel.Type != null && propertyViewModel.Validate() && ValidateName(propertyViewModel))
+            propertyViewModel.ValueType != null && propertyViewModel.Validate() && ValidateName(propertyViewModel))
         {
-          CustomPropertiesElement.Add(propertyViewModel.Name, propertyViewModel.Type, propertyViewModel.Value);
+          CustomPropertiesElement.Add(propertyViewModel.Name, propertyViewModel.ValueType, propertyViewModel.Value);
         }
         propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
       }
@@ -144,7 +144,7 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
     {
       if (e.PropertyName == nameof(CustomDocumentProperty.Value))
       {
-        if (propertyViewModel.Name != null && propertyViewModel.Type != null && propertyViewModel.Validate())
+        if (propertyViewModel.Name != null && propertyViewModel.ValueType != null && propertyViewModel.Validate())
           CustomPropertiesElement.SetValue(propertyViewModel.Name!, propertyViewModel.Value);
       }
       else if (e.PropertyName == nameof(CustomDocumentProperty.Name))
@@ -155,20 +155,20 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
           {
             if (!CustomPropertiesElement.Rename(propertyViewModel.Name!, propertyViewModel.Name))
             {
-              if (propertyViewModel.Type != null)
-                CustomPropertiesElement.Add(propertyViewModel.Name, propertyViewModel.Type);
+              if (propertyViewModel.ValueType != null)
+                CustomPropertiesElement.Add(propertyViewModel.Name, propertyViewModel.ValueType);
             }
           }
         }
       }
-      else if (e.PropertyName == nameof(CustomDocumentProperty.Type))
+      else if (e.PropertyName == nameof(CustomDocumentProperty.ValueType))
       {
-        if (propertyViewModel.Type != null)
+        if (propertyViewModel.ValueType != null)
         {
           var name = propertyViewModel.Name;
           if (!string.IsNullOrEmpty(name))
           {
-            var type = propertyViewModel.Type;
+            var type = propertyViewModel.ValueType;
             if (!CustomPropertiesElement.ChangeType(name, type))
             {
               if (propertyViewModel.Name != null)
@@ -188,10 +188,10 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
   /// </summary>
   /// <returns></returns>
   // ReSharper disable once NotDisposedResourceIsReturned
-  public IEnumerator<CustomDocumentProperty> GetEnumerator() => Items.Cast<CustomDocumentProperty>().GetEnumerator();
+  public IEnumerator GetEnumerator() => Items.GetEnumerator();
 
 
-  //IEnumerator<DA.CustomDocumentProperty> IEnumerable<DA.CustomDocumentProperty>.GetEnumerator() => Items.Cast<DA.CustomDocumentProperty>().GetEnumerator();
+  IEnumerator<DA.CustomDocumentProperty> IEnumerable<DA.CustomDocumentProperty>.GetEnumerator() => Items.Cast<DA.CustomDocumentProperty>().GetEnumerator();
 
   /// <summary>
   /// Adds a custom property to the collection.
@@ -199,7 +199,7 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
   /// <param name="name">The string of the Name of the property.</param>
   /// <param name="linkToContent">Specifies whether the LinkToContent property is linked to the contents of the container document.
   /// If this argument is True, the LinkSource argument is required; if it's False, the Value argument is required.</param>
-  /// <param name="type">The data type of the Type property.
+  /// <param name="type">The data type of the ValueType property.
   /// Can be one of the following: Boolean, Date, Float, Number, or String.</param>
   /// <param name="value"></param>
   /// <param name="linkSource"></param>
@@ -208,7 +208,7 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
     var propertyViewModel = new CustomDocumentProperty(this)
     {
       Name = name,
-      Type = TypeMap[type],
+      ValueType = TypeMap[type],
       Value = value,
       LinkToContent = linkToContent,
     };
@@ -223,24 +223,6 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
   {
     Items.Add(item);
   }
-
-  //public new void Clear() => Items.Clear();
-
-
-  //public bool Contains(CustomDocumentProperty item) => Items.Contains(item);
-
-
-  //public void CopyTo(CustomDocumentProperty[] array, int arrayIndex)
-  //{
-  //  throw new NotImplementedException();
-  //}
-
-  //public bool Remove(CustomDocumentProperty item)
-  //{
-  //  throw new NotImplementedException();
-  //}
-
-  //public bool IsReadOnly { get; }
 
   private static readonly Dictionary<PropertyType, Type> TypeMap = new()
   {

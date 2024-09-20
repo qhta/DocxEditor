@@ -6,7 +6,7 @@
 public interface IObjectViewModel
 {
   /// <summary>
-  ///  Type of the object which properties are modeled
+  ///  ValueType of the object which properties are modeled
   /// </summary>
   public Type? ObjectType { get; }
 
@@ -20,7 +20,6 @@ public interface IObjectViewModel
   /// Determines if the object is just created.
   /// </summary>
   public bool IsNew { get; }
-
 
   /// <summary>
   /// Determines if the object is empty.

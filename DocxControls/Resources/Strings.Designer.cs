@@ -475,7 +475,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type.
+        ///   Looks up a localized string similar to ValueType.
         /// </summary>
         public static string Type {
             get {

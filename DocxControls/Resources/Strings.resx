@@ -238,7 +238,7 @@
     <value>Name</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>ValueType</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Value</value>

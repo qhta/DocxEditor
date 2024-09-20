@@ -22,9 +22,9 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="owner">parent ViewModel</param>
+  /// <param name="parent">parent ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel? owner, object element) : base(owner, element)
+  protected ElementViewModel(ViewModel? parent, object element) : base(parent, element)
   {
   }
 
@@ -33,10 +33,6 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
   /// </summary>
   public DA.Application Application => throw new NotImplementedException();
 
-  /// <summary>
-  /// Returns the parent object for the specified object.
-  /// </summary>
-  public object? Parent => Owner;
 
   /// <summary>
   /// Access to outer Xml of the element

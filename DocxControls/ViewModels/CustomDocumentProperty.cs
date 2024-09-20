@@ -7,14 +7,14 @@ namespace DocxControls;
 /// <summary>
 /// View model for a custom property of a document.
 /// </summary>
-public class CustomDocumentProperty : PropertyViewModel
+public class CustomDocumentProperty : DocumentProperty, DA.CustomDocumentProperty
 {
 
 
   /// <summary>
   /// Default constructor needed to allow adding new properties.
   /// </summary>
-  public CustomDocumentProperty()
+  public CustomDocumentProperty(): base(null)
   {
   }
 
@@ -45,7 +45,7 @@ public class CustomDocumentProperty : PropertyViewModel
   private string? _name;
 
   /// <summary>
-  /// Type of the property.
+  /// ValueType of the property.
   /// </summary>
   public bool LinkToContent
   {
@@ -55,70 +55,11 @@ public class CustomDocumentProperty : PropertyViewModel
       if (value != _linkToContent)
       {
         _linkToContent = value!;
-        NotifyPropertyChanged(nameof(_linkToContent));
+        NotifyPropertyChanged(nameof(LinkToContent));
       }
     }
   }
   private bool _linkToContent;
-
-  /// <summary>
-  /// Type of the property.
-  /// </summary>
-  public new Type? Type
-  {
-    get => _type;
-    set
-    {
-      if (value != _type)
-      {
-        _type = value!;
-        NotifyPropertyChanged(nameof(Type));
-        ValidateProperty(nameof(Type), _type);
-      }
-    }
-  }
-  private Type? _type;
-
-  //DA.PropertyType? DA.CustomDocumentProperty.Type
-  //{
-  //  get
-  //  {
-  //    if (Type == typeof(string))
-  //      return DA.PropertyType.String;
-  //    if (Type == typeof(bool))
-  //      return DA.PropertyType.Boolean;
-  //    if (Type == typeof(int))
-  //      return DA.PropertyType.Number;
-  //    if (Type == typeof(float))
-  //      return DA.PropertyType.Float;
-  //    if (Type == typeof(DateTime))
-  //      return DA.PropertyType.Date;
-  //    return null;
-  //  }
-  //  set
-  //  {
-  //    switch (value)
-  //    {
-  //      case DA.PropertyType.String:
-  //        Type = typeof(string);
-  //        break;
-  //      case DA.PropertyType.Boolean:
-  //        Type = typeof(bool);
-  //        break;
-  //      case DA.PropertyType.Number:
-  //        Type = typeof(int);
-  //        break;
-  //      case DA.PropertyType.Float:
-  //        Type = typeof(float);
-  //        break;
-  //      case DA.PropertyType.Date:
-  //        Type = typeof(DateTime);
-  //        break;
-  //    }
-  //    if (value==null)
-  //      Type = null;
-  //  }
-  //}
 
   /// <summary>
   /// Value of the property.
@@ -143,9 +84,26 @@ public class CustomDocumentProperty : PropertyViewModel
   private object? _value;
 
   /// <summary>
+  /// ValueType of the property.
+  /// </summary>
+  public string? LinkSource
+  {
+    get => _LinkSource;
+    set
+    {
+      if (value != _LinkSource)
+      {
+        _LinkSource = value!;
+        NotifyPropertyChanged(nameof(LinkSource));
+      }
+    }
+  }
+  private string? _LinkSource;
+
+  /// <summary>
   /// Checks if the property name and type are empty.
   /// </summary>
-  public bool IsEmpty => string.IsNullOrWhiteSpace(Name) && Type == null;
+  public new bool IsEmpty => string.IsNullOrWhiteSpace(Name) && ValueType == null;
 
   /// <summary>
   /// Determines if the view model is valid.
@@ -154,7 +112,7 @@ public class CustomDocumentProperty : PropertyViewModel
   {
     _errors.Clear();
     ValidateProperty(nameof(Name), _name);
-    ValidateProperty(nameof(Type), _type);
+    ValidateProperty(nameof(Type), Type);
     ValidateProperty(nameof(Value), _value);
     return !HasErrors;
   }
@@ -165,9 +123,9 @@ public class CustomDocumentProperty : PropertyViewModel
   ///// </summary>
   //public bool ValidateValueString(string? value)
   //{
-  //  if (Type != null && value != null)
+  //  if (ValueType != null && value != null)
   //  {
-  //    if (VariantTools.ValidateVariantString(Type, value))
+  //    if (VariantTools.ValidateVariantString(ValueType, value))
   //      RemoveError(nameof(Value), Strings.InvalidValueForSpecifiedType);
   //    else
   //      AddError(nameof(Value), Strings.InvalidValueForSpecifiedType);
@@ -215,10 +173,10 @@ public class CustomDocumentProperty : PropertyViewModel
         }
         break;
       case nameof(Value):
-        if (Type != null && value != null)
+        if (ValueType != null && value != null)
         {
           var str = value.AsString();
-          if (VariantTools.ValidateVariantString(Type, str))
+          if (VariantTools.ValidateVariantString(ValueType, str))
             RemoveError(propertyName, Strings.InvalidValueForSpecifiedType);
           else
             AddError(propertyName, Strings.InvalidValueForSpecifiedType);

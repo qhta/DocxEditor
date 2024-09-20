@@ -9,7 +9,7 @@ internal class EnumFlagValueViewModel: EnumValueViewModel
   /// Creates a new instance of the <see cref="EnumFlagValueViewModel"/> class.
   /// </summary>
   /// <param name="parent">ViewModel to which this model belongs</param>
-  /// <param name="enumType">Type of the enumeration (needed to convert enum to int)</param>
+  /// <param name="enumType">ValueType of the enumeration (needed to convert enum to int)</param>
   /// <param name="enumMask">Mask of the enumeration value (converter to int)</param>
   public EnumFlagValueViewModel(IEnumProvider parent, Type enumType, object enumMask)
   {

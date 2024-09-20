@@ -12,7 +12,7 @@ namespace DocxControls;
 public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider, ISelectable, IEditable
 {
   /// <summary>
-  ///  Type of the object which properties are modeled
+  ///  ValueType of the object which properties are modeled
   /// </summary>
   public Type? ObjectType => ModeledObject?.GetType() ?? _ObjectType;
 
@@ -40,7 +40,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Parent ViewModel.
   /// </summary>
-  public ViewModel? Owner { get; protected set; }
+  public object? Parent { get; set; }
 
   /// <summary>
   /// Title for the window
@@ -67,7 +67,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   /// <returns></returns>
   /// <exception cref="InvalidOperationException"></exception>
-  public Document GetDocumentViewModel() => (Owner as Document) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
+  public Document GetDocumentViewModel() => (Parent as Document) ?? (Parent as ObjectViewModel)?.GetDocumentViewModel()
     ?? throw new InvalidOperationException("Parent is not a document view model");
 
   /// <summary>
@@ -77,7 +77,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <param name="owner"></param>
   /// <param name="modeledObject"></param>
   /// <returns></returns>
-  public static ObjectViewModel? Create(ViewModel? owner, object? modeledObject)
+  public static ObjectViewModel? Create(object? owner, object? modeledObject)
   {
     var modeledObjectType = modeledObject?.GetType();
     if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
@@ -103,7 +103,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   ///// <param name="parent"></param>
   ///// <param name="modeledObjectType"></param>
   ///// <returns></returns>
-  //public static ObjectViewModel Create(Object? parent, Type? modeledObjectType, object? modeledObject)
+  //public static ObjectViewModel Create(Object? parent, ValueType? modeledObjectType, object? modeledObject)
   //{
   //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
   //    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
@@ -151,9 +151,9 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
-  protected ObjectViewModel(ViewModel? owner, Object modeledObject) : this()
+  protected ObjectViewModel(Object? parent, Object modeledObject) : this()
   {
-    Owner = owner;
+    Parent = parent;
     _ObjectType = modeledObject?.GetType();
     if (modeledObject != null)
       Initialize(_ObjectType, modeledObject);
@@ -163,7 +163,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor.
   /// when the type of the modeled object is known.
   /// </summary>
-  /// <param name="objectType">Type of the object which will be created if <paramref name="modeledObject"/> is null</param>
+  /// <param name="objectType">ValueType of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>
   public ObjectViewModel(Type objectType, Object? modeledObject) : this()
   {
@@ -551,7 +551,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is new.
   /// </summary>
-  public bool IsEmpty => (ModeledObject as DX.OpenXmlElement)?.IsEmpty() ?? ModeledObject == null;
+  public bool IsEmpty => (ModeledObject as DX.OpenXmlElement)?.IsEmpty() ?? true;
 
   /// <summary>
   /// Width of the data grid in the view
@@ -623,7 +623,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is editable.
   /// </summary>
-  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
+  public bool IsEditable => (Parent as IEditable)?.IsEditable ?? true;
 
   /// <summary>
   /// Was the object modified?
@@ -639,7 +639,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
         _isModified = value;
         NotifyPropertyChanged(nameof(IsModified));
         NotifyPropertyChanged(nameof(WindowTitle));
-        if (value && Owner is IEditable editable)
+        if (value && Parent is IEditable editable)
         {
           editable.IsModified = value;
         }

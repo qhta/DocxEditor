@@ -35,7 +35,7 @@ public partial class PropertiesView : UserControl
         sortDescription = new SortDescription("Caption", direction);
       else
       if (e.Column.Header.ToString() == Strings.Type)
-        sortDescription = new SortDescription("Type.Name", direction);
+        sortDescription = new SortDescription("ValueType.Name", direction);
       else
       if (e.Column.Header.ToString() == Strings.Value)
         sortDescription = new SortDescription("ValueString", direction);

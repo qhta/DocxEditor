@@ -2,6 +2,7 @@
 using System.ComponentModel;
 
 using DocumentFormat.OpenXml.Packaging;
+
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -9,42 +10,33 @@ namespace DocxControls;
 /// <summary>
 /// View model for the document settings.
 /// </summary>
-public class DocumentSettingsViewModel: ViewModel
+public class DocumentSettings: PropertiesViewModel<DocumentSetting>
 {
-
-  /// <summary>
-  /// Internal Wordprocessing document
-  /// </summary>
-  public WordprocessingDocument WordDocument { get; init; }
-
-  /// <summary>
-  /// Observable collection of properties
-  /// </summary>
-  public ObservableCollection<SettingViewModel> Items { get; } = new();
-
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="wordDocument"></param>
+  /// <param name="documentViewModel"></param>
   /// <param name="categories">Determines which categories to accept. Null for all</param>
-  public DocumentSettingsViewModel(WordprocessingDocument wordDocument, SettingCategory[]? categories = null)
+  public DocumentSettings(Document documentViewModel, SettingCategory[]? categories = null): base(documentViewModel)
   {
-    WordDocument = wordDocument;
-    DocumentSettings = wordDocument.GetSettings();
-    var names = DocumentSettings.GetNames(ItemFilter.All);
+    WordDocument = documentViewModel.WordDocument;
+    DocumentSettingsElement = WordDocument.GetSettings();
+    var names = DocumentSettingsElement.GetNames(ItemFilter.All);
     foreach (var name in names)
     {
-      var openXmlType = DocumentSettings.GetType(name);
+      var openXmlType = DocumentSettingsElement.GetType(name);
       var type = openXmlType.ToSystemType(name);
-      var category = DocumentSettings.GetCategory(name);
-      var setting = DocumentSettings.GetValue(name);
+      var category = DocumentSettingsElement.GetCategory(name);
+      var setting = DocumentSettingsElement.GetValue(name);
       var value = setting.ToSystemValue(openXmlType);
       if (categories == null || categories.Contains(category))
       {
-        var settingViewModel = new SettingViewModel(this)
+        if (name== "DocumentProtection")
+          Debug.Assert(true);
+        var settingViewModel = new DocumentSetting(this)
         {
           Name = name,
-          Category = category,
+          Category = CTC(category),
           Type = type,
           OriginalType = openXmlType,
           Value = value,
@@ -56,36 +48,38 @@ public class DocumentSettingsViewModel: ViewModel
     }
   }
 
+  private DA.SettingCategory CTC(SettingCategory category) => (DA.SettingCategory)category;
+
   private void SettingsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
     if (e.PropertyName == nameof(PropertyViewModel.Value))
     {
-      var settingViewModel = (SettingViewModel)sender!;
+      var settingViewModel = (DocumentSetting)sender!;
       var propertyName = settingViewModel.Name;
       if (propertyName != null)
       {
         var value = settingViewModel.Value.ToOpenXmlValue(settingViewModel.OriginalType);
         if (value is DX.OpenXmlElement element && element.IsEmpty())
           value = null;
-        DocumentSettings.SetValue(propertyName, value);
+        DocumentSettingsElement.SetValue(propertyName, value);
       }
     }
     else
     if (e.PropertyName == nameof(ObjectViewModel.ModeledObject))
     {
-      var settingViewModel = (SettingViewModel)sender!;
+      var settingViewModel = (DocumentSetting)sender!;
       var propertyName = settingViewModel.Name;
       if (propertyName != null)
       {
         var value = settingViewModel.Value.ToOpenXmlValue(settingViewModel.OriginalType);
         if (value is DX.OpenXmlElement element && element.IsEmpty())
           value = null;
-        DocumentSettings.SetValue(propertyName, value);
+        DocumentSettingsElement.SetValue(propertyName, value);
       }
     }
   }
 
 
-  private readonly DXW.Settings DocumentSettings;
+  private readonly DXW.Settings DocumentSettingsElement;
 
 }

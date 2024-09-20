@@ -36,7 +36,7 @@
           Header="{x:Static resources:Strings.Type}"
           ItemsSource="{local:StaticPropertyExtension TargetType={x:Type local:PropertyTypesProvider}, PropertyName=Items}"
           DisplayMemberPath="Name"
-          SelectedItemBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+          SelectedItemBinding="{Binding ValueType, UpdateSourceTrigger=PropertyChanged}"
           SelectedValuePath="Name"
           MinWidth="80"
           />

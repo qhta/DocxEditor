@@ -28,25 +28,35 @@ public class ObjectViewComboBox : ComboBox
 
   private void ObjectViewComboBox_DropDownOpened(object? sender, EventArgs e)
   {
-    if (DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
+    if (DataContext is PropertyViewModel propertyViewModel)
     {
-      //Debug.WriteLine($"ObjectViewComboBox_DropDownOpened({objectProperty.Caption})");
-      //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
+      //Debug.WriteLine($"ObjectViewComboBox_DropDownOpened({propertyViewModel.Name})");
+      //Debug.WriteLine($"propertyViewModel.OriginalType={propertyViewModel.OriginalType?.Name}");
+      //Debug.WriteLine($"propertyViewModel.OriginalValue={propertyViewModel.OriginalValue}");
+      //Debug.WriteLine($"propertyViewModel.Type={propertyViewModel.Type?.Name}");
+      //Debug.WriteLine($"propertyViewModel.Value={propertyViewModel.Value}");
+      if (propertyViewModel.IsObject)
+      {
+        if (propertyViewModel.ObjectViewModel == null && propertyViewModel.OriginalType != null)
+        {
+          propertyViewModel.ObjectViewModel = new ObjectViewModel(propertyViewModel.OriginalType, null)
+          { IsNew = true };
+        }
+      }
     }
+
   }
 
   private void ObjectViewComboBox_DropDownClosed(object? sender, EventArgs e)
   {
-    if (DataContext is ObjectPropertyViewModel objectProperty)
+    if (DataContext is PropertyViewModel propertyViewModel)
     {
-      //Debug.WriteLine($"ObjectViewComboBox_DropDownClosed({objectProperty.Caption})");
-      if (objectProperty.IsNew != objectProperty.ObjectViewModel?.IsNew)
-        objectProperty.NotifyPropertyChanged(nameof(ObjectPropertyViewModel.IsNew));
-      if (TextBlock != null)
+      if (propertyViewModel.IsObject)
       {
-        var binding = BindingOperations.GetBindingExpression(TextBlock, FontStyleProperty);
-        if (binding != null)
-          binding.UpdateTarget();
+        if (propertyViewModel.ObjectViewModel != null && propertyViewModel.ObjectViewModel.IsEmpty)
+        {
+          propertyViewModel.ObjectViewModel = null;
+        }
       }
     }
   }
@@ -101,7 +111,6 @@ public class ObjectViewComboBox : ComboBox
     }
   }
 
-
   private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
   {
     //Debug.WriteLine($"{sender.GetType().Name}_SizeChanged ({e.NewSize.Width},{e.NewSize.Height})");
@@ -127,8 +136,8 @@ public class ObjectViewComboBox : ComboBox
 
   private void PropertiesDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
   {
-//    Debug.WriteLine($"e.Row.DataContext={e.Row.DataContext}");
-    if (e.Row.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption=="RunFonts")
+    //    Debug.WriteLine($"e.Row.DataContext={e.Row.DataContext}");
+    if (e.Row.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
     {
       //Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
       //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
@@ -190,7 +199,7 @@ public class ObjectViewComboBox : ComboBox
         sortDescription = new SortDescription("Caption", direction);
       else
       if (e.Column.Header.ToString() == Strings.Type)
-        sortDescription = new SortDescription("Type.Name", direction);
+        sortDescription = new SortDescription("ValueType.Name", direction);
       else
       if (e.Column.Header.ToString() == Strings.Value)
         sortDescription = new SortDescription("ValueString", direction);
@@ -220,7 +229,7 @@ public class ObjectViewComboBox : ComboBox
       if (viewModel.ObjectViewModel != null)
       {
         if (!double.IsNaN(viewModel.ObjectViewModel.DataGridWidth))
-          if (totalWidth< viewModel.ObjectViewModel.DataGridWidth)
+          if (totalWidth < viewModel.ObjectViewModel.DataGridWidth)
             totalWidth = viewModel.ObjectViewModel.DataGridWidth;
         viewModel.ObjectViewModel.DataGridWidth = totalWidth;
       }

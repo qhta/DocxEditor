@@ -245,19 +245,19 @@
     <value>Cryptographic Hashing Algorithm</value>
   </data>
   <data name="CryptographicAlgorithmType" xml:space="preserve">
-    <value>Cryptographic Algorithm Type</value>
+    <value>Cryptographic Algorithm ValueType</value>
   </data>
   <data name="CryptographicProvider" xml:space="preserve">
     <value>Cryptographic Provider</value>
   </data>
   <data name="CryptographicProviderType" xml:space="preserve">
-    <value>Cryptographic Provider Type</value>
+    <value>Cryptographic Provider ValueType</value>
   </data>
   <data name="CryptographicProviderTypeExtensibility" xml:space="preserve">
-    <value>Cryptographic Provider Type Extensibility</value>
+    <value>Cryptographic Provider ValueType Extensibility</value>
   </data>
   <data name="CryptographicProviderTypeExtSource" xml:space="preserve">
-    <value>Provider Type Extensibility Source</value>
+    <value>Provider ValueType Extensibility Source</value>
   </data>
   <data name="CryptographicSpinCount" xml:space="preserve">
     <value>Iterations to Run Hashing Algorithm</value>
