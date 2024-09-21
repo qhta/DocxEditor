@@ -51,7 +51,9 @@
                     x:Name="DeleteButton"
                     Width="16"
                     HorizontalAlignment="Right"
-                    BorderThickness="0">
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    Background="Transparent">
                     <Image
                       Source="pack://application:,,,/DocxControls;component/Resources/Delete.png"
                     />

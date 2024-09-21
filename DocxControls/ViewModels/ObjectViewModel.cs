@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 
+using DocumentFormat.OpenXml.Wordprocessing;
+
 using Qhta.MVVM;
 
 namespace DocxControls;
@@ -92,7 +94,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       //  throw new InvalidOperationException("Cannot create a view model for the null object");
       //}
     }
-    var result = viewModelType!= null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)! : null;
+    var result = viewModelType != null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)! : null;
     return result;
   }
 
@@ -251,19 +253,19 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       var propName = propertyViewModel.Name;
       //if (propName == "RunFonts")
       //{
-      //  Debug.WriteLine($"{this}.PropertiesViewModel_PropertyChanged({sender}, {propName})");
-      //  if (ObjectProperties.Items.Any(p => p.Name == propName))
-      //  {
-      //    var prop = ObjectProperties.Items.First(p => p.Name == propName);
-      //    if (prop.Value != propertyViewModel.Value)
-      //    {
-      //      var value = propertyViewModel.Value;
-      //      prop.Value = propertyViewModel.Value;
-      //      NotifyPropertyChanged(nameof(ModeledObject));
-      //      NotifyPropertyChanged(nameof(IsEmpty));
-      //    }
-      //  }
-      //}
+      //Debug.WriteLine($"{this}.PropertiesViewModel_PropertyChanged({sender}, {propName})");
+      if (ObjectProperties.Items.Any(p => p.Name == propName))
+      {
+        var prop = ObjectProperties.Items.First(p => p.Name == propName);
+        if (prop.Value != propertyViewModel.Value)
+        {
+          var value = propertyViewModel.Value;
+          prop.Value = propertyViewModel.Value;
+          NotifyPropertyChanged(nameof(ModeledObject));
+          NotifyPropertyChanged(nameof(IsEmpty));
+        }
+      }
+
       if (propName != null && _ObjectType != null)
       {
         ModeledObject ??= Activator.CreateInstance(_ObjectType);
@@ -362,8 +364,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
           }
           var origType = prop.PropertyType;
           var type = origType.ToSystemType(propName);
-          if (type == typeof(bool))
-            type = typeof(bool?);
           object? value = null;
           object? originalValue = null;
           var modeledObject = ModeledObject;

@@ -65,7 +65,11 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// ValueType of the property.
   /// </summary>
-  public virtual Type? Type { get; set; }
+  public virtual Type? Type
+  {
+    get; 
+    set;
+  }
 
   #region IPropertyProvider implementation
   /// <summary>
@@ -323,13 +327,17 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     get
     {
+      if (Name=="WordPerfectJustification")
+        Debug.Assert(true);
       var type = Type;
+      var result = false;
       if (type != null)
       {
         if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-          return true;
+          result = true;
       }
-      return type != typeof(bool);
+      //Debug.WriteLine($"PropertyViewModel({Name}).IsThreeState({type})={result}");
+      return result;
     }
   }
 

@@ -1,9 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-
-using DocumentFormat.OpenXml.Packaging;
-
-using Qhta.MVVM;
+﻿using System.ComponentModel;
 
 namespace DocxControls;
 
@@ -19,6 +14,7 @@ public class DocumentSettings: PropertiesViewModel<DocumentSetting>
   /// <param name="categories">Determines which categories to accept. Null for all</param>
   public DocumentSettings(Document documentViewModel, SettingCategory[]? categories = null): base(documentViewModel)
   {
+    IsModifiedInternal = true;
     WordDocument = documentViewModel.WordDocument;
     DocumentSettingsElement = WordDocument.GetSettings();
     var names = DocumentSettingsElement.GetNames(ItemFilter.All);
@@ -46,6 +42,7 @@ public class DocumentSettings: PropertiesViewModel<DocumentSetting>
         Items.Add(settingViewModel);
       }
     }
+    IsModifiedInternal = false;
   }
 
   private DA.SettingCategory CTC(SettingCategory category) => (DA.SettingCategory)category;

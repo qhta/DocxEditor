@@ -58,7 +58,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
       origValueType = origProperty?.PropertyType;
     if (valueType == null)
       valueType = origValueType?.ToSystemType(propName) ?? ViewModelProperty?.PropertyType;
-    valueType = valueType!.GetNotNullableType();
+    //valueType = valueType!.GetNotNullableType();
     if (origValue == null)
       origValue = origProperty?.GetValue(ModeledObject);
     if (value == null)

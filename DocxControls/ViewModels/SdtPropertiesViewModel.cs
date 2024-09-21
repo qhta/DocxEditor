@@ -42,8 +42,8 @@ public class SdtPropertiesViewModel : ElementViewModel
   /// </summary>
   public bool? Temporary
   {
-    get => SdtProperties.GetFirstOnOffTypeElementVal<DXW.TemporarySdt>();
-    set => SdtProperties.SetFirstOnOffTypeElementVal<DXW.TemporarySdt>(value);
+    get => SdtProperties.GetOnOffTypeElement<DXW.TemporarySdt>();
+    set => SdtProperties.SetOnOffTypeElement<DXW.TemporarySdt>(value);
   }
 
   /// <summary>
