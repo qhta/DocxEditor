@@ -4,7 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
-namespace DocxControls;
+using DocxControls.Helpers;
+
+namespace DocxControls.Views;
 
 /// <summary>
 ///  ComboBox that allows to edit a set o properties.
@@ -28,13 +30,13 @@ public class ObjectViewComboBox : ComboBox
 
   private void ObjectViewComboBox_DropDownOpened(object? sender, EventArgs e)
   {
-    if (DataContext is PropertyViewModel propertyViewModel)
+    if (DataContext is VM.PropertyViewModel propertyViewModel)
     {
       if (propertyViewModel.IsObject)
       {
         if (propertyViewModel.ObjectViewModel == null && propertyViewModel.OriginalType != null)
         {
-          propertyViewModel.ObjectViewModel = new ObjectViewModel(propertyViewModel.OriginalType, null)
+          propertyViewModel.ObjectViewModel = new VM.ObjectViewModel(propertyViewModel.OriginalType, null)
           { IsNew = true };
         }
       }
@@ -44,7 +46,7 @@ public class ObjectViewComboBox : ComboBox
 
   private void ObjectViewComboBox_DropDownClosed(object? sender, EventArgs e)
   {
-    if (DataContext is PropertyViewModel propertyViewModel)
+    if (DataContext is VM.PropertyViewModel propertyViewModel)
     {
       if (propertyViewModel.IsObject)
       {
@@ -147,7 +149,7 @@ public class ObjectViewComboBox : ComboBox
 
   private void DeleteButton_Click(object sender, RoutedEventArgs e)
   {
-    if (DataContext is PropertyViewModel propertyViewModel)
+    if (DataContext is VM.PropertyViewModel propertyViewModel)
     {
       if (propertyViewModel.IsObject)
       {
@@ -170,7 +172,7 @@ public class ObjectViewComboBox : ComboBox
 
   private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
   {
-    if (sender is Grid grid && grid.DataContext is PropertyViewModel propertyViewModel && propertyViewModel.ObjectViewModel is ObjectViewModel objectViewModel)
+    if (sender is Grid grid && grid.DataContext is VM.PropertyViewModel propertyViewModel && propertyViewModel.ObjectViewModel is VM.ObjectViewModel objectViewModel)
     {
       if (!objectViewModel.IsContainer)
       {
@@ -190,7 +192,7 @@ public class ObjectViewComboBox : ComboBox
   private void PropertiesDataGrid_LoadingRow(object? sender, DataGridRowEventArgs e)
   {
     //    Debug.WriteLine($"e.Row.DataContext={e.Row.DataContext}");
-    if (e.Row.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
+    if (e.Row.DataContext is VM.ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
     {
       //Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
       //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
@@ -202,7 +204,7 @@ public class ObjectViewComboBox : ComboBox
     if (e.Row.IsNewItem)
     {
       e.Row.Header = ">";
-      e.Row.Item = new ObjectMemberViewModel { IsNew = true, Collection = (MembersDataGrid?.DataContext as PropertyViewModel)?.ObjectViewModel?.ObjectMembers };
+      e.Row.Item = new VM.ObjectMemberViewModel { IsNew = true, Collection = (MembersDataGrid?.DataContext as VM.PropertyViewModel)?.ObjectViewModel?.ObjectMembers };
     }
     else
     {

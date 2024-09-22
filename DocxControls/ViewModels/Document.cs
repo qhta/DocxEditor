@@ -1,8 +1,10 @@
 ﻿using System.IO;
 
+using DocxControls.Helpers;
+
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a document.

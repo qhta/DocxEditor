@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface for providing a boolean.

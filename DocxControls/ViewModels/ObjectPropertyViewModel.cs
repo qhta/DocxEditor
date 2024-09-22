@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel;
+
+using DocxControls.Helpers;
+
 using Qhta.TypeUtils;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an object property. Replaces <see cref="PropertyViewModel"/> in the properties view.

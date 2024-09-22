@@ -1,6 +1,9 @@
 ﻿using Microsoft.Win32;
+using DocxControls.Views;
+
 
 namespace DocxControls;
+
 
 /// <summary>
 /// Static class for executing commands.
@@ -22,7 +25,7 @@ public class Application: DA.Application
   /// <summary>
   /// List of opened documents.
   /// </summary>
-  public Documents Documents { get; } = new();
+  public VM.Documents Documents { get; } = new();
 
   DA.Documents DA.Application.Documents => Documents;
 
@@ -55,10 +58,10 @@ public class Application: DA.Application
   /// <param name="fileName">The full filename of the document.</param>
   /// <param name="readOnly">True to open the document as read-only. The default value is False.</param>
   /// <param name="visible">True to open the document in a visible window. The default value is True.</param>
-  public Document OpenDocument(string fileName, bool readOnly = false, bool visible = true)
+  public VM.Document OpenDocument(string fileName, bool readOnly = false, bool visible = true)
   {
     Documents.Open(fileName, readOnly, visible);
-    var documentViewModel = Documents.Last() as Document;
+    var documentViewModel = Documents.Last();
     if (documentViewModel == null)
       throw new InvalidOperationException($"Document \"{fileName}\" not opened");
     var documentWindow = new DocumentWindow { DataContext = documentViewModel };
@@ -88,10 +91,10 @@ public class Application: DA.Application
   /// <summary>
   /// Creates a new document.
   /// </summary>
-  public Document NewDocument()
+  public VM.Document NewDocument()
   {
     Documents.Add();
-    var documentViewModel = Documents.Last() as Document;
+    var documentViewModel = Documents.Last();
     if (documentViewModel == null)
       throw new InvalidOperationException($"New document not created");
     var documentWindow = new DocumentWindow { DataContext = documentViewModel };

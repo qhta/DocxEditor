@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="DocxControls.BodyView"
+﻿<UserControl x:Class="DocxControls.Views.BodyView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DocxControls"
+             xmlns:local="clr-namespace:DocxControls.Views"
+             xmlns:helpers="clr-namespace:DocxControls.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
@@ -34,9 +35,9 @@
             ConverterParameter=4}" />
           <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
           <Setter Property="Padding" Value="0"/>
-          <Setter Property="local:ListBoxItemBehaviors.DoubleClickCommand" Value="{Binding DoubleClickCommand}" />
-          <Setter Property="local:ListBoxItemBehaviors.LeftMouseDownCommand" Value="{Binding LeftMouseDownCommand}" />
-          <Setter Property="local:ListBoxItemBehaviors.RightMouseUpCommand" Value="{Binding RightMouseUpCommand}" />
+          <Setter Property="helpers:ListBoxItemBehaviors.DoubleClickCommand" Value="{Binding DoubleClickCommand}" />
+          <Setter Property="helpers:ListBoxItemBehaviors.LeftMouseDownCommand" Value="{Binding LeftMouseDownCommand}" />
+          <Setter Property="helpers:ListBoxItemBehaviors.RightMouseUpCommand" Value="{Binding RightMouseUpCommand}" />
         </Style>
       </ListView.ItemContainerStyle>
     </ListView>

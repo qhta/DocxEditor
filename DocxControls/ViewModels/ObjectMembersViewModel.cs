@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 /// <summary>
 /// Collection of object members.
 /// Creates a new members view model for the collection when the type and value of the member are entered by the user.

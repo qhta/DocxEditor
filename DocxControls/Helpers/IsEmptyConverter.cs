@@ -1,7 +1,7 @@
 ﻿using System.Windows.Data;
 using System.Windows.Media;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Converter for boolean to <c>SolidBrush</c>. True means <c>Gray</c>, false means <c>Black</c>.

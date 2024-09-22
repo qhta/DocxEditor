@@ -1,8 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DocxControls.Helpers;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for BookmarkEndView.xaml
 /// </summary>
@@ -19,7 +20,7 @@ public partial class BookmarkEndView : UserControl
 
   private void BookmarkView_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
   {
-    if (DataContext is BookmarkEnd bookmarkViewModel)
+    if (DataContext is VM.BookmarkEnd bookmarkViewModel)
     {
       var id = bookmarkViewModel.Id;
       Foreground = new SolidColorBrush(BaseColors.GetDarkColor(id));
@@ -28,7 +29,7 @@ public partial class BookmarkEndView : UserControl
 
   private void OnToolTipOpening(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is ElementViewModel viewModel)
+    if (DataContext is VM.ElementViewModel viewModel)
     {
       viewModel.IsHighlighted = true;
     }
@@ -36,7 +37,7 @@ public partial class BookmarkEndView : UserControl
 
   private void OnToolTipClosing(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is ElementViewModel viewModel)
+    if (DataContext is VM.ElementViewModel viewModel)
     {
       viewModel.IsHighlighted = false;
     }

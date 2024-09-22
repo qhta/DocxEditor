@@ -1,6 +1,6 @@
 ﻿using DocxControls.Helpers;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the document settings.

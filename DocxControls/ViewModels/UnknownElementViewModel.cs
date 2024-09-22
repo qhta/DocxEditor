@@ -1,6 +1,6 @@
 ﻿using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an unknown element

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 
 /// <summary>
 /// Interaction logic for PropertiesView.xaml

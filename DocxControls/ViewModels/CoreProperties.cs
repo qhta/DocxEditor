@@ -2,7 +2,7 @@
 
 using DocumentFormat.OpenXml.Packaging;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for the core document properties
 /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 
 /// <summary>
 /// Custom data grid that allows to sort the columns in 3-state mode.

@@ -1,17 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:DocxControls"
+                    xmlns:local="clr-namespace:DocxControls.Views"
+                    xmlns:helpers="clr-namespace:DocxControls.Helpers"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-                    >
+                    xmlns:viewModels="clr-namespace:DocxControls.ViewModels">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <Thickness x:Key="PropertyPadding">5,0,5,0</Thickness>
-  <local:PropertyValueConverter x:Key="PropertyValueConverter" />
-  <local:TypeNameConverter x:Key="TypeNameConverter"/>
-  <local:EnumValuesConverter x:Key="EnumValuesConverter"/>
+  <helpers:PropertyValueConverter x:Key="PropertyValueConverter" />
+  <helpers:TypeNameConverter x:Key="TypeNameConverter"/>
+  <helpers:EnumValuesConverter x:Key="EnumValuesConverter"/>
   <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
     <!--<syncfusion:SfMaskedEdit 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
@@ -92,7 +93,7 @@
        >
     </local:ObjectViewComboBox>
   </DataTemplate>
-  <local:PropertyValueTemplateSelector 
+  <helpers:PropertyValueTemplateSelector 
      x:Key="PropertyValueTemplateSelector"
      TextTemplate="{StaticResource TextTemplate}"
      CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
@@ -180,7 +181,7 @@
   </DataTemplate>
 
 
-  <DataTemplate x:Key="NewMemberTypeTemplate" DataType="local:ObjectMemberViewModel">
+  <DataTemplate x:Key="NewMemberTypeTemplate" DataType="{x:Type viewModels:ObjectMemberViewModel}">
     <ComboBox
       SelectedValue="{Binding MemberType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
       ItemsSource="{Binding DataContext.ParentStory.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -189,7 +190,7 @@
     </ComboBox>
   </DataTemplate>
 
-  <local:PropertyCaptionTemplateSelector 
+  <helpers:PropertyCaptionTemplateSelector 
     x:Key="PropertyCaptionTemplateSelector"
     CaptionTemplate="{StaticResource PropertyCaptionTemplate}"
     ObjectTemplate="{StaticResource ObjectTypeNameTemplate}"

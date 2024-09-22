@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for BodyView.xaml
 /// </summary>
@@ -20,7 +20,7 @@ public partial class BodyView : UserControl
   {
     if (e.VerticalOffset == e.ExtentHeight - e.ViewportHeight)
     {
-      if (DataContext is Document documentViewModel)
+      if (DataContext is VM.Document documentViewModel)
       {
         var viewModel = documentViewModel.Body;
         if (viewModel.LoadMoreCommand.CanExecute(null))

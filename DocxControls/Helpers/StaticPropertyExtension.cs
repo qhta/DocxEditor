@@ -1,6 +1,6 @@
 ﻿using System.Windows.Markup;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Markup extension to bind to a static property of provider type

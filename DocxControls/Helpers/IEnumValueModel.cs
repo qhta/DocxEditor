@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface an object that provides data for <c>ComboBox</c> items.

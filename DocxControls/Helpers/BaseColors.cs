@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Base colors for highlighting.

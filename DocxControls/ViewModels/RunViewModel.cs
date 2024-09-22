@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a paragraph run element

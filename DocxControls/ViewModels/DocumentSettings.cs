@@ -1,18 +1,18 @@
 ﻿using System.ComponentModel;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the document settings.
 /// </summary>
-public class DocumentSettings: PropertiesViewModel<DocumentSetting>
+public class DocumentSettings : PropertiesViewModel<DocumentSetting>
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="documentViewModel"></param>
   /// <param name="categories">Determines which categories to accept. Null for all</param>
-  public DocumentSettings(Document documentViewModel, SettingCategory[]? categories = null): base(documentViewModel)
+  public DocumentSettings(Document documentViewModel, SettingCategory[]? categories = null) : base(documentViewModel)
   {
     IsModifiedInternal = true;
     WordDocument = documentViewModel.WordDocument;
@@ -27,8 +27,6 @@ public class DocumentSettings: PropertiesViewModel<DocumentSetting>
       var value = setting.ToSystemValue(openXmlType);
       if (categories == null || categories.Contains(category))
       {
-        if (name== "DocumentProtection")
-          Debug.Assert(true);
         var settingViewModel = new DocumentSetting(this)
         {
           Name = name,

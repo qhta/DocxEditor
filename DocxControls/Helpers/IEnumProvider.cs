@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface for providing an enum property (i.e. property that value is as enum type).

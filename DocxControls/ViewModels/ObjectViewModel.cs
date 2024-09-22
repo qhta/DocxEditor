@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 
-using DocumentFormat.OpenXml.Wordprocessing;
+using DocxControls.Helpers;
 
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 
 /// <summary>
@@ -34,7 +34,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       if (_ObjectType == null)
         return false;
-      var result = ObjectType?.IsContainer() ?? false;
+      var result = _ObjectType?.IsContainer() ?? false;
       return result;
     }
   }
@@ -89,30 +89,10 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       if (modeledObject != null)
         return new ObjectViewModel(owner, modeledObject);
-      //else
-      //{
-      //  throw new InvalidOperationException("Cannot create a view model for the null object");
-      //}
     }
     var result = viewModelType != null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, owner, modeledObject)! : null;
     return result;
   }
-
-  ///// <summary>
-  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
-  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
-  ///// </summary>
-  ///// <param name="parent"></param>
-  ///// <param name="modeledObjectType"></param>
-  ///// <returns></returns>
-  //public static ObjectViewModel Create(Object? parent, ValueType? modeledObjectType, object? modeledObject)
-  //{
-  //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
-  //    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType!, out viewModelType)))
-  //      viewModelType = typeof(ObjectViewModel);
-  //  var result = (ObjectViewModel)Activator.CreateInstance(viewModelType, parent)!;
-  //  return result;
-  //}
 
   /// <summary>
   /// ViewModel types declared in this assembly.
@@ -127,9 +107,6 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     { typeof(DXW.RunProperties), typeof(RunPropertiesViewModel)},
     { typeof(DXW.Text), typeof(TextViewModel)},
     { typeof(DXW.Table), typeof(TableViewModel)},
-    //{ typeof(DXW.TableRow), typeof(TableRowViewModel)},
-    //{ typeof(DXW.TableCell), typeof(TableCellViewModel)},
-    //{ typeof(DXW.Drawing), typeof(Drawing
     { typeof(DXW.SdtElement), typeof(SdtElementViewModel)},
     { typeof(DXW.SdtProperties), typeof(SdtPropertiesViewModel)},
     { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreakViewModel)},

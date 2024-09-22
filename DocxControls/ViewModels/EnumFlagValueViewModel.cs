@@ -1,4 +1,5 @@
-﻿namespace DocxControls;
+﻿using DocxControls.Helpers;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an enum value of a <c>Flags</c> enumeration type.

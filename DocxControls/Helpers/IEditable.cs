@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.Helpers;
 
 /// <summary>
 /// View model that can be editable

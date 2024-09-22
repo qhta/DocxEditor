@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for SectionPropertiesView.xaml
 /// </summary>
@@ -16,7 +16,7 @@ public partial class SectionPropertiesView : UserControl
 
   private void OnToolTipOpening(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is ElementViewModel viewModel)
+    if (DataContext is VM.ElementViewModel viewModel)
     {
       viewModel.IsHighlighted = true;
     }
@@ -24,7 +24,7 @@ public partial class SectionPropertiesView : UserControl
 
   private void OnToolTipClosing(object sender, ToolTipEventArgs e)
   {
-    if (DataContext is ElementViewModel viewModel)
+    if (DataContext is VM.ElementViewModel viewModel)
     {
       viewModel.IsHighlighted = false;
     }

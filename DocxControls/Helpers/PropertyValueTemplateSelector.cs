@@ -1,12 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
 
-using Qhta.WPF.Utils;
-
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
-/// Selects a <c>DataTemplate</c> for a value of a property  based on the <see cref="DocxControls.PropertyViewModel"/> property type
+/// Selects a <c>DataTemplate</c> for a value of a property  based on the <see cref="VM.PropertyViewModel"/> property type
 /// </summary>
 public class PropertyValueTemplateSelector : DataTemplateSelector
 {

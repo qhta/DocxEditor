@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:DocxControls"
+                    xmlns:local="clr-namespace:DocxControls.Views"
+                    xmlns:helpers="clr-namespace:DocxControls.Helpers"
                     xmlns:resources="clr-namespace:DocxControls.Resources"
-                    >
+                    xmlns:vm="clr-namespace:DocxControls.ViewModels">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/WrapItemsControlStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
@@ -12,14 +13,14 @@
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/ObjectViewComboBoxStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
   <resources:Strings x:Key="Strings"/>
-  <local:ItemWidthConverter x:Key="ItemWidthConverter" />
-  <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type local:ParagraphViewModel}">
+  <helpers:ItemWidthConverter x:Key="ItemWidthConverter" />
+  <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type vm:ParagraphViewModel}">
     <local:ParagraphView />
   </DataTemplate>
-  <DataTemplate x:Key="RunTemplate" DataType="{x:Type local:RunViewModel}">
+  <DataTemplate x:Key="RunTemplate" DataType="{x:Type vm:RunViewModel}">
     <local:RunView />
   </DataTemplate>
-  <DataTemplate x:Key="TextTemplate" DataType="{x:Type local:TextViewModel}">
+  <DataTemplate x:Key="TextTemplate" DataType="{x:Type vm:TextViewModel}">
     <TextBlock Text="{Binding Text}" TextWrapping="Wrap">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
@@ -39,22 +40,22 @@
       </TextBlock.Style>
     </TextBlock>
   </DataTemplate>
-  <DataTemplate x:Key="BookmarkStartTemplate" DataType="{x:Type local:BookmarkStart}">
+  <DataTemplate x:Key="BookmarkStartTemplate" DataType="{x:Type vm:BookmarkStart}">
     <local:BookmarkStartView/>
   </DataTemplate>
-  <DataTemplate x:Key="BookmarkEndTemplate" DataType="{x:Type local:BookmarkEnd}">
+  <DataTemplate x:Key="BookmarkEndTemplate" DataType="{x:Type vm:BookmarkEnd}">
     <local:BookmarkEndView/>
   </DataTemplate>
-  <DataTemplate x:Key="TableTemplate" DataType="{x:Type local:TableViewModel}">
+  <DataTemplate x:Key="TableTemplate" DataType="{x:Type vm:TableViewModel}">
     <TextBlock Text="{Binding DisplayText}" />
   </DataTemplate>
-  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type local:SectionPropertiesViewModel}">
+  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:SectionPropertiesViewModel}">
     <local:SectionPropertiesView/>
   </DataTemplate>
-  <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type local:ElementViewModel}">
+  <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type vm:ElementViewModel}">
     <TextBlock Text="{Binding DisplayText}" TextWrapping="Wrap"/>
   </DataTemplate>
-  <local:ElementTemplateSelector 
+  <helpers:ElementTemplateSelector 
     x:Key="ElementTemplateSelector"
     ParagraphTemplate="{StaticResource ParagraphTemplate}"
     RunTemplate="{StaticResource RunTemplate}"

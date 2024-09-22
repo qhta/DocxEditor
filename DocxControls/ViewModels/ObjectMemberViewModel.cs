@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an object member. Replaces <see cref="PropertyViewModel"/> in the properties view.

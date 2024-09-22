@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a structured document tag content block element.

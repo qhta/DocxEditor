@@ -1,6 +1,6 @@
 ﻿using System.Windows.Data;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Decrements item control width by parameter value

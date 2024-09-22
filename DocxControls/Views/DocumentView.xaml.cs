@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 
-namespace DocxControls;
+
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for DocumentView.xaml
 /// </summary>
@@ -29,7 +30,7 @@ public partial class DocumentView : UserControl
   /// <summary>
   /// View model for the document
   /// </summary>
-  public Document DocumentViewModel { get; set; } = null!;
+  public VM.Document DocumentViewModel { get; set; } = null!;
 
   /// <summary>
   /// OpenDocument a document for viewing/editing.
@@ -38,7 +39,7 @@ public partial class DocumentView : UserControl
   /// <param name="isEditable"></param>
   public void Open(string filePath, bool isEditable)
   {
-    DocumentViewModel = new Document();
+    DocumentViewModel = new VM.Document();
     DocumentViewModel.OpenDocument(filePath, isEditable);
     DataContext = DocumentViewModel;
   }

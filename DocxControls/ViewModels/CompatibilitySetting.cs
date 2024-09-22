@@ -3,13 +3,13 @@
 /// <summary>
 /// View model for a setting of a document.
 /// </summary>
-public class DocumentSetting : DocumentProperty, DA.DocumentSetting
+public class CompatibilitySetting : PropertyViewModel
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="parent"></param>
-  public DocumentSetting(object? parent) : base(parent)
+  public CompatibilitySetting(object? parent) : base(parent)
   {
   }
 
@@ -17,11 +17,6 @@ public class DocumentSetting : DocumentProperty, DA.DocumentSetting
   /// Display caption for the setting.
   /// </summary>
   public override string? Caption => SettingsCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
-
-  /// <summary>
-  /// Category of the property.
-  /// </summary>
-  public DA.SettingCategory Category { get; set; }
 
   /// <summary>
   /// Does the property have a tooltip?

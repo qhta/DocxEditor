@@ -1,12 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
 
-using Qhta.WPF.Utils;
-
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
-/// Selects a <c>DataTemplate</c> for a caption of the property based on the <see cref="DocxControls.PropertyViewModel"/> property type
+/// Selects a <c>DataTemplate</c> for a caption of the property based on the <see cref="VM.PropertyViewModel"/> property type
 /// </summary>
 public class PropertyCaptionTemplateSelector : DataTemplateSelector
 {
@@ -39,11 +37,11 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
     //  if ((dataGrid?.DataContext as PropertyViewModel)?.Parent?.ObjectMembers!=null)
     //    return NewMemberTypeTemplate ?? CaptionTemplate;
     //}
-    if (item is ObjectMemberViewModel objectMemberViewModel)
+    if (item is VM.ObjectMemberViewModel objectMemberViewModel)
     {
       return ((objectMemberViewModel.IsNew) ? NewMemberTypeTemplate : ObjectTemplate) ?? CaptionTemplate;
     }
-    if (item is PropertyViewModel propertyViewModel)
+    if (item is VM.PropertyViewModel propertyViewModel)
     {
       Type type = propertyViewModel.Type!;
       if (type.IsClass && type != typeof(string))

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for DocumentSettingsView.xaml
 /// </summary>

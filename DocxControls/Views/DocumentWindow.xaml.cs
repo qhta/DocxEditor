@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace DocxControls;
+
+
+namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for DocumentWindow.xaml
 /// </summary>
@@ -21,7 +23,7 @@ public partial class DocumentWindow : Window
   /// <param name="e"></param>
   protected override void OnClosing(CancelEventArgs e)
   {
-    var documentViewModel = DataContext as Document;
+    var documentViewModel = DataContext as VM.Document;
     if (documentViewModel == null) return;
 
     if (!CloseDocument())
@@ -37,7 +39,7 @@ public partial class DocumentWindow : Window
   /// <returns></returns>
   public bool CloseDocument()
   {
-    var documentViewModel = DataContext as Document;
+    var documentViewModel = DataContext as VM.Document;
     if (documentViewModel == null) return true;
     if (documentViewModel.IsEditable && documentViewModel.IsModified)
 

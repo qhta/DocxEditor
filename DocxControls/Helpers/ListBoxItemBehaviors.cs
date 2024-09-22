@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Attached properties for a <see cref="ListBoxItem"/> that allows to execute a command on double click, left mouse down or right mouse up.

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Data;
 using Qhta.TypeUtils;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Converts a property type to a type name

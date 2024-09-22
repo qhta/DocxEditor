@@ -2,7 +2,7 @@
 
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a body element: paragraph, table, etc.

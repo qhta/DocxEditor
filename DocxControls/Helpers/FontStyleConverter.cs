@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Data;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Converter for boolean to <c>FontStyle</c>. True means <c>FontStyles.Italic</c>, false means <c>FontStyles.Normal</c>.

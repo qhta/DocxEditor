@@ -2,7 +2,9 @@
 
 using Docx.Automation;
 
-namespace DocxControls;
+using DocxControls.Helpers;
+
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the custom properties

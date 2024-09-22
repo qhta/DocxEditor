@@ -1,10 +1,12 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DocxControls;
+
+
+namespace DocxControls.Helpers;
 
 /// <summary>
-/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="DocxControls.ElementViewModel"/> property type
+/// Selects a <c>DataTemplate</c> for a property value based on the <see cref="VM.ElementViewModel"/> property type
 /// </summary>
 public class ElementTemplateSelector : DataTemplateSelector
 {
@@ -62,21 +64,21 @@ public class ElementTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is ParagraphViewModel)
+    if (item is VM.ParagraphViewModel)
       return ParagraphTemplate ?? UnknownElementTemplate;
-    if (item is TableViewModel)
+    if (item is VM.TableViewModel)
       return TableTemplate ?? UnknownElementTemplate;
-    if (item is RunViewModel)
+    if (item is VM.RunViewModel)
       return RunTemplate ?? UnknownElementTemplate;
-    if (item is TextViewModel)
+    if (item is VM.TextViewModel)
       return TextTemplate ?? UnknownElementTemplate;
-    if (item is BookmarkStart)
+    if (item is VM.BookmarkStart)
       return BookmarkStartTemplate ?? UnknownElementTemplate;
-    if (item is BookmarkEnd)
+    if (item is VM.BookmarkEnd)
       return BookmarkEndTemplate ?? UnknownElementTemplate;
-    if (item is SectionPropertiesViewModel)
+    if (item is VM.SectionPropertiesViewModel)
       return SectionPropertiesTemplate ?? UnknownElementTemplate;
-    if (item is LastRenderedPageBreakViewModel)
+    if (item is VM.LastRenderedPageBreakViewModel)
       return LastRenderedPageBreakTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;
   }

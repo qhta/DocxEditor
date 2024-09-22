@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface for providing a property info to display in a <c>DataGrid</c>

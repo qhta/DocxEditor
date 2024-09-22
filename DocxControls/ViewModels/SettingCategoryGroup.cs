@@ -1,4 +1,4 @@
-﻿namespace DocxControls;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Setting categories groups.

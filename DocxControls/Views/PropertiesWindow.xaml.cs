@@ -1,7 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Interop;
+using DocxControls.Helpers;
 
-namespace DocxControls
+namespace DocxControls.Views
 {
   /// <summary>
   /// Interaction logic for PropertiesWindow.xaml
@@ -20,7 +21,7 @@ namespace DocxControls
     private void PropertiesWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
       //Debug.WriteLine($"PropertiesWindow.DataContextChanged({DataContext.GetType().Name})");
-      if (DataContext is ObjectViewModel objectViewModel)
+      if (DataContext is VM.ObjectViewModel objectViewModel)
       {
         //Debug.WriteLine($"objectViewModel({objectViewModel.ObjectProperties.GetType()?.Name})");
         objectViewModel.ObjectProperties.PropertyChanged += ObjectProperties_PropertyChanged;

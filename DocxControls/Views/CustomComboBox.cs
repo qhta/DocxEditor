@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-namespace DocxControls;
+namespace DocxControls.Views;
 
 /// <summary>
 ///  ComboBox with custom style

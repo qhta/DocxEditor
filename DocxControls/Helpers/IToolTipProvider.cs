@@ -1,4 +1,6 @@
-﻿namespace DocxControls;
+﻿using DocxControls.Views;
+
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface for providing a tooltip.

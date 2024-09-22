@@ -1,4 +1,5 @@
-﻿namespace DocxControls;
+﻿
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Interface of a view model for a complex object
@@ -34,12 +35,12 @@ public interface IObjectViewModel
   /// <summary>
   /// RunProperties of the object.
   /// </summary>
-  public ObjectPropertiesViewModel ObjectProperties {get; }
+  public VM.ObjectPropertiesViewModel ObjectProperties {get; }
 
   /// <summary>
   /// Members of the object.
   /// </summary>
-  public ObjectMembersViewModel? ObjectMembers { get; }
+  public VM.ObjectMembersViewModel? ObjectMembers { get; }
 
   /// <summary>
   /// Width of the data grid in the view

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Proxy class for binding to a property in a non-visual object.

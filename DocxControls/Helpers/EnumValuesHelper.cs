@@ -87,8 +87,8 @@ public class EnumValuesHelper: ViewModel, IEnumProvider
     {
       if (ValueType.IsOpenXmlEnum())
       {
-        var result = new List<EnumValueViewModel>();
-        result.Add(new EnumValueViewModel());
+        var result = new List<VM.EnumValueViewModel>();
+        result.Add(new VM.EnumValueViewModel());
         result.AddRange(
           ValueType.GetOpenXmlProperties()
             .Select(CreateEnumPropValueViewModel));
@@ -105,19 +105,19 @@ public class EnumValuesHelper: ViewModel, IEnumProvider
   }
 
 
-  private EnumValueViewModel CreateEnumPropValueViewModel(PropertyInfo value)
+  private VM.EnumValueViewModel CreateEnumPropValueViewModel(PropertyInfo value)
   {
     var name = value.Name;
-    return new EnumValueViewModel
+    return new VM.EnumValueViewModel
     {
       Value = name,
       Caption = GetEnumCaption(name),
       Tooltip = GetEnumTooltip(name)
     };
   }
-  private EnumValueViewModel CreateEnumValueViewModel(object value)
+  private VM.EnumValueViewModel CreateEnumValueViewModel(object value)
   {
-    return new EnumValueViewModel
+    return new VM.EnumValueViewModel
     {
       Value = value,
       Caption = GetEnumCaption(value),
@@ -125,9 +125,9 @@ public class EnumValuesHelper: ViewModel, IEnumProvider
     };
   }
 
-  private EnumFlagValueViewModel CreateEnumFlagValueViewModel(object value)
+  private VM.EnumFlagValueViewModel CreateEnumFlagValueViewModel(object value)
   {
-    var result = new EnumFlagValueViewModel(this, ValueType!, value)
+    var result = new VM.EnumFlagValueViewModel(this, ValueType!, value)
     {
       Value = value,
       Caption = GetEnumCaption(value),

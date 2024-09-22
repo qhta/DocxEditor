@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the statistics properties

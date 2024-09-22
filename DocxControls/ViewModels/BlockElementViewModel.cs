@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the body elements: paragraphs, tables, etc.

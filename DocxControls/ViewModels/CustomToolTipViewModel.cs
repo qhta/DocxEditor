@@ -1,6 +1,7 @@
 ﻿using Qhta.MVVM;
+using DocxControls.Helpers;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a custom tooltip.

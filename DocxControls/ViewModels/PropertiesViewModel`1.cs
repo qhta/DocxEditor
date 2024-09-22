@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-
+using DocxControls.Helpers;
 using DocumentFormat.OpenXml.Packaging;
 
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Abstract class for the properties view model

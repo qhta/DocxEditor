@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <Compile Remove="Helpers\ViewModelsFactory.cs" />
+    <Compile Remove="ViewModels\Compatibility.cs" />
+    <Compile Remove="ViewModels\CompatibilitySetting.cs" />
   </ItemGroup>
 
 

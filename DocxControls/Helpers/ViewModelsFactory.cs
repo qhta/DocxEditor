@@ -1,6 +1,6 @@
 ﻿using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 /// <summary>
 /// Factory for creating view models
 /// </summary>

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 
+using DocxControls.Helpers;
+
 using Qhta.MVVM;
 using Qhta.TypeUtils;
 
-namespace DocxControls;
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a property of a document.
@@ -577,7 +579,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   protected ObjectViewModel? CreateObjectViewModel(object? value)
   {
-    var result = DocxControls.ObjectViewModel.Create(Parent, value);
+    var result = DocxControls.ViewModels.ObjectViewModel.Create(Parent, value);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;

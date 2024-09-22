@@ -1,6 +1,6 @@
 ﻿using System.Windows.Data;
 
-namespace DocxControls;
+namespace DocxControls.Helpers;
 
 /// <summary>
 /// Converts a type name to a string for display and sort

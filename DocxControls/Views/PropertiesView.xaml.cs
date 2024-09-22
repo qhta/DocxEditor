@@ -3,9 +3,10 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using DocxControls.Helpers;
 using Qhta.MVVM;
 
-namespace DocxControls;
+namespace DocxControls.Views;
 
 /// <summary>
 /// Interaction logic for PropertiesView.xaml
