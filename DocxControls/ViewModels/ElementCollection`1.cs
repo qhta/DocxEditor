@@ -9,7 +9,7 @@ namespace DocxControls.ViewModels;
 public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T : DA.IElement
 {
   /// <summary>
-  /// Constructor with a parent object.
+  /// Constructor with a owner object.
   /// </summary>
   /// <param name="parent"></param>
   public ElementCollection(object? parent)
@@ -23,7 +23,7 @@ public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T :
   public DA.Application Application => DocxControls.Application.Instance;
 
   /// <summary>
-  /// Returns the parent object for collection.
+  /// Returns the owner object for collection.
   /// </summary>
   public object? Parent { get; }
 

@@ -103,7 +103,51 @@
                         Width="Auto"/>
                     </local:CustomDataGrid.Columns>
                   </local:CustomDataGrid>
-                   
+                  <local:CustomDataGrid Grid.Row="1" 
+                      x:Name="MembersDataGrid"
+                      Margin="0,2,0,0"
+                      Visibility ="{Binding ObjectViewModel.IsContainer, Converter={StaticResource BoolToVisibilityConverter}}"  
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding ObjectViewModel.ObjectMembers.Items}"
+                      HeadersVisibility="All" 
+                      MaxHeight="300"
+                      RowHeaderTemplate="{StaticResource NumberingRowHeaderTemplate}"
+                      RowHeaderWidth="20"
+                      AutoGenerateColumns="false" 
+                      CanUserSortColumns="True"
+                      CanUserAddRows="True" 
+                      CanUserDeleteRows="True"
+                    >
+                    <local:CustomDataGrid.Resources>
+                      <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="{StaticResource PropertyPadding}" />
+                      </Style>
+                    </local:CustomDataGrid.Resources>
+                    <local:CustomDataGrid.RowStyle>
+                      <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsNewItem}" Value="True">
+                            <Setter Property="FontStyle" Value="Italic" />
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </local:CustomDataGrid.RowStyle>
+                    <local:CustomDataGrid.Columns>
+                      <DataGridTemplateColumn
+                        CellTemplateSelector="{StaticResource PropertyCaptionTemplateSelector}" 
+                        Header="{x:Static resources:Strings.Name}"
+                        SortMemberPath="Name"
+                        MinWidth="100">
+                      </DataGridTemplateColumn>
+                      <DataGridTemplateColumn 
+                        CellTemplateSelector="{StaticResource PropertyValueTemplateSelector}" 
+                        Header="{x:Static resources:Strings.Value}"
+                        SortMemberPath="Value"
+                        MinWidth="200"
+                        Width="Auto"/>
+                    </local:CustomDataGrid.Columns>
+                  </local:CustomDataGrid>
                   <Thumb  
                     Grid.Row="0" 
                     Grid.RowSpan="2"

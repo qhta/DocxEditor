@@ -12,7 +12,7 @@ public interface IElementCollection<T>: IEnumerable<T> where T : IElement
   public Application Application { get; }
 
   /// <summary>
-  /// Returns the parent object for the specified object.
+  /// Returns the owner object for the specified object.
   /// </summary>
   public object? Parent { get; }
 

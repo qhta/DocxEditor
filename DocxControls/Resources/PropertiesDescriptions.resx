@@ -263,7 +263,7 @@
     <value>Obsolete property</value>
   </data>
   <data name="HashValue" xml:space="preserve">
-    <value>Specifies the hash value for the password stored with this document. This value shall be compared with the resulting hash value after hashing the user-supplied password using the algorithm specified by the preceding attributes and parent XML element, and if the two values match, the protection shall no longer be enforced.</value>
+    <value>Specifies the hash value for the password stored with this document. This value shall be compared with the resulting hash value after hashing the user-supplied password using the algorithm specified by the preceding attributes and owner XML element, and if the two values match, the protection shall no longer be enforced.</value>
   </data>
   <data name="Salt" xml:space="preserve">
     <value>Obsolete property</value>

@@ -78,7 +78,7 @@ public partial class CustomPropertiesView : UserControl
   //  {
   //    if (PropertiesGrid.DataContext is not CustomPropertiesViewModel customPropertiesViewModel)
   //      return;
-  //    viewModel.Parent = customPropertiesViewModel;
+  //    viewModel.Owner = customPropertiesViewModel;
   //    var name0 = "New property";
   //    var name = name0;
   //    int i = 1;

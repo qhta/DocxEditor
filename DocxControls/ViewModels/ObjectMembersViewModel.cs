@@ -21,7 +21,7 @@ public class ObjectMembersViewModel : ViewModel, INotifyCollectionChanged
   /// <summary>
   /// Acceptable types of members.
   /// </summary>
-  public IEnumerable<Type> MemberTypes { get; set; } = new Collection<Type>();
+  public IEnumerable<Type> AllowedMemberTypes { get; set; } = new Collection<Type>();
 
 
   /// <summary>

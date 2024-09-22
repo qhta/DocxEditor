@@ -10,7 +10,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable, DA.IElement
 {
 
   /// <summary>
@@ -23,16 +23,21 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parent"></param>
-  public PropertyViewModel(object? parent)
+  /// <param name="owner"></param>
+  public PropertyViewModel(ViewModel owner)
   {
-   Parent = parent;
+   Owner = owner;
   }
 
   /// <summary>
-  /// Parent view model
+  /// Owner view model
   /// </summary>
-  public Object? Parent { get; set; }
+  public ViewModel? Owner { get; set; }
+
+  #region IElement implementation
+  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
+  object? DA.IElement.Parent => Owner;
+  #endregion
 
   /// <summary>
   /// Display caption for the property.
@@ -91,7 +96,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         _Value = value;
         NotifyPropertyChanged(nameof(Value));
-        if (Parent is ViewModel viewModel)
+        if (Owner is ViewModel viewModel)
           viewModel.NotifyPropertyChanged(Name);
         IsModified = true;
       }
@@ -216,9 +221,9 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   }
 
   /// <summary>
-  /// Determines if the property Parent is null.
+  /// Determines if the property Owner is null.
   /// </summary>
-  public bool IsNew => Parent == null || (ObjectViewModel?.IsNew ?? true);
+  public bool IsNew => Owner == null || (ObjectViewModel?.IsNew ?? true);
 
   #endregion IPropertyProvider implementation
 
@@ -558,7 +563,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
         _objectViewModel = value as ObjectViewModel;
         if (_objectViewModel != null)
         {
-          _objectViewModel.Parent = this;
+          _objectViewModel.Owner = this;
           _objectViewModel.PropertyChanged += ObjectViewModel_PropertyChanged;
         }
         _Value = _objectViewModel?.ModeledObject;
@@ -577,9 +582,22 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   /// <param name="value"></param>
   /// <returns></returns>
-  protected ObjectViewModel? CreateObjectViewModel(object? value)
+  protected ObjectViewModel? CreateObjectViewModel(object value)
   {
-    var result = DocxControls.ViewModels.ObjectViewModel.Create(Parent, value);
+    var result = VM.ObjectViewModel.Create(Owner, value);
+    if (result != null)
+      result.PropertyChanged += ObjectViewModel_PropertyChanged;
+    return result;
+  }
+
+  /// <summary>
+  /// Creates a new ObjectViewModel;
+  /// </summary>
+  /// <param name="type"></param>
+  /// <returns></returns>
+  protected ObjectViewModel? CreateObjectViewModel(Type type)
+  {
+    var result = VM.ObjectViewModel.Create(Owner, type);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;
@@ -617,7 +635,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Determines if the object is editable.
   /// </summary>
-  public bool IsEditable => (Parent as IEditable)?.IsEditable ?? true;
+  public bool IsEditable => (Owner as IEditable)?.IsEditable ?? true;
 
   /// <summary>
   /// Was the object modified?
@@ -633,7 +651,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         _isModified = value;
         NotifyPropertyChanged(nameof(IsModified));
-        if (value && Parent is IEditable editable)
+        if (value && Owner is IEditable editable)
         {
           editable.IsModified = value;
         }
@@ -645,7 +663,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the object modified internally?
   /// </summary>
-  public bool IsModifiedInternal => (Parent as IEditable)?.IsModifiedInternal ?? true;
+  public bool IsModifiedInternal => (Owner as IEditable)?.IsModifiedInternal ?? true;
 
   #endregion IEditable implementation
 }

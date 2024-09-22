@@ -6,6 +6,7 @@ using System.Windows.Data;
 
 using DocxControls.Helpers;
 
+
 namespace DocxControls.Views;
 
 /// <summary>
@@ -204,7 +205,16 @@ public class ObjectViewComboBox : ComboBox
     if (e.Row.IsNewItem)
     {
       e.Row.Header = ">";
-      e.Row.Item = new VM.ObjectMemberViewModel { IsNew = true, Collection = (MembersDataGrid?.DataContext as VM.PropertyViewModel)?.ObjectViewModel?.ObjectMembers };
+      var propertyViewModel = MembersDataGrid?.DataContext as VM.PropertyViewModel;
+      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow propertyViewModel = {propertyViewModel}");
+      var objectViewModel = propertyViewModel?.ObjectViewModel as VM.ObjectViewModel;
+      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow objectViewModel = {objectViewModel}");
+      var memberType = objectViewModel?.ObjectType;
+      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow memberType = {memberType}");
+      var collection = objectViewModel?.ObjectMembers;
+      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow collection = {collection}");
+      var allowedTypes = collection?.AllowedMemberTypes;
+      e.Row.Item = new VM.ObjectMemberViewModel { Owner = objectViewModel, MemberType = memberType, IsNew = true, Collection = collection };
     }
     else
     {
@@ -275,11 +285,6 @@ public class ObjectViewComboBox : ComboBox
     // ReSharper disable once InvertIf
     if (dataGrid.DataContext is IObjectViewModelProvider viewModel)
     {
-      //if (dataGrid.DataContext is ObjectPropertyViewModel objectProperty && objectProperty.Caption=="RunFonts")
-      //{
-      //  Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
-      //  Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
-      //}
       double totalWidth = dataGrid.Columns.Sum(column => column.ActualWidth) + dataGrid.RowHeaderActualWidth + 20;
       if (viewModel.ObjectViewModel != null)
       {

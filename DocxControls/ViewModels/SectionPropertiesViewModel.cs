@@ -8,9 +8,9 @@ public class SectionPropertiesViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parentViewModel">Parent view model. Must be <see cref="BlockElementViewModel"/></param>
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="BlockElementViewModel"/></param>
   /// <param name="properties">Modeled section properties element</param>
-  public SectionPropertiesViewModel(BlockElementViewModel parentViewModel, DXW.SectionProperties properties): base(parentViewModel, properties)
+  public SectionPropertiesViewModel(BlockElementViewModel ownerViewModel, DXW.SectionProperties properties): base(ownerViewModel, properties)
   {
   }
 

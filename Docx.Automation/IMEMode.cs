@@ -5,7 +5,7 @@
 public enum IMEMode
 {
   /// <summary>
-  /// Inherits the IME mode of the parent control.
+  /// Inherits the IME mode of the owner control.
   /// </summary>
   Inherit = -1,
   /// <summary>

@@ -9,7 +9,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
 {
 
   /// <summary>
-  /// The parent story of bookmarks collection.
+  /// The owner story of bookmarks collection.
   /// </summary>
   public DA.IStory? ParentStory { get; set; }
 

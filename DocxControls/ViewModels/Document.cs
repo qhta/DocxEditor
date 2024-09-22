@@ -18,15 +18,15 @@ public class Document : ViewModel, DA.Document, IEditable
   {
   }
 
-  /// <summary>
-  /// Returns an Application object that represents the DocxControls application.
-  /// </summary>
-  public DA.Application Application => throw new NotImplementedException();
+  #region IElement implementation
+  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
+  object? DA.IElement.Parent => Owner;
+  #endregion
 
   /// <summary>
-  /// Returns the parent object for the specified object.
+  /// Returns the owner object for the specified object.
   /// </summary>
-  public object? Parent => null;
+  public object? Owner => null;
 
   /// <summary>
   /// Internal WordprocessingDocument object

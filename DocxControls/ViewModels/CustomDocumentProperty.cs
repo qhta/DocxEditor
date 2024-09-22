@@ -14,15 +14,15 @@ public class CustomDocumentProperty : DocumentProperty, DA.CustomDocumentPropert
   /// <summary>
   /// Default constructor needed to allow adding new properties.
   /// </summary>
-  public CustomDocumentProperty(): base(null)
+  public CustomDocumentProperty(): base()
   {
   }
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parent"></param>
-  public CustomDocumentProperty(ViewModel parent): base(parent)
+  /// <param name="owner"></param>
+  public CustomDocumentProperty(ViewModel owner): base(owner)
   {
   }
 

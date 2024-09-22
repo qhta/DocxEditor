@@ -1,19 +1,26 @@
-﻿namespace DocxControls.ViewModels;
+﻿using Qhta.MVVM;
+
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a document property.
 /// </summary>
 public class DocumentProperty : PropertyViewModel, DA.DocumentProperty
 {
+  /// <summary>
+  /// Default constructor needed to allow adding new properties.
+  /// </summary>
+  public DocumentProperty() : base()
+  {
+  }
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parent"></param>
-  public DocumentProperty(object? parent) : base(parent)
+  /// <param name="owner"></param>
+  public DocumentProperty(ViewModel owner) : base(owner)
   {
   }
-
 
   /// <summary>
   /// Get the application instance.

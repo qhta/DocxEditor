@@ -8,7 +8,7 @@ public class TextViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="runViewModel">Parent view model. Must be <see cref="RunViewModel"/></param>
+  /// <param name="runViewModel">Owner view model. Must be <see cref="RunViewModel"/></param>
   /// <param name="text"></param>
   public TextViewModel(RunViewModel runViewModel, DXW.Text text): base (runViewModel, text)
   {
@@ -29,17 +29,17 @@ public class TextViewModel : ElementViewModel
 
 
   /// <summary>
-  /// Check if the parent run is bold
+  /// Check if the owner run is bold
   /// </summary>
   public bool? IsBold => (TextElement.Parent as DXW.Run)?.IsBold();
 
   /// <summary>
-  /// Check if the parent run is italic
+  /// Check if the owner run is italic
   /// </summary>
   public bool? IsItalic => (TextElement.Parent as DXW.Run)?.IsItalic();
 
   /// <summary>
-  /// Check if the parent run is underlined
+  /// Check if the owner run is underlined
   /// </summary>
   public bool? IsUnderline => (TextElement.Parent as DXW.Run)?.IsUnderline();
 

@@ -138,7 +138,7 @@ public interface Document: IElement
   //  OriginalDocumentTitle
   //  PageSetup
   //  Paragraphs
-  //  Parent
+  //  Owner
   //  Password
   //  PasswordEncryptionAlgorithm
   //  PasswordEncryptionFileProperties

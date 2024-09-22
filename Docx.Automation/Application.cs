@@ -90,7 +90,7 @@ public interface Application
   //  OMathAutoCorrect
   //  OpenAttachmentsInFullScreen
   //  Options
-  //  Parent
+  //  Owner
   //  Path
   //  PathSeparator
   //  PickerDialog

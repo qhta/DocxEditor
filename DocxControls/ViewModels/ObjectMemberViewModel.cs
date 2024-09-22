@@ -15,11 +15,10 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// <summary>
   /// Initializing
   /// </summary>
-  /// <param name="container"></param>
+  /// <param name="owner"></param>
   /// <param name="member"></param>
-  public ObjectMemberViewModel(ObjectViewModel? container, object member) : base(container, member)
+  public ObjectMemberViewModel(ObjectViewModel owner, object member) : base(owner, member)
   {
-    Container = container;
   }
 
   /// <summary>
@@ -39,10 +38,6 @@ public class ObjectMemberViewModel : ObjectViewModel
     }
   }
 
-  /// <summary>
-  /// Gets or sets the parent of the object member.
-  /// </summary>
-  public ObjectViewModel? Container { get; set; }
 
   /// <summary>
   /// Collection of object members.
@@ -63,7 +58,7 @@ public class ObjectMemberViewModel : ObjectViewModel
     set
     {
       bool updated = false;
-      if (ModeledObject is DX.OpenXmlElement element && Container != null)
+      if (ModeledObject is DX.OpenXmlElement element && Owner != null)
       {
         updated = element.UpdateFromSystemValue(value);
         if (updated)
@@ -83,7 +78,9 @@ public class ObjectMemberViewModel : ObjectViewModel
         var newValue = ModeledObject;
         if (newValue == null)
           throw new InvalidOperationException("New value cannot be null");
-        var newMember = new ObjectMemberViewModel(Container, newValue);
+        if (!(Owner is ObjectViewModel objectViewModel))
+          throw new InvalidOperationException("Owner cannot be null");
+        var newMember = new ObjectMemberViewModel(objectViewModel, newValue);
         Collection?.Add(newMember);
 
       }
@@ -94,4 +91,9 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// Checks if the object value is null.
   /// </summary>
   public new bool IsEmpty => Value == null;
+
+  /// <summary>
+  /// Allowed types for the member object.
+  /// </summary>
+  public IEnumerable<Type>? AllowedMemberTypes => Collection?.AllowedMemberTypes;
 }

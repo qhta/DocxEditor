@@ -48,8 +48,8 @@ public class PropertyValueTemplateSelector : DataTemplateSelector
   {
     //if (item?.ToString() == "{DataGrid.NewItemPlaceholder}")
     //{
-    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(parent);
-    //  if ((dataGrid?.DataContext as PropertyViewModel)?.Parent?.ObjectMembers != null)
+    //  var dataGrid = VisualTreeHelperExt.FindAncestor<DataGrid>(owner);
+    //  if ((dataGrid?.DataContext as PropertyViewModel)?.Owner?.ObjectMembers != null)
     //    return NewMemberValueTemplate ?? TextTemplate;
     //}
     if (item is IEnumProvider enumProvider )

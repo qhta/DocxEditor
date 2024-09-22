@@ -38,7 +38,7 @@ public abstract class PropertiesViewModel<T> : ViewModel, IEditable, IDataGridCo
   }
 
   /// <summary>
-  /// Parent of the properties view model
+  /// Owner of the properties view model
   /// </summary>
   public object? Parent { get; }
 

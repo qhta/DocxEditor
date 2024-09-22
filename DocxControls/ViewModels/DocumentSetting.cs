@@ -1,4 +1,6 @@
-﻿namespace DocxControls.ViewModels;
+﻿using Qhta.MVVM;
+
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a setting of a document.
@@ -8,8 +10,8 @@ public class DocumentSetting : DocumentProperty, DA.DocumentSetting
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parent"></param>
-  public DocumentSetting(object? parent) : base(parent)
+  /// <param name="owner"></param>
+  public DocumentSetting(ViewModel owner) : base(owner)
   {
   }
 

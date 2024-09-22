@@ -19,9 +19,9 @@ public class BlockElementViewModel : ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parentViewModel">Parent view model. Must be <see cref="Document"/></param>
+  /// <param name="ownerViewModel">Owner view model. Must be <see cref="Document"/></param>
   /// <param name="body">Modeled block element</param>
-  public BlockElementViewModel(ViewModel parentViewModel, DX.OpenXmlCompositeElement body): base(parentViewModel, body)
+  public BlockElementViewModel(ViewModel ownerViewModel, DX.OpenXmlCompositeElement body): base(ownerViewModel, body)
   {
     currentElement = body.FirstChild;
     LoadMoreCommand = new RelayCommand( LoadMoreItems, () => !isLoading && currentElement!=null);

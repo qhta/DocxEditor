@@ -14,16 +14,16 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parentObjectViewModel">New model for an object, which property is modeled here</param> 
-  public ObjectPropertyViewModel(ObjectViewModel parentObjectViewModel) : base(parentObjectViewModel)
+  /// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param> 
+  public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel) : base(ownerObjectViewModel)
   {
   }
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parentObjectViewModel">New model for an object, which property is modeled here</param>
-  /// <param name="propName">Name of property of the parentObjectViewModel view model</param>
+  /// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param>
+  /// <param name="propName">Name of property of the ownerObjectViewModel view model</param>
   /// <param name="origPropName">Name of property of the modeled object.</param>
   /// <param name="property">PropertyInfo of the view model</param>
   /// <param name="origProperty">PropertyInfo of the modeled object</param>
@@ -32,13 +32,13 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <param name="value">Value of the view model property</param>
   /// <param name="origValue">Value of the modeled object</param>
 
-  public ObjectPropertyViewModel(ObjectViewModel parentObjectViewModel, string? propName, string? origPropName = null,
+  public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string? propName, string? origPropName = null,
     PropertyInfo? property = null, PropertyInfo? origProperty = null, 
     Type? valueType = null, Type? origValueType = null, 
-    object? value = null, object? origValue = null) : base(parentObjectViewModel)
+    object? value = null, object? origValue = null) : base(ownerObjectViewModel)
   {
     if (property == null && propName != null)
-      property = parentObjectViewModel.GetType().GetProperty(propName);
+      property = ownerObjectViewModel.GetType().GetProperty(propName);
 
     if (origPropName == null && propName!=null)
       origPropName = propName;
@@ -49,9 +49,9 @@ public class ObjectPropertyViewModel : PropertyViewModel
     if (origProperty==null)
       origProperty = ModeledObjectType!.GetProperty(origPropName!);
     if (origProperty == null && property == null)
-      throw new ArgumentException($"Property {origPropName} not found in {ModeledObjectType!.Name} and not in {parentObjectViewModel.GetType().Name}");
+      throw new ArgumentException($"Property {origPropName} not found in {ModeledObjectType!.Name} and not in {ownerObjectViewModel.GetType().Name}");
     //if (!(property.CanWrite))
-    //  throw new ArgumentException($"Property {propName} is not writable in {parentObjectViewModel.GetType().Name}");
+    //  throw new ArgumentException($"Property {propName} is not writable in {ownerObjectViewModel.GetType().Name}");
 
     ViewModelProperty = property;
     OriginalProperty = origProperty;
@@ -89,7 +89,7 @@ public class ObjectPropertyViewModel : PropertyViewModel
     {
       var value = Value;
       var val = value!.ToOpenXmlValue(OriginalType);
-      ViewModelProperty?.SetValue(Parent, val);
+      ViewModelProperty?.SetValue(Owner, val);
       OriginalProperty?.SetValue(ModeledObject, val);
       var val2 = OriginalProperty?.GetValue(ModeledObject);
       if (val2 != val)
@@ -98,14 +98,14 @@ public class ObjectPropertyViewModel : PropertyViewModel
   }
 
   /// <summary>
-  /// Parent modeled object.
+  /// Owner modeled object.
   /// </summary>
-  public object? ModeledObject => (Parent as ObjectViewModel)?.ModeledObject;
+  public object? ModeledObject => (Owner as ObjectViewModel)?.ModeledObject;
 
   /// <summary>
-  /// Parent modeled object type.
+  /// Owner modeled object type.
   /// </summary>
-  public Type? ModeledObjectType => (Parent as ObjectViewModel)?.ObjectType;
+  public Type? ModeledObjectType => (Owner as ObjectViewModel)?.ObjectType;
 
   /// <summary>
   /// Collection of object properties.
@@ -142,7 +142,10 @@ public class ObjectPropertyViewModel : PropertyViewModel
             //if (modeledObjectType.Name=="RunFonts")
             //Debug.WriteLine($"modeledObjectType={modeledObjectType}");
             value = Activator.CreateInstance(modeledObjectType);
-            _objectViewModel = CreateObjectViewModel(value);
+            if (value!=null)
+              _objectViewModel = CreateObjectViewModel(value);
+            else
+              _objectViewModel = CreateObjectViewModel(modeledObjectType);
             if (_objectViewModel != null)
               _objectViewModel.IsNew = true;
           }

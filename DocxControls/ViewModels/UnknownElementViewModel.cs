@@ -10,9 +10,9 @@ public class UnknownElementViewModel: ElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parentViewModel">Parent view model of any view model type</param>
+  /// <param name="ownerViewModel">Owner view model of any view model type</param>
   /// <param name="element">Modeled element</param>
-  public UnknownElementViewModel(ViewModel parentViewModel, DX.OpenXmlElement element) : base(parentViewModel, element)
+  public UnknownElementViewModel(ViewModel ownerViewModel, DX.OpenXmlElement element) : base(ownerViewModel, element)
   {
   }
 

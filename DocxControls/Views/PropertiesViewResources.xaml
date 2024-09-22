@@ -184,7 +184,7 @@
   <DataTemplate x:Key="NewMemberTypeTemplate" DataType="{x:Type viewModels:ObjectMemberViewModel}">
     <ComboBox
       SelectedValue="{Binding MemberType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-      ItemsSource="{Binding DataContext.ParentStory.ObjectMembers.MemberTypes, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+      ItemsSource="{Binding AllowedMemberTypes}"
       DisplayMemberPath="Name"
       Padding="{StaticResource PropertyPadding}">
     </ComboBox>

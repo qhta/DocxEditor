@@ -22,17 +22,16 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="parent">parent ViewModel</param>
+  /// <param name="owner">owner ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel? parent, object element) : base(parent, element)
+  protected ElementViewModel(ViewModel? owner, object element) : base(owner, element)
   {
   }
 
-  /// <summary>
-  /// Returns an Application object that represents the DocxControls application.
-  /// </summary>
-  public DA.Application Application => throw new NotImplementedException();
-
+  #region IElement implementation
+  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
+  object? DA.IElement.Parent => Owner;
+  #endregion
 
   /// <summary>
   /// Access to outer Xml of the element
