@@ -115,6 +115,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Val.
+        /// </summary>
+        public static string CompatibilitySetting_Val {
+            get {
+                return ResourceManager.GetString("CompatibilitySetting.Val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content status.
         /// </summary>
         public static string ContentStatus {
@@ -313,6 +322,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages count.
         /// </summary>
         public static string Pages {
@@ -435,6 +453,15 @@ namespace DocxControls.Resources {
         public static string TotalTime {
             get {
                 return ResourceManager.GetString("TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URI.
+        /// </summary>
+        public static string Uri {
+            get {
+                return ResourceManager.GetString("Uri", resourceCulture);
             }
         }
         

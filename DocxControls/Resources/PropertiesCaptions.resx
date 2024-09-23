@@ -229,4 +229,13 @@
   <data name="LockedForAnnotation" xml:space="preserve">
     <value>Locked for annotation</value>
   </data>
+  <data name="CompatibilitySetting.Val" xml:space="preserve">
+    <value>Val</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Uri" xml:space="preserve">
+    <value>URI</value>
+  </data>
 </root>

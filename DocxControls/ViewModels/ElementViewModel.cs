@@ -24,7 +24,7 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel? owner, object element) : base(owner, element)
+  protected ElementViewModel(ViewModel owner, object element) : base(owner, element)
   {
   }
 

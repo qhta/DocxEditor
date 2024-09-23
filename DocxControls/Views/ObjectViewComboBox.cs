@@ -206,14 +206,14 @@ public class ObjectViewComboBox : ComboBox
     {
       e.Row.Header = ">";
       var propertyViewModel = MembersDataGrid?.DataContext as VM.PropertyViewModel;
-      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow propertyViewModel = {propertyViewModel}");
+      //Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow propertyViewModel = {propertyViewModel}");
       var objectViewModel = propertyViewModel?.ObjectViewModel as VM.ObjectViewModel;
-      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow objectViewModel = {objectViewModel}");
+      //Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow objectViewModel = {objectViewModel}");
       var memberType = objectViewModel?.ObjectType;
-      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow memberType = {memberType}");
+      //Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow memberType = {memberType}");
       var collection = objectViewModel?.ObjectMembers;
-      Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow collection = {collection}");
-      var allowedTypes = collection?.AllowedMemberTypes;
+      //Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow collection = {collection}");
+      //var allowedTypes = collection?.AllowedMemberTypes;
       e.Row.Item = new VM.ObjectMemberViewModel { Owner = objectViewModel, MemberType = memberType, IsNew = true, Collection = collection };
     }
     else

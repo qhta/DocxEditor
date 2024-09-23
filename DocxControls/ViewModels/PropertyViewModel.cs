@@ -26,7 +26,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <param name="owner"></param>
   public PropertyViewModel(ViewModel owner)
   {
-   Owner = owner;
+    Owner = owner;
   }
 
   /// <summary>
@@ -48,10 +48,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
     {
       try
       {
-        if (Name!=null)
-          return PropertiesCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture) ?? Name;
+        if (Name != null)
+        {
+          var result = PropertiesCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture);
+          if (result == null)
+          {
+            result = SettingsCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture);
+            if (result == null)
+            {
+              result = Name;
+              Debug.WriteLine($"{Name}");
+            }
+          }
+          return result;
+        }
         return "Unnamed property";
-      } catch
+      }
+      catch
       {
         return Name;
       }
@@ -65,7 +78,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public virtual string? Name
   {
-    get; 
+    get;
     set;
   }
 
@@ -74,7 +87,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// </summary>
   public virtual Type? Type
   {
-    get; 
+    get;
     set;
   }
 
@@ -116,7 +129,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Is the property obsolete?
   /// </summary>
-  public bool IsObsolete => Name!=null && (PropertiesDescriptions.ResourceManager
+  public bool IsObsolete => Name != null && (PropertiesDescriptions.ResourceManager
     .GetString(Name!, CultureInfo.InvariantCulture)?.Contains("Obsolete", StringComparison.InvariantCultureIgnoreCase) ?? false);
 
   /// <summary>
@@ -166,7 +179,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Watermark to display in the control.
   /// </summary>
-  public string? Watermark=> GetWatermark(Type!);
+  public string? Watermark => GetWatermark(Type!);
 
   /// <summary>
   /// Get the watermark for a type.
@@ -210,7 +223,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Determines if the property value is null.
   /// </summary>
-  public bool IsEmpty {
+  public bool IsEmpty
+  {
     get
     {
       var result = ObjectViewModel?.IsEmpty ?? Value == null;
@@ -278,7 +292,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Does the property have a tooltip?
   /// </summary>
-  public virtual bool HasTooltip => Name!= null &&
+  public virtual bool HasTooltip => Name != null &&
     PropertiesTooltips.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture) != null;
 
   /// <summary>
@@ -334,7 +348,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   {
     get
     {
-      if (Name=="WordPerfectJustification")
+      if (Name == "WordPerfectJustification")
         Debug.Assert(true);
       var type = Type;
       var result = false;
@@ -548,7 +562,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       if (_objectViewModel == null)
       {
         var value = _Value;
-        _objectViewModel = CreateObjectViewModel(value);
+        if (value != null)
+          _objectViewModel = CreateObjectViewModel(value);
         if (_objectViewModel != null)
           _Value = _objectViewModel.ModeledObject;
       }
@@ -571,7 +586,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       }
     }
   }
-  
+
   /// <summary>
   /// Field for the object view model.
   /// </summary>
@@ -584,7 +599,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   protected ObjectViewModel? CreateObjectViewModel(object value)
   {
-    var result = VM.ObjectViewModel.Create(Owner, value);
+    var result = VM.ObjectViewModel.Create(this, value);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;
@@ -597,7 +612,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <returns></returns>
   protected ObjectViewModel? CreateObjectViewModel(Type type)
   {
-    var result = VM.ObjectViewModel.Create(Owner, type);
+    var result = VM.ObjectViewModel.Create(this, type);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;

@@ -1,9 +1,11 @@
-﻿namespace DocxControls.ViewModels;
+﻿using DocxControls.Helpers;
+
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an object member. Replaces <see cref="PropertyViewModel"/> in the properties view.
 /// </summary>
-public class ObjectMemberViewModel : ObjectViewModel
+public class ObjectMemberViewModel : ObjectViewModel, IObjectViewModelProvider
 {
   /// <summary>
   /// Default constructor.
@@ -43,6 +45,11 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// Collection of object members.
   /// </summary>
   public ObjectMembersViewModel? Collection { get; internal set; }
+
+  /// <summary>
+  /// Caption is the name of the object type.
+  /// </summary>
+  public string? Caption => ObjectType?.Name;
 
   /// <summary>
   /// Value of the property.
@@ -96,4 +103,16 @@ public class ObjectMemberViewModel : ObjectViewModel
   /// Allowed types for the member object.
   /// </summary>
   public IEnumerable<Type>? AllowedMemberTypes => Collection?.AllowedMemberTypes;
+
+  #region IObjectViewModelProvider implementation
+  /// <summary>
+  /// Returns true.
+  /// </summary>
+  public bool IsObject => true;
+
+  /// <summary>
+  /// Return this object view model.
+  /// </summary>
+  public IObjectViewModel? ObjectViewModel => this;
+  #endregion
 }

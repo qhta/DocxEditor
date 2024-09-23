@@ -229,4 +229,13 @@
   <data name="LockedForAnnotation" xml:space="preserve">
     <value>Zablokowano do adnotacji</value>
   </data>
+  <data name="CompatibilitySetting.Val" xml:space="preserve">
+    <value>Wartość</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Uri" xml:space="preserve">
+    <value>URI</value>
+  </data>
 </root>

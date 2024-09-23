@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace DocxControls.Helpers;
 
@@ -23,6 +24,15 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? NewMemberTypeTemplate { get; set; }
 
+  /// <summary>
+  /// Template for caption of existing compatibility setting.
+  /// </summary>
+  public DataTemplate? CompatibilitySettingTemplate { get; set; } = null!;
+
+  /// <summary>
+  /// Template for new compatibility setting caption.
+  /// </summary>
+  public DataTemplate? NewCompatibilitySettingTemplate { get; set; }
 
   /// <summary>
   /// Template selection logic.
@@ -41,14 +51,25 @@ public class PropertyCaptionTemplateSelector : DataTemplateSelector
     //}
     if (item is VM.ObjectMemberViewModel objectMemberViewModel)
     {
-      return ((objectMemberViewModel.IsNew) ? NewMemberTypeTemplate : ObjectTemplate) ?? CaptionTemplate;
+      if (objectMemberViewModel.IsNew)
+      {
+        if (NewMemberTypeTemplate != null)
+          return NewMemberTypeTemplate;
+      }
+      else
+      {
+        //if (objectMemberViewModel.ObjectType == typeof(DXW.CompatibilitySetting))
+          return CaptionTemplate;
+        //if (ObjectTemplate != null)
+        //  return ObjectTemplate;
+      }
     }
     if (item is VM.PropertyViewModel propertyViewModel)
     {
       Type type = propertyViewModel.Type!;
       if (type.IsClass && type != typeof(string))
-        return ObjectTemplate ?? CaptionTemplate;
-      return CaptionTemplate;
+        if (ObjectTemplate != null)
+          return ObjectTemplate;
     }
     return CaptionTemplate;
   }
