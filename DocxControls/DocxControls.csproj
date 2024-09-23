@@ -58,21 +58,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PropertiesTooltips.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\SettingsDescriptions.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SettingsDescriptions.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\SettingsCaptions.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SettingsCaptions.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\SettingsTooltips.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SettingsTooltips.resx</DependentUpon>
-    </Compile>
     <Compile Update="Views\SectionPropertiesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,18 +98,6 @@
     <EmbeddedResource Update="Resources\PropertiesTooltips.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PropertiesTooltips.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SettingsDescriptions.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SettingsDescriptions.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SettingsCaptions.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SettingsCaptions.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SettingsTooltips.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SettingsTooltips.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

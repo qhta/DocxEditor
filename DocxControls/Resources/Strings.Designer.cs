@@ -394,7 +394,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RunProperties.
+        ///   Looks up a localized string similar to Properties.
         /// </summary>
         public static string Properties {
             get {

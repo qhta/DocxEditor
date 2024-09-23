@@ -18,7 +18,7 @@ public class DocumentSetting : DocumentProperty, DA.DocumentSetting
   /// <summary>
   /// Display caption for the setting.
   /// </summary>
-  public override string? Caption => SettingsCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public override string? Caption => PropertiesCaptions.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Category of the property.
@@ -29,17 +29,17 @@ public class DocumentSetting : DocumentProperty, DA.DocumentSetting
   /// Does the property have a tooltip?
   /// </summary>
   public override bool HasTooltip =>
-    SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) != null;
+    PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) != null;
 
   /// <summary>
   /// Tooltip for the setting
   /// </summary>
-  public override string? TooltipTitle => SettingsTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
+  public override string? TooltipTitle => PropertiesTooltips.ResourceManager.GetString(Name!, CultureInfo.CurrentUICulture) ?? Name;
 
   /// <summary>
   /// Description of the setting
   /// </summary>
-  public override string? TooltipDescription => FixDescription(SettingsDescriptions.ResourceManager
+  public override string? TooltipDescription => FixDescription(PropertiesDescriptions.ResourceManager
     .GetString(Name!, CultureInfo.CurrentUICulture));
 
 }

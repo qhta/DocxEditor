@@ -21,7 +21,7 @@
   <Grid>
     <TabControl TabStripPlacement="Left">
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.LoadSaveAndSecurity}" 
+        Header="{x:Static resources:PropertiesCaptions.LoadSaveAndSecurity}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -33,7 +33,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.ThemingAndStyles}" 
+        Header="{x:Static resources:PropertiesCaptions.ThemingAndStyles}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -45,7 +45,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.ProofingHyphenationAndAutomation}" 
+        Header="{x:Static resources:PropertiesCaptions.ProofingHyphenationAndAutomation}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -57,7 +57,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.Identification}" 
+        Header="{x:Static resources:PropertiesCaptions.Identification}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -69,7 +69,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.RevisionsAndTracking}" 
+        Header="{x:Static resources:PropertiesCaptions.RevisionsAndTracking}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -81,7 +81,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.MailMergeAndPrinting}" 
+        Header="{x:Static resources:PropertiesCaptions.MailMergeAndPrinting}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -93,7 +93,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.CustomXml}" 
+        Header="{x:Static resources:PropertiesCaptions.CustomXml}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>
@@ -105,7 +105,7 @@
         </TabItem.ContentTemplate>
       </TabItem>
       <TabItem 
-        Header="{x:Static resources:SettingsCaptions.Compatibility}" 
+        Header="{x:Static resources:PropertiesCaptions.Compatibility}" 
         Style="{StaticResource TabItemStyle}">
         <TabItem.ContentTemplate>
           <DataTemplate>

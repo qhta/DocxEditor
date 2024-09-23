@@ -286,4 +286,313 @@
   <data name="SpinCount" xml:space="preserve">
     <value>Liczba obrotów</value>
   </data>
+  <data name="ActiveWritingStyle" xml:space="preserve">
+    <value>Ustawienia sprawdzania gramatyki</value>
+  </data>
+  <data name="AlignBorderAndEdges" xml:space="preserve">
+    <value>Wyrównywanie obramowań akapitu i tabeli do obramowania strony</value>
+  </data>
+  <data name="AlwaysMergeEmptyNamespace" xml:space="preserve">
+    <value>Nie oznaczaj niestandardowych elementów XML bez przestrzeni nazw jako nieprawidłowych</value>
+  </data>
+  <data name="AlwaysShowPlaceholderText" xml:space="preserve">
+    <value>Używanie niestandardowych nazw elementów XML jako domyślnego tekstu zastępczego</value>
+  </data>
+  <data name="AttachedSchema" xml:space="preserve">
+    <value>Dołączony niestandardowy schemat XML</value>
+  </data>
+  <data name="AttachedTemplate" xml:space="preserve">
+    <value>Załączony szablon dokumentu</value>
+  </data>
+  <data name="AutoFormatOverride" xml:space="preserve">
+    <value>Zezwalaj na zastępowanie ustawień ochrony formatowania automatycznego formatowania</value>
+  </data>
+  <data name="AutoHyphenation" xml:space="preserve">
+    <value>Automatyczne dzielenie wyrazów zawartości dokumentu przy wyświetlaniu</value>
+  </data>
+  <data name="BookFoldPrinting" xml:space="preserve">
+    <value>Drukowanie przy składaniu książek</value>
+  </data>
+  <data name="BookFoldPrintingSheets" xml:space="preserve">
+    <value>Liczba stron w broszurze</value>
+  </data>
+  <data name="BookFoldReversePrinting" xml:space="preserve">
+    <value>Drukowanie odwróconego składania książek</value>
+  </data>
+  <data name="BordersDoNotSurroundFooter" xml:space="preserve">
+    <value>Obramowanie strony nie obejmuje stopki</value>
+  </data>
+  <data name="BordersDoNotSurroundHeader" xml:space="preserve">
+    <value>Obramowanie strony nie obejmuje nagłówka</value>
+  </data>
+  <data name="Captions" xml:space="preserve">
+    <value>Ustawienia napisów</value>
+  </data>
+  <data name="CharacterSpacingControl" xml:space="preserve">
+    <value>Kompresja białych znaków na poziomie znaku</value>
+  </data>
+  <data name="ChartTrackingRefBased" xml:space="preserve">
+    <value>Właściwości punktu danych i zachowanie etykiet danych</value>
+  </data>
+  <data name="ClickAndTypeStyle" xml:space="preserve">
+    <value>Styl akapitu zastosowany do akapitów generowanych automatycznie</value>
+  </data>
+  <data name="ColorSchemeMapping" xml:space="preserve">
+    <value>Mapowania kolorów motywu</value>
+  </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Ustawienia zgodności</value>
+  </data>
+  <data name="ConflictMode" xml:space="preserve">
+    <value>Użytkownik usuwał zmiany powodujące konflikt podczas zapisywania dokumentu</value>
+  </data>
+  <data name="ConsecutiveHyphenLimit" xml:space="preserve">
+    <value>Maksymalna liczba kolejno podzielonych wierszy</value>
+  </data>
+  <data name="DecimalSymbol" xml:space="preserve">
+    <value>Punkt podstawy do oceny kodu pola</value>
+  </data>
+  <data name="DefaultImageDpi" xml:space="preserve">
+    <value>Rozdzielczość w punktach na cal (DPI), z jaką zostaną zapisane obrazy w dokumencie</value>
+  </data>
+  <data name="DefaultTableStyle" xml:space="preserve">
+    <value>Domyślny styl tabeli dla nowo wstawionych tabel</value>
+  </data>
+  <data name="DefaultTabStop" xml:space="preserve">
+    <value>Odległość między automatycznymi zakładkami</value>
+  </data>
+  <data name="DiscardImageEditingData" xml:space="preserve">
+    <value>Przycięte obszary obrazów nie mogą być zapisywane</value>
+  </data>
+  <data name="DisplayBackgroundShape" xml:space="preserve">
+    <value>Wyświetlanie obiektów tła podczas wyświetlania dokumentu</value>
+  </data>
+  <data name="DisplayHorizontalDrawingGrid" xml:space="preserve">
+    <value>Odległość między poziomymi liniami siatki</value>
+  </data>
+  <data name="DisplayVerticalDrawingGrid" xml:space="preserve">
+    <value>Odległość między pionowymi liniami siatki</value>
+  </data>
+  <data name="DocumentId" xml:space="preserve">
+    <value>Dowolny identyfikator dla kontekstu identyfikatorów akapitów w dokumencie</value>
+  </data>
+  <data name="DocumentProtection" xml:space="preserve">
+    <value>Ograniczenia edycji dokumentu</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Klasyfikacja dokumentów</value>
+  </data>
+  <data name="DocumentVariables" xml:space="preserve">
+    <value>Zmienne dokumentu</value>
+  </data>
+  <data name="DoNotAutoCompressPictures" xml:space="preserve">
+    <value>Nie kompresuj obrazów automatycznie</value>
+  </data>
+  <data name="DoNotDemarcateInvalidXml" xml:space="preserve">
+    <value>Nie pokazuj wizualnego wskaźnika dla nieprawidłowych niestandardowych znaczników XML</value>
+  </data>
+  <data name="DoNotDisplayPageBoundaries" xml:space="preserve">
+    <value>Nie wyświetlaj wizualnej granicy nagłówka/stopki ani między stronami</value>
+  </data>
+  <data name="DoNotHyphenateCaps" xml:space="preserve">
+    <value>Nie dziel wyrazów wielkimi literami</value>
+  </data>
+  <data name="DoNotIncludeSubdocsInStats" xml:space="preserve">
+    <value>Nie uwzględniaj zawartości pól tekstowych, przypisów dolnych i końcowych w statystykach dokumentu</value>
+  </data>
+  <data name="DoNotShadeFormData" xml:space="preserve">
+    <value>Nie pokazuj wskaźnika wizualnego dla pól formularza</value>
+  </data>
+  <data name="DoNotTrackFormatting" xml:space="preserve">
+    <value>Nie śledź poprawek formatowania podczas śledzenia poprawek</value>
+  </data>
+  <data name="DoNotTrackMoves" xml:space="preserve">
+    <value>Nie używaj składni przenoszenia podczas śledzenia poprawek</value>
+  </data>
+  <data name="DoNotUseMarginsForDrawingGridOrigin" xml:space="preserve">
+    <value>Nie używaj marginesów do rysowania początku siatki</value>
+  </data>
+  <data name="DoNotValidateAgainstSchema" xml:space="preserve">
+    <value>Nie weryfikuj niestandardowych znaczników XML względem schematów</value>
+  </data>
+  <data name="DrawingGridHorizontalOrigin" xml:space="preserve">
+    <value>Poziomy punkt początkowy siatki rysunku</value>
+  </data>
+  <data name="DrawingGridHorizontalSpacing" xml:space="preserve">
+    <value>Rozmiar jednostki siatki poziomej siatki rysunku</value>
+  </data>
+  <data name="DrawingGridVerticalOrigin" xml:space="preserve">
+    <value>Pionowy punkt początkowy siatki rysunku</value>
+  </data>
+  <data name="DrawingGridVerticalSpacing" xml:space="preserve">
+    <value>Rozmiar jednostki siatki rysunkowej w pionie</value>
+  </data>
+  <data name="EmbedSystemFonts" xml:space="preserve">
+    <value>Osadzanie typowych czcionek systemowych</value>
+  </data>
+  <data name="EmbedTrueTypeFonts" xml:space="preserve">
+    <value>Osadzanie czcionek truetype</value>
+  </data>
+  <data name="EndnoteDocumentWideProperties" xml:space="preserve">
+    <value>Właściwości przypisu końcowego dla całego dokumentu</value>
+  </data>
+  <data name="EvenAndOddHeaders" xml:space="preserve">
+    <value>Różne parzyste/nieparzyste nagłówki i stopki stron</value>
+  </data>
+  <data name="FootnoteDocumentWideProperties" xml:space="preserve">
+    <value>Właściwości przypisu dolnego dla całego dokumentu</value>
+  </data>
+  <data name="ForceUpgrade" xml:space="preserve">
+    <value>Uaktualnij dokument po otwarciu</value>
+  </data>
+  <data name="FormsDesign" xml:space="preserve">
+    <value>Tekst zastępczy znacznika dokumentu strukturalnego powinien zostać ponownie zapisany</value>
+  </data>
+  <data name="GutterAtTop" xml:space="preserve">
+    <value>Umieść margines na oprawę u góry strony</value>
+  </data>
+  <data name="HeaderShapeDefaults" xml:space="preserve">
+    <value>Domyślne parametry obiektu korzystającego ze składni VML wstawionej w nagłówku i stopce</value>
+  </data>
+  <data name="HideGrammaticalErrors" xml:space="preserve">
+    <value>Nie wyświetlaj wizualnego wskazania błędów gramatycznych</value>
+  </data>
+  <data name="HideSpellingErrors" xml:space="preserve">
+    <value>Nie wyświetlaj wizualnego wskazania błędów ortograficznych</value>
+  </data>
+  <data name="HyphenationZone" xml:space="preserve">
+    <value>Strefa dzielenia wyrazów</value>
+  </data>
+  <data name="IgnoreMixedContent" xml:space="preserve">
+    <value>Ignoruj zawartość mieszaną podczas sprawdzania poprawności niestandardowych znaczników XML</value>
+  </data>
+  <data name="LinkStyles" xml:space="preserve">
+    <value>Automatyczne aktualizowanie stylów z szablonu dokumentu</value>
+  </data>
+  <data name="ListSeparator" xml:space="preserve">
+    <value>Separator listy do oceny kodu pola</value>
+  </data>
+  <data name="MailMerge" xml:space="preserve">
+    <value>Ustawienia korespondencji seryjnej</value>
+  </data>
+  <data name="MathProperties" xml:space="preserve">
+    <value>Właściwości matematyczne</value>
+  </data>
+  <data name="MirrorMargins" xml:space="preserve">
+    <value>Odbicie lustrzane marginesów strony</value>
+  </data>
+  <data name="NoLineBreaksAfterKinsoku" xml:space="preserve">
+    <value>Niestandardowy zestaw znaków, który nie może kończyć wiersza</value>
+  </data>
+  <data name="NoLineBreaksBeforeKinsoku" xml:space="preserve">
+    <value>Niestandardowy zestaw znaków, który nie może rozpoczynać wiersza</value>
+  </data>
+  <data name="NoPunctuationKerning" xml:space="preserve">
+    <value>Znaki interpunkcyjne nigdy nie kernowane</value>
+  </data>
+  <data name="PersistentDocumentId" xml:space="preserve">
+    <value>Niepowtarzalny identyfikator zestawu dokumentów pochodzących ze wspólnego źródła</value>
+  </data>
+  <data name="PrintFormsData" xml:space="preserve">
+    <value>Drukuj tylko zawartość pola formularza</value>
+  </data>
+  <data name="PrintFractionalCharacterWidth" xml:space="preserve">
+    <value>Drukowanie szerokości znaków ułamkowych</value>
+  </data>
+  <data name="PrintPostScriptOverText" xml:space="preserve">
+    <value>Drukowanie kodów postscript z tekstem dokumentu</value>
+  </data>
+  <data name="PrintTwoOnOne" xml:space="preserve">
+    <value>Drukowanie dwóch stron na arkuszu</value>
+  </data>
+  <data name="ProofState" xml:space="preserve">
+    <value>Sprawdzanie pisowni i gramatyki</value>
+  </data>
+  <data name="ReadModeInkLockDown" xml:space="preserve">
+    <value>Blokowanie układu dokumentu</value>
+  </data>
+  <data name="RemoveDateAndTime" xml:space="preserve">
+    <value>Usuwanie daty i godziny z adnotacji</value>
+  </data>
+  <data name="RemovePersonalInformation" xml:space="preserve">
+    <value>Usuwanie informacji osobistych z właściwości dokumentu</value>
+  </data>
+  <data name="RevisionView" xml:space="preserve">
+    <value>Widoczność typów adnotacji</value>
+  </data>
+  <data name="Rsids" xml:space="preserve">
+    <value>Lista wszystkich wartości identyfikatorów zapisu wersji</value>
+  </data>
+  <data name="SaveFormsData" xml:space="preserve">
+    <value>Zapisuj tylko zawartość pola formularza</value>
+  </data>
+  <data name="SaveInvalidXml" xml:space="preserve">
+    <value>Zezwalaj na zapisywanie dokumentu jako pliku XML, gdy niestandardowe znaczniki XML są nieprawidłowe</value>
+  </data>
+  <data name="SavePreviewPicture" xml:space="preserve">
+    <value>Wygeneruj miniaturę dokumentu przy zapisywaniu</value>
+  </data>
+  <data name="SaveSubsetFonts" xml:space="preserve">
+    <value>Podzbiór czcionek podczas osadzania</value>
+  </data>
+  <data name="SaveThroughXslt" xml:space="preserve">
+    <value>Niestandardowe przekształcenie XSL do użycia podczas zapisywania jako pliku XML</value>
+  </data>
+  <data name="SaveXmlDataOnly" xml:space="preserve">
+    <value>Zapisuj tylko niestandardowe znaczniki XML</value>
+  </data>
+  <data name="SchemaLibrary" xml:space="preserve">
+    <value>Osadzone niestandardowe dane uzupełniające schematu XML</value>
+  </data>
+  <data name="ShapeDefaults" xml:space="preserve">
+    <value>Domyślne parametry obiektu korzystającego ze składni VML wstawionej w treści</value>
+  </data>
+  <data name="ShowEnvelope" xml:space="preserve">
+    <value>Pokaż nagłówek wiadomości e-mail</value>
+  </data>
+  <data name="ShowXmlTags" xml:space="preserve">
+    <value>Pokazywanie wskaźników wizualnych dla niestandardowych lokalizacji początkowych/końcowych znaczników XML</value>
+  </data>
+  <data name="StrictFirstAndLastChars" xml:space="preserve">
+    <value>Używanie ścisłych reguł kinsoku dla tekstu japońskiego</value>
+  </data>
+  <data name="StyleLockStylesPart" xml:space="preserve">
+    <value>Blokada definicji styli</value>
+  </data>
+  <data name="StyleLockThemesPart" xml:space="preserve">
+    <value>Blokada definicji motywu</value>
+  </data>
+  <data name="StylePaneFormatFilter" xml:space="preserve">
+    <value>Sugerowane filtrowanie listy stylów dokumentu</value>
+  </data>
+  <data name="StylePaneSortMethods" xml:space="preserve">
+    <value>Sugerowane sortowanie dla listy stylów dokumentu</value>
+  </data>
+  <data name="SummaryLength" xml:space="preserve">
+    <value>Procent dokumentu do użycia podczas generowania podsumowania</value>
+  </data>
+  <data name="ThemeFontLanguages" xml:space="preserve">
+    <value>Języki czcionek motywu</value>
+  </data>
+  <data name="TrackRevisions" xml:space="preserve">
+    <value>Śledzenie poprawek w dokumencie</value>
+  </data>
+  <data name="UICompatibleWith97To2003" xml:space="preserve">
+    <value>Interfejs użytkownika kompatybilny ze starszymi wersjami Worda</value>
+  </data>
+  <data name="UpdateFieldsOnOpen" xml:space="preserve">
+    <value>Automatyczne ponowne obliczanie pól przy otwieraniu</value>
+  </data>
+  <data name="UseXsltWhenSaving" xml:space="preserve">
+    <value>Zapisz dokument jako plik XML za pomocą niestandardowego przekształcenia XSL</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Ustawienia widoku dokumentu</value>
+  </data>
+  <data name="WriteProtection" xml:space="preserve">
+    <value>Ochrona przed zapisem</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Ustawienie powiększenia</value>
+  </data>
 </root>

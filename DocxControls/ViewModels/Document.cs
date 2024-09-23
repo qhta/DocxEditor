@@ -74,7 +74,7 @@ public class Document : ViewModel, DA.Document, IEditable
     WordDocument.Dispose();
     if (TempFilePath != null && File.Exists(TempFilePath))
     {
-      if (IsEditable && FilePath != null)
+      if (saveChanges && IsEditable && FilePath != null)
       {
         File.Copy(TempFilePath, FilePath, true);
       }

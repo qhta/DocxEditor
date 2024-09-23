@@ -53,12 +53,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
           var result = PropertiesCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture);
           if (result == null)
           {
-            result = SettingsCaptions.ResourceManager.GetString(Name, CultureInfo.CurrentUICulture);
-            if (result == null)
-            {
-              result = Name;
-              Debug.WriteLine($"{Name}");
-            }
+            result = Name;
+            Debug.WriteLine($"{Name}");
           }
           return result;
         }

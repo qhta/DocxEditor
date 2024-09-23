@@ -286,4 +286,313 @@
   <data name="SpinCount" xml:space="preserve">
     <value>Spin count</value>
   </data>
+  <data name="ActiveWritingStyle" xml:space="preserve">
+    <value>Grammar checking Properties</value>
+  </data>
+  <data name="AlignBorderAndEdges" xml:space="preserve">
+    <value>Align paragraph and table borders with page border</value>
+  </data>
+  <data name="AlwaysMergeEmptyNamespace" xml:space="preserve">
+    <value>Do not mark custom XML elements with no namespace as invalid</value>
+  </data>
+  <data name="AlwaysShowPlaceholderText" xml:space="preserve">
+    <value>Use custom XML element names as default placeholder text</value>
+  </data>
+  <data name="AttachedSchema" xml:space="preserve">
+    <value>Attached custom XML schema</value>
+  </data>
+  <data name="AttachedTemplate" xml:space="preserve">
+    <value>Attached document template</value>
+  </data>
+  <data name="AutoFormatOverride" xml:space="preserve">
+    <value>Allow automatic formatting to override formatting protection Properties</value>
+  </data>
+  <data name="AutoHyphenation" xml:space="preserve">
+    <value>Automatically hyphenate document contents when displayed</value>
+  </data>
+  <data name="BookFoldPrinting" xml:space="preserve">
+    <value>Book fold printing</value>
+  </data>
+  <data name="BookFoldPrintingSheets" xml:space="preserve">
+    <value>Number of pages per booklet</value>
+  </data>
+  <data name="BookFoldReversePrinting" xml:space="preserve">
+    <value>Reverse book fold printing</value>
+  </data>
+  <data name="BordersDoNotSurroundFooter" xml:space="preserve">
+    <value>Page border excludes footer</value>
+  </data>
+  <data name="BordersDoNotSurroundHeader" xml:space="preserve">
+    <value>Page border excludes header</value>
+  </data>
+  <data name="Captions" xml:space="preserve">
+    <value>Caption Properties</value>
+  </data>
+  <data name="CharacterSpacingControl" xml:space="preserve">
+    <value>Character-level whitespace compression</value>
+  </data>
+  <data name="ChartTrackingRefBased" xml:space="preserve">
+    <value>Datapoint properties and datalabels behavior</value>
+  </data>
+  <data name="ClickAndTypeStyle" xml:space="preserve">
+    <value>Paragraph style applied to automatically generated paragraphs</value>
+  </data>
+  <data name="ColorSchemeMapping" xml:space="preserve">
+    <value>Theme color mappings</value>
+  </data>
+  <data name="Compatibility" xml:space="preserve">
+    <value>Compatibility Properties</value>
+  </data>
+  <data name="ConflictMode" xml:space="preserve">
+    <value>User was resolving conflicting edits when the document was saved</value>
+  </data>
+  <data name="ConsecutiveHyphenLimit" xml:space="preserve">
+    <value>Maximum number of consecutively hyphenated lines</value>
+  </data>
+  <data name="DecimalSymbol" xml:space="preserve">
+    <value>Radix point for field code evaluation</value>
+  </data>
+  <data name="DefaultImageDpi" xml:space="preserve">
+    <value>Resolution in dots per inch (DPI) at which images in the document will be saved</value>
+  </data>
+  <data name="DefaultTableStyle" xml:space="preserve">
+    <value>Default table style for newly inserted tables</value>
+  </data>
+  <data name="DefaultTabStop" xml:space="preserve">
+    <value>Distance between automatic tab stops</value>
+  </data>
+  <data name="DiscardImageEditingData" xml:space="preserve">
+    <value>Cropped-out areas of the images are not to be saved</value>
+  </data>
+  <data name="DisplayBackgroundShape" xml:space="preserve">
+    <value>Display background objects when displaying document</value>
+  </data>
+  <data name="DisplayHorizontalDrawingGrid" xml:space="preserve">
+    <value>Distance between horizontal gridlines</value>
+  </data>
+  <data name="DisplayVerticalDrawingGrid" xml:space="preserve">
+    <value>Distance between vertical gridlines</value>
+  </data>
+  <data name="DocumentId" xml:space="preserve">
+    <value>Arbitrary identifier for the context of the paragraph identifiers in the document</value>
+  </data>
+  <data name="DocumentProtection" xml:space="preserve">
+    <value>Document editing restrictions</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Document classification</value>
+  </data>
+  <data name="DocumentVariables" xml:space="preserve">
+    <value>Document variables</value>
+  </data>
+  <data name="DoNotAutoCompressPictures" xml:space="preserve">
+    <value>Do not automatically compress images</value>
+  </data>
+  <data name="DoNotDemarcateInvalidXml" xml:space="preserve">
+    <value>Do not show visual indicator for invalid custom XML markup</value>
+  </data>
+  <data name="DoNotDisplayPageBoundaries" xml:space="preserve">
+    <value>Do not display visual boundary for header/footer or between pages</value>
+  </data>
+  <data name="DoNotHyphenateCaps" xml:space="preserve">
+    <value>Do not hyphenate words in all capital letters</value>
+  </data>
+  <data name="DoNotIncludeSubdocsInStats" xml:space="preserve">
+    <value>Do not include content in text boxes, footnotes, and endnotes in document statistics</value>
+  </data>
+  <data name="DoNotShadeFormData" xml:space="preserve">
+    <value>Do not show visual indicator for form fields</value>
+  </data>
+  <data name="DoNotTrackFormatting" xml:space="preserve">
+    <value>Do not track formatting revisions when tracking revisions</value>
+  </data>
+  <data name="DoNotTrackMoves" xml:space="preserve">
+    <value>Do not use move syntax when tracking revisions</value>
+  </data>
+  <data name="DoNotUseMarginsForDrawingGridOrigin" xml:space="preserve">
+    <value>Do not use margins for drawing grid origin</value>
+  </data>
+  <data name="DoNotValidateAgainstSchema" xml:space="preserve">
+    <value>Do not validate custom XML markup against schemas</value>
+  </data>
+  <data name="DrawingGridHorizontalOrigin" xml:space="preserve">
+    <value>Drawing grid horizontal origin point</value>
+  </data>
+  <data name="DrawingGridHorizontalSpacing" xml:space="preserve">
+    <value>Drawing grid horizontal grid unit size</value>
+  </data>
+  <data name="DrawingGridVerticalOrigin" xml:space="preserve">
+    <value>Drawing grid vertical origin point</value>
+  </data>
+  <data name="DrawingGridVerticalSpacing" xml:space="preserve">
+    <value>Drawing grid vertical grid unit size</value>
+  </data>
+  <data name="EmbedSystemFonts" xml:space="preserve">
+    <value>Embed common system fonts</value>
+  </data>
+  <data name="EmbedTrueTypeFonts" xml:space="preserve">
+    <value>Embed truetype fonts</value>
+  </data>
+  <data name="EndnoteDocumentWideProperties" xml:space="preserve">
+    <value>Document-wide endnote properties</value>
+  </data>
+  <data name="EvenAndOddHeaders" xml:space="preserve">
+    <value>Different even/odd page headers and footers</value>
+  </data>
+  <data name="FootnoteDocumentWideProperties" xml:space="preserve">
+    <value>Document-wide footnote properties</value>
+  </data>
+  <data name="ForceUpgrade" xml:space="preserve">
+    <value>Upgrade document on open</value>
+  </data>
+  <data name="FormsDesign" xml:space="preserve">
+    <value>Structured document tag placeholder text should be resaved</value>
+  </data>
+  <data name="GutterAtTop" xml:space="preserve">
+    <value>Position gutter at top of page</value>
+  </data>
+  <data name="HeaderShapeDefaults" xml:space="preserve">
+    <value>Default parameters for object using the VML syntax inserted in the header and footer</value>
+  </data>
+  <data name="HideGrammaticalErrors" xml:space="preserve">
+    <value>Do not display visual indication of grammatical errors</value>
+  </data>
+  <data name="HideSpellingErrors" xml:space="preserve">
+    <value>Do not display visual indication of spelling errors</value>
+  </data>
+  <data name="HyphenationZone" xml:space="preserve">
+    <value>Hyphenation zone</value>
+  </data>
+  <data name="IgnoreMixedContent" xml:space="preserve">
+    <value>Ignore mixed content when validating custom XML markup</value>
+  </data>
+  <data name="LinkStyles" xml:space="preserve">
+    <value>Automatically update styles from document template</value>
+  </data>
+  <data name="ListSeparator" xml:space="preserve">
+    <value>List separator for field code evaluation</value>
+  </data>
+  <data name="MailMerge" xml:space="preserve">
+    <value>Mail merge Properties</value>
+  </data>
+  <data name="MathProperties" xml:space="preserve">
+    <value>Math properties</value>
+  </data>
+  <data name="MirrorMargins" xml:space="preserve">
+    <value>Mirror page margins</value>
+  </data>
+  <data name="NoLineBreaksAfterKinsoku" xml:space="preserve">
+    <value>Custom set of characters which cannot end a line</value>
+  </data>
+  <data name="NoLineBreaksBeforeKinsoku" xml:space="preserve">
+    <value>Custom set of characters which cannot begin a line</value>
+  </data>
+  <data name="NoPunctuationKerning" xml:space="preserve">
+    <value>Never kern punctuation characters</value>
+  </data>
+  <data name="PersistentDocumentId" xml:space="preserve">
+    <value>Unique identifier for a set of documents derived from a common source</value>
+  </data>
+  <data name="PrintFormsData" xml:space="preserve">
+    <value>Only print form field content</value>
+  </data>
+  <data name="PrintFractionalCharacterWidth" xml:space="preserve">
+    <value>Print fractional character widths</value>
+  </data>
+  <data name="PrintPostScriptOverText" xml:space="preserve">
+    <value>Print postscript codes with document text</value>
+  </data>
+  <data name="PrintTwoOnOne" xml:space="preserve">
+    <value>Print two pages per sheet</value>
+  </data>
+  <data name="ProofState" xml:space="preserve">
+    <value>Spelling and grammatical checking state</value>
+  </data>
+  <data name="ReadModeInkLockDown" xml:space="preserve">
+    <value>Freeze document layout</value>
+  </data>
+  <data name="RemoveDateAndTime" xml:space="preserve">
+    <value>Remove date and time from annotations</value>
+  </data>
+  <data name="RemovePersonalInformation" xml:space="preserve">
+    <value>Remove personal information from document properties</value>
+  </data>
+  <data name="RevisionView" xml:space="preserve">
+    <value>Visibility of annotation types</value>
+  </data>
+  <data name="Rsids" xml:space="preserve">
+    <value>Listing of all revision save id values</value>
+  </data>
+  <data name="SaveFormsData" xml:space="preserve">
+    <value>Only save form field content</value>
+  </data>
+  <data name="SaveInvalidXml" xml:space="preserve">
+    <value>Allow saving document as XML file when custom XML markup is invalid</value>
+  </data>
+  <data name="SavePreviewPicture" xml:space="preserve">
+    <value>Generate thumbnail for document on save</value>
+  </data>
+  <data name="SaveSubsetFonts" xml:space="preserve">
+    <value>Subset fonts when embedding</value>
+  </data>
+  <data name="SaveThroughXslt" xml:space="preserve">
+    <value>Custom XSL transform to use when saving as XML file</value>
+  </data>
+  <data name="SaveXmlDataOnly" xml:space="preserve">
+    <value>Only save custom XML markup</value>
+  </data>
+  <data name="SchemaLibrary" xml:space="preserve">
+    <value>Embedded custom XML schema supplementary data</value>
+  </data>
+  <data name="ShapeDefaults" xml:space="preserve">
+    <value>Default parameters for object using the VML syntax inserted in the body</value>
+  </data>
+  <data name="ShowEnvelope" xml:space="preserve">
+    <value>Show e-mail message header</value>
+  </data>
+  <data name="ShowXmlTags" xml:space="preserve">
+    <value>Show visual indicators for custom XML markup start/end locations</value>
+  </data>
+  <data name="StrictFirstAndLastChars" xml:space="preserve">
+    <value>Use strict kinsoku rules for japanese text</value>
+  </data>
+  <data name="StyleLockStylesPart" xml:space="preserve">
+    <value>Prevent replacement of styles part</value>
+  </data>
+  <data name="StyleLockThemesPart" xml:space="preserve">
+    <value>Prevent modification of themes part</value>
+  </data>
+  <data name="StylePaneFormatFilter" xml:space="preserve">
+    <value>Suggested filtering for list of document styles</value>
+  </data>
+  <data name="StylePaneSortMethods" xml:space="preserve">
+    <value>Suggested sorting for list of document styles</value>
+  </data>
+  <data name="SummaryLength" xml:space="preserve">
+    <value>Percentage of document to use when generating summary</value>
+  </data>
+  <data name="ThemeFontLanguages" xml:space="preserve">
+    <value>Theme font languages</value>
+  </data>
+  <data name="TrackRevisions" xml:space="preserve">
+    <value>Track revisions to document</value>
+  </data>
+  <data name="UICompatibleWith97To2003" xml:space="preserve">
+    <value>User interface compatible with old Word versions</value>
+  </data>
+  <data name="UpdateFieldsOnOpen" xml:space="preserve">
+    <value>Automatically recalculate fields on open</value>
+  </data>
+  <data name="UseXsltWhenSaving" xml:space="preserve">
+    <value>Save document as XML file through custom XSL transform</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Document view setting</value>
+  </data>
+  <data name="WriteProtection" xml:space="preserve">
+    <value>Write protection</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Magnification setting</value>
+  </data>
 </root>

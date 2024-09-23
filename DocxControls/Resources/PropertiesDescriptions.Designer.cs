@@ -61,6 +61,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies information about the parameters of the grammar checking which was performed on the contents of the current WordprocessingML document. &lt;p/&gt;Note: This information can be used as desired by applications; for example, to determine if the current grammar checking state, specified by the proofState element (§17.15.1.65) is sufficient..
+        /// </summary>
+        public static string ActiveWritingStyle {
+            get {
+                return ResourceManager.GetString("ActiveWritingStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obsolete property.
         /// </summary>
         public static string AlgorithmIdExtensibility {
@@ -88,6 +97,33 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that paragraph borders specified using the pBdr element (§17.3.1.24) and table borders using the tblBorders element (§17.4.40) shall be adjusted to align with extents of the page border defined using the pgBorders element (§17.6.10) if the spacing between these borders is less than or equal to 10.5 points (one character width) or less from the page border. The presence of this setting shall ensure there are no gaps of one character width or less between adjoining page and paragraph/table borders,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AlignBorderAndEdges {
+            get {
+                return ResourceManager.GetString("AlignBorderAndEdges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether custom XML markup specified via the customXml element which has no associated namespace shall be treated as an error and moved into a special error namespace (for the purposes of XML schema validation) when the document is opened. If this element is turned on, when an application determines that the current XML markup is in the empty namespace, those elements shall not automatically be moved into an error namespace..
+        /// </summary>
+        public static string AlwaysMergeEmptyNamespace {
+            get {
+                return ResourceManager.GetString("AlwaysMergeEmptyNamespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that each custom XML element specified using the customXml element within this document shall always show some form of in-document placeholder text presentation when it contains no run content. If the placeholder element (§17.5.2.25) is present in the custom XML element&apos;s properties, then this is the placeholder text displayed and this effect has no effect. If the placeholder element is omitted, then the application shall use the name of the element to generate default placeholder text in its plac [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AlwaysShowPlaceholderText {
+            get {
+                return ResourceManager.GetString("AlwaysShowPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the name of the application that created this document..
         /// </summary>
         public static string Application {
@@ -102,6 +138,96 @@ namespace DocxControls.Resources {
         public static string ApplicationVersion {
             get {
                 return ResourceManager.GetString("ApplicationVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the custom XML schema whose target namespace matches the value specified in the val attribute should be associated with this document when it is loaded, if such a schema is available to the hosting application. Applications can also load and utilize any additional schemas as well as those explicitly mentioned here. &lt;p/&gt;Note: These custom XML schemas can then be used to validate the structure of the custom XML markup in the document, etc..
+        /// </summary>
+        public static string AttachedSchema {
+            get {
+                return ResourceManager.GetString("AttachedSchema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the location of a document template which shall be attached to the current WordprocessingML document if it is accessible and of a format supported by an application. Specifically, this element&apos;s val attribute shall contain the file path of the associated document template..
+        /// </summary>
+        public static string AttachedTemplate {
+            get {
+                return ResourceManager.GetString("AttachedTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether formatting automatically applied by an application (i.e. not explicitly applied by a use or an application) shall be allowed to override formatting protection enabled via the formatting attribute on the documentProtection element (§17.15.1.9) when those formatting operations would add formatting which has been explicitly disabled. &lt;p/&gt;Example: Automatically adding superscript to the st in the string 1st..
+        /// </summary>
+        public static string AutoFormatOverride {
+            get {
+                return ResourceManager.GetString("AutoFormatOverride", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether the content of a given WordprocessingML document should automatically be hyphenated by the hosting application before it is displayed, if the application supports this functionality..
+        /// </summary>
+        public static string AutoHyphenation {
+            get {
+                return ResourceManager.GetString("AutoHyphenation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if the contents of a given WordprocessingML document should be printed as signatures. Signatures are printed sheets, which depict several pages of a document that are folded and bound with other signatures to form a booklet, a set of which can be bound together to form a book like publication. Specifically, this element specifies that each page in a given WordprocessingML document should be oriented in a landscape fashion, divided in half vertically with two left margins emanating from the bisecto [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BookFoldPrinting {
+            get {
+                return ResourceManager.GetString("BookFoldPrinting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element shall be used in conjunction with the bookFoldPrinting (§17.15.1.11) and bookFoldRevPrinting (§17.15.1.13) elements to specify the number of pages to be included in each booklet when printing a series of signatures. Signatures are printed sheets, which depict several pages of a document that are to be folded and bound with other signatures to form a booklet. Booklets can be bound together to form a book like publication..
+        /// </summary>
+        public static string BookFoldPrintingSheets {
+            get {
+                return ResourceManager.GetString("BookFoldPrintingSheets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shall be used in conjunction with the bookFoldPrinting (§17.15.1.11) and bookFoldRevPrinting (§17.15.1.13) elements to specify the number of pages to be included in each booklet when printing a series of signatures. Signatures are printed sheets, which depict several pages of a document that are to be folded and bound with other signatures to form a booklet. Booklets can be bound together to form a book like publication..
+        /// </summary>
+        public static string BookFoldReversePrinting {
+            get {
+                return ResourceManager.GetString("BookFoldReversePrinting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that a given WordprocessingML document’s page border specified using the pgBorders element (§17.6.10) should not surround contents of the footer..
+        /// </summary>
+        public static string BordersDoNotSurroundFooter {
+            get {
+                return ResourceManager.GetString("BordersDoNotSurroundFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that a given WordprocessingML document’s page border specified using the pgBorders element (§17.6.10) should not surround contents of the header..
+        /// </summary>
+        public static string BordersDoNotSurroundHeader {
+            get {
+                return ResourceManager.GetString("BordersDoNotSurroundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the presence of information about captionsin a given WordprocessingML document. This information is divided into two components:&lt;br/&gt;• The child element caption defines the format for a single type of caption to be automatically added to the document.&lt;br/&gt;• The child element autoCaptions defines the types of objects to which a caption format shall automatically be applied.&lt;p/&gt;This information should be used to determine the captions which are automatically added to objects when they are inserted i [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Captions {
+            get {
+                return ResourceManager.GetString("Captions", resourceCulture);
             }
         }
         
@@ -124,6 +250,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies how full-width characters in the current WordprocessingML document should be compressed to remove additional whitespace when the contents of this document are displayed, specifically by specifying the set(s) of characters which can be compressed to remove additional whitespace. &lt;p/&gt;Note: The behavior of this element is functionally identical to the text-justify-trim property..
+        /// </summary>
+        public static string CharacterSpacingControl {
+            get {
+                return ResourceManager.GetString("CharacterSpacingControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the last count of the number of characters (including spaces) in this document..
         /// </summary>
         public static string CharactersWithSpaces {
@@ -133,11 +268,65 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies how the datapoint properties and datalabels in all charts in this document behave. The meaning of the setting is as follows:&lt;p/&gt;True Datapoint properties and datalabels in all charts in this document follow their reference.&lt;p/&gt;False Datapoint properties and datalabels in all charts in this document follow their position in the chart..
+        /// </summary>
+        public static string ChartTrackingRefBased {
+            get {
+                return ResourceManager.GetString("ChartTrackingRefBased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the paragraph style, specified using the Style element, which shall be applied to paragraphs which are automatically created when text is inserted into a WordprocessingML document in an area of the document that has no other style associated with it. This style is referenced via the val attribute, which stores the style ID of the style (stored in the styleId attribute on the style definition)..
+        /// </summary>
+        public static string ClickAndTypeStyle {
+            get {
+                return ResourceManager.GetString("ClickAndTypeStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the theme color, stored in the document&apos;s Theme part to which the value of this theme color shall be mapped. This mapping enables multiple theme colors to be chained together..
+        /// </summary>
+        public static string ColorSchemeMapping {
+            get {
+                return ResourceManager.GetString("ColorSchemeMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the name of a company associated with the document..
         /// </summary>
         public static string Company {
             get {
                 return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies a set of optional compatibility options for the current document..
+        /// </summary>
+        public static string Compatibility {
+            get {
+                return ResourceManager.GetString("Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When true, specifies that the user was resolving conflicting edits when the document was saved..
+        /// </summary>
+        public static string ConflictMode {
+            get {
+                return ResourceManager.GetString("ConflictMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the maximum number of consecutive lines of text that can end with a hyphen when the contents of this document are displayed. Once this limit has been reached, the following line shall not be hyphenated regardless of whether or not it meets the criteria needed for hyphenation..
+        /// </summary>
+        public static string ConsecutiveHyphenLimit {
+            get {
+                return ResourceManager.GetString("ConsecutiveHyphenLimit", resourceCulture);
             }
         }
         
@@ -250,6 +439,42 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as the radix point when evaluating the contents of all fields in the current document.&lt;p/&gt;Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the radix point in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the radix point which must be used to evaluate fields in the conte [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DecimalSymbol {
+            get {
+                return ResourceManager.GetString("DecimalSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the resolution in dots per inch (DPI) at which images in the document will be saved.&lt;p/&gt;This setting is ignored by images that have dots per inch (DPI) specified by useLocalDpi. This setting is also ignored when doNotAutoCompressPictures is set to &quot;true&quot;..
+        /// </summary>
+        public static string DefaultImageDpi {
+            get {
+                return ResourceManager.GetString("DefaultImageDpi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the table style which shall automatically be applied to the table properties of tables added to this document by an application. Note that it does not change the table style applied to tables which do not reference a style, instead, it automatically applies the style to that table via the tblStyle element (§17.4.63). This link is made by referencing the styleId attribute value of the table style which shall be used to format newly inserted tables..
+        /// </summary>
+        public static string DefaultTableStyle {
+            get {
+                return ResourceManager.GetString("DefaultTableStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the value which shall be used as the multiplier to generate automatic tab stops in this document. Automatic tab stops refer to the tab stop locations which occur after all custom tab stops in the current paragraph have been surpassed..
+        /// </summary>
+        public static string DefaultTabStop {
+            get {
+                return ResourceManager.GetString("DefaultTabStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The description may include but is not limited to: an abstract, table of contents, reference to a graphical representation of content, or a free-text account of the content..
         /// </summary>
         public static string Description {
@@ -268,11 +493,209 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When true, specifies that the cropped-out areas of the images are not to be saved. Rather, the images saved are the results of applying imgProps on the original images. &lt;p/&gt;If this element is absent or if it has a value of &quot;false&quot;, the cropped-out areas of images are saved..
+        /// </summary>
+        public static string DiscardImageEditingData {
+            get {
+                return ResourceManager.GetString("DiscardImageEditingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether the images and colors defined in the document&apos;s background using the background element (§17.2.1) shall be displayed when the document is displayed in print layout view as specified in the view element (§17.15.1.92)..
+        /// </summary>
+        public static string DisplayBackgroundShape {
+            get {
+                return ResourceManager.GetString("DisplayBackgroundShape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of horizontal grid units defined using the drawingGridHorizontalSpacing element (§17.15.1.45) which shall be allowed between subsequent visible horizontal drawing grid lines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500. The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        /// </summary>
+        public static string DisplayHorizontalDrawingGrid {
+            get {
+                return ResourceManager.GetString("DisplayHorizontalDrawingGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of vertical grid units defined using the drawingGridVerticalSpacing element (§17.15.1.47) which shall be allowed between subsequent vertical gridlines in this document, if gridlines are being shown. &lt;p/&gt;Note: The display of gridlines is an application-level setting not specified in IEEE/IEC 29500. The drawing grid is a grid which can be used by applications to help position floating objects in the document..
+        /// </summary>
+        public static string DisplayVerticalDrawingGrid {
+            get {
+                return ResourceManager.GetString("DisplayVerticalDrawingGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies an arbitrary identifier for the context of the paragraph identifiers in the document. Values MUST be greater than 0 and less than 0x80000000..
+        /// </summary>
+        public static string DocumentId {
+            get {
+                return ResourceManager.GetString("DocumentId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of document protection restrictions which have been applied to the contents of a WordprocessingML document. These restrictions should be enforced by applications editing this document when the enforcement attribute is turned on, and ignored (but persisted) otherwise. Document protection is a set of restrictions used to prevent unintentional changes to all or part of a WordprocessingML document. &lt;p/&gt;Note: This protection does not encrypt the document, and malicious applications might circum [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DocumentProtection {
+            get {
+                return ResourceManager.GetString("DocumentProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the security level of a document as a numeric value. Document security is defined as follows:&lt;br/&gt;1 - Document is password protected.&lt;br/&gt;2 - Document is recommended to be opened as read-only.&lt;br/&gt;4 - Document is enforced to be opened as read-only.&lt;br/&gt;8 - Document is locked for annotation..
         /// </summary>
         public static string DocumentSecurity {
             get {
                 return ResourceManager.GetString("DocumentSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the classification of a given WordprocessingML document.&lt;p/&gt;Note: This element can be used by hosting applications to facilitate customized user interface and/or automatic formatting behaviors based on the &apos;type&apos; of a given WordprocessingML document..
+        /// </summary>
+        public static string DocumentType {
+            get {
+                return ResourceManager.GetString("DocumentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the presence of documentvariables in a WordprocessingML. A document variable is a storage location for arbitrary customer data in name/value pairs that is persisted in a given WordprocessingML document..
+        /// </summary>
+        public static string DocumentVariables {
+            get {
+                return ResourceManager.GetString("DocumentVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that pictures in this document shall not automatically be compressed when saving the document in order to reduce the overall size of the resulting WordprocessingML document..
+        /// </summary>
+        public static string DoNotAutoCompressPictures {
+            get {
+                return ResourceManager.GetString("DoNotAutoCompressPictures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether a visual cue should be displayed around content contained in a WordprocessingML document which is contained with custom XML markup specified via the customXml element when an application determines that the current XML markup (or its contents) violate the constraints of the attached XML schema(s)..
+        /// </summary>
+        public static string DoNotDemarcateInvalidXml {
+            get {
+                return ResourceManager.GetString("DoNotDemarcateInvalidXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether applications displaying this document should display the contents of the header and footer when displaying the document in print layout view (§17.15.1.92) or should collapse those areas as well as the whitespace on all displayed pages so that the text extents are directly following one another. &lt;p/&gt;Rationale: Collapsing the ends of pages makes it easier to read the contents of the document, since the text flows between pages without whitespace, while maintaining the WYSIWYG functionality o [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DoNotDisplayPageBoundaries {
+            get {
+                return ResourceManager.GetString("DoNotDisplayPageBoundaries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether or not words comprised of all capital letters shall be hyphenated within a given document when automatic hyphenation is specified via the autoHyphenation element (§17.15.1.10)..
+        /// </summary>
+        public static string DoNotHyphenateCaps {
+            get {
+                return ResourceManager.GetString("DoNotHyphenateCaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if document content contained in text boxes, footnotes, and endnotes shall be excluded when an application calculates a given document’s statistics when these values are calculated and/or displayed by an application.&lt;p/&gt;Note: Some examples of document statistics that an application might chose to calculate are: number of words, number of characters, number of paragraphs, number of pages, number of lines, and so on..
+        /// </summary>
+        public static string DoNotIncludeSubdocsInStats {
+            get {
+                return ResourceManager.GetString("DoNotIncludeSubdocsInStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether a visual cue should be displayed around form fields contained in a WordprocessingML document specified via the FORMTEXT, FORMCHECKBOX, or FORMDROPDOWN fields..
+        /// </summary>
+        public static string DoNotShadeFormData {
+            get {
+                return ResourceManager.GetString("DoNotShadeFormData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to the formatting of this WordprocessingML document when the trackRevisions element (§17.15.1.89) is turned on..
+        /// </summary>
+        public static string DoNotTrackFormatting {
+            get {
+                return ResourceManager.GetString("DoNotTrackFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall not track revisions made to this WordprocessingML document as moves when the trackRevisions element (§17.15.1.89) is turned on, even when that syntax is appropriate. Instead, applications should use a standard insertion and deletion annotation syntax. Existing moves shall not be modified. &lt;p/&gt;Rationale: This element is provided to enable interoperability with earlier word processing applications which do not understand moves..
+        /// </summary>
+        public static string DoNotTrackMoves {
+            get {
+                return ResourceManager.GetString("DoNotTrackMoves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the top-left corner of the page shall not be used as the origin for the drawing grid. The drawing grid is a virtual grid which can be used by applications to specify where drawing objects shall be positioned on a page when inserted (i.e. to ensure objects are aligned, etc.). If this element is present the grid shall start at the top-left edge of the page and not the text extents..
+        /// </summary>
+        public static string DoNotUseMarginsForDrawingGridOrigin {
+            get {
+                return ResourceManager.GetString("DoNotUseMarginsForDrawingGridOrigin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall not validate the custom XML markup in this document against the applicable custom XML schema(s), even when those schemas are available. The application should silently behave as if it was unable to provide this functionality..
+        /// </summary>
+        public static string DoNotValidateAgainstSchema {
+            get {
+                return ResourceManager.GetString("DoNotValidateAgainstSchema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the distance from of the left edge of the page which shall be used as the origin for the horizontal gridlines used by the drawing grid. The drawing grid is a virtual grid which might be used by applications to specify where drawing objects shall be positioned on a page when inserted (i.e. to ensure objects are aligned, etc.). Since the grid always covers the entire page when the doNotUseMarginsForDrawingGridOrigin element (§17.15.1.42) is specified, this element shall only affect the starting edge [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DrawingGridHorizontalOrigin {
+            get {
+                return ResourceManager.GetString("DrawingGridHorizontalOrigin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the width of horizontal grid units in this document. The drawing grid is a grid which can be used by applications to help position floating objects in the document.&lt;p/&gt;If this element is omitted, then each horizontal grid unit shall be 180 twentieths of a point (0.125&quot;) in width..
+        /// </summary>
+        public static string DrawingGridHorizontalSpacing {
+            get {
+                return ResourceManager.GetString("DrawingGridHorizontalSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the distance from of the top edge of the page which shall be used as the origin for the vertical gridlines used by the drawing grid. The drawing grid is a virtual grid which can be used by applications to specify where drawing objects shall be positioned on a page when inserted (i.e. to ensure objects are aligned, etc.). Since the grid always covers the entire page when the doNotUseMarginsForDrawingGridOrigin element (§17.15.1.42) is specified, this element shall only affect the starting edge of t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DrawingGridVerticalOrigin {
+            get {
+                return ResourceManager.GetString("DrawingGridVerticalOrigin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the width of vertical grid units in this document. The drawing grid is a grid which can be used by applications to help position floating objects in the document.&lt;p/&gt;If this element is omitted, then each vertical grid unit shall be 180 twentieths of a point (0.125&quot;) in width..
+        /// </summary>
+        public static string DrawingGridVerticalSpacing {
+            get {
+                return ResourceManager.GetString("DrawingGridVerticalSpacing", resourceCulture);
             }
         }
         
@@ -286,11 +709,65 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies if the document protection RunProperties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced..
+        ///   Looks up a localized string similar to Specifies that applications shall embed common system fonts when they are in use and font embedding is enabled for this document using the embedTrueTypeFonts element (§17.8.3.8). Common system fonts refer to a set of fonts which are typically always present on a machine, and are not defined by IEEE/IEC 29500..
+        /// </summary>
+        public static string EmbedSystemFonts {
+            get {
+                return ResourceManager.GetString("EmbedSystemFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall embed the fonts in use in this document when it is saved. These fonts shall be embedded subject to the algorithm specified in §17.8.1..
+        /// </summary>
+        public static string EmbedTrueTypeFonts {
+            get {
+                return ResourceManager.GetString("EmbedTrueTypeFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the endnote properties for the current document. Each of these properties are stored as a child element within the endnotePr element.&lt;p/&gt;These properties can be overridden for a specific section via the section-wide endnotePr element (§17.11.5)..
+        /// </summary>
+        public static string EndnoteDocumentWideProperties {
+            get {
+                return ResourceManager.GetString("EndnoteDocumentWideProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if the document protection Properties shall be enforced for a given WordprocessingML document. If the value of this element is off, 0, or false, all the WordprocessingML pertaining to document protection is still preserved in the document, but is not enforced. If the value of this element is on, 1, or true, the document protection is enforced..
         /// </summary>
         public static string Enforcement {
             get {
                 return ResourceManager.GetString("Enforcement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether sections in this document shall have different headers and footers for even and odd pages (an odd page header/footer and an even page header/footer).&lt;p/&gt;If the val attribute is set to true, then each section in the document shall use an odd page header for all odd numbered pages in the section, and an even page header for all even numbered pages in the section (counting each page in the section starting from one, regardless of the page numbering Properties for the section). If the val attr [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string EvenAndOddHeaders {
+            get {
+                return ResourceManager.GetString("EvenAndOddHeaders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the footnote properties for this document. Each property is stored as a unique element within the footnotePr element.&lt;p/&gt;These properties can be overridden for a specific section via the section-wide footnotePr element (§17.11.11)..
+        /// </summary>
+        public static string FootnoteDocumentWideProperties {
+            get {
+                return ResourceManager.GetString("FootnoteDocumentWideProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the contents of this document can be upgraded and that the resulting document shall not have its functionality limited to only those functions compatible with earlier word processing applications. The only actions required as part of upgrading the document are:&lt;br/&gt;• The removal of this element. If an application does not know how to upgrade a document, this element should be ignored and persisted.&lt;br/&gt;• The removal of all compatibility options (§17.15.1.21) on the document which maintain com [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ForceUpgrade {
+            get {
+                return ResourceManager.GetString("ForceUpgrade", resourceCulture);
             }
         }
         
@@ -300,6 +777,24 @@ namespace DocxControls.Resources {
         public static string Formatting {
             get {
                 return ResourceManager.GetString("Formatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the document was last saved while the placeholder text of all structured document tags in this document were being edited. This means that the placeholder text currently displayed in all structured document tags which are displaying the showingPlcHdr element (§17.5.2.39) shall be committed to the corresponding glossary document entry as specified using the docPart element (§17.12.5) when this document is opened, in order to ensure that the most recent placeholder text is stored in the glossar [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string FormsDesign {
+            get {
+                return ResourceManager.GetString("FormsDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that a given WordprocessingML document’s gutter shall be positioned at the top of the document’s pages when the document is displayed. A gutter is the white space formed by the inner margins of two pages facing one another; such as the white space between the text on pages of a book when the book is opened.&lt;p/&gt;If this element is omitted, then the gutter shall not be positioned at the top of the page. If the mirrorMargins (§17.15.1.57), bookFoldPrinting (§17.15.1.11), bookFoldRevPrinting (§17.15.1. [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GutterAtTop {
+            get {
+                return ResourceManager.GetString("GutterAtTop", resourceCulture);
             }
         }
         
@@ -322,11 +817,38 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the header and footer of a WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of IEEE/IEC 29500..
+        /// </summary>
+        public static string HeaderShapeDefaults {
+            get {
+                return ResourceManager.GetString("HeaderShapeDefaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading pairs indicates the grouping of document parts and the number of parts in each group. These parts are not document parts but conceptual representations of document sections..
         /// </summary>
         public static string HeadingPairs {
             get {
                 return ResourceManager.GetString("HeadingPairs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether a visual cue should be displayed around run content contained in a WordprocessingML document which has been flagged as a possible grammatical error using the proofErr element (§17.13.8.1) or via the application&apos;s own grammar engine..
+        /// </summary>
+        public static string HideGrammaticalErrors {
+            get {
+                return ResourceManager.GetString("HideGrammaticalErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether a visual cue should be displayed around run content contained in a WordprocessingML document which has been flagged as a possible spelling error using the proofErr element (§17.13.8.1) or via the application&apos;s own spelling engine..
+        /// </summary>
+        public static string HideSpellingErrors {
+            get {
+                return ResourceManager.GetString("HideSpellingErrors", resourceCulture);
             }
         }
         
@@ -358,11 +880,29 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the hyphenation zone which shall be used when automatically or manually hyphenating the contents of this document. The hyphenation zone is the amount of whitespace which can be left at the end of a line (or added to justified lines) before hyphenation should be attempted on the next word in the document (in order to reduce the amount of whitespace on the line). A smaller hyphenation zone should reduce the raggedness of the right edge of a given document&apos;s body text, as more words is hyphenated. Co [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HyphenationZone {
+            get {
+                return ResourceManager.GetString("HyphenationZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A string that identifies this document.
         /// </summary>
         public static string Identifier {
             get {
                 return ResourceManager.GetString("Identifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications should ignore all text content which is not contained within a leaf custom XML markup element when validating the contents of the custom XML markup in this document against one or more attached custom XML schema(s). A leaf element is a custom XML element which has no child custom XML elements (it is a leaf in the custom XML tree)..
+        /// </summary>
+        public static string IgnoreMixedContent {
+            get {
+                return ResourceManager.GetString("IgnoreMixedContent", resourceCulture);
             }
         }
         
@@ -412,6 +952,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that styles in the given document shall be updated to match the styles in the attached template specified using the attachedTemplate element (§17.15.1.6) when the document is opened by a hosting application. This setting enables the styles contained in documents with attached templates to stay synchronized with the styles used in the attached template..
+        /// </summary>
+        public static string LinkStyles {
+            get {
+                return ResourceManager.GetString("LinkStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indicates whether hyperlinks in a document are up-to-date. Set this element to TRUE to indicate that hyperlinks are updated. Set this element to FALSE to indicate that hyperlinks are outdated..
         /// </summary>
         public static string LinksUpToDate {
@@ -421,11 +970,47 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the character that shall be interpreted as a list item separator when evaluating the contents of all fields in the current document.&lt;p/&gt;Rationale: When evaluating field instructions based on the contents of the current document, it is necessary to know the character which must be treated as the list separator in order to prevent changes to the calculation of the same field instructions based on the current user&apos;s locale. This element stores the list separator which must be used to evaluate fields  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ListSeparator {
+            get {
+                return ResourceManager.GetString("ListSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies all of the mail merge information for a document that has been connected to an external data source as part of a mail merge operation.&lt;p/&gt;The document which contains this mail merge data can be of one of two types:&lt;br/&gt;• A source document, the document which contains all of the information for the mail merge, and is used in conjunction with an application to connect to an external data source and create one document for each record in that data source.&lt;br/&gt;• A merged document, a document which con [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string MailMerge {
+            get {
+                return ResourceManager.GetString("MailMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the name of a supervisor associated with the document..
         /// </summary>
         public static string Manager {
             get {
                 return ResourceManager.GetString("Manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the document-level properties for all math in the document..
+        /// </summary>
+        public static string MathProperties {
+            get {
+                return ResourceManager.GetString("MathProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the left and right margins defined in the section properties shall be swapped on facing pages.&lt;p/&gt;Guidance: This setting is generally used when printing on both sides of pages and binding them like a book..
+        /// </summary>
+        public static string MirrorMargins {
+            get {
+                return ResourceManager.GetString("MirrorMargins", resourceCulture);
             }
         }
         
@@ -448,6 +1033,33 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from ending a line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of IEEE/IEC 29500..
+        /// </summary>
+        public static string NoLineBreaksAfterKinsoku {
+            get {
+                return ResourceManager.GetString("NoLineBreaksAfterKinsoku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of characters which shall be restricted from beginning a new line for runs of text which shall be subject to custom line breaking logic using the kinsoku element (§17.3.1.16) when the contents of the document are displayed. This constraint shall only apply to text which has been flagged in the language of this rule via the lang element (§17.3.2.20) or automatic detection methods outside the scope of IEEE/IEC 29500..
+        /// </summary>
+        public static string NoLineBreaksBeforeKinsoku {
+            get {
+                return ResourceManager.GetString("NoLineBreaksBeforeKinsoku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that punctuation characters shall not be kerned in the current document when kerning is enabled on a run using the kern element (§17.3.2.19). Kerning refers to a process by which a hosting application shall reduce the spacing of adjacent characters and/or punctuation to improve the visual appearance of text. Well kerned text has a similar amount of blank space between each pair of characters and/or each set of a character and punctuation symbol. When kerning is enabled, Latin text shall always be  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string NoPunctuationKerning {
+            get {
+                return ResourceManager.GetString("NoPunctuationKerning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the total number of pages of a document if applicable..
         /// </summary>
         public static string Pages {
@@ -466,6 +1078,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies a unique identifier for a set of documents derived from a common source. The possible values for this attribute are defined by the ST_Guid simple type.
+        /// </summary>
+        public static string PersistentDocumentId {
+            get {
+                return ResourceManager.GetString("PersistentDocumentId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the intended format for a presentation document. For example, a presentation intended to be shown on video has PresentationFormat &quot;Video&quot;..
         /// </summary>
         public static string PresentationFormat {
@@ -475,11 +1096,101 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that printing the contents of this document shall only print the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in their current locations on the page - all other document contents shall be suppressed.&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting online document to be printed into the correct locations on the existing paper form..
+        /// </summary>
+        public static string PrintFormsData {
+            get {
+                return ResourceManager.GetString("PrintFormsData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the contents of this document shall be printed with fractional character widths. Fractional character widths exist when the spacing between characters is not constant (i.e. a proportional font face is used).&lt;p/&gt;Note: Fractional character widths are generally used in conjunction with large font sizes to prevent characters from running together or having too much space between one another..
+        /// </summary>
+        public static string PrintFractionalCharacterWidth {
+            get {
+                return ResourceManager.GetString("PrintFractionalCharacterWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the PostScript codes specified in WordprocessingML documents containing PRINT fields shall be included in foreground (on the same Z-order as text) with the data printed in the contents of a given WordprocessingML document.&lt;p/&gt;Note: This setting is maintained to ensure compatibility of legacy word processing documents. The PRINT field should not be used in lieu of newer technologies in IEEE/IEC 29500..
+        /// </summary>
+        public static string PrintPostScriptOverText {
+            get {
+                return ResourceManager.GetString("PrintPostScriptOverText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether two pages should be printed on one sheet of paper when this document is printed. Specifically, this element specifies that each page displayed for the contents in a given WordprocessingML document should be the page size specified in the section Properties divided in half with two top margins originating from the bisector of the page, and bottom margins instantiated at the top and bottom of each page..
+        /// </summary>
+        public static string PrintTwoOnOne {
+            get {
+                return ResourceManager.GetString("PrintTwoOnOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if the grammar and spell checking engines of the last application to process this document completed checking the grammar and spelling of a the document before the document was last saved. Applications which modify the document contents without checking spelling or grammar should reset these states as needed.&lt;p/&gt;Note: If this element specifies that an application&apos;s grammar and spell checking engines completed checking the grammar and spelling of the document when the document was last saved, then  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ProofState {
+            get {
+                return ResourceManager.GetString("ProofState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the exact set of page and text sizing parameters which shall be used to display the contents of a WordprocessingML document. &lt;p/&gt;Rationale: This setting is typically used for documents that have been annotated using ink. This setting freezes the document&apos;s presentation such that the ink annotations must exist at the same position of the WordprocessingML document irrespective of the monitor on which the WordprocessingML document is rendered. &lt;p/&gt;This element shall only affect the display of Wordpro [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ReadModeInkLockDown {
+            get {
+                return ResourceManager.GetString("ReadModeInkLockDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the date and time information shall be removed from all annotations which are present in the current document when it is saved. Annotations store this information in the date attribute on the annotation&apos;s XML element..
+        /// </summary>
+        public static string RemoveDateAndTime {
+            get {
+                return ResourceManager.GetString("RemoveDateAndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that hosting applications shall remove all personal information of document authors upon saving a given WordprocessingML document. The definition and extent of personal information is not defined by IEEE/IEC 29500..
+        /// </summary>
+        public static string RemovePersonalInformation {
+            get {
+                return ResourceManager.GetString("RemovePersonalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indicates the number of changed saves or revisions.&lt;p/&gt;The application is responsible for updating the Revision property value after each revision..
         /// </summary>
         public static string Revision {
             get {
                 return ResourceManager.GetString("Revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies which forms of annotations shall be visible for a WordprocessingML document when it is displayed. This setting shall not affect whether annotations are added or persisted, it shall only affect the display of the annotations which exist in the document&apos;s contents (persisted or in memory)..
+        /// </summary>
+        public static string RevisionView {
+            get {
+                return ResourceManager.GetString("RevisionView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of revision save ID values for the current document. Revision save ID values refer to four digit hexadecimal values which uniquely identify an editing session in the life of the current document. An editing session is the period of time between two subsequent save operations by an application.&lt;p/&gt;Guidance: The set of revision save IDs stored with a document only supplies information about the editing session in which document components were last saved, which can be used by applications in [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Rsids {
+            get {
+                return ResourceManager.GetString("Rsids", resourceCulture);
             }
         }
         
@@ -502,6 +1213,60 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that saving the contents of this document shall only save the contents of WordprocessingML form fields defined using the FORMTEXT, FORMCHECKBOX, and FORMDROPDOWN field codes in a comma-delimited text format which does not conform to IEEE/IEC 29500 (i.e. it is a one-way export from a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to allow duplication of paper forms in electronic WordprocessingML document form, allowing the resulting content to be extracted as a comma-delim [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SaveFormsData {
+            get {
+                return ResourceManager.GetString("SaveFormsData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that this document should be capable of being saved into a format consisting of a single XML file (not defined by IEEE/IEC 29500) when its contents are invalid based XML schema validation of the custom XML markup contained in the document. This setting has no effect on documents that do not contain custom XML markup, or that do contain custom XML markup but do not have a schema attached. &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SaveInvalidXml {
+            get {
+                return ResourceManager.GetString("SaveInvalidXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies if a document&apos;s Thumbnail part should be generated for the contents of the first page of this document when saved by application which support document thumbnail generation.&lt;p/&gt;If this element is omitted, then applications can choose to save a thumbnail, however, that behavior is not required. If this element is specified, a thumbnail shall be produced if that functionality is supported..
+        /// </summary>
+        public static string SavePreviewPicture {
+            get {
+                return ResourceManager.GetString("SavePreviewPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall subset fonts when font embedding is enabled for this document using the embedTrueTypeFonts element (§17.8.3.8). Subsetting is a mechanism by which only the glyphs used in the contents of this WordprocessingML document are stored in an embedded font, in order to prevent the file from becoming unnecessarily large from the use of a small number of glyphs from a large embedded font.&lt;p/&gt;If this element is omitted, then the set of fonts should not be subsetted in the current docu [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SaveSubsetFonts {
+            get {
+                return ResourceManager.GetString("SaveSubsetFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the location of a custom XSL transform which shall be used when this document is saved as a single XML file (in a format not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional..
+        /// </summary>
+        public static string SaveThroughXslt {
+            get {
+                return ResourceManager.GetString("SaveThroughXslt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that the contents of this document shall be saved as an XML file containing only the custom XML markup in this document in its regular form. The resulting document does not conform to IEEE/IEC 29500 (i.e. this is an export-only save option for a WordprocessingML document).&lt;p/&gt;Rationale: This setting is typically used to extract custom XML markup from a WordprocessingML document for further processing by XML-enabled applications..
+        /// </summary>
+        public static string SaveXmlDataOnly {
+            get {
+                return ResourceManager.GetString("SaveXmlDataOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indicates the display mode of the document thumbnail. Set this element to TRUE to enable scaling of the document thumbnail to the display. Set this element to FALSE to enable cropping of the document thumbnail to show only sections that fits the display..
         /// </summary>
         public static string ScaleCrop {
@@ -511,11 +1276,47 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the set of XML namespaces which have been associated with the contents of the custom XML markup within the current Office OpenDocument XML document. Each unique namespace which is referenced within the document can be referenced within this element by a single schema element, regardless of the number of constituent XML schemas which comprise that namespace..
+        /// </summary>
+        public static string SchemaLibrary {
+            get {
+                return ResourceManager.GetString("SchemaLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the default parameters for object using the VML syntax (§14.1) inserted in the body (the main document story, comments, footnotes, and endnotes) of the WordprocessingML document. The definition and semantics of these parameters is described in the VML - Office Drawing subclause (§14.2) of IEEE/IEC 29500..
+        /// </summary>
+        public static string ShapeDefaults {
+            get {
+                return ResourceManager.GetString("ShapeDefaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indicates if this document is currently shared between multiple producers. If this element is set to TRUE, producers should take care when updating the document..
         /// </summary>
         public static string SharedDocument {
             get {
                 return ResourceManager.GetString("SharedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that an e-mail message header shall be displayed when this document is opened, if an e-mail header is supported by the application opening the file..
+        /// </summary>
+        public static string ShowEnvelope {
+            get {
+                return ResourceManager.GetString("ShowEnvelope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that some visual indicator shall be provided for the start and end locations of custom XML markup present in this document, if any..
+        /// </summary>
+        public static string ShowXmlTags {
+            get {
+                return ResourceManager.GetString("ShowXmlTags", resourceCulture);
             }
         }
         
@@ -530,6 +1331,51 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that the strict set of Kinsoku rules shall be applied to Japanese text in this document when the kinsoku element (§17.3.1.16) is applied to that text. The resulting line breaking rules are provided on the kinsoku element..
+        /// </summary>
+        public static string StrictFirstAndLastChars {
+            get {
+                return ResourceManager.GetString("StrictFirstAndLastChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether applications shall prevent the replacement of the complete set of styles stored in the Styles part when editing this document. This setting should not preclude the editing or removal of individual styles, instead, it should only prevent the removal and replacement of the entire styles part in a single operation (either through a user interface or a programmatic operation)..
+        /// </summary>
+        public static string StyleLockStylesPart {
+            get {
+                return ResourceManager.GetString("StyleLockStylesPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether applications shall prevent the modification of the document&apos;s theme information stored in the Theme part when editing this document. This setting should not preclude the use of the theme information, instead, it should only prevent the modification of the theme part in a single operation (either through a user interface or a programmatic operation)..
+        /// </summary>
+        public static string StyleLockThemesPart {
+            get {
+                return ResourceManager.GetString("StyleLockThemesPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies a sorting which should be applied to the list of styles in this document if the styles are displayed in a user interface..
+        /// </summary>
+        public static string StylePaneFormatFilter {
+            get {
+                return ResourceManager.GetString("StylePaneFormatFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies a sorting which should be applied to the list of styles in this document if the styles are displayed in a user interface..
+        /// </summary>
+        public static string StylePaneSortMethods {
+            get {
+                return ResourceManager.GetString("StylePaneSortMethods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A string that identifies the topic of this document.
         /// </summary>
         public static string Subject {
@@ -539,11 +1385,29 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the size for automatic document summaries performed on the content of a WordprocessingML document. An automatic document summary is a subset of text contained in a document deemed by the hosting application to summarize the content of the WordprocessingML document. The val attribute of this element specifies the size of an automatic document summary to be performed on a given WordprocessingML document as a percentage of the total size of the given WordprocessingML document. &lt;p/&gt;Performing an autom [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SummaryLength {
+            get {
+                return ResourceManager.GetString("SummaryLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the name of an external document template containing format and style information used to create the current document..
         /// </summary>
         public static string Template {
             get {
                 return ResourceManager.GetString("Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the language which shall be used to determine the appropriate theme fonts in the document&apos;s Theme part which map to the major/minor theme fonts. Specifically, the bidi attribute is used to determine the theme font applied to complex script text, the eastAsia attribute is used to determine the theme font applied to East Asian text, and the val attribute is used to determine the theme font applied to all other text..
+        /// </summary>
+        public static string ThemeFontLanguages {
+            get {
+                return ResourceManager.GetString("ThemeFontLanguages", resourceCulture);
             }
         }
         
@@ -575,6 +1439,42 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies that applications shall track revisions made to the WordprocessingML document. Revisions are changes to a WordprocessingML document which are recorded such that they can be viewed independently, accepted or removed, and reverted if needed. When revisions are tracked, the resulting WordprocessingML markup in the Revisions subclause of this document describes the necessary syntax..
+        /// </summary>
+        public static string TrackRevisions {
+            get {
+                return ResourceManager.GetString("TrackRevisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disables features incompatible with earlier word processing formats..
+        /// </summary>
+        public static string UICompatibleWith97To2003 {
+            get {
+                return ResourceManager.GetString("UICompatibleWith97To2003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether the fields contained in this document should automatically have their field result recalculated from the field codes when this document is opened by an application which supports field calculations. &lt;p/&gt;Note: Some fields are always recalculated (e.g. the page numbering), therefore this element only affects fields which are typically not automatically recalculated on opening the document. Also note that this setting must not supersede any document protection (§17.15.1.29) or write protectio [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string UpdateFieldsOnOpen {
+            get {
+                return ResourceManager.GetString("UpdateFieldsOnOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies that this document should be saved through the custom XSLT transform defined by the saveThroughXslt element (§17.15.1.76) in this document when it is saved as a single XML file (not defined by IEEE/IEC 29500). &lt;p/&gt;Guidance: Because this setting specifies behavior when saving to an alternative file format not defined by IEEE/IEC 29500, this behavior is optional. &lt;p/&gt;If the saveXmlDataOnly element (§17.15.1.77) is specified, then the single XML file to be transformed is the custom XML markup of the  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string UseXsltWhenSaving {
+            get {
+                return ResourceManager.GetString("UseXsltWhenSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A string that identifies the version of this document.
         /// </summary>
         public static string Version {
@@ -584,11 +1484,38 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the manner in which the contents of this document should be displayed when opened by an application..
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the total number of words contained in a document when last saved..
         /// </summary>
         public static string Words {
             get {
                 return ResourceManager.GetString("Words", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the write protection Properties which have been applied to a WordprocessingML document. Write protection refers to a mode in which the document&apos;s contents cannot be edited, and the document cannot be resaved using the same file name. This setting is independent of the documentProtection (§17.15.1.29) element, but like document protection, this setting is not intended as a security feature and can be ignored.&lt;p/&gt;When present, the write protection shall result in one of two write protection behavior [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string WriteProtection {
+            get {
+                return ResourceManager.GetString("WriteProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the magnification level which should be applied to a document when it is displayed by an application. The zoom level is specified with the use of two attributes stored on this element:&lt;br/&gt;• val, which stores the type of zoom applied to the document&lt;br/&gt;• percent, which stores the zoom percentage to be used when rendering the document&lt;p/&gt;If both attributes are present, then the percent attribute shall be treated as a &apos;cached&apos; value and only used when the value none is specified for the val attribu [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Zoom {
+            get {
+                return ResourceManager.GetString("Zoom", resourceCulture);
             }
         }
     }
