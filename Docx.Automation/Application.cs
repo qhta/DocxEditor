@@ -5,13 +5,24 @@
 /// </summary>
 public interface Application
 {
+  #region properties
 
+  /// <summary>
+  /// Returns a Window object that represents the active window (the window with the focus).
+  /// May be null if no window is active.
+  /// </summary>
+  public Window? ActiveWindow { get; }
+
+  /// <summary>
+  /// Collection of documents.
+  /// </summary>
+  public Documents Documents { get; }
 
   //ActiveDocument
   //ActiveEncryptionSession
   //  ActivePrinter
   //  ActiveProtectedViewWindow
-  //  ActiveWindow
+
   //  AddIns
   //  Application
   //  ArbitraryXMLSupportAvailable
@@ -46,12 +57,6 @@ public interface Application
   //  DisplayRecentFiles
   //  DisplayScreenTips
   //  DisplayScrollBars
-
-  /// <summary>
-  /// Collection of documents.
-  /// </summary>
-  public Documents Documents { get; }
-
   //  DontResetInsertionPointProperties
   //  EmailOptions
   //  EmailTemplate
@@ -133,9 +138,21 @@ public interface Application
   //  WindowState
   //  WordBasic
   //  XMLNamespaces
+  #endregion
 
+  #region methods
 
-  //Activate
+  /// <summary>
+  /// Activates the specified window.
+  /// </summary>
+  /// <param name="window"></param>
+  public void Activate(Window window);
+
+  /// <summary>
+  /// Creates a new window for existing document.
+  /// </summary>
+  public Window NewWindow(Document document);
+
   //  AddAddress
   //AutomaticChange
   //  BuildKeyCode
@@ -171,7 +188,6 @@ public interface Application
   //  MergeDocuments
   //MillimetersToPoints
   //  Move
-  //NewWindow
   //  NextLetter
   //OnTime
   //  OrganizerCopy
@@ -188,7 +204,7 @@ public interface Application
   //PrintOut
   //  ProductCode
   //PutFocusInMailHeader
-  //  Quit
+  //  OnQuit
   //Repeat
   //  ResetIgnoreAll
   //Resize
@@ -199,5 +215,80 @@ public interface Application
   //  ShowMe
   //SubstituteFont
   //  ToggleKeyboard
+  #endregion
 
+  #region events
+  /// <summary>
+  /// Occurs when the application is about to quit.
+  /// </summary>
+  public event EventHandler? OnQuit;
+
+  /// <summary>
+  /// Occurs when a new document is created.
+  /// </summary>
+  public event DocumentEventHandler? DocumentCreated;
+
+  /// <summary>
+  /// Occurs when a document is opened.
+  /// </summary>
+  public event DocumentEventHandler? DocumentOpened;
+
+  /// <summary>
+  /// Occurs when a new document is created, when an existing document is opened,
+  /// or when another document is made the active document.
+  /// </summary>
+  public event EventHandler? DocumentChanged;
+
+  /// <summary>
+  /// Occurs immediately before any open document is saved.
+  /// </summary>
+  public event DocumentSaveEventHandler? DocumentBeforeSave;
+
+  /// <summary>
+  /// Occurs immediately before any open document closes.
+  /// </summary>
+  public event DocumentCloseEventHandler? DocumentBeforeClose;
+
+  //  DocumentBeforePrint
+  //  DocumentSync
+
+  /// <summary>
+  /// Occurs when any document window is activated.
+  /// </summary>
+  public event DocumentWindowEventHandler? WindowActivated;
+
+  /// <summary>
+  /// Occurs when any document window is deactivated.
+  /// </summary>
+  public event DocumentWindowEventHandler? WindowDeactivated;
+
+  //WindowBeforeDoubleClick
+  //WindowBeforeRightClick
+  //WindowSelectionChange
+  //WindowSize
+
+  //EPostageInsert
+  //  EPostageInsertEx
+  //EPostagePropertyDialog
+  //  MailMergeAfterMerge
+  //MailMergeAfterRecordMerge
+  //  MailMergeBeforeMerge
+  //MailMergeBeforeRecordMerge
+  //  MailMergeDataSourceLoad
+  //MailMergeDataSourceValidate
+  //  MailMergeDataSourceValidate2
+  //MailMergeWizardSendToCustom
+  //  MailMergeWizardStateChange
+  //  ProtectedViewWindowActivate
+  //ProtectedViewWindowBeforeClose
+  //  ProtectedViewWindowBeforeEdit
+  //ProtectedViewWindowDeactivate
+  //  ProtectedViewWindowOpen
+  //ProtectedViewWindowSize
+
+
+  //XMLSelectionChange
+  //  XMLValidationError
+
+  #endregion
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocxControls.Views"
         mc:Ignorable="d"
+        GotFocus="DocumentWindow_OnGotFocus"
         Title="{Binding WindowTitle}" Height="450" Width="800">
-  <local:DocumentView/>
+    <local:DocumentView x:Name="ContentView"/>
 </Window>

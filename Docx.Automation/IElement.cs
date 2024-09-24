@@ -6,7 +6,7 @@
 public interface IElement
 {
   /// <summary>
-  /// Returns an Application object that represents the DocxControls application.
+  /// Returns an object that represents the DocxControls application.
   /// </summary>
   public Application Application { get; }
 

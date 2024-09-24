@@ -7,55 +7,56 @@ namespace Docx.Automation;
 /// </summary>
 public interface Window: IVisualElement
 {
-  ///// <summary>
-  ///// True if the specified window is active.
-  ///// </summary>
-  //public bool Active { get; }
+  #region properties
+  /// <summary>
+  /// Returns a Document object associated with the specified window.
+  /// </summary>
+  public Document Document { get; }
 
-  ///// <summary>
-  ///// Returns or sets the caption text for the window that is displayed in the title bar of the document or application window.
-  ///// </summary>
-  //public string? Caption { get; set; }
+  /// <summary>
+  /// True if the specified window is active.
+  /// </summary>
+  public bool Active => Application.ActiveWindow == this;
 
-  ///// <summary>
-  ///// Returns a Document object associated with the specified window.
-  ///// </summary>
-  //public Document Document { get; }
+  /// <summary>
+  /// Returns or sets the caption text for the window that is displayed in the title bar of the document or application window.
+  /// </summary>
+  public string? Caption { get; set; }
 
-  ///// <summary>
-  ///// Returns or sets the horizontal position of the specified window, measured in points.
-  ///// </summary>
-  //public int Left { get; set; }
+  /// <summary>
+  /// Returns or sets the horizontal position of the specified window.
+  /// </summary>
+  public double Left { get; set; }
 
-  ///// <summary>
-  ///// Returns or sets the vertical position of the specified document window, in points.
-  ///// </summary>
-  //public int Top { get; set; }
+  /// <summary>
+  /// Returns or sets the vertical position of the specified document window.
+  /// </summary>
+  public double Top { get; set; }
 
-  ///// <summary>
-  ///// Returns or sets the width of the specified document window, in points.
-  ///// </summary>
-  //public int Width { get; set; }
+  /// <summary>
+  /// Returns or sets the width of the specified document window.
+  /// </summary>
+  public double Width { get; set; }
 
-  ///// <summary>
-  ///// Returns or sets the height of the window (in points).
-  ///// </summary>
-  //public int Height { get; set; }
+  /// <summary>
+  /// Returns or sets the height of the window.
+  /// </summary>
+  public double Height { get; set; }
 
-  ///// <summary>
-  ///// Returns the width (in points) of the active working area in the specified document window.
-  ///// </summary>
-  //public int UsableWidth { get; }
+  /// <summary>
+  /// Returns the width of the active working area in the specified document window.
+  /// </summary>
+  public double UsableWidth { get; }
 
-  ///// <summary>
-  ///// Returns the height (in points) of the active working area in the specified document window.
-  ///// </summary>
-  //public int UsableHeight { get; }
-  
-  ///// <summary>
-  ///// True if the specified object is visible. Read/write Boolean.
-  ///// </summary>
-  //public bool Visible { get; set; }
+  /// <summary>
+  /// Returns the height of the active working area in the specified document window.
+  /// </summary>
+  public double UsableHeight { get; }
+
+  /// <summary>
+  /// True if the specified object is visible. Read/write Boolean.
+  /// </summary>
+  public bool Visible { get; set; }
 
   ///// <summary>
   ///// Returns a Panes collection that represents all the window panes for the specified window.
@@ -73,14 +74,14 @@ public interface Window: IVisualElement
   //public bool DisplayHorizontalScrollBar { get; set; }
 
   ///// <summary>
-  ///// True if the vertical scroll bar appears on the left side of the document window.
-  ///// </summary>
-  //public bool DisplayLeftScrollBar { get; set; }
-
-  ///// <summary>
   ///// True if a vertical scroll bar is displayed for the specified window. Read/write Boolean.
   ///// </summary>
   //public bool DisplayVerticalScrollBar { get; set; }
+
+  ///// <summary>
+  ///// True if the vertical scroll bar appears on the left side of the document window.
+  ///// </summary>
+  //public bool DisplayLeftScrollBar { get; set; }
 
   ///// <summary>
   ///// True if rulers are displayed for the specified window or pane. Read/write Boolean.
@@ -198,6 +199,9 @@ public interface Window: IVisualElement
   ///// </summary>
   //public Range Selection { get; }
 
+  #endregion
+
+  #region methods
   ///// <summary>
   ///// Activates the specified window.
   ///// </summary>
@@ -286,13 +290,16 @@ public interface Window: IVisualElement
   ///// Scrolls through the document window so the specified range or shape is displayed in the document window.
   ///// </summary>
   ///// <param name="obj">A Range or Shape object.</param>
-  ///// <param name="start">True if the upper-left corner of the range or shape appears at the upper-left corner of the document window.
-  ///// False if the lower-right corner of the range or shape appears at the lower-right corner of the document window. The default value is True.</param>
+  ///// <param name="start">True if the upper-left corner of the range or shape appears in the upper-left corner of the document window.
+  ///// False if the lower-right corner of the range or shape appears in the lower-right corner of the document window. The default value is True.</param>
   //public void ScrollIntoView(object obj, bool? start = true);
 
   ///// <summary>
   ///// If the ribbon is visible, the ToggleRibbon method hides it; if the ribbon is hidden, the ToggleRibbon method shows it.
   ///// </summary>
   //public void ToggleRibbon();
+
+  #endregion
+
 }
 

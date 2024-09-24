@@ -25,9 +25,15 @@ public interface Document: IElement
   /// </summary>
   public CustomDocumentProperties CustomDocumentProperties { get;}
 
+  /// <summary>
+  /// Returns a Window object that represents the active window (the window with the focus) that contains the document.
+  /// May be null if no window is active or the document is not opened in the active window.
+  /// </summary>
+  public Window? ActiveWindow { get; }
+
   //ActiveTheme
   //ActiveThemeDisplayName
-  //  ActiveWindow
+
   //  ActiveWritingStyle
 
   //  AttachedTemplate
@@ -311,5 +317,32 @@ public interface Document: IElement
   //  ViewCode
   //ViewPropertyBrowser
   //  WebPagePreview
+  /// <summary>
+  /// Occurs when a new document based is created.
+  /// </summary>
+  public event EventHandler Created;
+
+  /// <summary>
+  /// Occurs when the document is opened.
+  /// </summary>
+  public event EventHandler Opened;
+
+  /// <summary>
+  /// Occurs when the document is closed.
+  /// </summary>
+  public event EventHandler Closed;
+  //  Open
+  //  Close
+
+  //BuildingBlockInsert
+  //ContentControlAfterAdd
+  //  ContentControlBeforeContentUpdate
+  //ContentControlBeforeDelete
+  //  ContentControlBeforeStoreUpdate
+  //ContentControlOnEnter
+  //  ContentControlOnExit
+  //Sync
+  //  XMLAfterInsert
+  //XMLBeforeDelete
 
 }

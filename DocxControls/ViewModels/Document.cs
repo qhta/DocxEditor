@@ -1,5 +1,7 @@
 ﻿using System.IO;
 
+using Docx.Automation;
+
 using DocxControls.Helpers;
 
 using Qhta.MVVM;
@@ -19,7 +21,11 @@ public class Document : ViewModel, DA.Document, IEditable
   }
 
   #region IElement implementation
-  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
+  /// <summary>
+  /// Returns the application object that represents the DocxEditor application.
+  /// </summary>
+  public DA.Application Application => DocxControls.Application.Instance;
+
   object? DA.IElement.Parent => Owner;
   #endregion
 
@@ -53,6 +59,7 @@ public class Document : ViewModel, DA.Document, IEditable
     {
       WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(filePath, isEditable);
     }
+    Opened?.Invoke(this, EventArgs.Empty);
   }
 
   /// <summary>
@@ -63,6 +70,7 @@ public class Document : ViewModel, DA.Document, IEditable
     IsEditable = true;
     TempFilePath = System.IO.Path.GetTempFileName();
     WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Create(TempFilePath, DX.WordprocessingDocumentType.Document);
+    Created?.Invoke(this, EventArgs.Empty);
   }
 
   /// <summary>
@@ -80,6 +88,7 @@ public class Document : ViewModel, DA.Document, IEditable
       }
       File.Delete(TempFilePath);
     }
+    Closed?.Invoke(this, EventArgs.Empty);
   }
 
   /// <summary>
@@ -131,6 +140,20 @@ public class Document : ViewModel, DA.Document, IEditable
   #endregion
 
   private string? TempFilePath;
+
+  /// <summary>
+  /// Returns a Window object that represents the active window (the window with the focus).
+  /// </summary>
+  public DA.Window? ActiveWindow
+  {
+    get
+    { var window = Application.ActiveWindow;
+      if (window?.Document == this)
+        return window;
+      return null;
+    }
+  }
+
 
   /// <summary>
   /// Title for the window
@@ -418,5 +441,16 @@ public class Document : ViewModel, DA.Document, IEditable
   }
   private Bookmarks? _Bookmarks;
 
+  #region events implementation
+
+  /// <inheritdoc />
+  public event EventHandler? Created;
+
+  /// <inheritdoc />
+  public event EventHandler? Opened;
+
+  /// <inheritdoc />
+  public event EventHandler? Closed;
+# endregion
 
 }
