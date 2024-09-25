@@ -21,7 +21,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  public Bookmarks(BlockElementViewModel parent) : base(parent)
+  public Bookmarks(CompoundElementViewModel parent) : base(parent)
   {
     if (parent.Element != null)
       Task.Run(() =>

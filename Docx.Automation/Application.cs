@@ -11,12 +11,17 @@ public interface Application
   /// Returns a Window object that represents the active window (the window with the focus).
   /// May be null if no window is active.
   /// </summary>
-  public Window? ActiveWindow { get; }
+  public DocumentWindow? ActiveWindow { get; }
 
   /// <summary>
   /// Collection of documents.
   /// </summary>
   public Documents Documents { get; }
+
+  /// <summary>
+  /// Collection of document windows.
+  /// </summary>
+  public DocumentWindows Windows { get; }
 
   //ActiveDocument
   //ActiveEncryptionSession
@@ -134,7 +139,6 @@ public interface Application
   //  Version
   //  Visible
   //  Width
-  //  Windows
   //  WindowState
   //  WordBasic
   //  XMLNamespaces
@@ -143,15 +147,25 @@ public interface Application
   #region methods
 
   /// <summary>
+  /// Closes the application.
+  /// </summary>
+  public void Exit();
+
+  /// <summary>
   /// Activates the specified window.
   /// </summary>
   /// <param name="window"></param>
-  public void Activate(Window window);
+  public void Activate(DocumentWindow window);
 
   /// <summary>
   /// Creates a new window for existing document.
   /// </summary>
-  public Window NewWindow(Document document);
+  public DocumentWindow CreateNewWindow(Document document);
+
+  /// <summary>
+  /// Selects all elements in the active Window.
+  /// </summary>
+  public void SelectAll();
 
   //  AddAddress
   //AutomaticChange
@@ -204,7 +218,7 @@ public interface Application
   //PrintOut
   //  ProductCode
   //PutFocusInMailHeader
-  //  OnQuit
+  //  BeforeExit
   //Repeat
   //  ResetIgnoreAll
   //Resize
@@ -221,7 +235,7 @@ public interface Application
   /// <summary>
   /// Occurs when the application is about to quit.
   /// </summary>
-  public event EventHandler? OnQuit;
+  public event EventHandler? BeforeExit;
 
   /// <summary>
   /// Occurs when a new document is created.

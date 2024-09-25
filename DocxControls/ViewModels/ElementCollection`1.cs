@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
@@ -6,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T : DA.IElement
+public class ElementCollection<T>: ViewModel, IEnumerable<T>, ICollection<T>, DA.IElementCollection<T> where T : DA.IElement
 {
   /// <summary>
   /// Constructor with a owner object.
@@ -49,10 +50,20 @@ public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T :
     return ((IEnumerable)Items).GetEnumerator();
   }
 
+  bool ICollection<T>.Remove(T item)
+  {
+    return Remove(item);
+  }
+
   /// <summary>
   /// Returns the number of items in the collection.
   /// </summary>
   public int Count => Items.Count;
+
+  /// <summary>
+  /// Returns false.
+  /// </summary>
+  public bool IsReadOnly => false;
 
   /// <summary>
   /// Adds a new item to the collection.
@@ -61,6 +72,27 @@ public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T :
   internal void Add(T item)
   {
     Items.Add(item);
+  }
+
+  void ICollection<T>.Clear()
+  {
+    Clear();
+  }
+
+  bool ICollection<T>.Contains(T item)
+  {
+    return Contains(item);
+  }
+
+ /// <inheritdoc/>
+  public void CopyTo(T[] array, int arrayIndex)
+  {
+    throw new NotImplementedException();
+  }
+
+  void ICollection<T>.Add(T item)
+  {
+    Add(item);
   }
 
   /// <summary>
@@ -102,6 +134,7 @@ public class ElementCollection<T>: ViewModel, DA.IElementCollection<T> where T :
   /// </summary>
   /// <returns></returns>
   internal T? Last() => Items.LastOrDefault();
+
 }
 
 

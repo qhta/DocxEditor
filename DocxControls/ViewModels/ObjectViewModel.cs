@@ -31,6 +31,16 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
+  protected ObjectViewModel(Object modeledObject) : this()
+  {
+    _ObjectType = modeledObject.GetType();
+    Initialize(_ObjectType, modeledObject);
+  }
+
+  /// <summary>
+  /// Initializing constructor
+  /// when the type of the modeled object is unknown, but the object may be known.
+  /// </summary>
   protected ObjectViewModel(ViewModel owner, Object modeledObject) : this()
   {
     Owner = owner;

@@ -18,6 +18,7 @@ global using System.Xml.Serialization;
 #endif
 
 //global using Qhta.DeepCompare;
+//global using Qhta.MVVM;
 global using Qhta.OpenXmlTools;
 //global using Qhta.TypeUtils;
 

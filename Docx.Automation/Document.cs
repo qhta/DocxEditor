@@ -5,6 +5,7 @@
 /// </summary>
 public interface Document: IElement
 {
+  #region properties ---------------------------------------------------------------------------------------------------------------------------
   /// <summary>
   /// Properties stored in CoreProperties part of the document.
   /// </summary>
@@ -29,7 +30,12 @@ public interface Document: IElement
   /// Returns a Window object that represents the active window (the window with the focus) that contains the document.
   /// May be null if no window is active or the document is not opened in the active window.
   /// </summary>
-  public Window? ActiveWindow { get; }
+  public DocumentWindow? ActiveWindow { get; }
+
+  /// <summary>
+  /// Returns a Range object that represents all the elements in the document.
+  /// </summary>
+  public Range Range { get; }
 
   //ActiveTheme
   //ActiveThemeDisplayName
@@ -219,7 +225,15 @@ public interface Document: IElement
   //  XMLSchemaReferences
   //  XMLShowAdvancedErrors
   //  XMLUseXSLTWhenSaving
+  #endregion
 
+  #region methods ------------------------------------------------------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Returns a Range object that represents all the elements in the document.
+  /// </summary>
+  /// <returns></returns>
+  public Range GetRange();
 
   //AcceptAllRevisions
   //  AcceptAllRevisionsShown
@@ -235,7 +249,7 @@ public interface Document: IElement
   //  CheckIn
   //CheckInWithVersion
   //  CheckSpelling
-  //Close
+  //Exit
   //  ClosePrintPreview
   //Compare
   //  ComputeStatistics
@@ -273,7 +287,7 @@ public interface Document: IElement
   //  PrintOut
   //PrintPreview
   //  Protect
-  //Range
+
   //  Redo
   //RejectAllRevisions
   //  RejectAllRevisionsShown
@@ -317,6 +331,9 @@ public interface Document: IElement
   //  ViewCode
   //ViewPropertyBrowser
   //  WebPagePreview
+  #endregion
+
+  #region events -------------------------------------------------------------------------------------------------------------------------------
   /// <summary>
   /// Occurs when a new document based is created.
   /// </summary>
@@ -332,7 +349,7 @@ public interface Document: IElement
   /// </summary>
   public event EventHandler Closed;
   //  Open
-  //  Close
+  //  Exit
 
   //BuildingBlockInsert
   //ContentControlAfterAdd
@@ -344,5 +361,5 @@ public interface Document: IElement
   //Sync
   //  XMLAfterInsert
   //XMLBeforeDelete
-
+  #endregion
 }

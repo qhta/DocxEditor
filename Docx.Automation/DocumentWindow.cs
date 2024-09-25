@@ -5,7 +5,7 @@ namespace Docx.Automation;
 /// <summary>
 /// Window that visualizes a document.
 /// </summary>
-public interface Window: IVisualElement
+public interface DocumentWindow: IVisualElement
 {
   #region properties
   /// <summary>
@@ -215,12 +215,12 @@ public interface Window: IVisualElement
   ///// <summary>
   ///// Closes the specified window.
   ///// </summary>
-  //public void Close();
+  //public void Exit();
 
   ///// <summary>
   ///// Opens a new window with the same document as the specified window. Returns a Window object.
   ///// </summary>
-  //public Window NewWindow();
+  //public Window CreateNewWindow();
 
   ///// <summary>
   ///// Returns the screen coordinates of the specified range or shape.

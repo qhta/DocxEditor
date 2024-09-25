@@ -8,7 +8,7 @@ namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for DocumentWindow.xaml
 /// </summary>
-public partial class DocumentWindow : System.Windows.Window, DA.Window
+public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, DA.IElement
 {
 
   /// <summary>
@@ -291,7 +291,7 @@ public partial class DocumentWindow : System.Windows.Window, DA.Window
   public Window NewWindow()
   {
     var document = (VM.Document)DataContext;
-    return Application.NewWindow(document);
+    return Application.CreateNewWindow(document);
   }
 
   ///// <summary>

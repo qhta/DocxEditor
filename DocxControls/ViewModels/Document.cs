@@ -1,7 +1,5 @@
 ﻿using System.IO;
 
-using Docx.Automation;
-
 using DocxControls.Helpers;
 
 using Qhta.MVVM;
@@ -74,7 +72,7 @@ public class Document : ViewModel, DA.Document, IEditable
   }
 
   /// <summary>
-  /// Close the document.
+  /// Exit the document.
   /// </summary>
   /// <param name="saveChanges">If <c>true</c> and <see cref="IsEditable"/> then temporary file is copied to the original file path</param>
   public void Close(bool saveChanges)
@@ -141,19 +139,36 @@ public class Document : ViewModel, DA.Document, IEditable
 
   private string? TempFilePath;
 
+  DA.DocumentWindow? DA.Document.ActiveWindow => ActiveWindow;
+  
   /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// </summary>
-  public DA.Window? ActiveWindow
+  public Views.DocumentWindow? ActiveWindow
   {
     get
-    { var window = Application.ActiveWindow;
+    { var window = DocxControls.Application.Instance.ActiveWindow;
       if (window?.Document == this)
         return window;
       return null;
     }
   }
+  
+  DA.Range DA.Document.Range => Range;
+  /// <summary>
+  /// Returns a Range object that represents all the elements in the document.
+  /// </summary>
+  public Range Range => GetRange();
 
+
+  DA.Range DA.Document.GetRange() => GetRange();
+  /// <summary>
+  /// Returns a Range object that represents all the elements in the document.
+  /// </summary>
+  public Range GetRange()
+  {
+    throw new NotImplementedException();
+  }
 
   /// <summary>
   /// Title for the window
@@ -440,6 +455,7 @@ public class Document : ViewModel, DA.Document, IEditable
     }
   }
   private Bookmarks? _Bookmarks;
+  //private DA.DocumentWindow? _activeWindow;
 
   #region events implementation
 

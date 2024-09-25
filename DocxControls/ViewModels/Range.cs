@@ -7,12 +7,12 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Represents a contiguous area in a document. Each Range object is defined by a starting and ending element.
 /// </summary>
-public class Range : ViewModel, DA.Range
+public class Range : ViewModel, DA.Range, DA.ISelectable
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  public Range(object parent, object start, object end)
+  public Range(object parent, DX.OpenXmlElement start, DX.OpenXmlElement end)
   {
     Parent = parent;
     Start = start;
@@ -20,15 +20,17 @@ public class Range : ViewModel, DA.Range
   }
 
   #region DA.Range properties implementation -----------------------------------------------------------------------------------
+  object DA.Range.Start => Start;
   /// <summary>
   /// Element that starts the range.
   /// </summary>
-  public object Start { get; private set; }
+  public DX.OpenXmlElement Start { get; private set; }
 
+  object DA.Range.End => Start;
   /// <summary>
   /// Element that ends the range.
   /// </summary>
-  public object End { get; private set; }
+  public DX.OpenXmlElement End { get; private set; }
 
   DA.Application DA.Range.Application => Application;
 
@@ -41,6 +43,7 @@ public class Range : ViewModel, DA.Range
   /// Returns the parent object for the specified object.
   /// </summary>
   public object? Parent { get; }
+
   #endregion
 
   #region DA.Range methods implementation -----------------------------------------------------------------------------------
@@ -61,6 +64,30 @@ public class Range : ViewModel, DA.Range
     {
       Start = End;
     }
+  }
+
+  /// <summary>
+  /// Expands the specified range or selection. Returns the number of elements added to the range or selection.
+  /// </summary>
+  /// <param name="unit">
+  /// The unit by which to expand the range. Can be Element or Sibling only.
+  /// If unit is Element, the range is expanded to include the next element.
+  /// If unit is Sibling, the range is expanded to include the last sibling element.
+  /// </param>
+  /// <returns></returns>
+  public int Expand(MoveUnits unit)
+  {
+    switch (unit)
+    {
+      case MoveUnits.Element:
+        return MoveEnd(unit, 1);
+      case MoveUnits.Sibling:
+        int n = 0;
+        while (MoveEnd(unit, 1) > 0)
+          n++;
+        return n;
+    }
+    return 0;
   }
 
   /// <summary>
@@ -108,6 +135,7 @@ public class Range : ViewModel, DA.Range
   /// </returns>
   public int MoveEnd(MoveUnits? unit = MoveUnits.Element, int? count = 1)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (End is DX.OpenXmlElement element)
     {
       var moveStartAlso = End == Start;
@@ -148,6 +176,7 @@ public class Range : ViewModel, DA.Range
   /// </returns>
   public int MoveStart(MoveUnits? unit = MoveUnits.Element, int? count = 1)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (Start is DX.OpenXmlElement element)
     {
       var moveEndAlso = End == Start;
@@ -187,6 +216,7 @@ public class Range : ViewModel, DA.Range
   /// </param>
   public int MoveEndUntil(Type[] types, MoveDirection? direction = MoveDirection.Forward, int? Count = int.MaxValue)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (End is DX.OpenXmlElement element)
     {
       var moveStartAlso = End == Start;
@@ -237,6 +267,7 @@ public class Range : ViewModel, DA.Range
   /// </returns>
   public int MoveStartUntil(Type[] types, MoveDirection? direction = MoveDirection.Forward, int? Count = int.MaxValue)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (Start is DX.OpenXmlElement element)
     {
       var moveEndAlso = End == Start;
@@ -283,6 +314,7 @@ public class Range : ViewModel, DA.Range
   /// </param>
   public int MoveEndWhile(Type[] types, MoveDirection? direction = MoveDirection.Forward, int? Count = int.MaxValue)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (End is DX.OpenXmlElement element)
     {
       var moveStartAlso = End == Start;
@@ -332,6 +364,7 @@ public class Range : ViewModel, DA.Range
   /// </returns>
   public int MoveStartWhile(Type[] types, MoveDirection? direction = MoveDirection.Forward, int? Count = int.MaxValue)
   {
+    // ReSharper disable once ConvertTypeCheckPatternToNullCheck
     if (Start is DX.OpenXmlElement element)
     {
       var moveEndAlso = End == Start;
@@ -406,6 +439,64 @@ public class Range : ViewModel, DA.Range
     else
       return MoveEndWhile(types, direction, Count);
   }
+
+  /// <summary>
+  /// Enumerates all the elements in the specified range.
+  /// </summary>
+  public IEnumerable GetElements()
+  {
+    var element = Start;
+    var endElement = End;
+    while (true)
+    {
+      yield return element;
+      if (element == endElement)
+        break;
+      if (!MoveElementForward(ref element, MoveUnits.Element))
+        break;
+    }
+  }
+
+  /// <summary>
+  /// Enumerates the elements of the specified type in the specified range.
+  /// </summary>
+  IEnumerable<T> DA.Range.GetElements<T>()
+  {
+    var element = Start;
+    var endElement = End;
+    while (true)
+    {
+      if (element is T t)
+        yield return t;
+      if (element == endElement)
+        break;
+      if (!MoveElementForward(ref element, MoveUnits.Element))
+        break;
+    }
+  }
+
+  /// <summary>
+  /// Enumerates the elements of the specified type in the specified range.
+  /// The specified type must be a class or subclass of the DocumentFormat.OpenXml.OpenXmlElement class.
+  /// </summary>
+  public IEnumerable<T> GetElements<T>() where T : DX.OpenXmlElement
+  {
+    var element = Start;
+    var endElement = End;
+    while (true)
+    {
+      if (element is T t)
+        yield return t;
+      if (element == endElement)
+        break;
+      if (!MoveElementForward(ref element, MoveUnits.Element))
+        break;
+    }
+  }
+
+  #endregion
+
+  #region private methods implementation -----------------------------------------------------------------------------------
 
   /// <summary>
   /// Moves the reference of the OpenXmlElement forward by one unit.
@@ -513,6 +604,30 @@ public class Range : ViewModel, DA.Range
     }
     return false;
   }
+  #endregion
 
+  #region DA.ISelectable implementation -----------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Gets a value indicating whether the element is selected.
+  /// </summary>
+  public bool IsSelected { get; private set; }
+
+  /// <summary>
+  /// Selects the element.
+  /// </summary>
+  public void Select()
+  {
+    //foreach (var element in GetElements())
+    //{
+    //  if (element is DX.OpenXmlElement openXmlElement)
+    //  {
+    //    var viewModel = Application.GetViewModel(this, openXmlElement);
+    //    if (viewModel is DA.ISelectable selectable)
+    //      selectable.Select();
+    //  }
+    //}
+    IsSelected = true;
+  }
   #endregion
 }

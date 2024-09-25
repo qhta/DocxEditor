@@ -17,7 +17,7 @@ public class DocumentWindowEventArgs : DocumentEventArgs
   /// </summary>
   /// <param name="document"></param>
   /// <param name="window"></param>
-  public DocumentWindowEventArgs(Document document, Window window): base(document) 
+  public DocumentWindowEventArgs(Document document, DocumentWindow window): base(document) 
   {
     Window = window;
   }
@@ -25,6 +25,6 @@ public class DocumentWindowEventArgs : DocumentEventArgs
   /// <summary>
   /// The document that is being closed.
   /// </summary>
-  public Window Window { get; }
+  public DocumentWindow Window { get; }
 
 }

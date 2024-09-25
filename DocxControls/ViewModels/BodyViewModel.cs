@@ -1,16 +1,18 @@
-﻿namespace DocxControls.ViewModels;
+﻿using Qhta.MVVM;
+
+namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a body element
 /// </summary>
-public class BodyViewModel: BlockElementViewModel, DA.IStory
+public class BodyViewModel: CompoundElementViewModel, DA.IStory
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="documentViewModel">Owner view model. Must be <see cref="Document"/></param>
   /// <param name="body">Modeled body element</param>
-  public BodyViewModel(Document documentViewModel, DXW.Body body) : base(documentViewModel, body)
+  public BodyViewModel(ViewModel documentViewModel, DXW.Body body) : base(documentViewModel, body)
   {
   }
 

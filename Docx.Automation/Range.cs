@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 
 namespace Docx.Automation;
 
@@ -86,9 +87,11 @@ public interface Range
   //OMaths
   //  Orientation
   //PageSetup
-  //  ParagraphFormat
+
   //Paragraphs
-  //  ParagraphStyle
+  //ParagraphFormat
+  //ParagraphStyle
+
   //  ParentContentControl
   //PreviousBookmarkID
   //  ReadabilityStatistics
@@ -131,6 +134,18 @@ public interface Range
   /// The direction in which to collapse the range or selection. Can be either of the following MoveDirection constants: Forward or Backward. The default value is Backward.
   /// </param>
   public void Collapse(MoveDirection? direction = MoveDirection.Backward);
+
+  /// <summary>
+  /// Expands the specified range or selection. Returns the number of elements added to the range or selection.
+  /// </summary>
+  /// <param name="unit">
+  /// The unit by which to expand the range. Can be Element or Sibling only.
+  /// If unit is Element, the range is expanded to include the next element.
+  /// If unit is Sibling, the range is expanded to include the last sibling element.
+  /// </param>
+  /// <returns></returns>
+  public int Expand(MoveUnits unit);
+
   /// <summary>
   /// Collapses the specified range to its start or end position and then moves the collapsed object by the specified number of units.
   /// </summary>
@@ -286,6 +301,43 @@ public interface Range
   /// </param>
   public int MoveWhile(Type[] types, MoveDirection? direction = MoveDirection.Forward, int? Count = int.MaxValue);
 
+  ///// <summary>
+  ///// Moves or extends the ending position of a range to the end of the nearest specified unit.
+  ///// </summary>
+  ///// <param name="extent">
+  ///// Specifies whether to move or extend the end of the range.
+  ///// If the value is Move, both ends of the range or selection object are moved to the end of the specified unit.
+  ///// If Extend is used, the end of the range or selection is extended to the end of the specified unit.
+  ///// The default value wdMove.
+  ///// </param>
+  ///// <param name="unit"></param>
+  //public void EndOf(MovementType extent, MoveUnits unit);
+
+
+  ///// <summary>
+  ///// Moves or extends the start position of the specified range or selection to the beginning of the nearest specified unit.
+  ///// This method returns an integer that indicates the number of element by which the range or selection was moved or extended.
+  ///// The method returns a negative number if the movement is backward through the document.
+  ///// </summary>
+  ///// <param name="extent">
+  ///// Specifies whether to move or extend the start of the range.
+  ///// If you use Move, both ends of the range or selection are moved to the beginning of the specified unit.
+  ///// If you use Extend, the beginning of the range or selection is extended to the beginning of the specified unit.
+  ///// The default value is Move.
+  ///// </param>
+  ///// <param name="unit"></param>
+  //public void StartOf(MovementType extent, MoveUnits unit);
+
+  /// <summary>
+  /// Enumerates all the elements in the specified range.
+  /// </summary>
+  public IEnumerable GetElements();
+
+  /// <summary>
+  /// Enumerates the elements of the specified type in the specified range.
+  /// </summary>
+  public IEnumerable<T> GetElements<T>();
+
   //AutoFormat
   //  Calculate
   //CheckGrammar
@@ -299,8 +351,7 @@ public interface Range
   //  Cut
   //Delete
   //  DetectLanguage
-  //EndOf
-  //  Expand
+
   //ExportAsFixedFormat
   //  ExportAsFixedFormat2
   //ExportFragment
@@ -350,7 +401,7 @@ public interface Range
   //SortAscending
   //  SortByHeadings
   //SortDescending
-  //  StartOf
+
   //TCSCConverter
   //  WholeStory
 

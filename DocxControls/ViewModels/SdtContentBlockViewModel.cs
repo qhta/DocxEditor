@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a structured document tag content block element.
 /// </summary>
-public class SdtContentBlockViewModel: BlockElementViewModel
+public class SdtContentBlockViewModel: CompoundElementViewModel
 {
   /// <summary>
   /// Initializing constructor.

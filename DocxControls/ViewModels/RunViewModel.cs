@@ -1,39 +1,18 @@
-﻿using System.Collections.ObjectModel;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a paragraph run element
 /// </summary>
-public class RunViewModel : ElementViewModel
+public class RunViewModel : CompoundElementViewModel
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="propertiesViewModel">Owner view model. Must be <see cref="ParagraphViewModel"/></param>
   /// <param name="run">Modeled run element</param>
-  public RunViewModel(ParagraphViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
+  public RunViewModel(ElementViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
   {
-    foreach (var element in run.Elements())
-    {
-      if (element is DXW.RunProperties properties)
-        RunProperties = new RunPropertiesViewModel(this, properties);
-      else
-      {
-        ElementViewModel? runViewModel = element switch
-        {
-          DXW.Text text => new TextViewModel(this, text),
-          DXW.LastRenderedPageBreak lastRenderedPageBreak => new LastRenderedPageBreakViewModel(this, lastRenderedPageBreak),
-          _ => null
-        };
-        if (runViewModel == null)
-        {
-          Debug.WriteLine($"RunViewModel: Element {element.GetType().Name} not supported");
-          runViewModel = new UnknownElementViewModel(this, element);
-        }
-        Elements.Add(runViewModel);
-      }
-    }
+    LoadAllElements();
     RunProperties ??= new RunPropertiesViewModel(this, run.GetProperties());
   }
 
@@ -46,11 +25,6 @@ public class RunViewModel : ElementViewModel
   /// Run properties view model
   /// </summary>
   public RunPropertiesViewModel? RunProperties { get; set; }
-
-  /// <summary>
-  /// Observable collection of element view models
-  /// </summary>
-  public ObservableCollection<ElementViewModel> Elements { get; } = new();
 
   /// <summary>
   /// Check if the run is bold
@@ -93,4 +67,34 @@ public class RunViewModel : ElementViewModel
   //    }
   //  }
   //}
+
+  /// <summary>
+  /// Captures find view model for DXW.ParagraphProperties.
+  /// </summary>
+  /// <param name="element"></param>
+  /// <returns></returns>
+  public override ElementViewModel? FindViewModel(DX.OpenXmlElement element)
+  {
+    if (element is DXW.RunProperties runPropertiesElement)
+    {
+      if (RunProperties?.Element == runPropertiesElement)
+        return RunProperties;
+      return null;
+    }
+    return base.FindViewModel(element);
+  }
+
+  /// <summary>
+  /// Captures create view model for DXW.ParagraphProperties.
+  /// </summary>
+  /// <param name="element"></param>
+  public override void CreateChildViewModel(DX.OpenXmlElement element)
+  {
+    if (element is DXW.RunProperties runPropertiesElement)
+    {
+      RunProperties = new RunPropertiesViewModel(this, runPropertiesElement);
+      return;
+    }
+    base.CreateChildViewModel(element);
+  }
 }

@@ -7,8 +7,31 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
 /// </summary>
-public abstract class ElementViewModel : ObjectViewModel, IElement
+public class ElementViewModel : ObjectViewModel, IElement
 {
+  /// <summary>
+  /// Default constructor.
+  /// </summary>
+  public ElementViewModel() : base()
+  {
+  }
+
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="element">Modeled OpenXmlElement</param>
+  public ElementViewModel(object element) : base(element)
+  {
+  }
+
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
+  /// <param name="owner">owner ViewModel</param>
+  /// <param name="element">Modeled OpenXmlElement</param>
+  public ElementViewModel(ViewModel owner, object element) : base(owner, element)
+  {
+  }
 
   /// <summary>
   /// Element of the document
@@ -19,14 +42,6 @@ public abstract class ElementViewModel : ObjectViewModel, IElement
     set => ModeledObject = value;
   }
 
-  /// <summary>
-  /// Initializing constructor.
-  /// </summary>
-  /// <param name="owner">owner ViewModel</param>
-  /// <param name="element">Modeled OpenXmlElement</param>
-  protected ElementViewModel(ViewModel owner, object element) : base(owner, element)
-  {
-  }
 
   #region IElement implementation
   DA.Application DA.IElement.Application => DocxControls.Application.Instance;

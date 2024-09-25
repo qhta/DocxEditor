@@ -2,7 +2,7 @@
 using DocxControls.Views;
 using Qhta.MVVM;
 using System.Windows;
-
+using System.Windows.Navigation;
 
 namespace DocxControls;
 
@@ -25,11 +25,12 @@ public class Application : ViewModel, DA.Application
   public static Application Instance { get; } = new();
 
   #region DA.Application properties implementation ------------------------------------------------------------------------------------
+  DA.DocumentWindow? DA.Application.ActiveWindow => ActiveWindow;
   /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// May be null if no window is active.
   /// </summary>
-  public DA.Window? ActiveWindow
+  public DocumentWindow? ActiveWindow
   {
     get => _ActiveWindow;
     set
@@ -45,37 +46,48 @@ public class Application : ViewModel, DA.Application
       DocumentChanged?.Invoke(this, EventArgs.Empty);
     }
   }
+  private DocumentWindow? _ActiveWindow;
 
-  private DA.Window? _ActiveWindow;
-
+  DA.Documents DA.Application.Documents => Documents;
   /// <summary>
   /// List of opened documents.
   /// </summary>
   public VM.Documents Documents { get; } = new();
 
-  DA.Documents DA.Application.Documents => Documents;
-
+  DA.DocumentWindows DA.Application.Windows => DocumentWindows;
   /// <summary>
   /// List of opened document Windows.
   /// </summary>
-  public List<DocumentWindow> DocumentWindows { get; } = new();
+  public VM.DocumentWindows DocumentWindows { get; } = new();
   #endregion
 
   /// <summary>
-  /// Execute the OpenFile command.
+  /// Creates a view model for the specified element.
   /// </summary>
-  public void OpenFile()
+  /// <param name="parentViewModel"></param>
+  /// <param name="element"></param>
+  /// <returns></returns>
+  /// <exception cref="InvalidOperationException"></exception>
+  public VM.ElementViewModel CreateViewModel(ViewModel parentViewModel, DX.OpenXmlElement element)
   {
-    // ReSharper disable once UseObjectOrCollectionInitializer
-    OpenFileDialog openFileDialog = new();
-    openFileDialog.Filter = "Docx files (*.docx)|*.docx|All files (*.*)|*.*";
-    openFileDialog.ShowReadOnly = true;
-    if (openFileDialog.ShowDialog() == true)
+    if (element is DXW.Body body)
+      return new VM.BodyViewModel(parentViewModel, body);
+    if (parentViewModel is not VM.ElementViewModel parentElementViewModel)
+      throw new InvalidOperationException($"Parent view model must be a ElementViewModel, but is {parentViewModel.GetType()}");
+    return element switch
     {
-      string filePath = openFileDialog.FileName;
-      var readOnly = openFileDialog.ReadOnlyChecked;
-      OpenDocument(filePath, readOnly);
-    }
+      DXW.Paragraph paragraph => new VM.ParagraphViewModel(parentElementViewModel, paragraph),
+      DXW.Table table => new VM.TableViewModel(parentElementViewModel, table),
+      //DXW.TableRow tableRow => new VM.TableRow(null, tableRow),
+      //DXW.TableCell tableCell => new VM.TableCell(null, tableCell),
+      DXW.Run run => new VM.RunViewModel(parentElementViewModel, run),
+      DXW.Text text => new VM.TextViewModel(parentElementViewModel, text),
+      DXW.BookmarkStart bookmarkStart => new VM.BookmarkStart(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkStart),
+      DXW.BookmarkEnd bookmarkEnd => new VM.BookmarkEnd(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkEnd),
+      //DXW.Break breakElement => new VM.Break(null, breakElement),
+      //DXW.TabChar tabChar => new VM.TabChar(null, tabChar),
+      _ => new VM.ElementViewModel(parentElementViewModel, element)
+    };
   }
 
   /// <summary>
@@ -164,13 +176,13 @@ public class Application : ViewModel, DA.Application
   }
 
   /// <summary>
-  /// Close the document.
+  /// Exit the document.
   /// </summary>
   /// <param name="document"></param>
   /// <returns></returns>
   public bool CloseDocument(VM.Document document)
   {
-    var documentWindows = DocumentWindows.Where(w => w.DataContext == document).ToArray();
+    var documentWindows = DocumentWindows.AsQueryable<DocumentWindow>().Where(w => w.DataContext == document).ToArray();
     foreach (var documentWindow in documentWindows)
     {
       if (!documentWindow.CloseDocument())
@@ -182,12 +194,12 @@ public class Application : ViewModel, DA.Application
   }
 
   /// <summary>
-  /// Close all opened documents.
+  /// Exit all opened documents.
   /// </summary>
   /// <returns></returns>
   public bool CloseAllDocuments()
   {
-    foreach (var window in DocumentWindows.ToArray())
+    foreach (var window in DocumentWindows.AsQueryable<DocumentWindow>().ToArray())
     {
       if (!window.CloseDocument())
       {
@@ -233,18 +245,18 @@ public class Application : ViewModel, DA.Application
 
   #region DA.Application methods implementation ------------------------------------------------------------------------------------
 
-  void DA.Application.Activate(DA.Window window) => Activate((DocumentWindow)window);
+  void DA.Application.Activate(DA.DocumentWindow window) => Activate((DocumentWindow)window);
   /// <summary>
   /// Activates the specified window.
   /// </summary>
   /// <param name="window"></param>
   public void Activate(DocumentWindow window) => window.Activate();
 
-  DA.Window DA.Application.NewWindow(DA.Document document) => NewWindow((VM.Document)document);
+  DA.DocumentWindow DA.Application.CreateNewWindow(DA.Document document) => CreateNewWindow((VM.Document)document);
   /// <summary>
   /// Creates a new window for existing document.
   /// </summary>
-  public DocumentWindow NewWindow(VM.Document document)
+  public DocumentWindow CreateNewWindow(VM.Document document)
   {
     var documentWindow = new DocumentWindow { DataContext = document };
     DocumentWindows.Add(documentWindow);
@@ -257,20 +269,29 @@ public class Application : ViewModel, DA.Application
   /// <summary>
   /// Closes all opened documents and quits the application.
   /// </summary>
-  public void Quit()
+  public void Exit()
   {
     if (CloseAllDocuments())
     {
-      OnQuit?.Invoke(this, EventArgs.Empty);
+      BeforeExit?.Invoke(this, EventArgs.Empty);
     }
+  }
+
+  /// <summary>
+  /// Selects all elements in the active Window.
+  /// </summary>
+  public void SelectAll()
+  {
+
   }
   #endregion
 
+
   #region DA.Application events implementation ------------------------------------------------------------------------------------
   /// <summary>
-  /// Occurs when the application is about to quit.
+  /// Occurs when the application is about to exit.
   /// </summary>
-  public event EventHandler? OnQuit;
+  public event EventHandler? BeforeExit;
 
   /// <summary>
   /// Occurs when a new document is created.
@@ -309,5 +330,6 @@ public class Application : ViewModel, DA.Application
   /// </summary>
   public event DA.DocumentWindowEventHandler? WindowDeactivated;
   #endregion
+
 
 }

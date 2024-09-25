@@ -10,7 +10,7 @@ public class TextViewModel : ElementViewModel
   /// </summary>
   /// <param name="runViewModel">Owner view model. Must be <see cref="RunViewModel"/></param>
   /// <param name="text"></param>
-  public TextViewModel(RunViewModel runViewModel, DXW.Text text): base (runViewModel, text)
+  public TextViewModel(ElementViewModel runViewModel, DXW.Text text): base (runViewModel, text)
   {
     DoubleClickCommand = null;
     LeftMouseDownCommand = null;

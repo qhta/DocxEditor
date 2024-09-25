@@ -24,7 +24,7 @@ public partial class MainWindow : Window
 
   private void Open_Click(object sender, RoutedEventArgs e)
   {
-        Application.OpenFile();
+        //Application.OpenFile();
   }
 
   private void Exit_Click(object sender, RoutedEventArgs e)

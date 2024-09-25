@@ -1,17 +1,16 @@
 ﻿namespace Docx.Automation;
 
 /// <summary>
-/// Collection of <see cref="Window"/> elements.
+/// Collection of <see cref="DocumentWindow"/> elements.
 /// </summary>
-public interface Windows: IElementCollection<Window>
+public interface DocumentWindows: IElementCollection<DocumentWindow>
 {
 
   /// <summary>
-  /// Returns a Window object that represents a new window of a document.
+  /// Adds a DocumentWindow object to the collection.
   /// </summary>
-  /// <param name="window">The Window object you want to open another window for. If this argument is omitted, a new window is opened for the active document.</param>
-  /// <returns></returns>
-  public Window Add(Window? window);
+  /// <param name="window">A window to add</param>
+  public void Add(DocumentWindow window);
 
   
   ///// <summary>

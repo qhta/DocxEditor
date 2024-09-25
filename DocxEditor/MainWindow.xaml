@@ -5,10 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocxEditor"
         xmlns:controls="clr-namespace:DocxControls;assembly=DocxControls"
+        xmlns:commands="clr-namespace:DocxControls.Commands;assembly=DocxControls"
         xmlns:resources="clr-namespace:DocxControls.Resources;assembly=DocxControls"
         mc:Ignorable="d"
         Title="Docx Editor" Height="450" Width="800" WindowStyle="ThreeDBorderWindow"
         Icon="pack://application:,,,/DocxEditor.ico">
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Resources/Commands.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+  <Window.CommandBindings>
+    <CommandBinding Command="{StaticResource OpenDocumentCommand}"/>
+  </Window.CommandBindings>
+  <Window.InputBindings>
+    <KeyBinding Gesture="Ctrl+O" Command="{StaticResource OpenDocumentCommand}"/>
+  </Window.InputBindings>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
@@ -17,7 +31,7 @@
     <Menu x:Name="MainMenu" Grid.Row="0">
       <MenuItem Header="{x:Static resources:Strings._File}">
         <MenuItem Header="{x:Static resources:Strings._New}" Click="New_Click"/>
-        <MenuItem Header="{x:Static resources:Strings._Open}" Click="Open_Click"/>
+        <MenuItem Header="{x:Static resources:Strings._Open}" Command="{StaticResource OpenDocumentCommand}"/>
         <Separator/>
         <MenuItem Header="{x:Static resources:Strings._Exit}" Click="Exit_Click"/>
       </MenuItem>
