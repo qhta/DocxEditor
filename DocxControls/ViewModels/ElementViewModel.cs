@@ -7,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a body element: paragraph, table, etc.
 /// </summary>
-public class ElementViewModel : ObjectViewModel, IElement
+public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
 {
   /// <summary>
   /// Default constructor.
@@ -43,9 +43,29 @@ public class ElementViewModel : ObjectViewModel, IElement
   }
 
 
-  #region IElement implementation
-  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
+  #region IElement implementation  -----------------------------------------------------------------------------------------------------------------
+  DA.Application DA.IElement.Application => Application.Instance;
   object? DA.IElement.Parent => Owner;
+  #endregion
+
+
+  #region ISelectable implementation ----------------------------------------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Selects the object.
+  /// </summary>
+  public virtual void Select()
+  {
+    IsSelected = true;
+  }
+
+  /// <summary>
+  /// Selects the object. In a composite object, selects all children.
+  /// </summary>
+  public virtual void SelectAll()
+  {
+    Select();
+  }
   #endregion
 
   /// <summary>

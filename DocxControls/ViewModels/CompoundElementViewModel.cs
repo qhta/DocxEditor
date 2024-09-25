@@ -41,7 +41,7 @@ public class CompoundElementViewModel : ElementViewModel
   /// <summary>
   /// Load all child OpenXmlElements and create their view models
   /// </summary>
-  protected void LoadAllElements()
+  public void LoadAllElements()
   {
     if (isLoading) return;
     isLoading = true;
@@ -63,7 +63,7 @@ public class CompoundElementViewModel : ElementViewModel
   /// <summary>
   /// Load more child OpenXmlElements starting at currentElement and create their view models
   /// </summary>
-  protected void LoadMoreElements()
+  public void LoadMoreElements()
   {
     if (isLoading) return;
     isLoading = true;
@@ -118,4 +118,18 @@ public class CompoundElementViewModel : ElementViewModel
     });
   }
 
+  #region ISelectable implementation ----------------------------------------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Selects the object and its children.
+  /// </summary>
+  public override void SelectAll()
+  {
+    Select();
+    foreach (var element in Elements)
+    {
+      element.SelectAll();
+    }
+  }
+  #endregion
 }

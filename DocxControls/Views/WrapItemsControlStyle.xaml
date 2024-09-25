@@ -15,7 +15,7 @@
         <ItemsPanelTemplate>
           <WrapPanel 
             x:Name="PART_WrapPanel"
-            Background="{Binding Background, RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}}"/>
+            Background="{Binding Background, RelativeSource={RelativeSource AncestorType=local:WrapItemsControl}}"/> 
         </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>

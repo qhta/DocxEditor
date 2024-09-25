@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a paragraph

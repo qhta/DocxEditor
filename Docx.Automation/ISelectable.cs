@@ -14,4 +14,9 @@ public interface ISelectable
   /// Selects the element.
   /// </summary>
   public void Select();
+
+  /// <summary>
+  /// Selects the element and all its children.
+  /// </summary>
+  public void SelectAll();
 }

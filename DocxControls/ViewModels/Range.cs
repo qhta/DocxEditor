@@ -7,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Represents a contiguous area in a document. Each Range object is defined by a starting and ending element.
 /// </summary>
-public class Range : ViewModel, DA.Range, DA.ISelectable
+public class Range : ViewModel, DA.Range
 {
   /// <summary>
   /// Initializing constructor.
@@ -37,7 +37,7 @@ public class Range : ViewModel, DA.Range, DA.ISelectable
   /// <summary>
   /// Returns an object that represents the DocxControls application.
   /// </summary>
-  public Application Application => DocxControls.Application.Instance;
+  public Application Application => Application.Instance;
 
   /// <summary>
   /// Returns the parent object for the specified object.

@@ -153,7 +153,16 @@ public class Document : ViewModel, DA.Document, IEditable
       return null;
     }
   }
-  
+
+  /// <summary>
+  /// Selects the entire document.
+  /// </summary>
+  public void SelectAll()
+  {
+    Body.LoadAllElements();
+    Body.SelectAll();
+  }
+
   DA.Range DA.Document.Range => Range;
   /// <summary>
   /// Returns a Range object that represents all the elements in the document.
@@ -167,7 +176,8 @@ public class Document : ViewModel, DA.Document, IEditable
   /// </summary>
   public Range GetRange()
   {
-    throw new NotImplementedException();
+    var body = WordDocument.GetBody();
+    return new Range(this, body!.FirstChild!, body!.LastChild!);
   }
 
   /// <summary>

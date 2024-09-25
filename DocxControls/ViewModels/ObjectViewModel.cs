@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 
+using DocumentFormat.OpenXml.Wordprocessing;
+
 using DocxControls.Helpers;
 
 using Qhta.MVVM;
@@ -511,6 +513,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       }
     }
   }
+
   private bool _IsSelected;
   #endregion
 

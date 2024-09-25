@@ -18,4 +18,5 @@ public class BodyViewModel: CompoundElementViewModel, DA.IStory
 
   /// <inheritdoc/>
   public DA.StoryType StoryType { get; } = DA.StoryType.MainTextStory;
+
 }

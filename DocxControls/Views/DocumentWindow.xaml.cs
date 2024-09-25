@@ -85,11 +85,11 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
     Application.Instance.DocumentWindows.Remove(this);
     return true;
   }
-
+  DA.Document DA.DocumentWindow.Document => (DataContext as DA.Document)!;
   /// <summary>
   /// Returns a Document object associated with the specified window.
   /// </summary>
-  public DA.Document Document => (DataContext as VM.Document)!;
+  public VM.Document Document => (DataContext as VM.Document)!;
 
   #region DA.Window properties implementation
 
@@ -317,7 +317,7 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   /// </summary>
   public void SelectAll()
   {
-    Document?.Range.Select();
+    Document.SelectAll();
   }
 
   ///// <summary>

@@ -13,6 +13,7 @@
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
       ItemMargin="1,0"
       ItemBorderBrush="Silver"
-      ItemBorderThickness="1"/>
+      ItemBorderThickness="1"
+      IsSelected="{Binding IsSelected}"/>
   </Grid>
 </UserControl>

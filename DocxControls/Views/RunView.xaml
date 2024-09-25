@@ -11,6 +11,7 @@
       ItemsSource="{Binding Elements}" 
       ItemTemplateSelector="{StaticResource ElementTemplateSelector}"
       ItemBorderBrush="Transparent"
-      ItemBorderThickness="0"/>
+      ItemBorderThickness="0"
+      />
   </Grid>
 </UserControl>
