@@ -19,9 +19,11 @@
   </Window.Resources>
   <Window.CommandBindings>
     <CommandBinding Command="{StaticResource OpenDocumentCommand}"/>
+    <CommandBinding Command="{StaticResource SelectAllCommand}"/>
   </Window.CommandBindings>
   <Window.InputBindings>
     <KeyBinding Gesture="Ctrl+O" Command="{StaticResource OpenDocumentCommand}"/>
+    <KeyBinding Gesture="Ctrl+A" Command="{StaticResource SelectAllCommand}"/>
   </Window.InputBindings>
   <Grid>
     <Grid.RowDefinitions>
@@ -39,6 +41,8 @@
         <MenuItem Header="{x:Static resources:Strings._Cut}" Click="Cut_Click"/>
         <MenuItem Header="{x:Static resources:Strings._Copy}" Click="Copy_Click"/>
         <MenuItem Header="{x:Static resources:Strings._Paste}" Click="Paste_Click"/>
+        <Separator/>
+        <MenuItem Header="{x:Static resources:Strings._SelectAll}" Command="{StaticResource SelectAllCommand}"/>
       </MenuItem>
       <MenuItem Header="{x:Static resources:Strings._Help}">
         <MenuItem Header="{x:Static resources:Strings._About}" Click="About_Click"/>

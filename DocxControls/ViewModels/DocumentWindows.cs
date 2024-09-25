@@ -1,4 +1,6 @@
-﻿using DocxControls.Views;
+﻿using System.Windows.Input;
+
+using DocxControls.Views;
 
 namespace DocxControls.ViewModels;
 
@@ -29,11 +31,24 @@ public class DocumentWindows: ElementCollection<DocumentWindow>, DA.DocumentWind
 
   void DA.DocumentWindows.Add(DA.DocumentWindow window)
   {
+    Add(window);
+  }
+
+  /// <summary>
+  /// Adds a document window to the collection.
+  /// </summary>
+  /// <param name="window"></param>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentException"></exception>
+  public void Add(DA.DocumentWindow window)
+  {
     if (window == null)
       throw new ArgumentNullException(nameof(window));
     if (window is not DocumentWindow documentWindow)
       throw new ArgumentException("Window must be a DocumentWindow");
     Items.Add(documentWindow);
+    documentWindow.Activate();
+    CommandManager.InvalidateRequerySuggested();
   }
 
 }

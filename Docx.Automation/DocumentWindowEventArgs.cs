@@ -10,14 +10,13 @@ public delegate void DocumentWindowEventHandler(object? sender, DocumentWindowEv
 /// <summary>
 /// Arguments for any Document-Window events.
 /// </summary>
-public class DocumentWindowEventArgs : DocumentEventArgs
+public class DocumentWindowEventArgs : EventArgs
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="document"></param>
   /// <param name="window"></param>
-  public DocumentWindowEventArgs(Document document, DocumentWindow window): base(document) 
+  public DocumentWindowEventArgs(DocumentWindow window)
   {
     Window = window;
   }

@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 using Qhta.MVVM;
 
@@ -8,13 +7,12 @@ namespace DocxControls.Commands;
 /// <summary>
 /// Command to open a file.
 /// </summary>
-public class OpenDocumentCommand: Command, ICommand
+public class OpenDocumentCommand: Command
 {
   /// <summary>
   /// Displays a dialog and invokes Application OpenDocument method.
   /// </summary>
   /// <param name="parameter"></param>
-  /// <exception cref="NotImplementedException"></exception>
   public override void Execute(object? parameter)
   {
       // ReSharper disable once UseObjectOrCollectionInitializer

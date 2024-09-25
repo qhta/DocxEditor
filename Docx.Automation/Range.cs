@@ -338,6 +338,11 @@ public interface Range
   /// </summary>
   public IEnumerable<T> GetElements<T>();
 
+  /// <summary>
+  /// Selects the specified range.
+  /// </summary>
+  public void Select();
+
   //AutoFormat
   //  Calculate
   //CheckGrammar
@@ -394,7 +399,6 @@ public interface Range
   //  Previous
   //PreviousSubdocument
   //  Relocate
-  //Select
   //  SetListLevel
   //SetRange
   //  Sort

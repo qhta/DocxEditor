@@ -264,4 +264,7 @@
   <data name="Modified" xml:space="preserve">
     <value>Zmodyfikowano</value>
   </data>
+  <data name="_SelectAll" xml:space="preserve">
+    <value>Z_aznacz wszystko</value>
+  </data>
 </root>

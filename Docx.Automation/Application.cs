@@ -162,10 +162,6 @@ public interface Application
   /// </summary>
   public DocumentWindow CreateNewWindow(Document document);
 
-  /// <summary>
-  /// Selects all elements in the active Window.
-  /// </summary>
-  public void SelectAll();
 
   //  AddAddress
   //AutomaticChange

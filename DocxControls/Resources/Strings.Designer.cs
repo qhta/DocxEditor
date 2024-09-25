@@ -151,6 +151,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select _All.
+        /// </summary>
+        public static string _SelectAll {
+            get {
+                return ResourceManager.GetString("_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application closing.
         /// </summary>
         public static string ApplicationClosing {

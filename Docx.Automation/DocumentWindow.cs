@@ -286,6 +286,11 @@ public interface DocumentWindow: IVisualElement
   ///// </summary>
   //public void RangeFromPoint(int x, int y);
 
+
+  /// <summary>
+  /// Selects the entire document.
+  /// </summary>
+  public void SelectAll();
   ///// <summary>
   ///// Scrolls through the document window so the specified range or shape is displayed in the document window.
   ///// </summary>

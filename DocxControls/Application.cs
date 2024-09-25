@@ -2,7 +2,9 @@
 using DocxControls.Views;
 using Qhta.MVVM;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Navigation;
+using Qhta.WPF.Utils;
 
 namespace DocxControls;
 
@@ -26,24 +28,19 @@ public class Application : ViewModel, DA.Application
 
   #region DA.Application properties implementation ------------------------------------------------------------------------------------
   DA.DocumentWindow? DA.Application.ActiveWindow => ActiveWindow;
+
   /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// May be null if no window is active.
   /// </summary>
   public DocumentWindow? ActiveWindow
   {
-    get => _ActiveWindow;
+    get=> _ActiveWindow;
     set
     {
       if (_ActiveWindow == value) return;
-      if (_ActiveWindow != null)
-        WindowDeactivated?.Invoke(this, new DA.DocumentWindowEventArgs(_ActiveWindow!.Document, _ActiveWindow!));
-      else
-        _ActiveWindow = value;
+      _ActiveWindow = value;
       NotifyPropertyChanged(nameof(ActiveWindow));
-      if (_ActiveWindow != null)
-        WindowActivated?.Invoke(this, new DA.DocumentWindowEventArgs(_ActiveWindow!.Document, _ActiveWindow!));
-      DocumentChanged?.Invoke(this, EventArgs.Empty);
     }
   }
   private DocumentWindow? _ActiveWindow;
@@ -286,6 +283,8 @@ public class Application : ViewModel, DA.Application
   }
   #endregion
 
+  #region local methods ----------------------------------------------------------------------------------------------------------
+  #endregion
 
   #region DA.Application events implementation ------------------------------------------------------------------------------------
   /// <summary>
@@ -319,12 +318,22 @@ public class Application : ViewModel, DA.Application
   /// </summary>
   public event DA.DocumentCloseEventHandler? DocumentBeforeClose;
 
+  /// <summary>
+  /// Used to notify listeners that a document window has been activated.
+  /// </summary>
+  /// <param name="window"></param>
+  public void NotifyWindowActivated(DocumentWindow window) => WindowActivated?.Invoke(this, new DA.DocumentWindowEventArgs(window));
 
   /// <summary>
   /// Occurs when any document window is activated.
   /// </summary>
   public event DA.DocumentWindowEventHandler? WindowActivated;
 
+  /// <summary>
+  /// Used to notify listeners that a document window has been deactivated.
+  /// </summary>
+  /// <param name="window"></param>
+  public void NotifyWindowDeactivated(DocumentWindow window) => WindowDeactivated?.Invoke(this, new DA.DocumentWindowEventArgs(window));
   /// <summary>
   /// Occurs when any document window is deactivated.
   /// </summary>

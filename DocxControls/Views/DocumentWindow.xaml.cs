@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-
-
+using System.Windows.Input;
 
 namespace DocxControls.Views;
 
@@ -17,6 +16,19 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   public DocumentWindow()
   {
     InitializeComponent();
+    GotFocus += DocumentWindow_GotFocus;
+    LostFocus += DocumentWindow_LostFocus;
+  }
+
+  private void DocumentWindow_LostFocus(object sender, RoutedEventArgs e)
+  {
+    Application.Instance.NotifyWindowDeactivated(this);
+  }
+
+  private void DocumentWindow_GotFocus(object sender, RoutedEventArgs e)
+  {
+    Application.ActiveWindow = this;
+    Application.Instance.NotifyWindowActivated(this);
   }
 
 
@@ -84,11 +96,17 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   /// <summary>
   /// True if the specified window is active.
   /// </summary>
-  public bool Active => HasEffectiveKeyboardFocus;
+  public bool Active => Application.ActiveWindow == this;
 
-  private void DocumentWindow_OnGotFocus(object sender, RoutedEventArgs e)
+  /// <summary>
+  /// Tries to activate the window and sets the Application ActiveWindow property.
+  /// </summary>
+  /// <returns></returns>
+  public new bool Activate()
   {
+    var result = base.Activate();
     Application.ActiveWindow = this;
+    return result;
   }
 
   /// <summary>
@@ -288,10 +306,18 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   /// <summary>
   /// Opens a new window with the same document as the specified window. Returns a Window object.
   /// </summary>
-  public Window NewWindow()
+  public DocumentWindow OpenNewWindow()
   {
     var document = (VM.Document)DataContext;
     return Application.CreateNewWindow(document);
+  }
+
+  /// <summary>
+  /// Selects the entire document.
+  /// </summary>
+  public void SelectAll()
+  {
+    Document?.Range.Select();
   }
 
   ///// <summary>
