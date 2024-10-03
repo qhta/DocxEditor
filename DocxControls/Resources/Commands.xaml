@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:commands="clr-namespace:DocxControls.Commands">
-  <commands:OpenDocumentCommand x:Key="OpenDocumentCommand"/>
-  <commands:SelectAllCommand x:Key="SelectAllCommand"/>
+  <commands:OpenDocument x:Key="OpenDocumentCommand"/>
+  <commands:SelectAll x:Key="SelectAllCommand"/>
+  <commands:OpenPluginsView x:Key="OpenPluginsViewCommand"/>
 </ResourceDictionary>

@@ -151,11 +151,29 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Plugins.
+        /// </summary>
+        public static string _Plugins {
+            get {
+                return ResourceManager.GetString("_Plugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select _All.
         /// </summary>
         public static string _SelectAll {
             get {
                 return ResourceManager.GetString("_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Tools.
+        /// </summary>
+        public static string _Tools {
+            get {
+                return ResourceManager.GetString("_Tools", resourceCulture);
             }
         }
         

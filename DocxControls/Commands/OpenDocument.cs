@@ -7,7 +7,7 @@ namespace DocxControls.Commands;
 /// <summary>
 /// Command to open a file.
 /// </summary>
-public class OpenDocumentCommand: Command
+public class OpenDocument: Command
 {
   /// <summary>
   /// Displays a dialog and invokes Application OpenDocument method.

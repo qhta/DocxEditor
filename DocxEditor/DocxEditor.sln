@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocxControls", "..\DocxCont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qhta.OpenXmlTools", "..\..\MyLib\Qhta.OpenXmlTools\Qhta.OpenXmlTools.csproj", "{30D2979D-81E0-42F9-8C8C-4F663FE45390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docx.Automation", "..\Docx.Automation\Docx.Automation.csproj", "{BB09A23C-B07A-4924-93DF-50B144EF7EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docx.Automation", "..\Docx.Automation\Docx.Automation.csproj", "{BB09A23C-B07A-4924-93DF-50B144EF7EEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docx.Normalization", "..\Docx.Normalization\Docx.Normalization.csproj", "{7887E6C4-4C45-4417-898A-D3D4F8DAB941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BB09A23C-B07A-4924-93DF-50B144EF7EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB09A23C-B07A-4924-93DF-50B144EF7EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB09A23C-B07A-4924-93DF-50B144EF7EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7887E6C4-4C45-4417-898A-D3D4F8DAB941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7887E6C4-4C45-4417-898A-D3D4F8DAB941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7887E6C4-4C45-4417-898A-D3D4F8DAB941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7887E6C4-4C45-4417-898A-D3D4F8DAB941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

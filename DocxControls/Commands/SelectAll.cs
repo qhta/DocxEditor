@@ -5,7 +5,7 @@ namespace DocxControls.Commands;
 /// <summary>
 /// Command to select all elements in the ActiveWindow.
 /// </summary>
-public class SelectAllCommand : Command
+public class SelectAll : Command
 {
 
   //public SelectAllCommand()

@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Qhta.WPF.Utils;
+using System.IO;
+using Qhta.TypeUtils;
 
 namespace DocxControls;
 
@@ -341,4 +343,80 @@ public class Application : ViewModel, DA.Application
   #endregion
 
 
+  #region Local command methods ---------------------------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Loaded plugins from the specified directory.
+  /// </summary>
+  public VM.Plugins LoadedPlugins { get; } = new();
+  /// <summary>
+  /// Common instance of the PluginsWindow.
+  /// </summary>
+  public PluginsWindow? PluginsWindow { get; set; }
+
+  ///// <summary>
+  ///// Searches for plugins in the specified directory.
+  ///// </summary>
+  //public bool SearchForPlugins()
+  //{
+  //  var initialDirectory = Assembly.GetExecutingAssembly().Location;
+  //  Debug.WriteLine(initialDirectory);
+  //  var dialog = new OpenFileDialog
+  //  {
+  //    //InitialDirectory = initialDirectory,
+  //    Filter = "Plugin files (*.dll)|*.dll|All files (*.*)|*.*",
+  //    Multiselect = true
+  //  };
+  //  if (dialog.ShowDialog() == true)
+  //  {
+  //    foreach (var fileName in dialog.FileNames)
+  //    {
+  //      // Load the plugin
+  //    }
+  //    return true;
+  //  }
+  //  return false;
+  //}
+
+  /// <summary>
+  /// Loads plugins from the specified directory.
+  /// </summary>
+  public bool LoadPlugins()
+  {
+    string pluginFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
+    if (Directory.Exists(pluginFolder))
+    {
+      foreach (var dll in Directory.GetFiles(pluginFolder, "*.dll"))
+      {
+        var assembly = Assembly.LoadFrom(dll);
+        if (LoadedPlugins.Any(p => p.Assembly?.FullName == assembly.FullName))
+          continue;
+        var types = assembly.GetTypes();
+        foreach(var t in types.Where(t=>t.Implements(typeof(DA.Plugin))))
+        {
+          var plugin = (DA.Plugin?)Activator.CreateInstance(t, this);
+          if (plugin != null)
+          {
+            plugin.Assembly = assembly;
+            LoadedPlugins.Add(plugin);
+          }
+        };
+      }
+    }
+    return true;
+  }
+
+  /// <summary>
+  /// Opens a new Window with the list of plugins.
+  /// </summary>
+  public void OpenPluginsView()
+  {
+    if (PluginsWindow == null)
+      PluginsWindow = new PluginsWindow();
+    PluginsWindow.Owner = System.Windows.Application.Current.MainWindow;
+    PluginsWindow.DataContext = LoadedPlugins;
+    PluginsWindow.Show();
+  }
+
+  #endregion
 }

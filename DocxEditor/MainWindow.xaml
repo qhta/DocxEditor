@@ -20,6 +20,7 @@
   <Window.CommandBindings>
     <CommandBinding Command="{StaticResource OpenDocumentCommand}"/>
     <CommandBinding Command="{StaticResource SelectAllCommand}"/>
+    <CommandBinding Command="{x:Static ApplicationCommands.Close}" Executed="Exit_Click"/>
   </Window.CommandBindings>
   <Window.InputBindings>
     <KeyBinding Gesture="Ctrl+O" Command="{StaticResource OpenDocumentCommand}"/>
@@ -43,6 +44,9 @@
         <MenuItem Header="{x:Static resources:Strings._Paste}" Click="Paste_Click"/>
         <Separator/>
         <MenuItem Header="{x:Static resources:Strings._SelectAll}" Command="{StaticResource SelectAllCommand}"/>
+      </MenuItem>
+      <MenuItem Header="{x:Static resources:Strings._Tools}">
+        <MenuItem Header="{x:Static resources:Strings._Plugins}" Command="{StaticResource OpenPluginsViewCommand}"/>
       </MenuItem>
       <MenuItem Header="{x:Static resources:Strings._Help}">
         <MenuItem Header="{x:Static resources:Strings._About}" Click="About_Click"/>

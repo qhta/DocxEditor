@@ -267,4 +267,10 @@
   <data name="_SelectAll" xml:space="preserve">
     <value>Z_aznacz wszystko</value>
   </data>
+  <data name="_Tools" xml:space="preserve">
+    <value>_Narzędzia</value>
+  </data>
+  <data name="_Plugins" xml:space="preserve">
+    <value>_Wtyczki</value>
+  </data>
 </root>
