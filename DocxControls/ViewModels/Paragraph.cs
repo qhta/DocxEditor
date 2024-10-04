@@ -3,21 +3,19 @@
 /// <summary>
 /// View model for a paragraph
 /// </summary>
-public class ParagraphViewModel : CompoundElementViewModel
+public class Paragraph : CompoundElementViewModel, DA.Paragraph
 {
-
-
 
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="ElementViewModel"/></param>
   /// <param name="paragraph"></param>
-  public ParagraphViewModel
+  public Paragraph
     (ElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
     LoadAllElements();
-    ParagraphProperties ??= new ParagraphPropertiesViewModel(this, paragraph.GetProperties());
+    ParagraphProperties ??= new ParagraphProperties(this, paragraph.GetProperties());
   }
 
 
@@ -25,12 +23,14 @@ public class ParagraphViewModel : CompoundElementViewModel
   /// <summary>
   /// Paragraph element of the document
   /// </summary>
-  public DXW.Paragraph Paragraph => (DXW.Paragraph)Element!;
+  public DXW.Paragraph ParagraphElement => (DXW.Paragraph)Element!;
 
+
+  DA.ParagraphProperties DA.Paragraph.Properties => ParagraphProperties!;
   /// <summary>
   /// Paragraph properties view model
   /// </summary>
-  public ParagraphPropertiesViewModel? ParagraphProperties { get; set; }
+  public ParagraphProperties? ParagraphProperties { get; set; }
 
   ///// <summary>
   ///// Initializes the object properties
@@ -81,9 +81,10 @@ public class ParagraphViewModel : CompoundElementViewModel
   {
     if (element is DXW.ParagraphProperties paragraphPropertiesElement)
     {
-      ParagraphProperties = new ParagraphPropertiesViewModel(this, paragraphPropertiesElement);
+      ParagraphProperties = new ParagraphProperties(this, paragraphPropertiesElement);
       return;
     }
     base.CreateChildViewModel(element);
   }
+
 }

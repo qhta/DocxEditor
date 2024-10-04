@@ -37,6 +37,11 @@ public interface Document: IElement
   /// </summary>
   public Range Range { get; }
 
+  /// <summary>
+  /// Returns a Selection object that represents all selected elements in the document.
+  /// </summary>
+  public Selection Selection { get; }
+
   //ActiveTheme
   //ActiveThemeDisplayName
 

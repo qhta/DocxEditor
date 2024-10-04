@@ -12,6 +12,16 @@ public class Range : ViewModel, DA.Range
   /// <summary>
   /// Initializing constructor.
   /// </summary>
+  protected Range(VM.Document parent)
+  {
+    Parent = parent;
+    Start = null!;
+    End = null!;
+  }
+
+  /// <summary>
+  /// Initializing constructor.
+  /// </summary>
   public Range(object parent, DX.OpenXmlElement start, DX.OpenXmlElement end)
   {
     Parent = parent;

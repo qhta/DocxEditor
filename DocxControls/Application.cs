@@ -29,6 +29,14 @@ public class Application : ViewModel, DA.Application
   public static Application Instance { get; } = new();
 
   #region DA.Application properties implementation ------------------------------------------------------------------------------------
+  DA.Document? DA.Application.ActiveDocument => ActiveWindow?.Document;
+
+  /// <summary>
+  /// Returns an active document from the <see cref="ActiveWindow"/>.
+  /// May be null if no window is active.
+  /// </summary>
+  public VM.Document? ActiveDocument => ActiveWindow?.Document;
+
   DA.DocumentWindow? DA.Application.ActiveWindow => ActiveWindow;
 
   /// <summary>
@@ -75,7 +83,7 @@ public class Application : ViewModel, DA.Application
       throw new InvalidOperationException($"Parent view model must be a ElementViewModel, but is {parentViewModel.GetType()}");
     return element switch
     {
-      DXW.Paragraph paragraph => new VM.ParagraphViewModel(parentElementViewModel, paragraph),
+      DXW.Paragraph paragraph => new VM.Paragraph(parentElementViewModel, paragraph),
       DXW.Table table => new VM.TableViewModel(parentElementViewModel, table),
       //DXW.TableRow tableRow => new VM.TableRow(null, tableRow),
       //DXW.TableCell tableCell => new VM.TableCell(null, tableCell),
@@ -397,7 +405,6 @@ public class Application : ViewModel, DA.Application
           var plugin = (DA.Plugin?)Activator.CreateInstance(t, this);
           if (plugin != null)
           {
-            plugin.Assembly = assembly;
             LoadedPlugins.Add(plugin);
           }
         };

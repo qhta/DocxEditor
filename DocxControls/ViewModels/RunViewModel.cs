@@ -8,7 +8,7 @@ public class RunViewModel : CompoundElementViewModel
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="propertiesViewModel">Owner view model. Must be <see cref="ParagraphViewModel"/></param>
+  /// <param name="propertiesViewModel">Owner view model. Must be <see cref="Paragraph"/></param>
   /// <param name="run">Modeled run element</param>
   public RunViewModel(ElementViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
   {

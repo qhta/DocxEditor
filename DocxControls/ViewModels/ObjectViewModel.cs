@@ -158,7 +158,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     { typeof(DXW.Body), typeof(BodyViewModel)},
     { typeof(DXW.BookmarkStart), typeof(BookmarkStart)},
     { typeof(DXW.BookmarkEnd), typeof(BookmarkEnd)},
-    { typeof(DXW.Paragraph), typeof(ParagraphViewModel)},
+    { typeof(DXW.Paragraph), typeof(Paragraph)},
     { typeof(DXW.Run), typeof(RunViewModel)},
     { typeof(DXW.RunProperties), typeof(RunPropertiesViewModel)},
     { typeof(DXW.Text), typeof(TextViewModel)},

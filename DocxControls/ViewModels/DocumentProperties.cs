@@ -26,6 +26,11 @@ public abstract class DocumentProperties: PropertiesViewModel<DocumentProperty>,
   IEnumerator<DA.DocumentProperty> IEnumerable<DA.DocumentProperty>.GetEnumerator() => Items.Cast<DA.DocumentProperty>().GetEnumerator();
 
   /// <summary>
+  /// Checks if the collection is empty.
+  /// </summary>
+  public bool IsEmpty  => Items.Count == 0;
+
+  /// <summary>
   /// Gets the names of the built-in properties.
   /// </summary>
   public string[] AvailableProperties => GetNames();

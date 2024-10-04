@@ -20,4 +20,9 @@ public interface IElementCollection<T>: IEnumerable<T> where T : IElement
   /// Returns the number of items in the collection.
   /// </summary>
   public int Count { get; }
+
+  /// <summary>
+  /// Checks if the collection is empty
+  /// </summary>
+  public bool IsEmpty { get; }
 }

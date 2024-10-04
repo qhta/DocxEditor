@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Windows.Input;
 
 namespace Docx.Automation;
 
@@ -13,12 +14,17 @@ public interface Plugin
   /// <summary>
   /// The assembly of the plugin.
   /// </summary>
-  public Assembly? Assembly { get; set; }
+  public Assembly Assembly { get; }
 
   /// <summary>
   /// The application instance.
   /// </summary>
   public Application? Application { get; }
+
+  /// <summary>
+  /// Language of the plugin user interface.
+  /// </summary>
+  public String? Lang { get; set;  }
 
   /// <summary>
   /// The name of the plugin.
@@ -28,35 +34,35 @@ public interface Plugin
   /// <summary>
   /// The description of the plugin.
   /// </summary>
-  public virtual string? GetDescription(string lang) => null;
+  public string? Description { get; }
 
   /// <summary>
   /// The version of the plugin.
   /// </summary>
-  public virtual string? Version => null;
+  public string? Version { get; }
 
   /// <summary>
-  /// The author of the plugin.
+  /// Company (or author) that created the plugin.
   /// </summary>
-  public virtual string? Author => null;
+  public string? Company { get; }
 
   /// <summary>
-  /// The website of the plugin.
+  /// Method that is called when the plugin is loaded.
   /// </summary>
-  public virtual string? Website => null;
+  public void StartUp();
 
   /// <summary>
-  /// The icon of the plugin.
+  /// Method that is called when the plugin is unloaded.
   /// </summary>
-  public virtual string? Icon => null;
+  public void CloseUp();
 
   /// <summary>
-  /// The command to execute the plugin.
+  /// The main method of the plugin.
   /// </summary>
-  public virtual bool CanExecute() => true;
+  public void Execute();
 
   /// <summary>
-  /// The command to execute the plugin.
+  /// 
   /// </summary>
-  public abstract void Execute();
+  public IEnumerable<PluginCommand> Commands { get; }
 }

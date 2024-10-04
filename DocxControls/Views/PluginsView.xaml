@@ -4,10 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DocxControls.Views"
-             mc:Ignorable="d" 
+             xmlns:resources="clr-namespace:DocxControls.Resources"
+   mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
-    <DataGrid ItemsSource="{Binding}"
-              AutoGenerateColumns="True"/>
+    <local:CustomDataGrid 
+      ItemsSource="{Binding}"
+      AutoGenerateColumns="False">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="{x:Static resources:PropertiesCaptions.Name}" Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="{x:Static resources:PropertiesCaptions.Description}" Binding="{Binding Description}"/>
+        <DataGridTextColumn Header="{x:Static resources:PropertiesCaptions.Version}" Binding="{Binding Version}"/>
+        <DataGridTextColumn Header="{x:Static resources:PropertiesCaptions.Company}" Binding="{Binding Company}"/>
+      </DataGrid.Columns>
+    </local:CustomDataGrid>
   </Grid>
 </UserControl>

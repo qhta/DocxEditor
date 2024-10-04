@@ -4,10 +4,52 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Qhta</Authors>
+    <Description>Tools for Docx normalization</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0" />
+    <PackageReference Include="Qhta.MVVM" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MyLib\Qhta.OpenXmlTools\Qhta.OpenXmlTools.csproj" />
     <ProjectReference Include="..\Docx.Automation\Docx.Automation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CommandCaptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandCaptions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandDescriptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandDescriptions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="CommandTooltips.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandTooltips.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="CommandCaptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandCaptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandDescriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandDescriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CommandTooltips.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandTooltips.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

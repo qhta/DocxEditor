@@ -14,7 +14,7 @@
   </ResourceDictionary.MergedDictionaries>
   <resources:Strings x:Key="Strings"/>
   <helpers:ItemWidthConverter x:Key="ItemWidthConverter" />
-  <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type vm:ParagraphViewModel}">
+  <DataTemplate x:Key="ParagraphTemplate" DataType="{x:Type vm:Paragraph}">
     <local:ParagraphView />
   </DataTemplate>
   <DataTemplate x:Key="RunTemplate" DataType="{x:Type vm:RunViewModel}">

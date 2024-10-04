@@ -64,7 +64,7 @@ public class ElementTemplateSelector : DataTemplateSelector
   /// <returns></returns>
   public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
   {
-    if (item is VM.ParagraphViewModel)
+    if (item is VM.Paragraph)
       return ParagraphTemplate ?? UnknownElementTemplate;
     if (item is VM.TableViewModel)
       return TableTemplate ?? UnknownElementTemplate;

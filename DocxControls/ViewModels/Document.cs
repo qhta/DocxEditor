@@ -16,6 +16,7 @@ public class Document : ViewModel, DA.Document, IEditable
   /// </summary>
   public Document()
   {
+    Selection = new Selection(this);
   }
 
   #region IElement implementation
@@ -199,6 +200,12 @@ public class Document : ViewModel, DA.Document, IEditable
       return result;
     }
   }
+
+  DA.Selection DA.Document.Selection => Selection;
+  /// <summary>
+  /// Collection of selected items.
+  /// </summary>
+  public Selection Selection { get; } 
 
   /// <summary>
   /// Access to the body elements of the document

@@ -8,6 +8,12 @@ public interface Application
   #region properties
 
   /// <summary>
+  /// Returns an active document from the <see cref="ActiveWindow"/>.
+  /// May be null if no window is active.
+  /// </summary>
+  public Document? ActiveDocument { get; }
+
+  /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// May be null if no window is active.
   /// </summary>

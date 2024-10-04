@@ -50,6 +50,11 @@ public class CustomDocumentProperties: PropertiesViewModel<CustomDocumentPropert
   }
 
   /// <summary>
+  /// Checks if the collection is empty.
+  /// </summary>
+  public bool IsEmpty => Items.Count == 0;
+
+  /// <summary>
   /// Checks if the name does not exist in the properties.
   /// </summary>
   /// <param name="name"></param>

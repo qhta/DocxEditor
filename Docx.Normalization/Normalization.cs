@@ -1,32 +1,22 @@
 ﻿using System.Reflection;
+using System.Windows.Input;
 using Docx.Automation;
 
 namespace Docx.Normalization;
 
-public class Normalization: Plugin
+public class Normalization : PluginClass
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="application"></param>
-  public Normalization(Application application)
+  public Normalization(Application application): base(application)
   {
-    Application = application;
   }
 
-  /// <summary>
-  /// Stores the assembly of the plugin.
-  /// </summary>
-  public Assembly? Assembly { get; set; }
-
-  public Application? Application { get; }
-
-  public string? Name => "Normalization";
-
-  public string? GetDescription(string lang) => "Normalize the document";
-
-  public void Execute()
+  public override void StartUp()
   {
     throw new NotImplementedException();
   }
+
 }

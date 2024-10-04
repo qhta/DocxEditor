@@ -131,5 +131,45 @@ public class CompoundElementViewModel : ElementViewModel
       element.SelectAll();
     }
   }
+
+  /// <summary>
+  /// Enumerates the selected items.
+  /// </summary>
+  /// <returns></returns>
+  public IEnumerable<ElementViewModel> GetSelectedItems()
+  {
+    foreach (var element in Elements)
+    {
+      if (element.IsSelected)
+        yield return element;
+      if (element is CompoundElementViewModel container)
+        foreach (var item in container.GetSelectedItems())
+          yield return item;
+    }
+  }
   #endregion
+
+  /// <summary>
+  /// Gets the elements of a specific type.
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <returns></returns>
+  public IEnumerable<T> GetElements<T>() where T : ElementViewModel => Elements.OfType<T>();
+
+  /// <summary>
+  /// Gets the elements of a specific type and their descendants.
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <returns></returns>
+  public IEnumerable<T> GetDescendants<T>() where T : ElementViewModel
+  {
+    foreach (var element in Elements)
+    {
+      if (element is T t)
+        yield return t;
+      if (element is CompoundElementViewModel container)
+        foreach (var item in container.GetDescendants<T>())
+          yield return item;
+    }
+  }
 }

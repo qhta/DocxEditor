@@ -232,6 +232,15 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compatibility.
         /// </summary>
         public static string Compatibility {
@@ -291,6 +300,15 @@ namespace DocxControls.Resources {
         public static string CustomXml {
             get {
                 return ResourceManager.GetString("CustomXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -525,6 +543,15 @@ namespace DocxControls.Resources {
         public static string ValueCannotBeEmpty {
             get {
                 return ResourceManager.GetString("ValueCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }

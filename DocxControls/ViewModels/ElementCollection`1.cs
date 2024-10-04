@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq.Expressions;
+
 using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
@@ -7,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public class ElementCollection<T>: ViewModel, IEnumerable<T>, ICollection<T>, DA.IElementCollection<T> where T : DA.IElement
+public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollection<T> where T : DA.IElement
 {
   /// <summary>
   /// Constructor with a owner object.
@@ -33,6 +33,10 @@ public class ElementCollection<T>: ViewModel, IEnumerable<T>, ICollection<T>, DA
   /// </summary>
   public ObservableCollection<T> Items { get; } = new();
 
+  /// <summary>
+  /// Checks if the collection is empty
+  /// </summary>
+  public bool IsEmpty => Items.Count == 0;
 
   /// <summary>
   /// Returns an enumerator that iterates through the collection.
@@ -48,6 +52,12 @@ public class ElementCollection<T>: ViewModel, IEnumerable<T>, ICollection<T>, DA
   {
     // ReSharper disable once NotDisposedResourceIsReturned
     return ((IEnumerable)Items).GetEnumerator();
+  }
+
+  IEnumerator<T> IEnumerable<T>.GetEnumerator()
+  {
+    // ReSharper disable once NotDisposedResourceIsReturned
+    return ((IEnumerable<T>)Items).GetEnumerator();
   }
 
   bool ICollection<T>.Remove(T item)
