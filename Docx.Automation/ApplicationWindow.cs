@@ -16,6 +16,12 @@ public interface ApplicationWindow
   /// <param name="window"></param>
   public void AddDocumentWindow(DocumentWindow window);
 
+  /// <summary>
+  /// Brings the specified window to the front and sets it as the active window.
+  /// </summary>
+  /// <param name="window"></param>
+  public void Activate(DocumentWindow window);
+
   //public void AddPluginCommandsToMenu();
 
 

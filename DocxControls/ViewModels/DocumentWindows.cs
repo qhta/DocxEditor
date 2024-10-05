@@ -47,8 +47,6 @@ public class DocumentWindows: ElementCollection<DocumentWindow>, DA.DocumentWind
     if (window is not DocumentWindow documentWindow)
       throw new ArgumentException("Window must be a DocumentWindow");
     Items.Add(documentWindow);
-    documentWindow.Activate();
-    CommandManager.InvalidateRequerySuggested();
   }
 
 }

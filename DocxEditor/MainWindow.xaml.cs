@@ -2,6 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
+
+using Docx.Automation;
 
 using DocxControls;
 using DocxControls.Views;
@@ -9,6 +12,7 @@ using DocxControls.Views;
 using Syncfusion.Windows.Tools.Controls;
 
 using DA = Docx.Automation;
+using DCV = DocxControls.Views;
 
 namespace DocxEditor;
 /// <summary>
@@ -28,20 +32,35 @@ public partial class MainWindow : Window, DA.ApplicationWindow
     AddPluginCommandsToMenu();
   }
 
-  public DA.Application Application => DocxControls.Application.Instance;
+  DA.Application DA.ApplicationWindow.Application => Application;
+  /// <summary>
+  /// Gets the application instance.
+  /// </summary>
+  public DocxControls.Application Application => DocxControls.Application.Instance;
 
-  void DA.ApplicationWindow.AddDocumentWindow(DA.DocumentWindow window) => AddDocumentWindow((DocumentWindow)window);
-  public void AddDocumentWindow(DocumentWindow window)
+  void DA.ApplicationWindow.AddDocumentWindow(DA.DocumentWindow window) => AddDocumentWindow((DCV.DocumentWindow)window);
+  public void AddDocumentWindow(DCV.DocumentWindow window)
   {
-    if (DocumentContainer.ActiveDocument is DocumentWindow activeWindow)
+    if (DocumentContainer.ActiveDocument is DCV.DocumentWindow activeWindow)
     {
       window.Left = activeWindow.Left + 20;
       window.Top = activeWindow.Top + 20;
     }
     DocumentContainer.Items.Add(window);
+    Activate(window);
+  }
+
+  void DA.ApplicationWindow.Activate(DA.DocumentWindow window) => Activate((DCV.DocumentWindow)window);
+  /// <summary>
+  /// Brings the specified window to the front and sets it as the active window.
+  /// </summary>
+  /// <param name="window"></param>
+  public void Activate(DCV.DocumentWindow window)
+  {
     DocumentContainer.ActiveDocument = window;
-    window.Activate();
-  } 
+    Application.ActiveWindow = window;
+    CommandManager.InvalidateRequerySuggested();
+  }
 
   private void AddPluginCommandsToMenu()
   {

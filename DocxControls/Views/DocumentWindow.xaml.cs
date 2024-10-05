@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using Docx.Automation;
+
 using Syncfusion.Windows.Tools.Controls;
 
 namespace DocxControls.Views;
@@ -105,8 +107,12 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
   /// <returns></returns>
   public bool Activate()
   {
-    Application.ActiveWindow = this;
-    return true;
+    if (System.Windows.Application.Current.MainWindow is DA.ApplicationWindow mainWindow)
+    {
+      mainWindow.Activate(this);
+      return true;
+    }
+    return false;
   }
 
   /// <summary>
