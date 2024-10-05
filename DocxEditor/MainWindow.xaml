@@ -56,6 +56,6 @@
       </MenuItem>
     </Menu>
     <!--<ContentPresenter Grid.Row="1" x:Name="MainPanel"/>-->
-    <syncfusion:DockingManager Grid.Row="1" x:Name="DockingManager" UseDocumentContainer="True" ContainerMode="TDI"/>
+    <syncfusion:DocumentContainer Grid.Row="1" x:Name="DocumentContainer" Mode="MDI"/>
   </Grid>
 </Window>

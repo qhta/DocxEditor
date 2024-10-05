@@ -89,7 +89,7 @@ public class CompoundElementViewModel : ElementViewModel
   /// <returns></returns>
   public virtual ElementViewModel? FindViewModel(DX.OpenXmlElement element)
   {
-    var result = Elements.FirstOrDefault(vm => vm.Element == element);
+    var result = Elements.ToList().FirstOrDefault(vm => vm.Element == element);
     if (result == null)
     {
       foreach (var vm in Elements)

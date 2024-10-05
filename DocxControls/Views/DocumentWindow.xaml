@@ -9,6 +9,7 @@
         Height="450" Width="800"
         syncfusion:DocumentContainer.Header="{Binding WindowTitle}"
         syncfusion:DockingManager.State="Document" 
+        syncfusion:DocumentContainer.MDIBounds="0,0,400,300"
         >
-    <local:DocumentView x:Name="ContentView"/>
+    <local:DocumentView x:Name="DocumentView"/>
 </UserControl>

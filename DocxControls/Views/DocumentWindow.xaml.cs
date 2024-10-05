@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using Xceed.Wpf.AvalonDock;
+using Syncfusion.Windows.Tools.Controls;
 
 namespace DocxControls.Views;
 
@@ -106,7 +105,6 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
   /// <returns></returns>
   public bool Activate()
   {
-    //var result = base.Activate();
     Application.ActiveWindow = this;
     return true;
   }
@@ -136,19 +134,36 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
     set => SetValue(TitleProperty, value);
   }
 
-  public double Left { get; set; }
-  public double Top { get; set; }
+  /// <summary>
+  /// Left position of the window in MDI application.
+  /// </summary>
+  public double Left 
+  { 
+    get => GetBounds().Left ;
+    set => SetBounds(GetBounds() with { X=value });
+  }
+
+  /// <summary>
+  /// Top position of the window in MDI application.
+  /// </summary>
+  public double Top
+  {
+    get => GetBounds().Top;
+    set => SetBounds(GetBounds() with { Y = value });
+  }
+
+  private Rect GetBounds() => DocumentContainer.GetMDIBounds(this);
+  private void SetBounds(Rect value) => DocumentContainer.SetMDIBounds(this, value);
 
   /// <summary>
   /// Returns the width of the active working area in the specified document window.
   /// </summary>
-  public double UsableWidth => (Content is FrameworkElement) ? (Content as FrameworkElement)!.ActualWidth : double.NaN;
+  public double UsableWidth => DocumentView.ActualWidth;
 
   /// <summary>
   /// Returns the height of the active working area in the specified document window.
   /// </summary>
-  public double UsableHeight =>
-    (Content is FrameworkElement) ? (Content as FrameworkElement)!.ActualHeight : double.NaN;
+  public double UsableHeight => DocumentView.ActualHeight;
 
   /// <summary>
   /// True if the specified object is visible. Read/write Boolean.
@@ -162,11 +177,11 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
       {
         if (value)
         {
-          //Show();
+          Visibility = Visibility.Visible;
         }
         else
         {
-          //Hide();
+          Visibility = Visibility.Hidden;
         }
       }
     }

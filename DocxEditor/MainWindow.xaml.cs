@@ -33,7 +33,14 @@ public partial class MainWindow : Window, DA.ApplicationWindow
   void DA.ApplicationWindow.AddDocumentWindow(DA.DocumentWindow window) => AddDocumentWindow((DocumentWindow)window);
   public void AddDocumentWindow(DocumentWindow window)
   {
-    DockingManager.Children.Add(window);
+    if (DocumentContainer.ActiveDocument is DocumentWindow activeWindow)
+    {
+      window.Left = activeWindow.Left + 20;
+      window.Top = activeWindow.Top + 20;
+    }
+    DocumentContainer.Items.Add(window);
+    DocumentContainer.ActiveDocument = window;
+    window.Activate();
   } 
 
   private void AddPluginCommandsToMenu()
