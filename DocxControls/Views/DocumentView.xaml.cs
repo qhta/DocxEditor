@@ -27,6 +27,7 @@ public partial class DocumentView : UserControl
     Open(filePath, isEditable);
   }
 
+  
   /// <summary>
   /// View model for the document
   /// </summary>

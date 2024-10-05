@@ -29,6 +29,11 @@ public interface Application
   /// </summary>
   public DocumentWindows Windows { get; }
 
+  /// <summary>
+  /// Collection of plugins.
+  /// </summary>
+  public IEnumerable<Plugin> Plugins { get; }
+
   //ActiveDocument
   //ActiveEncryptionSession
   //  ActivePrinter
@@ -164,10 +169,26 @@ public interface Application
   public void Activate(DocumentWindow window);
 
   /// <summary>
+  /// Creates a new document in a new window.
+  /// </summary>
+  /// <returns></returns>
+  public Document NewDocument();
+
+  /// <summary>
   /// Creates a new window for existing document.
   /// </summary>
   public DocumentWindow CreateNewWindow(Document document);
 
+  /// <summary>
+  /// Closes all the documents in the application. Returns true if successful.
+  /// </summary>
+  /// <returns></returns>
+  public bool CloseAllDocuments();
+
+  /// <summary>
+  /// Registers plugin commands with the application. Returns true if successful.
+  /// </summary>
+  public bool LoadPlugins();
 
   //  AddAddress
   //AutomaticChange

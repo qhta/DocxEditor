@@ -3,15 +3,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-using Docx.Automation;
-
 using DocxControls;
+using DocxControls.Views;
+
+using Syncfusion.Windows.Tools.Controls;
+
+using DA = Docx.Automation;
 
 namespace DocxEditor;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : Window, DA.ApplicationWindow
 {
 
   public MainWindow()
@@ -25,14 +28,20 @@ public partial class MainWindow : Window
     AddPluginCommandsToMenu();
   }
 
-  private DocxControls.Application Application => DocxControls.Application.Instance;
+  public DA.Application Application => DocxControls.Application.Instance;
+
+  void DA.ApplicationWindow.AddDocumentWindow(DA.DocumentWindow window) => AddDocumentWindow((DocumentWindow)window);
+  public void AddDocumentWindow(DocumentWindow window)
+  {
+    DockingManager.Children.Add(window);
+  } 
 
   private void AddPluginCommandsToMenu()
   {
     // Assuming you have a method to get the list of plugins
-    var plugins = Application.LoadPlugins();
+    Application.LoadPlugins();
 
-    foreach (var plugin in Application.LoadedPlugins)
+    foreach (var plugin in Application.Plugins)
     {
       TryAddPluginMenuItem(plugin);
     }
@@ -43,7 +52,7 @@ public partial class MainWindow : Window
   /// </summary>
   /// <param name="plugin"></param>
   /// <returns></returns>
-  private bool TryAddPluginMenuItem(Plugin plugin)
+  private bool TryAddPluginMenuItem(DA.Plugin plugin)
   {
     var pluginMenuItem = ToolsMenu.Items.OfType<MenuItem>().FirstOrDefault(item => item.Tag?.ToString() == plugin.Name);
     if (pluginMenuItem == null)

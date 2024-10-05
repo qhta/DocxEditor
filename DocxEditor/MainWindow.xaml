@@ -7,6 +7,9 @@
         xmlns:controls="clr-namespace:DocxControls;assembly=DocxControls"
         xmlns:commands="clr-namespace:DocxControls.Commands;assembly=DocxControls"
         xmlns:resources="clr-namespace:DocxControls.Resources;assembly=DocxControls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        xmlns:interactivity="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Docx Editor" Height="450" Width="800" WindowStyle="ThreeDBorderWindow"
         Icon="pack://application:,,,/DocxEditor.ico">
@@ -52,6 +55,7 @@
         <MenuItem Header="{x:Static resources:Strings._About}" Click="About_Click"/>
       </MenuItem>
     </Menu>
-    <ContentPresenter Grid.Row="1" x:Name="MainPanel"/>
+    <!--<ContentPresenter Grid.Row="1" x:Name="MainPanel"/>-->
+    <syncfusion:DockingManager Grid.Row="1" x:Name="DockingManager" UseDocumentContainer="True" ContainerMode="TDI"/>
   </Grid>
 </Window>

@@ -110,10 +110,15 @@ public class Application : ViewModel, DA.Application
     var documentViewModel = Documents.Last();
     if (documentViewModel == null)
       throw new InvalidOperationException($"Document \"{fileName}\" not opened");
+
     var documentWindow = new DocumentWindow { DataContext = documentViewModel };
     DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = System.Windows.Application.Current.MainWindow;
-    documentWindow.Show();
+    if (System.Windows.Application.Current.MainWindow is DA.ApplicationWindow mainWindow)
+    {
+      mainWindow.AddDocumentWindow(documentWindow);
+    }
+    //documentWindow.Owner = System.Windows.Application.Current.MainWindow;
+    //documentWindow.Show();
     DocumentOpened?.Invoke(this, new DA.DocumentEventArgs(documentViewModel));
     DocumentChanged?.Invoke(this, EventArgs.Empty);
     return documentViewModel;
@@ -135,6 +140,7 @@ public class Application : ViewModel, DA.Application
     propertiesWindow.ShowDialog();
   }
 
+  DA.Document DA.Application.NewDocument() => NewDocument();
   /// <summary>
   /// Creates a new document.
   /// </summary>
@@ -146,8 +152,10 @@ public class Application : ViewModel, DA.Application
       throw new InvalidOperationException($"New document not created");
     var documentWindow = new DocumentWindow { DataContext = document };
     DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = System.Windows.Application.Current.MainWindow;
-    documentWindow.Show();
+    if (System.Windows.Application.Current.MainWindow is DA.ApplicationWindow mainWindow)
+    {
+      mainWindow.AddDocumentWindow(documentWindow);
+    }
     DocumentCreated?.Invoke(this, new DA.DocumentEventArgs(document));
     DocumentChanged?.Invoke(this, EventArgs.Empty);
     return document;
@@ -268,8 +276,8 @@ public class Application : ViewModel, DA.Application
   {
     var documentWindow = new DocumentWindow { DataContext = document };
     DocumentWindows.Add(documentWindow);
-    documentWindow.Owner = System.Windows.Application.Current.MainWindow;
-    documentWindow.Show();
+    if (System.Windows.Application.Current.MainWindow is DA.ApplicationWindow mainWindow)
+      mainWindow.AddDocumentWindow(documentWindow);
     DocumentChanged?.Invoke(this, EventArgs.Empty);
     return documentWindow;
   }
@@ -352,12 +360,12 @@ public class Application : ViewModel, DA.Application
   #endregion
 
 
-  #region Local command methods ---------------------------------------------------------------------------------------------------
-
+  #region Plugins implementation ---------------------------------------------------------------------------------------------------
+  IEnumerable<DA.Plugin> DA.Application.Plugins => Plugins;
   /// <summary>
   /// Loaded plugins from the specified directory.
   /// </summary>
-  public VM.Plugins LoadedPlugins { get; } = new();
+  public VM.Plugins Plugins { get; } = new();
 
  // public ObservableCollection<DA.PluginCommand> PluginCommands { get; }= new();
 
@@ -377,7 +385,7 @@ public class Application : ViewModel, DA.Application
       foreach (var dll in Directory.GetFiles(pluginFolder, "*.dll"))
       {
         var assembly = Assembly.LoadFrom(dll);
-        if (LoadedPlugins.Any(p => p.Assembly?.FullName == assembly.FullName))
+        if (Plugins.Any(p => p.Assembly?.FullName == assembly.FullName))
           continue;
         var types = assembly.GetTypes();
         foreach(var t in types.Where(t=>t.Implements(typeof(DA.Plugin))))
@@ -385,7 +393,7 @@ public class Application : ViewModel, DA.Application
           var plugin = (DA.Plugin?)Activator.CreateInstance(t, this);
           if (plugin != null)
           {
-            LoadedPlugins.Add(plugin);
+            Plugins.Add(plugin);
             plugin.StartUp();
           }
         };
@@ -402,7 +410,7 @@ public class Application : ViewModel, DA.Application
     if (PluginsWindow == null)
       PluginsWindow = new PluginsWindow();
     PluginsWindow.Owner = System.Windows.Application.Current.MainWindow;
-    PluginsWindow.DataContext = LoadedPlugins;
+    PluginsWindow.DataContext = Plugins;
     PluginsWindow.Show();
   }
 

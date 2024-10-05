@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Xceed.Wpf.AvalonDock;
 
 namespace DocxControls.Views;
 
 /// <summary>
 /// Interaction logic for DocumentWindow.xaml
 /// </summary>
-public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, DA.IElement
+public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElement
 {
 
   /// <summary>
@@ -44,20 +46,20 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
 
   #endregion
 
-  /// <summary>
-  /// When the window is closing, prompt the user to save changes in open documents.
-  /// </summary>
-  /// <param name="e"></param>
-  protected override void OnClosing(CancelEventArgs e)
-  {
-    var documentViewModel = DataContext as VM.Document;
-    if (documentViewModel == null) return;
+  ///// <summary>
+  ///// When the window is closing, prompt the user to save changes in open documents.
+  ///// </summary>
+  ///// <param name="e"></param>
+  //protected override void OnClosing(CancelEventArgs e)
+  //{
+  //  var documentViewModel = DataContext as VM.Document;
+  //  if (documentViewModel == null) return;
 
-    if (!CloseDocument())
-    {
-      e.Cancel = true;
-    }
-  }
+  //  if (!CloseDocument())
+  //  {
+  //    e.Cancel = true;
+  //  }
+  //}
 
   /// <summary>
   /// Closes the document.
@@ -102,11 +104,11 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   /// Tries to activate the window and sets the Application ActiveWindow property.
   /// </summary>
   /// <returns></returns>
-  public new bool Activate()
+  public bool Activate()
   {
-    var result = base.Activate();
+    //var result = base.Activate();
     Application.ActiveWindow = this;
-    return result;
+    return true;
   }
 
   /// <summary>
@@ -115,8 +117,27 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
   public string? Caption
   {
     get => Title;
-    set => Title = value;
+    set => Title = value ?? "";
   }
+
+  /// <summary>
+  /// Dependency property for the Title property.
+  /// </summary>
+  public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+    nameof(Title), typeof(string), typeof(DocumentWindow), new PropertyMetadata(default(string)));
+
+
+  /// <summary>
+  /// Title of the window.
+  /// </summary>
+  public string Title
+  {
+    get => (string)GetValue(TitleProperty);
+    set => SetValue(TitleProperty, value);
+  }
+
+  public double Left { get; set; }
+  public double Top { get; set; }
 
   /// <summary>
   /// Returns the width of the active working area in the specified document window.
@@ -141,11 +162,11 @@ public partial class DocumentWindow : System.Windows.Window, DA.DocumentWindow, 
       {
         if (value)
         {
-          Show();
+          //Show();
         }
         else
         {
-          Hide();
+          //Hide();
         }
       }
     }
