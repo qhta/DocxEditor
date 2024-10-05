@@ -260,7 +260,7 @@
     <value>Provider ValueType Extensibility Source</value>
   </data>
   <data name="CryptographicSpinCount" xml:space="preserve">
-    <value>Iterations to Run Hashing Algorithm</value>
+    <value>Iterations to RunElement Hashing Algorithm</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Document Editing Restrictions</value>

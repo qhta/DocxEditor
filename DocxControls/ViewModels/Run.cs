@@ -3,43 +3,59 @@
 /// <summary>
 /// View model for a paragraph run element
 /// </summary>
-public class RunViewModel : CompoundElementViewModel
+public class Run : CompoundElementViewModel, DA.Run
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="propertiesViewModel">Owner view model. Must be <see cref="Paragraph"/></param>
   /// <param name="run">Modeled run element</param>
-  public RunViewModel(ElementViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
+  public Run(ElementViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
   {
     LoadAllElements();
-    RunProperties ??= new RunPropertiesViewModel(this, run.GetProperties());
+    RunProperties ??= new RunProperties(this, run.GetProperties());
   }
 
   /// <summary>
-  /// Run element of the paragraph
+  /// RunElement element of the paragraph
   /// </summary>
-  public DXW.Run Run => (DXW.Run)Element!;
+  public DXW.Run RunElement => (DXW.Run)Element!;
 
+
+  DA.RunProperties DA.Run.Properties => RunProperties!;
   /// <summary>
-  /// Run properties view model
+  /// RunElement properties view model
   /// </summary>
-  public RunPropertiesViewModel? RunProperties { get; set; }
+  public RunProperties? RunProperties { get; set; }
 
   /// <summary>
   /// Check if the run is bold
   /// </summary>
-  public bool IsBold => Run.IsBold();
+  public bool IsBold => RunElement.IsBold();
 
   /// <summary>
   /// Check if the run is italic
   /// </summary>
-  public bool IsItalic => Run.IsItalic();
+  public bool IsItalic => RunElement.IsItalic();
 
   /// <summary>
   /// Check if the run is underlined
   /// </summary>
-  public bool IsUnderline => Run.IsItalic();
+  public bool IsUnderline => RunElement.IsItalic();
+
+  /// <summary>
+  /// Text of the run
+  /// </summary>
+  public string Text
+  {
+    get => RunElement.GetText(GetTextOptions.Default);
+    set
+    {
+      RunElement.SetText(value);
+      NotifyPropertyChanged(nameof(Text));
+    }
+
+  }
 
   ///// <summary>
   ///// Initializes the object properties
@@ -47,9 +63,9 @@ public class RunViewModel : CompoundElementViewModel
   //protected override ObjectPropertiesViewModel InitObjectProperties()
   //{
   //  var objectProperties = new ObjectPropertiesViewModel();
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunAddition)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunDeletion)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.Run.RsidRunProperties)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunAddition)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunDeletion)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunProperties)));
   //  AddMoreObjectProperties(objectProperties);
   //  return objectProperties;
   //}
@@ -92,9 +108,20 @@ public class RunViewModel : CompoundElementViewModel
   {
     if (element is DXW.RunProperties runPropertiesElement)
     {
-      RunProperties = new RunPropertiesViewModel(this, runPropertiesElement);
+      RunProperties = new RunProperties(this, runPropertiesElement);
       return;
     }
     base.CreateChildViewModel(element);
+  }
+
+  /// <summary>
+  /// Remove the run from the paragraph
+  /// </summary>
+  /// <returns></returns>
+  public bool Remove()
+  {
+    (Owner as CompoundElementViewModel)?.Elements.Remove(this);
+    RunElement.Remove();
+    return true;
   }
 }

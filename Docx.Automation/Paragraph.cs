@@ -9,4 +9,9 @@ public interface Paragraph
   /// Properties of the paragraph
   /// </summary>
   public ParagraphProperties Properties { get; }
+
+  /// <summary>
+  /// Runs in the paragraph
+  /// </summary>
+  public IEnumerable<Run> Runs { get; }
 }

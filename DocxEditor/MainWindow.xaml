@@ -45,8 +45,8 @@
         <Separator/>
         <MenuItem Header="{x:Static resources:Strings._SelectAll}" Command="{StaticResource SelectAllCommand}"/>
       </MenuItem>
-      <MenuItem Header="{x:Static resources:Strings._Tools}">
-        <MenuItem Header="{x:Static resources:Strings._Plugins}" Command="{StaticResource OpenPluginsViewCommand}"/>
+      <MenuItem x:Name="ToolsMenu" Header="{x:Static resources:Strings._Tools}">
+        <MenuItem x:Name="PluginsMenuItem" Header="{x:Static resources:Strings._Plugins}" Command="{StaticResource OpenPluginsViewCommand}"/>
       </MenuItem>
       <MenuItem Header="{x:Static resources:Strings._Help}">
         <MenuItem Header="{x:Static resources:Strings._About}" Click="About_Click"/>

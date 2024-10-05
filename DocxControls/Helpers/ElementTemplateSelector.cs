@@ -68,9 +68,9 @@ public class ElementTemplateSelector : DataTemplateSelector
       return ParagraphTemplate ?? UnknownElementTemplate;
     if (item is VM.TableViewModel)
       return TableTemplate ?? UnknownElementTemplate;
-    if (item is VM.RunViewModel)
+    if (item is VM.Run)
       return RunTemplate ?? UnknownElementTemplate;
-    if (item is VM.TextViewModel)
+    if (item is VM.RunText)
       return TextTemplate ?? UnknownElementTemplate;
     if (item is VM.BookmarkStart)
       return BookmarkStartTemplate ?? UnknownElementTemplate;

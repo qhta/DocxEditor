@@ -32,6 +32,12 @@ public class Paragraph : CompoundElementViewModel, DA.Paragraph
   /// </summary>
   public ParagraphProperties? ParagraphProperties { get; set; }
 
+  IEnumerable<DA.Run> DA.Paragraph.Runs => Runs.Cast<DA.Run>();
+  /// <summary>
+  /// Runs contained in the paragraph
+  /// </summary>
+  public IEnumerable<VM.Run> Runs => Elements.OfType<VM.Run>();
+
   ///// <summary>
   ///// Initializes the object properties
   ///// </summary>

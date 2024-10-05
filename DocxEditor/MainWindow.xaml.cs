@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+using Docx.Automation;
 
 using DocxControls;
 
@@ -13,24 +17,78 @@ public partial class MainWindow : Window
   public MainWindow()
   {
     InitializeComponent();
+    Loaded += MainWindow_Loaded;
+  }
+
+  private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+  {
+    AddPluginCommandsToMenu();
   }
 
   private DocxControls.Application Application => DocxControls.Application.Instance;
 
+  private void AddPluginCommandsToMenu()
+  {
+    // Assuming you have a method to get the list of plugins
+    var plugins = Application.LoadPlugins();
+
+    foreach (var plugin in Application.LoadedPlugins)
+    {
+      TryAddPluginMenuItem(plugin);
+    }
+  }
+
+  /// <summary>
+  /// Try to add a plugin to the Tools menu.
+  /// </summary>
+  /// <param name="plugin"></param>
+  /// <returns></returns>
+  private bool TryAddPluginMenuItem(Plugin plugin)
+  {
+    var pluginMenuItem = ToolsMenu.Items.OfType<MenuItem>().FirstOrDefault(item => item.Tag?.ToString() == plugin.Name);
+    if (pluginMenuItem == null)
+    {
+      pluginMenuItem = new MenuItem
+      {
+        Tag = plugin.Name
+      };
+      BindingOperations.SetBinding(pluginMenuItem, HeaderedItemsControl.HeaderProperty, new Binding("Caption") { Source = plugin });
+      BindingOperations.SetBinding(pluginMenuItem, ToolTipProperty, new Binding("Tooltip") { Source = plugin });
+      ToolsMenu.Items.Add(pluginMenuItem);
+    }
+
+    foreach (var command in plugin.Commands)
+    {
+      var commandMenuItem = pluginMenuItem.Items.OfType<MenuItem>().FirstOrDefault(item => item.Tag?.ToString() == command.Name);
+      if (commandMenuItem == null)
+      {
+        commandMenuItem = new MenuItem
+        {
+          Tag = command.Name,
+          Command = command
+        };
+        BindingOperations.SetBinding(commandMenuItem, HeaderedItemsControl.HeaderProperty, new Binding("Caption") { Source = command });
+        BindingOperations.SetBinding(commandMenuItem, ToolTipProperty, new Binding("Tooltip") { Source = command });
+        pluginMenuItem.Items.Add(commandMenuItem);
+      }
+    }
+    return true;
+  }
+
   private void New_Click(object sender, RoutedEventArgs e)
   {
-        Application.NewDocument();
+    Application.NewDocument();
   }
 
   private void Open_Click(object sender, RoutedEventArgs e)
   {
-        //Application.OpenFile();
+    //Application.OpenFile();
   }
 
   private void Exit_Click(object sender, RoutedEventArgs e)
   {
     if (Application.CloseAllDocuments())
-            System.Windows.Application.Current.Shutdown();
+      System.Windows.Application.Current.Shutdown();
   }
 
   private void Cut_Click(object sender, RoutedEventArgs e)
@@ -55,8 +113,8 @@ public partial class MainWindow : Window
 
   protected override void OnClosing(CancelEventArgs e)
   {
-     if (!Application.CloseAllDocuments())
-        e.Cancel = true;
+    if (!Application.CloseAllDocuments())
+      e.Cancel = true;
   }
 
 

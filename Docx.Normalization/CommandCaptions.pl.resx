@@ -120,4 +120,7 @@
   <data name="JoinRuns" xml:space="preserve">
     <value>Połącz ciągi tekstowe</value>
   </data>
+  <data name="Normalization" xml:space="preserve">
+    <value>Normalizacja</value>
+  </data>
 </root>

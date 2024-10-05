@@ -34,22 +34,32 @@ public abstract class PluginClass : Plugin
   /// <summary>
   /// Version of the plugin.
   /// </summary>
-  public string? Version => Assembly.GetName().Version?.ToString();
+  public virtual string? Version => Assembly.GetName().Version?.ToString();
 
   /// <summary>
   /// Company (or author) that created the plugin.
   /// </summary>
-  public string? Company => GetAttribute<AssemblyCompanyAttribute>(Assembly)?.Company;
+  public virtual string? Company => GetAttribute<AssemblyCompanyAttribute>(Assembly)?.Company;
+
+  /// <summary>
+  /// Displayed name of the plugin.
+  /// </summary>
+  public virtual string? Caption => GetAttribute<AssemblyTitleAttribute>(Assembly)?.Title;
+
+  /// <summary>
+  /// Displayed tooltip of the plugin.
+  /// </summary>
+  public virtual string? Tooltip => GetAttribute<AssemblyDescriptionAttribute>(Assembly)?.Description;
 
   /// <summary>
   /// Description of the plugin.
   /// </summary>
-  public string? Description => GetAttribute<AssemblyDescriptionAttribute>(Assembly)?.Description;
+  public virtual string? Description => GetAttribute<AssemblyDescriptionAttribute>(Assembly)?.Description;
 
   /// <summary>
   /// Language of the plugin user interface.
   /// </summary>
-  public string? Lang { get; set; }
+  public virtual string? Lang { get; set; }
 
   /// <summary>
   /// Get the attribute of the specified type from the assembly.

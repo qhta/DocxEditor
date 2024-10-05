@@ -87,7 +87,7 @@ public class SdtPropertiesViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Run properties of the SDT element
+  /// RunElement properties of the SDT element
   /// </summary>
   public DXW.RunProperties? RunProperties
   {

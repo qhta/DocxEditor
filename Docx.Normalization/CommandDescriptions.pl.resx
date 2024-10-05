@@ -120,4 +120,7 @@
   <data name="JoinRuns" xml:space="preserve">
     <value>Przegląda zaznaczenie lub cały dokument w poszukiwaniu akapitów i łączy ich ciągi tekstowe posiadające to samo formatowanie.</value>
   </data>
+  <data name="Normalization" xml:space="preserve">
+    <value>Oferuje szereg operacji dla przetwarzania dokumentu do prostszej postaci, np. łączy sąsiednie pola tekstowe o tym samym formatowaniu.</value>
+  </data>
 </root>

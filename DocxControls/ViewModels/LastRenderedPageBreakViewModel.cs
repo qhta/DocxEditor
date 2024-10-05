@@ -10,7 +10,7 @@ public class LastRenderedPageBreakViewModel : ElementViewModel
   /// </summary>
   /// <param name="runViewModel">Owner element</param>
   /// <param name="element">Modeled last rendered pager break element</param>
-  public LastRenderedPageBreakViewModel(RunViewModel runViewModel, DXW.LastRenderedPageBreak element): base(runViewModel, element)
+  public LastRenderedPageBreakViewModel(Run runViewModel, DXW.LastRenderedPageBreak element): base(runViewModel, element)
   {
   }
 

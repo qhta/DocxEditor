@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Windows.Input;
-using Docx.Automation;
+﻿using Docx.Automation;
 
 namespace Docx.Normalization;
 
@@ -14,9 +12,13 @@ public class Normalization : PluginClass
   {
   }
 
+  public override string Caption => CommandCaptions.Normalization;
+  public override string Tooltip => CommandTooltips.Normalization;
+  public override string Description => CommandDescriptions.Normalization;
+
   public override void StartUp()
   {
-    throw new NotImplementedException();
+    _commands.Add(new JoinRuns( this));
   }
 
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.Collections.ObjectModel;
+using Microsoft.Win32;
 using DocxControls.Views;
 using Qhta.MVVM;
 using System.Windows;
@@ -87,8 +88,8 @@ public class Application : ViewModel, DA.Application
       DXW.Table table => new VM.TableViewModel(parentElementViewModel, table),
       //DXW.TableRow tableRow => new VM.TableRow(null, tableRow),
       //DXW.TableCell tableCell => new VM.TableCell(null, tableCell),
-      DXW.Run run => new VM.RunViewModel(parentElementViewModel, run),
-      DXW.Text text => new VM.TextViewModel(parentElementViewModel, text),
+      DXW.Run run => new VM.Run(parentElementViewModel, run),
+      DXW.Text text => new VM.RunText(parentElementViewModel, text),
       DXW.BookmarkStart bookmarkStart => new VM.BookmarkStart(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkStart),
       DXW.BookmarkEnd bookmarkEnd => new VM.BookmarkEnd(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkEnd),
       //DXW.Break breakElement => new VM.Break(null, breakElement),
@@ -357,34 +358,13 @@ public class Application : ViewModel, DA.Application
   /// Loaded plugins from the specified directory.
   /// </summary>
   public VM.Plugins LoadedPlugins { get; } = new();
+
+ // public ObservableCollection<DA.PluginCommand> PluginCommands { get; }= new();
+
   /// <summary>
   /// Common instance of the PluginsWindow.
   /// </summary>
   public PluginsWindow? PluginsWindow { get; set; }
-
-  ///// <summary>
-  ///// Searches for plugins in the specified directory.
-  ///// </summary>
-  //public bool SearchForPlugins()
-  //{
-  //  var initialDirectory = Assembly.GetExecutingAssembly().Location;
-  //  Debug.WriteLine(initialDirectory);
-  //  var dialog = new OpenFileDialog
-  //  {
-  //    //InitialDirectory = initialDirectory,
-  //    Filter = "Plugin files (*.dll)|*.dll|All files (*.*)|*.*",
-  //    Multiselect = true
-  //  };
-  //  if (dialog.ShowDialog() == true)
-  //  {
-  //    foreach (var fileName in dialog.FileNames)
-  //    {
-  //      // Load the plugin
-  //    }
-  //    return true;
-  //  }
-  //  return false;
-  //}
 
   /// <summary>
   /// Loads plugins from the specified directory.
@@ -406,6 +386,7 @@ public class Application : ViewModel, DA.Application
           if (plugin != null)
           {
             LoadedPlugins.Add(plugin);
+            plugin.StartUp();
           }
         };
       }

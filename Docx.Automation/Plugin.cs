@@ -32,6 +32,16 @@ public interface Plugin
   public string? Name { get; }
 
   /// <summary>
+  /// Displayed name of the plugin.
+  /// </summary>
+  public string? Caption { get; }
+  
+  /// <summary>
+  /// Displayed tooltip of the plugin
+  /// </summary>
+  public string? Tooltip { get; }
+
+  /// <summary>
   /// The description of the plugin.
   /// </summary>
   public string? Description { get; }

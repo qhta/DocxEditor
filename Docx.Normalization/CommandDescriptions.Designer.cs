@@ -68,5 +68,14 @@ namespace Docx.Normalization {
                 return ResourceManager.GetString("JoinRuns", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offers several operations for converting document to the simpler form, e.g. joins adjacent runs with the same format..
+        /// </summary>
+        internal static string Normalization {
+            get {
+                return ResourceManager.GetString("Normalization", resourceCulture);
+            }
+        }
     }
 }

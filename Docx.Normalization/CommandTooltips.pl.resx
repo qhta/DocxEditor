@@ -120,4 +120,7 @@
   <data name="JoinRuns" xml:space="preserve">
     <value>Łączy sąsiednie ciągi tekstowe o tym samym formatowaniu.</value>
   </data>
+  <data name="Normalization" xml:space="preserve">
+    <value>Przetwarza zaznaczenie lub dokument do prostszej postaci.</value>
+  </data>
 </root>

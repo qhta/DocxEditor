@@ -22,7 +22,7 @@ public class SelectAll : Command
   {
     var activeWindow = Application.Instance.ActiveWindow;
     var document = activeWindow?.Document;
-    Debug.WriteLine($"SelectAllCommand.CanExecute ActiveWindow={activeWindow} Document={document}");
+    //Debug.WriteLine($"SelectAllCommand.CanExecute ActiveWindow={activeWindow} Document={document}");
     return document!=null;
   }
 

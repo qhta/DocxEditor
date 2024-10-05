@@ -430,7 +430,7 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Iterations to Run Hashing Algorithm.
+        ///   Looks up a localized string similar to Iterations to RunElement Hashing Algorithm.
         /// </summary>
         public static string CryptographicSpinCount {
             get {

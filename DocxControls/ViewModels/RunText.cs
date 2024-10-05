@@ -3,14 +3,14 @@
 /// <summary>
 /// View model for a run text element
 /// </summary>
-public class TextViewModel : ElementViewModel
+public class RunText : ElementViewModel
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="runViewModel">Owner view model. Must be <see cref="RunViewModel"/></param>
+  /// <param name="runViewModel">Owner view model. Must be <see cref="Run"/></param>
   /// <param name="text"></param>
-  public TextViewModel(ElementViewModel runViewModel, DXW.Text text): base (runViewModel, text)
+  public RunText(ElementViewModel runViewModel, DXW.Text text): base (runViewModel, text)
   {
     DoubleClickCommand = null;
     LeftMouseDownCommand = null;
@@ -18,7 +18,7 @@ public class TextViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Run element of the paragraph
+  /// RunElement element of the paragraph
   /// </summary>
   public DXW.Text TextElement => (DXW.Text)Element!;
 
