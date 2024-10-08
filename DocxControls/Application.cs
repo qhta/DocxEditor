@@ -79,13 +79,13 @@ public class Application : ViewModel, DA.Application
   public VM.ElementViewModel CreateViewModel(ViewModel parentViewModel, DX.OpenXmlElement element)
   {
     if (element is DXW.Body body)
-      return new VM.BodyViewModel(parentViewModel, body);
+      return new VM.Body(parentViewModel, body);
     if (parentViewModel is not VM.ElementViewModel parentElementViewModel)
       throw new InvalidOperationException($"Parent view model must be a ElementViewModel, but is {parentViewModel.GetType()}");
     return element switch
     {
       DXW.Paragraph paragraph => new VM.Paragraph(parentElementViewModel, paragraph),
-      DXW.Table table => new VM.TableViewModel(parentElementViewModel, table),
+      DXW.Table table => new VM.Table(parentElementViewModel, table),
       //DXW.TableRow tableRow => new VM.TableRow(null, tableRow),
       //DXW.TableCell tableCell => new VM.TableCell(null, tableCell),
       DXW.Run run => new VM.Run(parentElementViewModel, run),

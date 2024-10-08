@@ -46,10 +46,10 @@
   <DataTemplate x:Key="BookmarkEndTemplate" DataType="{x:Type vm:BookmarkEnd}">
     <local:BookmarkEndView/>
   </DataTemplate>
-  <DataTemplate x:Key="TableTemplate" DataType="{x:Type vm:TableViewModel}">
+  <DataTemplate x:Key="TableTemplate" DataType="{x:Type vm:Table}">
     <TextBlock Text="{Binding DisplayText}" />
   </DataTemplate>
-  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:SectionPropertiesViewModel}">
+  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:Section}">
     <local:SectionPropertiesView/>
   </DataTemplate>
   <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type vm:ElementViewModel}">

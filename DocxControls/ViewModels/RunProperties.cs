@@ -17,7 +17,7 @@ public class RunProperties : ElementViewModel, DA.RunProperties
   /// <summary>
   /// RunElement properties element
   /// </summary>
-  public DXW.RunProperties RunPropertiesElement => (DXW.RunProperties)Element!;
+  public DXW.RunProperties RunPropertiesElement => (DXW.RunProperties)OpenXmlElement!;
 
   /// <summary>
   /// Compare the properties of this run with another run.

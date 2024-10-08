@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a paragraph
 /// </summary>
-public class Paragraph : CompoundElementViewModel, DA.Paragraph
+public class Paragraph : Block, DA.Paragraph
 {
 
   /// <summary>
@@ -14,17 +14,13 @@ public class Paragraph : CompoundElementViewModel, DA.Paragraph
   public Paragraph
     (ElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
-    LoadAllElements();
     ParagraphProperties ??= new ParagraphProperties(this, paragraph.GetProperties());
   }
-
-
 
   /// <summary>
   /// Paragraph element of the document
   /// </summary>
-  public DXW.Paragraph ParagraphElement => (DXW.Paragraph)Element!;
-
+  public DXW.Paragraph ParagraphElement => (DXW.Paragraph)OpenXmlElement!;
 
   DA.ParagraphProperties DA.Paragraph.Properties => ParagraphProperties!;
   /// <summary>
@@ -32,7 +28,7 @@ public class Paragraph : CompoundElementViewModel, DA.Paragraph
   /// </summary>
   public ParagraphProperties? ParagraphProperties { get; set; }
 
-  IEnumerable<DA.Run> DA.Paragraph.Runs => Runs.Cast<DA.Run>();
+  IEnumerable<DA.Run> DA.Paragraph.Runs => Runs;
   /// <summary>
   /// Runs contained in the paragraph
   /// </summary>
@@ -72,7 +68,7 @@ public class Paragraph : CompoundElementViewModel, DA.Paragraph
   {
     if (element is DXW.ParagraphProperties paragraphPropertiesElement)
     {
-      if (ParagraphProperties?.Element == paragraphPropertiesElement)
+      if (ParagraphProperties?.OpenXmlElement == paragraphPropertiesElement)
         return ParagraphProperties;
       return null;
     }

@@ -16,23 +16,6 @@ public partial class WrapItemsControl : ListBox
     DefaultStyleKeyProperty.OverrideMetadata(typeof(WrapItemsControl), new FrameworkPropertyMetadata(typeof(WrapItemsControl)));
   }
 
-  ///// <summary>
-  ///// Default constructor
-  ///// </summary>
-  //public WrapItemsControl()
-  //{
-  //  Loaded += WrapItemsControl_Loaded; ;
-  //}
-
-  //private void WrapItemsControl_Loaded(object sender, RoutedEventArgs e)
-  //{
-  //  Debug.WriteLine("WrapItemsControl_Loaded");
-  //  if (Template.FindName("PART_WrapPanel", this) is WrapPanel wrapPanel)
-  //  {
-  //    Debug.WriteLine($"WrapPanel.Items.Count={wrapPanel.Children.Count}");
-  //  }
-  //}
-
   /// <summary>
   /// Dependency property for <see cref="ItemBorderBrush"/> property
   /// </summary>

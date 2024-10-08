@@ -12,6 +12,7 @@ public class ParagraphProperties : ElementViewModel, DA.ParagraphProperties
   /// <param name="properties">Modeled paragraph properties element</param>
   public ParagraphProperties(Paragraph paragraphViewModel, DXW.ParagraphProperties properties): base(paragraphViewModel, properties)
   {
+
   }
 
 }

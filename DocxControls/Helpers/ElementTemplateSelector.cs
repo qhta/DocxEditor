@@ -66,7 +66,7 @@ public class ElementTemplateSelector : DataTemplateSelector
   {
     if (item is VM.Paragraph)
       return ParagraphTemplate ?? UnknownElementTemplate;
-    if (item is VM.TableViewModel)
+    if (item is VM.Table)
       return TableTemplate ?? UnknownElementTemplate;
     if (item is VM.Run)
       return RunTemplate ?? UnknownElementTemplate;
@@ -76,7 +76,7 @@ public class ElementTemplateSelector : DataTemplateSelector
       return BookmarkStartTemplate ?? UnknownElementTemplate;
     if (item is VM.BookmarkEnd)
       return BookmarkEndTemplate ?? UnknownElementTemplate;
-    if (item is VM.SectionPropertiesViewModel)
+    if (item is VM.SectionProperties)
       return SectionPropertiesTemplate ?? UnknownElementTemplate;
     if (item is VM.LastRenderedPageBreakViewModel)
       return LastRenderedPageBreakTemplate ?? UnknownElementTemplate;

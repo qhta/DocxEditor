@@ -21,7 +21,7 @@ public class BookmarkEnd : ElementViewModel, DA.BookmarkEnd
   /// <summary>
   /// <c>BookmarkEndElementElement</c> element
   /// </summary>
-  public DXW.BookmarkEnd BookmarkEndElement => (DXW.BookmarkEnd)Element!;
+  public DXW.BookmarkEnd BookmarkEndElement => (DXW.BookmarkEnd)OpenXmlElement!;
 
   /// <summary>
   /// Corresponding <c>BookmarkStartElement</c> element

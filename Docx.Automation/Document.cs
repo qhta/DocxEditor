@@ -42,6 +42,11 @@ public interface Document: IElement
   /// </summary>
   public Selection Selection { get; }
 
+  /// <summary>
+  /// Returns Section collections that represent all the sections in the document.
+  /// </summary>
+  public IEnumerable<Section> Sections { get; }
+
   //ActiveTheme
   //ActiveThemeDisplayName
 
@@ -184,7 +189,7 @@ public interface Document: IElement
   //  SaveFormsData
   //  SaveSubsetFonts
   //  Scripts
-  //  Sections
+
   //  SensitivityLabel
   //  Sentences
   //  ServerPolicy

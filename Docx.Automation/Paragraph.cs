@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface for a paragraph
 /// </summary>
-public interface Paragraph
+public interface Paragraph: Block
 {
   /// <summary>
   /// Properties of the paragraph

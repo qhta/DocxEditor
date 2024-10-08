@@ -19,7 +19,7 @@ public class Run : CompoundElementViewModel, DA.Run
   /// <summary>
   /// RunElement element of the paragraph
   /// </summary>
-  public DXW.Run RunElement => (DXW.Run)Element!;
+  public DXW.Run RunElement => (DXW.Run)OpenXmlElement!;
 
 
   DA.RunProperties DA.Run.Properties => RunProperties!;
@@ -93,7 +93,7 @@ public class Run : CompoundElementViewModel, DA.Run
   {
     if (element is DXW.RunProperties runPropertiesElement)
     {
-      if (RunProperties?.Element == runPropertiesElement)
+      if (RunProperties?.OpenXmlElement == runPropertiesElement)
         return RunProperties;
       return null;
     }

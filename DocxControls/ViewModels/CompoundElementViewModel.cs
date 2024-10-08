@@ -41,13 +41,13 @@ public class CompoundElementViewModel : ElementViewModel
   /// <summary>
   /// Load all child OpenXmlElements and create their view models
   /// </summary>
-  public void LoadAllElements()
+  public virtual void LoadAllElements()
   {
     if (isLoading) return;
     isLoading = true;
     Task.Run(() =>
     {
-      currentElement = Element?.FirstChild;
+      currentElement = OpenXmlElement?.FirstChild;
       while (currentElement != null)
       {
         var childViewModel = FindViewModel(currentElement);
@@ -89,7 +89,7 @@ public class CompoundElementViewModel : ElementViewModel
   /// <returns></returns>
   public virtual ElementViewModel? FindViewModel(DX.OpenXmlElement element)
   {
-    var result = Elements.ToList().FirstOrDefault(vm => vm.Element == element);
+    var result = Elements.ToList().FirstOrDefault(vm => vm.OpenXmlElement == element);
     if (result == null)
     {
       foreach (var vm in Elements)

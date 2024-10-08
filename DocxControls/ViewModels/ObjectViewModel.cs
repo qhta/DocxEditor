@@ -155,14 +155,14 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   public static readonly Dictionary<Type, Type> KnownObjectViewModelTypes = new()
   {
-    { typeof(DXW.Body), typeof(BodyViewModel)},
+    { typeof(DXW.Body), typeof(Body)},
     { typeof(DXW.BookmarkStart), typeof(BookmarkStart)},
     { typeof(DXW.BookmarkEnd), typeof(BookmarkEnd)},
     { typeof(DXW.Paragraph), typeof(Paragraph)},
     { typeof(DXW.Run), typeof(Run)},
     { typeof(DXW.RunProperties), typeof(RunProperties)},
     { typeof(DXW.Text), typeof(RunText)},
-    { typeof(DXW.Table), typeof(TableViewModel)},
+    { typeof(DXW.Table), typeof(Table)},
     { typeof(DXW.SdtElement), typeof(SdtElementViewModel)},
     { typeof(DXW.SdtProperties), typeof(SdtPropertiesViewModel)},
     { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreakViewModel)},

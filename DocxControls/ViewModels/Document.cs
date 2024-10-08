@@ -9,7 +9,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a document.
 /// </summary>
-public class Document : ViewModel, DA.Document, IEditable
+public partial class Document : ViewModel, DA.Document, IEditable
 {
   /// <summary>
   /// Default constructor.
@@ -37,7 +37,6 @@ public class Document : ViewModel, DA.Document, IEditable
   /// Internal WordprocessingDocument object
   /// </summary>
   public DocumentFormat.OpenXml.Packaging.WordprocessingDocument WordDocument { get; set; } = null!;
-
 
   /// <summary>
   /// OpenDocument a wordprocessing document for viewing/editing.
@@ -177,9 +176,16 @@ public class Document : ViewModel, DA.Document, IEditable
   /// </summary>
   public Range GetRange()
   {
-    var body = WordDocument.GetBody();
+    var body = Body;
     return new Range(this, body!.FirstChild!, body!.LastChild!);
   }
+
+  IEnumerable<DA.Section> DA.Document.Sections => Sections;
+  /// <summary>
+  /// Returns a collection of all the sections in the document.
+  /// </summary>
+  /// <returns></returns>
+  public IEnumerable<Section> Sections => Body.Sections;
 
   /// <summary>
   /// Title for the window
@@ -210,19 +216,19 @@ public class Document : ViewModel, DA.Document, IEditable
   /// <summary>
   /// Access to the body elements of the document
   /// </summary>
-  public BodyViewModel Body
+  public Body Body
   {
     get
     {
       if (_BodyElements == null)
       {
-        _BodyElements = new BodyViewModel(this, WordDocument.GetBody());
+        _BodyElements = new Body(this, WordDocument.GetBody());
       }
       return _BodyElements;
     }
   }
 
-  private BodyViewModel? _BodyElements;
+  private Body? _BodyElements;
 
   #region DocumentProperties
   DA.DocumentProperties DA.Document.AppProperties => AppProperties;

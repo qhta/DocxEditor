@@ -29,6 +29,21 @@ public interface Range
   /// </summary>
   public object? Parent { get; }
 
+  /// <summary>
+  /// Return all the blocks in the range.
+  /// </summary>
+  IEnumerable<Block> Blocks { get; }
+
+  /// <summary>
+  /// Return the paragraphs in the range.
+  /// </summary>
+  IEnumerable<Paragraph> Paragraphs { get; }
+
+  /// <summary>
+  /// Return the tables in the range.
+  /// </summary>
+  IEnumerable<Table> Tables { get; }
+
   //  Bold
   //BoldBi
   //  BookmarkID
