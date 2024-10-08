@@ -49,7 +49,7 @@
   <DataTemplate x:Key="TableTemplate" DataType="{x:Type vm:Table}">
     <TextBlock Text="{Binding DisplayText}" />
   </DataTemplate>
-  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:Section}">
+  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:SectionProperties}">
     <local:SectionPropertiesView/>
   </DataTemplate>
   <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type vm:ElementViewModel}">

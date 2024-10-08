@@ -6,9 +6,8 @@
 public interface Section: IElement
 {
   /// <summary>
-  /// Gets the blocks in the section.
+  /// Gets the range in the section.
   /// </summary>
-  //IEnumerable<Block> Blocks { get; }
+  public Range Range { get; }
 
-  //public Borders Borders { get; }
 }

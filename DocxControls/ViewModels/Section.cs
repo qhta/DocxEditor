@@ -1,8 +1,4 @@
-﻿using System.Runtime.InteropServices.Marshalling;
-
-using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Represents a section in a document.
@@ -37,32 +33,35 @@ public class Section : ElementViewModel, DA.Section
   /// </summary>
   public DXW.SectionProperties? SectionPropertiesElement => (DXW.SectionProperties?)OpenXmlElement;
 
-  //private Paragraph? OwnerParagraph => (Paragraph?)Parent;
+  /// <summary>
+  /// Gets the body that contains the section.
+  /// </summary>
+  public Body OwnerBody => (Body)Parent!;
 
-  //IEnumerable<DA.Block> DA.Section.Blocks => Blocks;
-  ///// <summary>
-  ///// Get the blocks of the section.
-  ///// </summary>
-  //public IEnumerable<Block> Blocks
-  //{
-  //  get
-  //  {
-  //    var firstElement = OwnerParagraph as ElementViewModel;
-  //    while (firstElement != null)
-  //    {
-  //      if (firstElement != OwnerParagraph && (firstElement is Paragraph paragraph) && (paragraph.OpenXmlElement as DXW.Paragraph)?.Elements<DXW.SectionPropertiesElement>()?.Any() == true)
-  //      {
-  //       break;
-  //      }
-  //      firstElement = firstElement.PreviousSibling();
-  //    }
-  //    while (firstElement != null && firstElement is Block block)
-  //    {
-  //      yield return block;
-  //      if (firstElement == OwnerParagraph)
-  //        break;
-  //      firstElement = firstElement.NextSibling();
-  //    }
-  //  }
-  //}
+  DA.Range DA.Section.Range => Range;
+  /// <summary>
+  /// Get the range of the section.
+  /// </summary>
+  public Range Range
+  {
+    get
+    {
+      var index = OwnerBody.Sections.IndexOf(this);
+      ElementViewModel? firstElement = null;
+      if (index > 0)
+      {
+        var previousSection = OwnerBody.Sections[index - 1];
+        firstElement =
+          (previousSection.SectionProperties?.Owner as Paragraph)?.NextSibling() ?? OwnerBody.Elements.LastOrDefault();
+      }
+      else
+        firstElement = OwnerBody.Elements.FirstOrDefault();
+      var lastElement =
+        (SectionProperties?.Owner as Paragraph) ?? OwnerBody.Elements.LastOrDefault();
+
+      var range = new Range(this, firstElement, lastElement);
+      return range;
+
+    }
+  }
 }

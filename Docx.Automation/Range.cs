@@ -11,12 +11,12 @@ public interface Range
   /// <summary>
   /// Element that starts the range.
   /// </summary>
-  public object Start { get; }
+  public object? Start { get; }
 
   /// <summary>
   /// Element that ends the range.
   /// </summary>
-  public object End { get; }
+  public object? End { get; }
 
   #region properties
   /// <summary>

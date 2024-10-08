@@ -22,7 +22,7 @@ public class Range : ViewModel, DA.Range
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  public Range(object parent, ElementViewModel start, ElementViewModel end)
+  public Range(object parent, ElementViewModel? start, ElementViewModel? end)
   {
     Parent = parent;
     Start = start;
@@ -30,17 +30,17 @@ public class Range : ViewModel, DA.Range
   }
 
   #region DA.Range properties implementation -----------------------------------------------------------------------------------
-  object DA.Range.Start => Start;
+  object? DA.Range.Start => Start;
   /// <summary>
   /// OpenXmlElement that starts the range.
   /// </summary>
-  public ElementViewModel Start { get; private set; }
+  public ElementViewModel? Start { get; private set; }
 
-  object DA.Range.End => Start;
+  object? DA.Range.End => Start;
   /// <summary>
   /// OpenXmlElement that ends the range.
   /// </summary>
-  public ElementViewModel End { get; private set; }
+  public ElementViewModel? End { get; private set; }
 
   DA.Application DA.Range.Application => Application;
 
@@ -56,7 +56,7 @@ public class Range : ViewModel, DA.Range
 
   IEnumerable<DA.Block> DA.Range.Blocks => Blocks;
   /// <summary>
-  /// Gets the blocks in the range. Blocks are paragraphs, tables, etc.
+  /// Gets the blocks in the range. Range are paragraphs, tables, etc.
   /// </summary>
   public IEnumerable<Block> Blocks => GetElements<Block>();
 
@@ -478,7 +478,7 @@ public class Range : ViewModel, DA.Range
     while (true)
     {
       yield return element;
-      if (element == endElement)
+      if (element == endElement || element == null)
         break;
       if (!MoveElementForward(ref element, MoveUnits.Element))
         break;
@@ -496,7 +496,7 @@ public class Range : ViewModel, DA.Range
     {
       if (element is T t)
         yield return t;
-      if (element == endElement)
+      if (element == endElement || element == null)
         break;
       if (!MoveElementForward(ref element, MoveUnits.Element))
         break;
@@ -514,7 +514,7 @@ public class Range : ViewModel, DA.Range
     {
       if (element is T t)
         yield return t;
-      if (element == endElement)
+      if (element == endElement || element == null)
         break;
       if (!MoveElementForward(ref element, MoveUnits.Element))
         break;
