@@ -21,7 +21,7 @@
     <local:RunView />
   </DataTemplate>
   <DataTemplate x:Key="TextTemplate" DataType="{x:Type vm:RunText}">
-    <TextBlock Text="{Binding Text}" TextWrapping="Wrap">
+    <TextBlock Text="{Binding Text, Mode=OneWay}" TextWrapping="Wrap">
       <TextBlock.Style>
         <Style TargetType="TextBlock">
           <Setter Property="FontWeight" Value="Normal"/>

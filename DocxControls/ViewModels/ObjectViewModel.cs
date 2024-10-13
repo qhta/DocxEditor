@@ -165,7 +165,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     { typeof(DXW.Table), typeof(Table)},
     { typeof(DXW.SdtElement), typeof(SdtElementViewModel)},
     { typeof(DXW.SdtProperties), typeof(SdtPropertiesViewModel)},
-    { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreakViewModel)},
+    { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreak)},
   };
 
 
@@ -238,7 +238,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
       //if (ModeledObject is DX.OpenXmlCompositeElement owner)
       //{
       //  var member = memberViewModel.ModeledObject ?? memberViewModel.Value?.ToOpenXmlValue(memberViewModel.ObjectType);
-      //  if (member is DX.OpenXmlElement element)
+      //  if (member is DX.ModeledElement element)
       //    owner.AppendChild(element);
       //  NotifyPropertyChanged(nameof(ModeledObject));
       //}
@@ -283,7 +283,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
           prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
           //if (Value!= ModeledObject)
           //{
-          //  if (ModeledObject is DX.OpenXmlElement modeledElement)
+          //  if (ModeledObject is DX.ModeledElement modeledElement)
           //  {
           //    if (modeledElement.IsEmpty())
           //      Value = null;

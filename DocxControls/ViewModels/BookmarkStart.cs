@@ -10,8 +10,8 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   /// Initializing constructor.
   /// </summary>
   /// <param name="bookmarksViewModel"></param>
-  /// <param name="bookmarkStartProperties"></param>
-  public BookmarkStart(Bookmarks bookmarksViewModel, DXW.BookmarkStart bookmarkStartProperties) : base(bookmarksViewModel, bookmarkStartProperties)
+  /// <param name="bookmarkStartModeledElement"></param>
+  public BookmarkStart(Bookmarks bookmarksViewModel, DXW.BookmarkStart bookmarkStartModeledElement) : base(bookmarksViewModel, bookmarkStartModeledElement)
   {
     _bookmarksViewModel = bookmarksViewModel;
   }
@@ -23,7 +23,7 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   /// <summary>
   /// <c>BookmarkStartElement</c> element
   /// </summary>
-  public DXW.BookmarkStart BookmarkStartElement => (DXW.BookmarkStart)OpenXmlElement!;
+  public DXW.BookmarkStart BookmarkStartElement => (DXW.BookmarkStart)ModeledElement!;
 
   /// <summary>
   /// Corresponding <c>BookmarkEndElementElement</c> element

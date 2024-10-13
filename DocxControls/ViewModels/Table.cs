@@ -17,7 +17,7 @@ public class Table : Block, DA.Table
   /// <summary>
   /// Table element of the document
   /// </summary>
-  public DXW.Table TableElement => (DXW.Table)OpenXmlElement!;
+  public DXW.Table TableElement => (DXW.Table)ModeledElement!;
 
 
 }

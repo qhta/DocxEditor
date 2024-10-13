@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a paragraph run element
 /// </summary>
-public class Run : CompoundElementViewModel, DA.Run
+public sealed class Run : CompoundElementViewModel, DA.Run
 {
   /// <summary>
   /// Initializing constructor.
@@ -17,44 +17,53 @@ public class Run : CompoundElementViewModel, DA.Run
   }
 
   /// <summary>
-  /// RunElement element of the paragraph
+  /// OpenXmlElement element of the run
   /// </summary>
-  public DXW.Run RunElement => (DXW.Run)OpenXmlElement!;
+  internal DXW.Run OpenXmlElement => (DXW.Run)ModeledElement!;
 
 
   DA.RunProperties DA.Run.Properties => RunProperties!;
   /// <summary>
-  /// RunElement properties view model
+  /// OpenXmlElement properties view model
   /// </summary>
   public RunProperties? RunProperties { get; set; }
 
   /// <summary>
   /// Check if the run is bold
   /// </summary>
-  public bool IsBold => RunElement.IsBold();
+  public bool IsBold => OpenXmlElement.IsBold();
 
   /// <summary>
   /// Check if the run is italic
   /// </summary>
-  public bool IsItalic => RunElement.IsItalic();
+  public bool IsItalic => OpenXmlElement.IsItalic();
 
   /// <summary>
   /// Check if the run is underlined
   /// </summary>
-  public bool IsUnderline => RunElement.IsItalic();
+  public bool IsUnderline => OpenXmlElement.IsItalic();
 
   /// <summary>
   /// Text of the run
   /// </summary>
-  public string Text
+  public string? Text
   {
-    get => RunElement.GetText(GetTextOptions.Default);
+    get => OpenXmlElement.GetText(GetTextOptions.Default);
     set
     {
-      RunElement.SetText(value);
+      value ??= "";
+      if (value == OpenXmlElement.GetText(GetTextOptions.Default)) return;
+      for (int i = Elements.Count - 1; i > 0; i--)
+        Elements.RemoveAt(i);
+      if (Elements.Count == 0)
+        Elements.Add(new RunText(this, new DXW.Text(value)));
+      if (Elements[0] is not RunText runText)
+
+        Elements[0] = runText = new RunText(this, new DXW.Text(value));
+      runText.Text = value;
+      OpenXmlElement.SetText(value);
       NotifyPropertyChanged(nameof(Text));
     }
-
   }
 
   ///// <summary>
@@ -63,9 +72,9 @@ public class Run : CompoundElementViewModel, DA.Run
   //protected override ObjectPropertiesViewModel InitObjectProperties()
   //{
   //  var objectProperties = new ObjectPropertiesViewModel();
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunAddition)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunDeletion)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.RunElement.RsidRunProperties)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunAddition)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunDeletion)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunProperties)));
   //  AddMoreObjectProperties(objectProperties);
   //  return objectProperties;
   //}
@@ -93,7 +102,7 @@ public class Run : CompoundElementViewModel, DA.Run
   {
     if (element is DXW.RunProperties runPropertiesElement)
     {
-      if (RunProperties?.OpenXmlElement == runPropertiesElement)
+      if (RunProperties?.ModeledElement == runPropertiesElement)
         return RunProperties;
       return null;
     }
@@ -114,14 +123,4 @@ public class Run : CompoundElementViewModel, DA.Run
     base.CreateChildViewModel(element);
   }
 
-  /// <summary>
-  /// Remove the run from the paragraph
-  /// </summary>
-  /// <returns></returns>
-  public bool Remove()
-  {
-    (Owner as CompoundElementViewModel)?.Elements.Remove(this);
-    RunElement.Remove();
-    return true;
-  }
 }

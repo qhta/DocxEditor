@@ -23,10 +23,10 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
   /// </summary>
   public Bookmarks(CompoundElementViewModel parent) : base(parent)
   {
-    if (parent.OpenXmlElement != null)
+    if (parent.ModeledElement != null)
       Task.Run(() =>
       {
-        GetBookmarks(parent.OpenXmlElement);
+        GetBookmarks(parent.ModeledElement);
       });
   }
 

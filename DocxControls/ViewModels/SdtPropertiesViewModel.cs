@@ -1,7 +1,4 @@
-﻿using System.Xml;
-using System.Xml.Linq;
-
-using Qhta.MVVM;
+﻿using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
 
@@ -14,8 +11,8 @@ public class SdtPropertiesViewModel : ElementViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="sdtViewModel">Owner view model. Must be <see cref="SdtElementViewModel"/></param>
-  /// <param name="properties">Modeled Sdt properties element</param>
-  public SdtPropertiesViewModel(ViewModel sdtViewModel, object properties): base(sdtViewModel, properties)
+  /// <param name="modeledElement">Modeled Sdt modeledElement element</param>
+  public SdtPropertiesViewModel(ViewModel sdtViewModel, DXW.SdtProperties modeledElement): base(sdtViewModel, modeledElement)
   {
   }
 
@@ -87,7 +84,7 @@ public class SdtPropertiesViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// RunElement properties of the SDT element
+  /// OpenXmlElement properties of the SDT element
   /// </summary>
   public DXW.RunProperties? RunProperties
   {

@@ -23,6 +23,24 @@ public class CompoundElementViewModel : ElementViewModel
   /// <param name="body">Modeled block element</param>
   public CompoundElementViewModel(ViewModel ownerViewModel, DX.OpenXmlCompositeElement body): base(ownerViewModel, body)
   {
+    Elements.CollectionChanged += (sender, e) =>
+    {
+      if (e.Action == NotifyCollectionChangedAction.Add)
+      {
+        foreach (ElementViewModel element in e.NewItems!)
+        {
+          element.PropertyChanged += ChildElementViewModel_PropertyChanged;
+        }
+      }
+      else if (e.Action == NotifyCollectionChangedAction.Remove)
+      {
+        foreach (ElementViewModel element in e.OldItems!)
+        {
+          element.PropertyChanged -= ChildElementViewModel_PropertyChanged;
+          element.Remove();
+        }
+      }
+    };
     currentElement = body.FirstChild;
     LoadMoreCommand = new RelayCommand( LoadMoreElements, () => !isLoading && currentElement!=null);
  }
@@ -47,7 +65,7 @@ public class CompoundElementViewModel : ElementViewModel
     isLoading = true;
     Task.Run(() =>
     {
-      currentElement = OpenXmlElement?.FirstChild;
+      currentElement = ModeledElement?.FirstChild;
       while (currentElement != null)
       {
         var childViewModel = FindViewModel(currentElement);
@@ -83,13 +101,13 @@ public class CompoundElementViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Find a ViewModel created for an OpenXmlElement
+  /// Find a ViewModel created for an ModeledElement
   /// </summary>
   /// <param name="element"></param>
   /// <returns></returns>
   public virtual ElementViewModel? FindViewModel(DX.OpenXmlElement element)
   {
-    var result = Elements.ToList().FirstOrDefault(vm => vm.OpenXmlElement == element);
+    var result = Elements.ToList().FirstOrDefault(vm => vm.ModeledElement == element);
     if (result == null)
     {
       foreach (var vm in Elements)
@@ -106,7 +124,7 @@ public class CompoundElementViewModel : ElementViewModel
   }
 
   /// <summary>
-  /// Creates a viewModel for an OpenXmlElement and adds it to elements.
+  /// Creates a viewModel for an ModeledElement and adds it to elements.
   /// </summary>
   /// <param name="element"></param>
   public virtual void CreateChildViewModel(DX.OpenXmlElement element)
@@ -116,6 +134,12 @@ public class CompoundElementViewModel : ElementViewModel
     {
       Elements.Add(childElementViewModel);
     });
+    childElementViewModel.PropertyChanged += ChildElementViewModel_PropertyChanged;
+  }
+
+  private void ChildElementViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+  {
+    Debug.WriteLine($"ChildElementViewModel_PropertyChanged: {e.PropertyName}");
   }
 
   #region ISelectable implementation ----------------------------------------------------------------------------------------------------------------

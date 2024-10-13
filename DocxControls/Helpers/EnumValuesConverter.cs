@@ -20,21 +20,14 @@ public class EnumValuesConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
-    if (value== null)
+    if (value == null)
       return null;
-    //var sourceType = value.GetType();
-    //if (sourceType.IsOpenXmlEnum())
-    //{
-    //  var props = sourceType.GetOpenXmlProperties();
-    //  var prop = props.FirstOrDefault(p => p.GetValue(null)?.Equals(value)==true);
-    //  return prop?.Name;
-    //}
-    var result = value?.AsString();
+    var result = value.AsString();
     return result;
   }
 
   /// <summary>
-  /// Not implemented
+  /// converts a string to a property value
   /// </summary>
   /// <param name="value"></param>
   /// <param name="targetType"></param>
@@ -57,4 +50,34 @@ public class EnumValuesConverter : IValueConverter
     return value;
   }
 
+  /// <summary>
+  /// Converts a property value to an enum value
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="value"></param>
+  /// <returns></returns>
+  public static T? Convert<T>(object? value) where T : struct, Enum
+  {
+    if (value == null)
+      return null;
+    var str = value.AsString();
+    if (str == null) return null;
+    if (Enum.TryParse<T>(str, true, out T result))
+      return result;
+    return null;
+  }
+
+  /// <summary>
+  /// converts a string to a property value
+  /// </summary>
+  /// <param name="value"></param>
+  /// <returns></returns>
+  public static T? ConvertBack<T>(object? value) where T : struct
+  {
+    if (value == null)
+      return null;
+    var str = value.AsString();
+    if (str == null) return null;
+    return (T?)str.FromString(typeof(T));
+  }
 }

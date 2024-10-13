@@ -20,7 +20,7 @@ public class Paragraph : Block, DA.Paragraph
   /// <summary>
   /// Paragraph element of the document
   /// </summary>
-  public DXW.Paragraph ParagraphElement => (DXW.Paragraph)OpenXmlElement!;
+  public DXW.Paragraph ParagraphElement => (DXW.Paragraph)ModeledElement!;
 
   DA.ParagraphProperties DA.Paragraph.Properties => ParagraphProperties!;
   /// <summary>
@@ -68,7 +68,7 @@ public class Paragraph : Block, DA.Paragraph
   {
     if (element is DXW.ParagraphProperties paragraphPropertiesElement)
     {
-      if (ParagraphProperties?.OpenXmlElement == paragraphPropertiesElement)
+      if (ParagraphProperties?.ModeledElement == paragraphPropertiesElement)
         return ParagraphProperties;
       return null;
     }

@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+
 using Docx.Automation;
 
 using Syncfusion.Windows.Tools.Controls;
@@ -440,4 +440,15 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
   //public void ToggleRibbon();
 
   #endregion
+
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public bool Remove()
+  {
+    return false;
+    throw new NotImplementedException();
+  }
 }

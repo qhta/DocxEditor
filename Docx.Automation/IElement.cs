@@ -3,7 +3,7 @@
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public interface IElement
+public interface IElement: IRemovable
 {
   /// <summary>
   /// Returns an object that represents the DocxControls application.

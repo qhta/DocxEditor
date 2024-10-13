@@ -78,7 +78,7 @@ public class ElementTemplateSelector : DataTemplateSelector
       return BookmarkEndTemplate ?? UnknownElementTemplate;
     if (item is VM.SectionProperties)
       return SectionPropertiesTemplate ?? UnknownElementTemplate;
-    if (item is VM.LastRenderedPageBreakViewModel)
+    if (item is VM.LastRenderedPageBreak)
       return LastRenderedPageBreakTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;
   }

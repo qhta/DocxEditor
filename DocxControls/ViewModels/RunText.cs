@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a run text element
 /// </summary>
-public class RunText : ElementViewModel
+public class RunText : ElementViewModel, DA.RunText
 {
   /// <summary>
   /// Initializing constructor.
@@ -18,29 +18,49 @@ public class RunText : ElementViewModel
   }
 
   /// <summary>
-  /// RunElement element of the paragraph
+  /// OpenXmlElement element of the paragraph
   /// </summary>
-  public DXW.Text TextElement => (DXW.Text)OpenXmlElement!;
+  internal DXW.Text OpenXmlElement => (DXW.Text)ModeledElement!;
+
+
+  /// <summary>
+  /// Parent run of the element
+  /// </summary>
+  public DA.Run ParentRun => (DA.Run)Owner!;
 
   /// <summary>
   /// Text of the element
   /// </summary>
-  public string Text => TextElement.Text;
+  public string? Text
+  {
+    get
+    {
+      var text = OpenXmlElement.Text;
+      Debug.WriteLine($"RunText.Text: {text}");
+      return text;
+    }
+    set
+    {
+      if (value == OpenXmlElement.Text) return;
+      OpenXmlElement.Text = value ?? "";
+      NotifyPropertyChanged(nameof(Text));
+    }
+  }
 
 
   /// <summary>
   /// Check if the owner run is bold
   /// </summary>
-  public bool? IsBold => (TextElement.Parent as DXW.Run)?.IsBold();
+  public bool? IsBold => (OpenXmlElement.Parent as DXW.Run)?.IsBold();
 
   /// <summary>
   /// Check if the owner run is italic
   /// </summary>
-  public bool? IsItalic => (TextElement.Parent as DXW.Run)?.IsItalic();
+  public bool? IsItalic => (OpenXmlElement.Parent as DXW.Run)?.IsItalic();
 
   /// <summary>
   /// Check if the owner run is underlined
   /// </summary>
-  public bool? IsUnderline => (TextElement.Parent as DXW.Run)?.IsUnderline();
+  public bool? IsUnderline => (OpenXmlElement.Parent as DXW.Run)?.IsUnderline();
 
 }

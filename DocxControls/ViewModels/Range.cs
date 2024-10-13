@@ -32,13 +32,13 @@ public class Range : ViewModel, DA.Range
   #region DA.Range properties implementation -----------------------------------------------------------------------------------
   object? DA.Range.Start => Start;
   /// <summary>
-  /// OpenXmlElement that starts the range.
+  /// ModeledElement that starts the range.
   /// </summary>
   public ElementViewModel? Start { get; private set; }
 
   object? DA.Range.End => Start;
   /// <summary>
-  /// OpenXmlElement that ends the range.
+  /// ModeledElement that ends the range.
   /// </summary>
   public ElementViewModel? End { get; private set; }
 
@@ -98,8 +98,8 @@ public class Range : ViewModel, DA.Range
   /// Expands the specified range or selection. Returns the number of elements added to the range or selection.
   /// </summary>
   /// <param name="unit">
-  /// The unit by which to expand the range. Can be OpenXmlElement or Sibling only.
-  /// If unit is OpenXmlElement, the range is expanded to include the next element.
+  /// The unit by which to expand the range. Can be ModeledElement or Sibling only.
+  /// If unit is ModeledElement, the range is expanded to include the next element.
   /// If unit is Sibling, the range is expanded to include the last sibling element.
   /// </param>
   /// <returns></returns>
@@ -232,7 +232,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range until one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -280,7 +280,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range until one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -330,7 +330,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range while one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -377,7 +377,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range while one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -427,7 +427,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range until one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -450,7 +450,7 @@ public class Range : ViewModel, DA.Range
   /// </summary>
   /// <param name="types">
   /// A set of element types to move the end position of the specified range while one of them is found in the document.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <param name="direction">
@@ -526,7 +526,7 @@ public class Range : ViewModel, DA.Range
   #region private methods implementation -----------------------------------------------------------------------------------
 
   /// <summary>
-  /// Moves the reference of the OpenXmlElement forward by one unit.
+  /// Moves the reference of the ModeledElement forward by one unit.
   /// </summary>
   /// <param name="element">move element</param>
   /// <param name="unit"></param>
@@ -582,7 +582,7 @@ public class Range : ViewModel, DA.Range
   }
 
   /// <summary>
-  /// Moves the reference of the OpenXmlElement backward by one unit.
+  /// Moves the reference of the ModeledElement backward by one unit.
   /// </summary>
   /// <param name="element">move element</param>
   /// <param name="unit"></param>

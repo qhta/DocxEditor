@@ -3,15 +3,11 @@
 /// <summary>
 /// Interface for a text run.
 /// </summary>
-public interface Run: IRemovable
+public interface Run: ITextElement
 {
   /// <summary>
   /// Properties of the run.
   /// </summary>
   public RunProperties Properties { get; }
 
-  /// <summary>
-  /// Text of the run.
-  /// </summary>
-  public string Text { get; set; }
 }

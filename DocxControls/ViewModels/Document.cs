@@ -1,7 +1,5 @@
 ﻿using System.IO;
 
-using DocxControls.Helpers;
-
 using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
@@ -140,14 +138,15 @@ public partial class Document : ViewModel, DA.Document, IEditable
   private string? TempFilePath;
 
   DA.DocumentWindow? DA.Document.ActiveWindow => ActiveWindow;
-  
+
   /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// </summary>
   public Views.DocumentWindow? ActiveWindow
   {
     get
-    { var window = DocxControls.Application.Instance.ActiveWindow;
+    {
+      var window = DocxControls.Application.Instance.ActiveWindow;
       if (window?.Document == this)
         return window;
       return null;
@@ -211,7 +210,7 @@ public partial class Document : ViewModel, DA.Document, IEditable
   /// <summary>
   /// Collection of selected items.
   /// </summary>
-  public Selection Selection { get; } 
+  public Selection Selection { get; }
 
   /// <summary>
   /// Access to the body elements of the document
@@ -490,6 +489,16 @@ public partial class Document : ViewModel, DA.Document, IEditable
 
   /// <inheritdoc />
   public event EventHandler? Closed;
-# endregion
+  #endregion
 
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public bool Remove()
+  {
+    return false;
+    throw new NotImplementedException();
+  }
 }

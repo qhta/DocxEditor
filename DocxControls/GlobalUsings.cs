@@ -3,7 +3,7 @@
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Specialized;
-
+global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Globalization;
 global using System.IO.Packaging;
@@ -25,6 +25,7 @@ global using Qhta.OpenXmlTools;
 global using DA = Docx.Automation;
 global using DocxControls.Resources;
 global using VM = DocxControls.ViewModels;
+global using DocxControls.Helpers;
 
 global using DX = DocumentFormat.OpenXml;
 //global using DXAC = DocumentFormat.OpenXml.AdditionalCharacteristics;

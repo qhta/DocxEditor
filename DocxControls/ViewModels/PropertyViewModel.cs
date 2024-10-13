@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-
-using DocxControls.Helpers;
-
-using Qhta.MVVM;
+﻿using Qhta.MVVM;
 using Qhta.TypeUtils;
 
 namespace DocxControls.ViewModels;
@@ -10,7 +6,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable, DA.IElement
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable, DA.IElement, DA.IRemovable
 {
 
   /// <summary>
@@ -677,4 +673,15 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   public bool IsModifiedInternal => (Owner as IEditable)?.IsModifiedInternal ?? true;
 
   #endregion IEditable implementation
+
+  /// <summary>
+  /// Not implemented
+  /// </summary>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public bool Remove()
+  {
+    return false;
+    throw new NotImplementedException();
+  }
 }

@@ -5,35 +5,24 @@ using Qhta.MVVM;
 namespace DocxControls.ViewModels;
 
 /// <summary>
-/// View model for any DocumentFormat.OpenXml.OpenXmlElement
+/// View model for any DocumentFormat.OpenXml.ModeledElement
 /// </summary>
 public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
 {
-  /// <summary>
-  /// Default constructor.
-  /// </summary>
-  public ElementViewModel(ViewModel owner) : base(owner)
-  {
-  }
 
   /// <summary>
-  /// Initializing constructor.
+  /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
-  /// <param name="properties">Modeled OpenXmlElement</param>
-  public ElementViewModel(ViewModel owner, object properties) : base(owner, properties)
+  /// <param name="modeledElement">Modeled ModeledElement</param>
+  public ElementViewModel(ViewModel owner, DX.OpenXmlElement modeledElement) : base(owner, modeledElement)
   {
   }
 
   /// <summary>
-  /// OpenXmlElement of the document
+  /// ModeledElement of the document
   /// </summary>
-  public DX.OpenXmlElement? OpenXmlElement
-  {
-    get => (DX.OpenXmlElement?)ModeledObject;
-    set => ModeledObject = value;
-  }
-
+  internal DX.OpenXmlElement? ModeledElement => (DX.OpenXmlElement?)ModeledObject;
 
   #region IElement implementation  -----------------------------------------------------------------------------------------------------------------
   DA.Application DA.IElement.Application => Application.Instance;
@@ -41,12 +30,12 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   /// Application object.
   /// </summary>
   public Application Application => Application.Instance;
-  
+
   object? DA.IElement.Parent => Owner;
   /// <summary>
   /// Parent element of the document
   /// </summary>
-  public ViewModel? Parent => Owner as ViewModel;
+  public ViewModel? Parent => Owner;
 
   /// <summary>
   /// Get the ancestor of the specified type.
@@ -59,9 +48,22 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
       return parent;
     return (Owner as ElementViewModel)?.GetAncestor<T>();
   }
+
+  /// <summary>
+  /// Removes the element from the document.
+  /// </summary>
+  public bool Remove()
+  {
+    if (ModeledElement is null) return false;
+    if (ModeledElement.Parent!=null)
+      ModeledElement.Remove();
+    if (Parent is CompoundElementViewModel compoundParent)
+      compoundParent.Elements.Remove(this);
+    return true;
+  }
   #endregion
 
-  #region tree navigation ----------------------------------------------------------------------------------------------------------------------------
+  #region Tree navigation ----------------------------------------------------------------------------------------------------------------------------
 
   /// <summary>
   /// Simple element view model does not have children.
@@ -113,7 +115,7 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   /// </summary>
   /// <param name="type">
   /// Specified type to check the element.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement type.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement type.
   /// It must not be an empty array.
   /// </param>
   /// <returns></returns>
@@ -136,7 +138,7 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   /// </summary>
   /// <param name="types">
   /// A set of element types to check the element.
-  /// It must be one of the DocumentFormat.OpenXml.OpenXmlElement types.
+  /// It must be one of the DocumentFormat.OpenXml.ModeledElement types.
   /// It must not be an empty array.
   /// </param>
   /// <returns></returns>
@@ -182,7 +184,7 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   {
     get
     {
-      var str = CleanXml(OpenXmlElement?.OuterXml);
+      var str = CleanXml(ModeledElement?.OuterXml);
       if (str != null && str.Length > 1000)
         str = str.Substring(0, 996) + " ...";
       return str;

@@ -9,16 +9,8 @@ public class Section : ElementViewModel, DA.Section
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
-  public Section(Body owner) : base(owner)
-  {
-  }
-
-  /// <summary>
-  /// Initializing constructor.
-  /// </summary>
-  /// <param name="owner"></param>
   /// <param name="properties"></param>
-  public Section(Body owner, SectionProperties properties) : base(owner, properties.SectionPropertiesElement)
+  public Section(Body owner, SectionProperties properties) : base(owner, properties.OpenXmlElement)
   {
     SectionProperties = properties;
   }
@@ -29,9 +21,9 @@ public class Section : ElementViewModel, DA.Section
   public SectionProperties? SectionProperties { get; }
 
   /// <summary>
-  /// OpenXml SectionPropertiesElement element.
+  /// OpenXml OpenXmlElement element.
   /// </summary>
-  public DXW.SectionProperties? SectionPropertiesElement => (DXW.SectionProperties?)OpenXmlElement;
+  public DXW.SectionProperties? OpenXmlElement => (DXW.SectionProperties?)ModeledElement;
 
   /// <summary>
   /// Gets the body that contains the section.

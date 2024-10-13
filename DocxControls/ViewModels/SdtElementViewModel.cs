@@ -14,10 +14,10 @@ public class SdtElementViewModel : ElementViewModel
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model</param>
-  /// <param name="sdtProperties">Modeled SdtElement</param>
-  public SdtElementViewModel(ViewModel ownerViewModel, DXW.SdtElement sdtProperties) : base(ownerViewModel, sdtProperties)
+  /// <param name="sdtModeledElement">Modeled SdtElement</param>
+  public SdtElementViewModel(ViewModel ownerViewModel, DXW.SdtElement sdtModeledElement) : base(ownerViewModel, sdtModeledElement)
   {
-    foreach (var element in sdtProperties.Elements())
+    foreach (var element in sdtModeledElement.Elements())
     {
       if (element is DXW.SdtProperties properties)
         Properties = new SdtPropertiesViewModel(this, properties);
@@ -33,7 +33,7 @@ public class SdtElementViewModel : ElementViewModel
         };
         if (elementViewModel == null)
         {
-          Debug.WriteLine($"SdtViewModel: OpenXmlElement {element.GetType().Name} not supported");
+          Debug.WriteLine($"SdtViewModel: ModeledElement {element.GetType().Name} not supported");
           elementViewModel = new UnknownElementViewModel(this, element);
         }
         Elements.Add(elementViewModel);
@@ -45,7 +45,7 @@ public class SdtElementViewModel : ElementViewModel
   /// <summary>
   /// Modeled SdtElement
   /// </summary>
-  public DXW.SdtElement SdtElement => (DXW.SdtElement)OpenXmlElement!;
+  public DXW.SdtElement SdtElement => (DXW.SdtElement)ModeledElement!;
 
   /// <summary>
   /// Sdt properties of the element
