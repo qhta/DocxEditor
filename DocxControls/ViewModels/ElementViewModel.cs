@@ -7,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for any DocumentFormat.OpenXml.ModeledElement
 /// </summary>
-public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
+public abstract class ElementViewModel : ObjectViewModel, _Element, DA.ISelectable
 {
 
   /// <summary>
@@ -15,7 +15,7 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  public ElementViewModel(ViewModel owner, DX.OpenXmlElement modeledElement) : base(owner, modeledElement)
+  protected ElementViewModel(ViewModel owner, DX.OpenXmlElement modeledElement) : base(owner, modeledElement)
   {
   }
 
@@ -25,13 +25,13 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   internal DX.OpenXmlElement? ModeledElement => (DX.OpenXmlElement?)ModeledObject;
 
   #region IElement implementation  -----------------------------------------------------------------------------------------------------------------
-  DA.Application DA.IElement.Application => Application.Instance;
+  DA.Application DA._Element.Application => Application.Instance;
   /// <summary>
   /// Application object.
   /// </summary>
   public Application Application => Application.Instance;
 
-  object? DA.IElement.Parent => Owner;
+  object? DA._Element.Parent => Owner;
   /// <summary>
   /// Parent element of the document
   /// </summary>
@@ -205,5 +205,6 @@ public class ElementViewModel : ObjectViewModel, IElement, DA.ISelectable
   /// Displayed tooltip with the name of the bookmark
   /// </summary>
   public string? ToolTip => ModeledObject?.GetType().Name;
+
 
 }

@@ -37,7 +37,7 @@ public class Selection : IEnumerable<ElementViewModel>, DA.Selection
   /// Enumerates the selected items.
   /// </summary>
   /// <returns></returns>
-  public IEnumerator<DA.IElement> GetEnumerator()
+  public IEnumerator<DA._Element> GetEnumerator()
   {
     return Document.Body.GetSelectedItems().GetEnumerator();
   }

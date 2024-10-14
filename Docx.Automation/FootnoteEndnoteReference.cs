@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a footnote or endnote reference.
 /// </summary>
-public interface FootnoteEndnoteReference : IElementReference<long, FootnoteEndnote>, IRunItem
+public interface FootnoteEndnoteReference : IElementReference<long, FootnoteEndnote>, _RunItem
 {
 
 }

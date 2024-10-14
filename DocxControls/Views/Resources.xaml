@@ -49,9 +49,9 @@
   <DataTemplate x:Key="TableTemplate" DataType="{x:Type vm:Table}">
     <TextBlock Text="{Binding DisplayText}" />
   </DataTemplate>
-  <DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:SectionProperties}">
+  <!--<DataTemplate x:Key="SectionPropertiesTemplate" DataType="{x:Type vm:SectionProperties}">
     <local:SectionPropertiesView/>
-  </DataTemplate>
+  </DataTemplate>-->
   <DataTemplate x:Key="UnknownElementTemplate" DataType="{x:Type vm:ElementViewModel}">
     <TextBlock Text="{Binding DisplayText}" TextWrapping="Wrap"/>
   </DataTemplate>
@@ -63,7 +63,8 @@
     BookmarkStartTemplate="{StaticResource BookmarkStartTemplate}"
     BookmarkEndTemplate="{StaticResource BookmarkEndTemplate}"
     TableTemplate="{StaticResource TableTemplate}"
-    SectionPropertiesTemplate="{StaticResource SectionPropertiesTemplate}"
+    
     UnknownElementTemplate="{StaticResource UnknownElementTemplate}"
   />
+  <!--SectionPropertiesTemplate="{StaticResource SectionPropertiesTemplate}"-->
 </ResourceDictionary>

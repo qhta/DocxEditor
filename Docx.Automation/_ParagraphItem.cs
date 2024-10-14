@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface for paragraph items (e.g. runs, tables, etc.)
 /// </summary>
-public interface IParagraphItem
+public interface _ParagraphItem
 {
   /// <summary>
   /// Owner paragraph of the item.

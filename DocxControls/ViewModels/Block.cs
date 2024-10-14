@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a block in a document.
 /// </summary>
-public class Block: CompoundElementViewModel, DA.Block
+public abstract class Block: CompoundElementViewModel, DA.Block
 {
   /// <summary>
   /// Initializing constructor.

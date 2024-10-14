@@ -3,6 +3,6 @@
 /// <summary>
 /// Represents an element that is a part of user interface.
 /// </summary>
-public interface IVisualElement: IElement
+public interface IVisualElement: _Element
 {
 }

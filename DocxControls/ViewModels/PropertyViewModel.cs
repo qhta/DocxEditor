@@ -1,12 +1,11 @@
-﻿using Qhta.MVVM;
-using Qhta.TypeUtils;
+﻿using Qhta.TypeUtils;
 
 namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a property of a document.
 /// </summary>
-public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable, DA.IElement, DA.IRemovable
+public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, IEnumProvider, IObjectViewModelProvider, IPropertyProvider, ISelectable, IEditable, DA._Element, DA._Removable
 {
 
   /// <summary>
@@ -31,8 +30,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   public ViewModel? Owner { get; set; }
 
   #region IElement implementation
-  DA.Application DA.IElement.Application => DocxControls.Application.Instance;
-  object? DA.IElement.Parent => Owner;
+  DA.Application DA._Element.Application => DocxControls.Application.Instance;
+  object? DA._Element.Parent => Owner;
   #endregion
 
   /// <summary>
@@ -50,7 +49,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
           if (result == null)
           {
             result = Name;
-            Debug.WriteLine($"{Name}");
+            //Debug.WriteLine($"Property.Caption={Name}");
           }
           return result;
         }
@@ -554,8 +553,8 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       if (_objectViewModel == null)
       {
         var value = _Value;
-        if (value != null)
-          _objectViewModel = CreateObjectViewModel(value);
+        if (value is DX.OpenXmlElement openXmlElement)
+          _objectViewModel = CreateObjectViewModel(openXmlElement);
         if (_objectViewModel != null)
           _Value = _objectViewModel.ModeledObject;
       }
@@ -587,24 +586,12 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   /// <summary>
   /// Creates a new ObjectViewModel;
   /// </summary>
-  /// <param name="value"></param>
+  /// <param name="element"></param>
   /// <returns></returns>
-  protected ObjectViewModel? CreateObjectViewModel(object value)
+  protected ObjectViewModel? CreateObjectViewModel(DX.OpenXmlElement element)
   {
-    var result = VM.ObjectViewModel.Create(this, value);
-    if (result != null)
-      result.PropertyChanged += ObjectViewModel_PropertyChanged;
-    return result;
-  }
 
-  /// <summary>
-  /// Creates a new ObjectViewModel;
-  /// </summary>
-  /// <param name="type"></param>
-  /// <returns></returns>
-  protected ObjectViewModel? CreateObjectViewModel(Type type)
-  {
-    var result = VM.ObjectViewModel.Create(this, type);
+    var result = Application.Instance.CreateViewModel(this, element);
     if (result != null)
       result.PropertyChanged += ObjectViewModel_PropertyChanged;
     return result;

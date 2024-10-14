@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Qhta.WPF.Utils;
 using System.IO;
 using Qhta.TypeUtils;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DocxControls;
 
@@ -22,6 +23,7 @@ public class Application : ViewModel, DA.Application
   /// </summary>
   private Application()
   {
+    ScanViewModels();
   }
 
   /// <summary>
@@ -46,7 +48,7 @@ public class Application : ViewModel, DA.Application
   /// </summary>
   public DocumentWindow? ActiveWindow
   {
-    get=> _ActiveWindow;
+    get => _ActiveWindow;
     set
     {
       if (_ActiveWindow == value) return;
@@ -78,25 +80,51 @@ public class Application : ViewModel, DA.Application
   /// <exception cref="InvalidOperationException"></exception>
   public VM.ElementViewModel CreateViewModel(ViewModel parentViewModel, DX.OpenXmlElement element)
   {
-    if (element is DXW.Body body)
-      return new VM.Body(parentViewModel, body);
-    if (parentViewModel is not VM.ElementViewModel parentElementViewModel)
-      throw new InvalidOperationException($"Parent view model must be a ElementViewModel, but is {parentViewModel.GetType()}");
-    return element switch
+    if (ElementViewModels.Count==0)
     {
-      DXW.Paragraph paragraph => new VM.Paragraph(parentElementViewModel, paragraph),
-      DXW.Table table => new VM.Table(parentElementViewModel, table),
-      //DXW.TableRow tableRow => new VM.TableRow(null, tableRow),
-      //DXW.TableCell tableCell => new VM.TableCell(null, tableCell),
-      DXW.Run run => new VM.Run(parentElementViewModel, run),
-      DXW.Text text => new VM.RunText(parentElementViewModel, text),
-      DXW.BookmarkStart bookmarkStart => new VM.BookmarkStart(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkStart),
-      DXW.BookmarkEnd bookmarkEnd => new VM.BookmarkEnd(parentElementViewModel.GetDocumentViewModel().Bookmarks, bookmarkEnd),
-      //DXW.Break breakElement => new VM.Break(null, breakElement),
-      //DXW.TabChar tabChar => new VM.TabChar(null, tabChar),
-      _ => new VM.ElementViewModel(parentElementViewModel, element)
-    };
+      ScanViewModels();
+    }
+    if (ElementViewModels.TryGetValue(element.GetType(), out var viewModelDescriptor))
+       return (VM.ElementViewModel)viewModelDescriptor.constructorInfo.Invoke(new object[] { parentViewModel, element });
+    else
+    {
+      Debug.WriteLine($"Unknown view model for element type: {element.GetType()}");
+      return new VM.UnknownElementViewModel(parentViewModel, element);
+    }
   }
+
+  internal void ScanViewModels()
+  {
+    ElementViewModels.Clear();
+    foreach (var type in typeof(VM.ElementViewModel).Assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(VM.ElementViewModel)) && !t.IsAbstract))
+    {
+      if (type.GetCustomAttribute<NotMappedAttribute>() == null)
+        foreach (var constructor in type.GetConstructors())
+        {
+          if (constructor.GetParameters().Length == 2 && constructor.GetParameters()[1].ParameterType.IsAssignableTo(typeof(DX.OpenXmlElement)))
+          {
+            var elementType = constructor.GetParameters()[1].ParameterType;
+            Debug.WriteLine($"ElementViewModel: {elementType} -> {type}");
+            var properties = new List<PropertyInfo>();
+            if (type==typeof(DXW.RunProperties))
+            foreach (var implementedInterface in elementType.GetInterfaces().Where
+                       (i => i.Namespace == typeof(DA._Element).Namespace))
+            {
+              foreach (var property in implementedInterface.GetProperties())
+              {
+                properties.Add(property);
+              }
+            }
+            ElementViewModels.Add(elementType, new ViewModelTypeDescriptor(type, constructor, properties.ToArray()));
+            break;
+          }
+        }
+    }
+  }
+  /// <summary>
+  /// Mapping of ModeledElement types to ElementViewModel types.
+  /// </summary>
+  internal Dictionary<Type, ViewModelTypeDescriptor> ElementViewModels { get; } = new();
 
   /// <summary>
   /// OpenDocument a document for viewing/editing.
@@ -367,7 +395,7 @@ public class Application : ViewModel, DA.Application
   /// </summary>
   public VM.Plugins Plugins { get; } = new();
 
- // public ObservableCollection<DA.PluginCommand> PluginCommands { get; }= new();
+  // public ObservableCollection<DA.PluginCommand> PluginCommands { get; }= new();
 
   /// <summary>
   /// Common instance of the PluginsWindow.
@@ -388,7 +416,7 @@ public class Application : ViewModel, DA.Application
         if (Plugins.Any(p => p.Assembly?.FullName == assembly.FullName))
           continue;
         var types = assembly.GetTypes();
-        foreach(var t in types.Where(t=>t.Implements(typeof(DA.Plugin))))
+        foreach (var t in types.Where(t => t.Implements(typeof(DA.Plugin))))
         {
           var plugin = (DA.Plugin?)Activator.CreateInstance(t, this);
           if (plugin != null)

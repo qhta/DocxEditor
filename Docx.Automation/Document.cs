@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a document.
 /// </summary>
-public interface Document: IElement
+public interface Document: _Element
 {
   #region properties ---------------------------------------------------------------------------------------------------------------------------
   /// <summary>

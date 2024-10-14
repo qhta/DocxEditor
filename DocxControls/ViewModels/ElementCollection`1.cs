@@ -7,7 +7,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollection<T> where T : DA.IElement
+public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollection<T> where T : DA._Element
 {
   /// <summary>
   /// Constructor with a owner object.

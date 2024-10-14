@@ -2,7 +2,7 @@
 /// <summary>
 /// Represents a selection in the document.
 /// </summary>
-public interface Selection: IEnumerable<IElement>
+public interface Selection: IEnumerable<_Element>
 {
   /// <summary>
   /// Gets the application object that represents the DocxControls application.

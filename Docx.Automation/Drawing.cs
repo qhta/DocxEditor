@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a drawing element.
 /// </summary>
-public interface Drawing: IElement, IRunItem
+public interface Drawing: _Element, _RunItem
 {
   // TODO: Add properties to Drawing
   ///// <summary>

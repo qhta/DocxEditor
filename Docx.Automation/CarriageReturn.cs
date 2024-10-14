@@ -3,7 +3,7 @@
 /// <summary>
 ///  A carriage return character
 /// </summary>
-public interface CarriageReturn : IElement, IRunItem, ITextReadonlyElement
+public interface CarriageReturn : _Element, _RunItem, ITextReadonlyElement
 {
 
 }

@@ -4,7 +4,7 @@
 /// <summary>
 ///  A non-breaking hyphen character
 /// </summary>
-public interface NoBreakHyphen: IElement, IRunItem, ITextReadonlyElement
+public interface NoBreakHyphen: _Element, _RunItem, ITextReadonlyElement
 {
   
 }

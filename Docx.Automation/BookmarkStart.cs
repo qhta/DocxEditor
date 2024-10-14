@@ -3,7 +3,7 @@
 /// <summary>
 /// Element that marks a start of a bookmark.
 /// </summary>
-public interface BookmarkStart: IElement
+public interface BookmarkStart: _Element
 {
   /// <summary>
   /// Integer identifier of the bookmark

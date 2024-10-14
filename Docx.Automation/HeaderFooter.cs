@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a header or footer.
 /// </summary>
-public interface HeaderFooter: IElement
+public interface HeaderFooter: _Element
 {
   
 }

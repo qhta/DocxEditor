@@ -3,7 +3,7 @@
 /// <summary>
 /// Bookmark in a document.
 /// </summary>
-public interface Bookmark: IElement
+public interface Bookmark: _Element
 {
   /// <summary>
   /// Integer identifier of the bookmark

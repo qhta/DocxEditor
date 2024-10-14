@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface for a run item.
 /// </summary>
-public interface IRunItem
+public interface _RunItem
 {
   /// <summary>
   /// Parent must be a Run.

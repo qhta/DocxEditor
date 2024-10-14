@@ -10,7 +10,7 @@ public class RunText : ElementViewModel, DA.RunText
   /// </summary>
   /// <param name="runViewModel">Owner view model. Must be <see cref="Run"/></param>
   /// <param name="text"></param>
-  public RunText(ElementViewModel runViewModel, DXW.Text text): base (runViewModel, text)
+  public RunText(Run runViewModel, DXW.Text text): base (runViewModel, text)
   {
     DoubleClickCommand = null;
     LeftMouseDownCommand = null;
@@ -18,7 +18,7 @@ public class RunText : ElementViewModel, DA.RunText
   }
 
   /// <summary>
-  /// OpenXmlElement element of the paragraph
+  /// ModeledElement element of the paragraph
   /// </summary>
   internal DXW.Text OpenXmlElement => (DXW.Text)ModeledElement!;
 
@@ -36,7 +36,7 @@ public class RunText : ElementViewModel, DA.RunText
     get
     {
       var text = OpenXmlElement.Text;
-      Debug.WriteLine($"RunText.Text: {text}");
+      //Debug.WriteLine($"RunText.Text: {text}");
       return text;
     }
     set

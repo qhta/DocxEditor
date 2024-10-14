@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents an element that have a text read-only property.
 /// </summary>
-public interface ITextReadonlyElement: IElement
+public interface ITextReadonlyElement: _Element
 {
   /// <summary>
   /// Text content of the element.

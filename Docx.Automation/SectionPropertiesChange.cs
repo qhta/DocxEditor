@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the change in section properties.
 /// </summary>
-public interface SectionPropertiesChange: IElement
+public interface SectionPropertiesChange: _Element
 {
   /// <summary>
   /// <para>author</para>

@@ -1,10 +1,13 @@
-﻿using Qhta.MVVM;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an unknown element
 /// </summary>
+[NotMapped]
 public class UnknownElementViewModel: ElementViewModel
 {
   /// <summary>

@@ -12,12 +12,18 @@
     <Compile Remove="Helpers\ViewModelsFactory.cs" />
     <Compile Remove="ViewModels\Compatibility.cs" />
     <Compile Remove="ViewModels\CompatibilitySetting.cs" />
+    <Compile Remove="Views\SectionPropertiesView.xaml.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
     <None Remove="Resources\Delete.png" />
     <None Remove="Resources\TriangleDown.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Page Remove="Views\SectionPropertiesView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,9 +65,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PropertiesTooltips.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Views\SectionPropertiesView.xaml.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\BookmarkStartView.xaml.cs">
       <SubType>Code</SubType>

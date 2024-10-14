@@ -2,7 +2,7 @@
 /// <summary>
 /// Represents a single instance of a document property.
 /// </summary>
-public interface DocumentProperty : IElement
+public interface DocumentProperty : _Element
 {
   /// <summary>
   /// Returns the name of the custom property.

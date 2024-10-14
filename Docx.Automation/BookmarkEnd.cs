@@ -3,7 +3,7 @@
 /// <summary>
 /// Element that marks the end of a bookmark.
 /// </summary>
-public interface BookmarkEnd: IElement
+public interface BookmarkEnd: _Element
 {
   /// <summary>
   /// Integer identifier of the bookmark

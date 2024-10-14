@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a border in a document.
 /// </summary>
-public interface Border: IElement
+public interface Border: _Element
 {
   /// <summary>
   /// <para>Border Style</para>

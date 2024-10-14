@@ -22,6 +22,7 @@ global using System.Xml.Serialization;
 global using Qhta.OpenXmlTools;
 //global using Qhta.TypeUtils;
 
+global using Qhta.MVVM;
 global using DA = Docx.Automation;
 global using DocxControls.Resources;
 global using VM = DocxControls.ViewModels;

@@ -10,12 +10,12 @@ public class RunProperties : ElementViewModel, DA.RunProperties
   /// </summary>
   /// <param name="runViewModel">Owner view model. Must be <see cref="Run"/></param>
   /// <param name="modeledElement">Modeled run modeledElement element</param>
-  public RunProperties(Run runViewModel, DXW.RunProperties modeledElement): base(runViewModel, modeledElement)
+  public RunProperties(ViewModel runViewModel, DXW.RunProperties modeledElement): base(runViewModel, modeledElement)
   {
   }
 
   /// <summary>
-  /// OpenXmlElement properties element
+  /// ModeledElement properties element
   /// </summary>
   public DXW.RunProperties RunPropertiesElement => (DXW.RunProperties)ModeledElement!;
 

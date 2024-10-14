@@ -16,19 +16,34 @@ public class Section : ElementViewModel, DA.Section
   }
 
   /// <summary>
-  /// SectionProperties view model.
+  /// Properties of the section
   /// </summary>
-  public SectionProperties? SectionProperties { get; }
+  public DA.SectionProperties Properties
+  {
+    get => SectionProperties;
+    set
+    {
+      if (value == SectionProperties) return;
+      SectionProperties = (SectionProperties)value;
+      NotifyPropertyChanged(nameof(Properties));
+    }
+  }
 
   /// <summary>
-  /// OpenXml OpenXmlElement element.
+  /// SectionProperties view model.
   /// </summary>
-  public DXW.SectionProperties? OpenXmlElement => (DXW.SectionProperties?)ModeledElement;
+  public SectionProperties SectionProperties { get; set; }
+
+  /// <summary>
+  /// OpenXml ModeledElement element.
+  /// </summary>
+  public DXW.SectionProperties OpenXmlElement => (DXW.SectionProperties?)ModeledElement!;
 
   /// <summary>
   /// Gets the body that contains the section.
   /// </summary>
   public Body OwnerBody => (Body)Parent!;
+
 
   DA.Range DA.Section.Range => Range;
   /// <summary>

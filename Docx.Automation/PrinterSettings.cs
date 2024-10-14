@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the settings of a printer.
 /// </summary>
-public interface PrinterSettings: IElement
+public interface PrinterSettings: _Element
 {
   
 }

@@ -121,7 +121,7 @@
     <value>Główne</value>
   </data>
   <data name="Properties" xml:space="preserve">
-    <value>Ustawienia</value>
+    <value>Właściwości</value>
   </data>
   <data name="ContentStatus" xml:space="preserve">
     <value>Status zawartości</value>
@@ -196,7 +196,7 @@
     <value>Układ i interfejs</value>
   </data>
   <data name="SaveAndLoad" xml:space="preserve">
-    <value>Zapisywani i ładowanie</value>
+    <value>Zapisywanie i ładowanie</value>
   </data>
   <data name="ThemingAndStyles" xml:space="preserve">
     <value>Motywy i style</value>

@@ -12,7 +12,7 @@ public class DayShort : ElementViewModel, DA.DayShort
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public DayShort(Run owner, DXW.MonthShort modeledElement) : base(owner, modeledElement)
+  public DayShort(Run owner, DXW.DayShort modeledElement) : base(owner, modeledElement)
   {
   }
 

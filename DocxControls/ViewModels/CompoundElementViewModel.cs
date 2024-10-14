@@ -1,14 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-using Qhta.MVVM;
-
 namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for the body elements: paragraphs, tables, etc.
 /// </summary>
-public class CompoundElementViewModel : ElementViewModel
+public abstract class CompoundElementViewModel : ElementViewModel
 {
 
   /// <summary>
@@ -21,7 +19,7 @@ public class CompoundElementViewModel : ElementViewModel
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="Document"/></param>
   /// <param name="body">Modeled block element</param>
-  public CompoundElementViewModel(ViewModel ownerViewModel, DX.OpenXmlCompositeElement body): base(ownerViewModel, body)
+  protected CompoundElementViewModel(ViewModel ownerViewModel, DX.OpenXmlCompositeElement body) : base(ownerViewModel, body)
   {
     Elements.CollectionChanged += (sender, e) =>
     {
@@ -40,19 +38,29 @@ public class CompoundElementViewModel : ElementViewModel
           element.Remove();
         }
       }
+      CurrentElementIndex = 0;
     };
     currentElement = body.FirstChild;
-    LoadMoreCommand = new RelayCommand( LoadMoreElements, () => !isLoading && currentElement!=null);
- }
+    LoadMoreCommand = new RelayCommand(LoadMoreElements, () => !IsLoading && currentElement != null);
+  }
 
   /// <summary>
   /// Command to load more elements. Used in lazy loading.
   /// </summary>
   public ICommand LoadMoreCommand { get; }
 
-  private const int PageSize = 20;
-  private bool isLoading;
-  private int currentElementIndex = 0;
+  /// <summary>
+  /// Count of loaded element at one time in <see cref="LoadMoreElements"/>
+  /// </summary>
+  protected const int PageSize = 20;
+  /// <summary>
+  /// Flag set if the elements are loaded
+  /// </summary>
+  protected bool IsLoading;
+  /// <summary>
+  /// Index of first element to load
+  /// </summary>
+  protected int CurrentElementIndex;
 
   private DX.OpenXmlElement? currentElement;
 
@@ -61,8 +69,8 @@ public class CompoundElementViewModel : ElementViewModel
   /// </summary>
   public virtual void LoadAllElements()
   {
-    if (isLoading) return;
-    isLoading = true;
+    if (IsLoading) return;
+    IsLoading = true;
     Task.Run(() =>
     {
       currentElement = ModeledElement?.FirstChild;
@@ -72,9 +80,9 @@ public class CompoundElementViewModel : ElementViewModel
         if (childViewModel == null)
           CreateChildViewModel(currentElement);
         currentElement = currentElement.NextSibling();
-        currentElementIndex++;
+        CurrentElementIndex++;
       }
-      isLoading = false;
+      IsLoading = false;
     });
   }
 
@@ -83,8 +91,8 @@ public class CompoundElementViewModel : ElementViewModel
   /// </summary>
   public void LoadMoreElements()
   {
-    if (isLoading) return;
-    isLoading = true;
+    if (IsLoading) return;
+    IsLoading = true;
     Task.Run(() =>
     {
       int i = PageSize;
@@ -94,9 +102,9 @@ public class CompoundElementViewModel : ElementViewModel
         if (childViewModel == null)
           CreateChildViewModel(currentElement);
         currentElement = currentElement.NextSibling();
-        currentElementIndex++;
+        CurrentElementIndex++;
       }
-      isLoading = false;
+      IsLoading = false;
     });
   }
 

@@ -10,7 +10,7 @@ namespace DocxControls.Views;
 /// <summary>
 /// Interaction logic for DocumentWindow.xaml
 /// </summary>
-public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElement
+public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA._Element
 {
 
   /// <summary>
@@ -42,8 +42,8 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
 
   #region IElement implementation
 
-  DA.Application DA.IElement.Application => Application;
-  object? DA.IElement.Parent => base.Parent;
+  DA.Application DA._Element.Application => Application;
+  object? DA._Element.Parent => base.Parent;
 
   #endregion
 
@@ -176,18 +176,18 @@ public partial class DocumentWindow : UserControl, DA.DocumentWindow, DA.IElemen
   /// </summary>
   public bool Visible
   {
-    get => Visibility == Visibility.Visible;
+    get => Visibility == System.Windows.Visibility.Visible;
     set
     {
       if (Visible != value)
       {
         if (value)
         {
-          Visibility = Visibility.Visible;
+          Visibility = System.Windows.Visibility.Visible;
         }
         else
         {
-          Visibility = Visibility.Hidden;
+          Visibility = System.Windows.Visibility.Hidden;
         }
       }
     }

@@ -571,4 +571,7 @@
   <data name="RevisionsAndTracking" xml:space="preserve">
     <value>Revisions and tracking</value>
   </data>
+  <data name="XStaticResourcesStringsProperties" xml:space="preserve">
+    <value>{x:Static resources:Strings.Properties}</value>
+  </data>
 </root>

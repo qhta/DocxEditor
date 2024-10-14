@@ -17,14 +17,14 @@ public sealed class Run : CompoundElementViewModel, DA.Run
   }
 
   /// <summary>
-  /// OpenXmlElement element of the run
+  /// ModeledElement element of the run
   /// </summary>
   internal DXW.Run OpenXmlElement => (DXW.Run)ModeledElement!;
 
 
   DA.RunProperties DA.Run.Properties => RunProperties!;
   /// <summary>
-  /// OpenXmlElement properties view model
+  /// ModeledElement properties view model
   /// </summary>
   public RunProperties? RunProperties { get; set; }
 
@@ -72,9 +72,9 @@ public sealed class Run : CompoundElementViewModel, DA.Run
   //protected override ObjectPropertiesViewModel InitObjectProperties()
   //{
   //  var objectProperties = new ObjectPropertiesViewModel();
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunAddition)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunDeletion)));
-  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.OpenXmlElement.RsidRunProperties)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.ModeledElement.RsidRunAddition)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.ModeledElement.RsidRunDeletion)));
+  //  objectProperties.Add(new ObjectPropertyViewModel(this, nameof(DXW.ModeledElement.RsidRunProperties)));
   //  AddMoreObjectProperties(objectProperties);
   //  return objectProperties;
   //}

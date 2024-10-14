@@ -1,10 +1,13 @@
-﻿using Qhta.MVVM;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+using Qhta.MVVM;
 
 namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Specifies an explicit relationship to a printer settings containing information about the printer settings used for this section.
 /// </summary>
+[NotMapped]
 public class PrinterSettings: ElementViewModel, DA.PrinterSettings
 {
   /// <summary>

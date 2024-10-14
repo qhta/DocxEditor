@@ -109,64 +109,47 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   public Document GetDocumentViewModel() => (Owner as Document) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
     ?? throw new InvalidOperationException("Owner is not a document view model");
 
-  /// <summary>
-  /// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
-  /// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
-  /// </summary>
-  /// <param name="parent"></param>
-  /// <param name="modeledObject"></param>
-  /// <returns></returns>
-  public static ObjectViewModel? Create(ViewModel parent, object modeledObject)
-  {
-    var modeledObjectType = modeledObject?.GetType();
-    if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
-      if (!(modeledObjectType?.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
-        viewModelType = null;
-    if (viewModelType == null)
-    {
-      if (modeledObject != null)
-        return new ObjectViewModel(parent, modeledObject);
-    }
-    var result = viewModelType != null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, modeledObject)! : null;
-    return result;
-  }
+  ///// <summary>
+  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
+  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
+  ///// </summary>
+  ///// <param name="parent"></param>
+  ///// <param name="modeledObject"></param>
+  ///// <returns></returns>
+  //public static ObjectViewModel? Create(ViewModel parent, object modeledObject)
+  //{
+  //  var modeledObjectType = modeledObject?.GetType();
+  //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
+  //    if (!(modeledObjectType?.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
+  //      viewModelType = null;
+  //  if (viewModelType == null)
+  //  {
+  //    if (modeledObject != null)
+  //      return new ObjectViewModel(parent, modeledObject);
+  //  }
+  //  var result = viewModelType != null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, modeledObject)! : null;
+  //  return result;
+  //}
 
-  /// <summary>
-  /// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
-  /// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
-  /// </summary>
-  /// <param name="parent"></param>
-  /// <param name="modeledObjectType"></param>
-  /// <returns></returns>
-  public static ObjectViewModel? Create(ViewModel parent, Type modeledObjectType)
-  {
-    if (!(KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
-      if (!(modeledObjectType.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
-        viewModelType = null;
-    if (viewModelType == null)
-    {
-      throw new NotImplementedException($"ViewModelType({modeledObjectType}) not known");
-    }
-    var result =  (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, null)!;
-    return result;
-  }
-  /// <summary>
-  /// ViewModel types declared in this assembly.
-  /// </summary>
-  public static readonly Dictionary<Type, Type> KnownObjectViewModelTypes = new()
-  {
-    { typeof(DXW.Body), typeof(Body)},
-    { typeof(DXW.BookmarkStart), typeof(BookmarkStart)},
-    { typeof(DXW.BookmarkEnd), typeof(BookmarkEnd)},
-    { typeof(DXW.Paragraph), typeof(Paragraph)},
-    { typeof(DXW.Run), typeof(Run)},
-    { typeof(DXW.RunProperties), typeof(RunProperties)},
-    { typeof(DXW.Text), typeof(RunText)},
-    { typeof(DXW.Table), typeof(Table)},
-    { typeof(DXW.SdtElement), typeof(SdtElementViewModel)},
-    { typeof(DXW.SdtProperties), typeof(SdtPropertiesViewModel)},
-    { typeof(DXW.LastRenderedPageBreak), typeof(LastRenderedPageBreak)},
-  };
+  ///// <summary>
+  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
+  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
+  ///// </summary>
+  ///// <param name="parent"></param>
+  ///// <param name="modeledObjectType"></param>
+  ///// <returns></returns>
+  //public static ObjectViewModel? Create(ViewModel parent, Type modeledObjectType)
+  //{
+  //  if (!(KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
+  //    if (!(modeledObjectType.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
+  //      viewModelType = null;
+  //  if (viewModelType == null)
+  //  {
+  //    throw new NotImplementedException($"ViewModelType({modeledObjectType}) not known");
+  //  }
+  //  var result =  (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, null)!;
+  //  return result;
+  //}
 
 
   /// <summary>
@@ -357,6 +340,33 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   protected virtual ObjectPropertiesViewModel InitObjectProperties()
   {
     var objectProperties = new ObjectPropertiesViewModel(this);
+    if (ModeledObject!=null)
+    {
+      if (Application.Instance.ElementViewModels.TryGetValue(ModeledObject.GetType(), out var typeDescriptor))
+        if (typeDescriptor.properties.Any())
+        {
+          foreach (var prop in typeDescriptor.properties)
+          {
+            var propName = prop.Name;
+            var systemType = prop.PropertyType;
+            //var origType = prop.PropertyType;
+            object? value = null;
+            object? originalValue = null;
+            var modeledObject = ModeledObject;
+            if (modeledObject != null)
+            {
+              originalValue = prop.GetValue(modeledObject);
+              value = originalValue;
+            }
+            var propertyViewModel =
+              new ObjectPropertyViewModel(this, null, propName, prop, null, systemType, null, value, originalValue);
+            propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+            objectProperties.Add(propertyViewModel);
+          }
+          objectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
+          return objectProperties;
+        }
+    }
     if (ObjectType != null)
     {
       var properties = ObjectType.GetOpenXmlProperties().ToArray();
@@ -371,7 +381,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
               propName = ObjectType.Name + "." + propName;
           }
           var origType = prop.PropertyType;
-          var type = origType.ToSystemType(propName);
+          var systemType = origType.ToSystemType(propName);
           object? value = null;
           object? originalValue = null;
           var modeledObject = ModeledObject;
@@ -381,7 +391,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
             value = originalValue?.ToSystemValue(origType);
           }
           var propertyViewModel =
-            new ObjectPropertyViewModel(this, null, propName, null, prop, type, origType, value, originalValue);
+            new ObjectPropertyViewModel(this, null, propName, null, prop, systemType, origType, value, originalValue);
           propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
           objectProperties.Add(propertyViewModel);
         }

@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="ID">type of identifier</typeparam>
 /// <typeparam name="T">type of element</typeparam>
-public interface IElementReference<ID, out T>: IElement where T : IElement
+public interface IElementReference<ID, out T>: _Element where T : _Element
 {
   /// <summary>
   /// Identifier of the element.

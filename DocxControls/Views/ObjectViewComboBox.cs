@@ -196,7 +196,7 @@ public class ObjectViewComboBox : ComboBox
     if (e.Row.DataContext is VM.ObjectPropertyViewModel objectProperty && objectProperty.Caption == "RunFonts")
     {
       //Debug.WriteLine($"objectProperty.Caption={objectProperty.Caption}");
-      //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelProperty={objectProperty.ViewModelProperty?.Name}");
+      //Debug.WriteLine($"objectProperty.OriginalProperty={objectProperty.OriginalProperty?.Name} objectProperty.ViewModelObjectProperty={objectProperty.ViewModelObjectProperty?.Name}");
     }
   }
 

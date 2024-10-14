@@ -9,11 +9,14 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   /// <summary>
   /// Initializing constructor.
   /// </summary>
-  /// <param name="bookmarksViewModel"></param>
+  /// <param name="parentViewModel"></param>
   /// <param name="bookmarkStartModeledElement"></param>
-  public BookmarkStart(Bookmarks bookmarksViewModel, DXW.BookmarkStart bookmarkStartModeledElement) : base(bookmarksViewModel, bookmarkStartModeledElement)
+  public BookmarkStart(CompoundElementViewModel parentViewModel, DXW.BookmarkStart bookmarkStartModeledElement) : base(parentViewModel, bookmarkStartModeledElement)
   {
-    _bookmarksViewModel = bookmarksViewModel;
+    var bookmarks = parentViewModel.GetDocumentViewModel()?.Bookmarks;
+    if (bookmarks == null)
+      throw new ArgumentException("Parent view model must have a bookmarks collection.");
+    _bookmarksViewModel = bookmarks!;
   }
 
   private readonly Bookmarks _bookmarksViewModel;

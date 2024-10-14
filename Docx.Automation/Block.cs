@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a block in a document such as a paragraph or table.
 /// </summary>
-public interface Block: IElement
+public interface Block: _Element
 {
   
 }

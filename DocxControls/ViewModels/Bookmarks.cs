@@ -30,6 +30,8 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
       });
   }
 
+  internal new CompoundElementViewModel Parent => (CompoundElementViewModel)base.Parent!;
+
   /// <summary>
   /// Scan the descendants of the block element for bookmarks start and end elements.
   /// </summary>
@@ -66,7 +68,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
         var id = bookmarkStart.Id?.Value ?? "";
         if (!BookmarkIds.TryGetValue(id, out var value))
         {
-          result = new BookmarkStart(this, bookmarkStart);
+          result = new BookmarkStart(Parent, bookmarkStart);
           value = (result, null);
           BookmarkIds.Add(id, value);
           Items.Add(value.start);
@@ -75,7 +77,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
         {
           if (value.start == null)
           {
-            result = new BookmarkStart(this, bookmarkStart);
+            result = new BookmarkStart(Parent, bookmarkStart);
             value.start = result;
             BookmarkIds[id] = value;
             Items.Add(value.start);
@@ -104,7 +106,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
         var id = bookmarkEnd.Id?.Value ?? "";
         if (!BookmarkIds.TryGetValue(id, out var value))
         {
-          result = new BookmarkEnd(this, bookmarkEnd);
+          result = new BookmarkEnd(Parent, bookmarkEnd);
           value = (null, result);
           BookmarkIds.Add(id, value);
         }
@@ -112,7 +114,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
         {
           if (value.end == null)
           {
-            result = new BookmarkEnd(this, bookmarkEnd);
+            result = new BookmarkEnd(Parent, bookmarkEnd);
             value.end = result;
             BookmarkIds[id] = value;
           }

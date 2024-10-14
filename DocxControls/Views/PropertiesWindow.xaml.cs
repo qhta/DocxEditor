@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Interop;
-using DocxControls.Helpers;
 
 namespace DocxControls.Views
 {
@@ -28,7 +28,7 @@ namespace DocxControls.Views
       }
     }
 
-    private void ObjectProperties_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void ObjectProperties_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
       if (e.PropertyName == nameof(IDataGridCompanion.DataGridWidth) && sender is IDataGridCompanion propertiesViewModel)
       {
@@ -44,7 +44,7 @@ namespace DocxControls.Views
           NativeMethods.AdjustWindowRectEx(ref rect, windowStyle, hasMenu, NativeMethods.GetWindowLong(windowHandle, NativeMethods.GWL_EXSTYLE));
 
           var nonClientWidth = (rect.Right - rect.Left);
-          this.Width = desiredWidth+nonClientWidth;
+          Width = desiredWidth+nonClientWidth;
         }
       }
     }
@@ -55,13 +55,13 @@ namespace DocxControls.Views
       public const int GWL_EXSTYLE = -20;
       public const int WS_SYSMENU = 0x00080000;
 
-      [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+      [DllImport("user32.dll", SetLastError = true)]
       public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
-      [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+      [DllImport("user32.dll", SetLastError = true)]
       public static extern bool AdjustWindowRectEx(ref RECT lpRect, int dwStyle, bool bMenu, int dwExStyle);
 
-      [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+      [StructLayout(LayoutKind.Sequential)]
       public struct RECT
       {
         public int Left;

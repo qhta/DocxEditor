@@ -4,7 +4,7 @@
 /// Collection of elements.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public interface IElementCollection<T>: IEnumerable<T> where T : IElement
+public interface IElementCollection<T>: IEnumerable<T> where T : _Element
 {
   /// <summary>
   /// Returns an Application object that represents the DocxControls application.

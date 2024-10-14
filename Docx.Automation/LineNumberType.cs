@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the settings for line numbering.
 /// </summary>
-public interface LineNumberType : IElement
+public interface LineNumberType : _Element
 {
   /// <summary>
   /// <para>Line Number Increments to Display</para>

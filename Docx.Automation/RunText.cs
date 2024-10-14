@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface for a text run.
 /// </summary>
-public interface RunText: ITextElement, IRunItem
+public interface RunText: ITextElement, _RunItem
 {
   
 }

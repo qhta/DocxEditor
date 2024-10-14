@@ -3,7 +3,7 @@
 /// <summary>
 /// Tab character
 /// </summary>
-public interface TabChar : IElement, IRunItem, ITextReadonlyElement
+public interface TabChar : _Element, _RunItem, ITextReadonlyElement
 {
   
 }

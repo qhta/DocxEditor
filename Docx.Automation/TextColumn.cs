@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the properties for a single column of text within this section
 /// </summary>
-public interface TextColumn: IElement
+public interface TextColumn: _Element
 {
   /// <summary>
   /// Specifies the width (in points) of this text column. 

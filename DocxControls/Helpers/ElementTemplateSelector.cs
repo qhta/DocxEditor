@@ -40,10 +40,10 @@ public class ElementTemplateSelector : DataTemplateSelector
   /// </summary>
   public DataTemplate? BookmarkEndTemplate { get; set; }
 
-  /// <summary>
-  /// Template for section properties.
-  /// </summary>
-  public DataTemplate? SectionPropertiesTemplate { get; set; }
+  ///// <summary>
+  ///// Template for section properties.
+  ///// </summary>
+  //public DataTemplate? SectionPropertiesTemplate { get; set; }
 
 
   /// <summary>
@@ -76,8 +76,8 @@ public class ElementTemplateSelector : DataTemplateSelector
       return BookmarkStartTemplate ?? UnknownElementTemplate;
     if (item is VM.BookmarkEnd)
       return BookmarkEndTemplate ?? UnknownElementTemplate;
-    if (item is VM.SectionProperties)
-      return SectionPropertiesTemplate ?? UnknownElementTemplate;
+    //if (item is VM.SectionProperties)
+    //  return SectionPropertiesTemplate ?? UnknownElementTemplate;
     if (item is VM.LastRenderedPageBreak)
       return LastRenderedPageBreakTemplate ?? UnknownElementTemplate;
     return UnknownElementTemplate;

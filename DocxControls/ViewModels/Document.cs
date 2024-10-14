@@ -23,7 +23,7 @@ public partial class Document : ViewModel, DA.Document, IEditable
   /// </summary>
   public DA.Application Application => DocxControls.Application.Instance;
 
-  object? DA.IElement.Parent => Owner;
+  object? DA._Element.Parent => Owner;
   #endregion
 
   /// <summary>
