@@ -1,13 +1,11 @@
 ﻿using Docx.Automation;
 
-using Qhta.MVVM;
-
 namespace DocxControls.ViewModels;
 
 /// <summary>
-/// View model for any DocumentFormat.OpenXml.ModeledElement
+/// View model for any DocumentFormat.OpenXml.OpenXmlElement.
 /// </summary>
-public abstract class ElementViewModel : ObjectViewModel, _Element, DA.ISelectable
+public abstract class ElementViewModel : ObjectViewModel, _Element, DA._Selectable
 {
 
   /// <summary>
@@ -23,6 +21,28 @@ public abstract class ElementViewModel : ObjectViewModel, _Element, DA.ISelectab
   /// ModeledElement of the document
   /// </summary>
   internal DX.OpenXmlElement? ModeledElement => (DX.OpenXmlElement?)ModeledObject;
+
+  /// <summary>A method to notify that a property has changed.</summary>
+  /// <param name="propertyName"></param>
+  public new virtual void NotifyPropertyChanged(string propertyName)
+  {
+    if (propertyName==nameof(DX.OpenXmlElement.OuterXml))
+      NotifyPropertyChanged(nameof(DisplayText));
+    else
+      base.NotifyPropertyChanged(propertyName);
+  }
+
+  /// <summary>
+  /// Notifies that all properties have changed.
+  /// </summary>
+  public virtual void NotifyAllPropertiesChanged()
+  {
+    foreach (var property in GetType().GetProperties().Where(p=>p.CanWrite))
+    {
+      Debug.WriteLine($"NotifyAllPropertiesChanged Property={property.Name}");
+      NotifyPropertyChanged(property.Name);
+    }
+  }
 
   #region IElement implementation  -----------------------------------------------------------------------------------------------------------------
   DA.Application DA._Element.Application => Application.Instance;

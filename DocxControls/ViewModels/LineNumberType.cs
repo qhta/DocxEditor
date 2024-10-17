@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the settings for line numbering.
 /// </summary>
-public class LineNumberType: ElementViewModel, DA.LineNumberType
+public class LineNumberType: ElementViewModel<DXW.LineNumberType>, DA.LineNumberType
 {
 
   /// <summary>
@@ -11,11 +11,9 @@ public class LineNumberType: ElementViewModel, DA.LineNumberType
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public LineNumberType(ElementViewModel owner, DXW.LineNumberType modeledElement) : base(owner, modeledElement)
+  public LineNumberType(ElementViewModel owner, DXW.LineNumberType? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.LineNumberType OpenXmlElement => (DXW.LineNumberType)ModeledElement!;
 
   /// <summary>
   /// <para>Line Number Type</para>

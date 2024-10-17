@@ -1,14 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.Win32;
-using DocxControls.Views;
-using Qhta.MVVM;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Navigation;
-using Qhta.WPF.Utils;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
+using System.Windows;
+
+using DocxControls.Views;
+
 using Qhta.TypeUtils;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DocxControls;
 
@@ -72,6 +68,92 @@ public class Application : ViewModel, DA.Application
   #endregion
 
   /// <summary>
+  /// Registered ViewModel types.
+  /// </summary>
+  private Dictionary<Type, ViewModelTypeDescriptor> KnownViewModelTypes { get; } = new();
+  /// <summary>
+  /// Mapping of OpenXml types to ElementViewModel types.
+  /// </summary>
+  private Dictionary<Type, ViewModelTypeDescriptor> OpenXmlElementTypesMapping { get; } = new();
+
+  /// <summary>
+  /// Mapping of ModeledElement to ElementViewModel.
+  /// </summary>
+  private Dictionary<DX.OpenXmlElement, VM.ElementViewModel> ElementViewModels { get; } = new();
+
+  /// <summary>
+  /// Scans the assembly for ElementViewModel types and creates a mapping of ModeledElement types to ElementViewModel types.
+  /// </summary>
+  private void ScanViewModels()
+  {
+    KnownViewModelTypes.Clear();
+    OpenXmlElementTypesMapping.Clear();
+    foreach (var type in typeof(VM.ElementViewModel).Assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(VM.ElementViewModel)) && !t.IsAbstract && t.GetCustomAttribute<NotMappedAttribute>() == null))
+    {
+      //ConstructorInfo? singleParamConstructorInfo = null;
+      ConstructorInfo? doubleParamConstructorInfo = null;
+      foreach (var constructor in type.GetConstructors())
+      {
+        if (constructor.GetParameters().Length == 2 && constructor.GetParameters()[0].ParameterType
+              .IsAssignableTo(typeof(VM.ElementViewModel))
+            & constructor.GetParameters()[1].ParameterType.IsAssignableTo(typeof(DX.OpenXmlElement)))
+        {
+          doubleParamConstructorInfo = constructor;
+        }
+        //else if (constructor.GetParameters().Length == 1 &&
+        //         constructor.GetParameters()[0].ParameterType.IsAssignableTo(typeof(VM.ElementViewModel)))
+        //{
+        //  singleParamConstructorInfo = constructor;
+        //}
+      }
+      if (doubleParamConstructorInfo != null)
+      {
+        //if (singleParamConstructorInfo == null)
+        //  Debug.WriteLine($"No constructor creating new element found for {type}");
+        var constructor = doubleParamConstructorInfo;
+        var elementType = constructor.GetParameters()[1].ParameterType;
+        Debug.WriteLine($"ElementViewModel: {elementType} -> {type}");
+        var properties = new List<PropertyInfo>();
+        var interfaces = type.GetInterfaces().Where
+          (i => i.Namespace == typeof(DA._Element).Namespace && !i.Name.StartsWith("_")).ToArray();
+        foreach (var implementedInterface in interfaces)
+        {
+          foreach (var property in implementedInterface.GetProperties())
+          {
+            Debug.WriteLine($"ScanViewModels Property: {property.Name}");
+            properties.Add(property);
+          }
+        }
+        var descriptor = new ViewModelTypeDescriptor(type, constructor, properties.ToArray());
+        KnownViewModelTypes.Add(type, descriptor);
+        OpenXmlElementTypesMapping.Add(elementType, descriptor);
+      }
+    }
+  }
+
+  /// <summary>
+  /// Gets the properties of the view model to be able to display them in the properties window.
+  /// </summary>
+  /// <param name="type"></param>
+  /// <returns></returns>
+  public IEnumerable<PropertyInfo> GetViewModelProperties(Type type)
+  {
+    List<PropertyInfo> properties = new();
+    if (type.BaseType != null && type.BaseType.IsEqualOrSubclassOf(typeof(VM.ElementViewModel)))
+      properties.AddRange(GetViewModelProperties(type.BaseType));
+    var thisProperties = type.GetProperties().Where(p => p.DeclaringType == type && p.CanWrite 
+      && p.GetCustomAttribute<NotMappedAttribute>()==null && !ExcludedViewModelProperties.Contains(p.Name)).ToArray();
+    foreach (var property in thisProperties)
+    {
+      Debug.WriteLine($"GetViewModelProperties Property: {property.Name}");
+      properties.Add(property);
+    }
+    return properties;
+  }
+
+  private readonly string[] ExcludedViewModelProperties = new string[] { "Parent", "Element", "IsModified", "IsEditable", "IsSelected", "Dispatcher", "Owner", };
+
+  /// <summary>
   /// Creates a view model for the specified element.
   /// </summary>
   /// <param name="parentViewModel"></param>
@@ -80,51 +162,101 @@ public class Application : ViewModel, DA.Application
   /// <exception cref="InvalidOperationException"></exception>
   public VM.ElementViewModel CreateViewModel(ViewModel parentViewModel, DX.OpenXmlElement element)
   {
-    if (ElementViewModels.Count==0)
+    if (OpenXmlElementTypesMapping.Count == 0)
     {
       ScanViewModels();
     }
-    if (ElementViewModels.TryGetValue(element.GetType(), out var viewModelDescriptor))
-       return (VM.ElementViewModel)viewModelDescriptor.constructorInfo.Invoke(new object[] { parentViewModel, element });
+    if (ElementViewModels.TryGetValue(element, out var result))
+    {
+      return result;
+    }
+    if (OpenXmlElementTypesMapping.TryGetValue(element.GetType(), out var viewModelDescriptor))
+
+      result = (VM.ElementViewModel)viewModelDescriptor.constructorInfo.Invoke([parentViewModel, element]);
     else
     {
       Debug.WriteLine($"Unknown view model for element type: {element.GetType()}");
-      return new VM.UnknownElementViewModel(parentViewModel, element);
+      result = new VM.UnknownElementViewModel(parentViewModel, element);
+    }
+    ElementViewModels[element] = result;
+    return result;
+  }
+
+  /// <summary>
+  /// Creates a view model for the specified elementType.
+  /// </summary>
+  /// <param name="parentViewModel"></param>
+  /// <param name="elementType"></param>
+  /// <returns></returns>
+  /// <exception cref="InvalidOperationException"></exception>
+  public VM.ElementViewModel CreateViewModel(ViewModel parentViewModel, Type elementType)
+  {
+    if (KnownViewModelTypes.Count == 0)
+    {
+      ScanViewModels();
+    }
+    VM.ElementViewModel result;
+    DX.OpenXmlElement element;
+    if (KnownViewModelTypes.TryGetValue(elementType, out var viewModelDescriptor))
+    {
+      result = (VM.ElementViewModel)viewModelDescriptor.constructorInfo.Invoke([parentViewModel, null]);
+      element = result.ModeledElement!;
+    }
+    else
+    {
+      var newElement = (DX.OpenXmlElement?)Activator.CreateInstance(elementType, [parentViewModel, null]);
+      element = newElement ?? throw new InvalidOperationException($"ElementViewModel for elementType type {elementType} could not be created");
+      Debug.WriteLine($"Unknown view model for elementType type: {elementType}");
+      result = new VM.UnknownElementViewModel(parentViewModel, element);
+    }
+
+    ElementViewModels[element] = result;
+    return result;
+  }
+
+  /// <summary>
+  /// Registers the view model for the specified element.
+  /// </summary>
+  /// <param name="element"></param>
+  /// <param name="viewModel"></param>
+  public void RegisterViewModel(DX.OpenXmlElement element, VM.ElementViewModel viewModel)
+  {
+    ElementViewModels[element] = viewModel;
+  }
+
+  /// <summary>
+  /// Unregisters the view model for the specified element.
+  /// </summary>
+  /// <param name="element"></param>
+  public void UnregisterViewModel(DX.OpenXmlElement element)
+  {
+    ElementViewModels.Remove(element);
+  }
+
+  /// <summary>
+  /// Notifies the view model that the property has changed.
+  /// </summary>
+  /// <param name="element"></param>
+  /// <param name="propertyName"></param>
+  public void NotifyElementPropertyChanged(DX.OpenXmlElement element, string propertyName)
+  {
+    if (ElementViewModels.TryGetValue(element, out var viewModel))
+    {
+      viewModel.NotifyPropertyChanged(propertyName);
     }
   }
 
-  internal void ScanViewModels()
+  /// <summary>
+  /// Notifies the view model that all element properties have changed.
+  /// </summary>
+  /// <param name="element"></param>
+  public void NotifyElementPropertiesChanged(DX.OpenXmlElement element)
   {
-    ElementViewModels.Clear();
-    foreach (var type in typeof(VM.ElementViewModel).Assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(VM.ElementViewModel)) && !t.IsAbstract))
+    if (ElementViewModels.TryGetValue(element, out var viewModel))
     {
-      if (type.GetCustomAttribute<NotMappedAttribute>() == null)
-        foreach (var constructor in type.GetConstructors())
-        {
-          if (constructor.GetParameters().Length == 2 && constructor.GetParameters()[1].ParameterType.IsAssignableTo(typeof(DX.OpenXmlElement)))
-          {
-            var elementType = constructor.GetParameters()[1].ParameterType;
-            Debug.WriteLine($"ElementViewModel: {elementType} -> {type}");
-            var properties = new List<PropertyInfo>();
-            if (type==typeof(DXW.RunProperties))
-            foreach (var implementedInterface in elementType.GetInterfaces().Where
-                       (i => i.Namespace == typeof(DA._Element).Namespace))
-            {
-              foreach (var property in implementedInterface.GetProperties())
-              {
-                properties.Add(property);
-              }
-            }
-            ElementViewModels.Add(elementType, new ViewModelTypeDescriptor(type, constructor, properties.ToArray()));
-            break;
-          }
-        }
+      viewModel.NotifyAllPropertiesChanged();
     }
   }
-  /// <summary>
-  /// Mapping of ModeledElement types to ElementViewModel types.
-  /// </summary>
-  internal Dictionary<Type, ViewModelTypeDescriptor> ElementViewModels { get; } = new();
 
   /// <summary>
   /// OpenDocument a document for viewing/editing.

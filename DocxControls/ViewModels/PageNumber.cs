@@ -4,14 +4,14 @@
 /// Specifies the presence of a page number block at the current location in the run content.
 /// A page number block is a non-editable region of text which shall display the current page using ascending decimal numbers.
 /// </summary>
-public class PageNumber : ElementViewModel, DA.PageNumber
+public class PageNumber : ElementViewModel<DXW.PageNumber>, DA.PageNumber
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public PageNumber(Run owner, DXW.PageNumber modeledElement) : base(owner, modeledElement)
+  public PageNumber(Run owner, DXW.PageNumber? modeledElement) : base(owner, modeledElement)
   {
   }
 

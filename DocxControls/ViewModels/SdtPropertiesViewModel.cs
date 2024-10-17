@@ -1,11 +1,9 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a Sdt element properties
 /// </summary>
-public class SdtPropertiesViewModel : ElementViewModel
+public class SdtPropertiesViewModel : ElementViewModel<DXW.SdtProperties>
 {
   /// <summary>
   /// Initializing constructor.

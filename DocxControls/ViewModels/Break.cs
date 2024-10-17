@@ -3,18 +3,16 @@
 /// <summary>
 /// Represents a break in a document.
 /// </summary>
-public class Break: ElementViewModel, DA.Break
+public class Break: ElementViewModel<DXW.Break>, DA.Break
 {
   /// <summary>
   /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public Break(Run owner, DXW.Break modeledElement) : base(owner, modeledElement)
+  public Break(Run owner, DXW.Break? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.Break OpenXmlElement => (DXW.Break)ModeledElement!;
 
   /// <summary>
   /// Parent run of the break.

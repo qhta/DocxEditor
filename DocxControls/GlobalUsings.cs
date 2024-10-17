@@ -6,6 +6,8 @@ global using System.Collections.Specialized;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Globalization;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Windows.Input;
 global using System.IO.Packaging;
 global using System.Linq;
 global using System.Reflection;

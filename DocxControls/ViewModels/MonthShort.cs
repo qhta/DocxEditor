@@ -1,18 +1,16 @@
-﻿using Docx.Automation;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Specifies a current month. Text is displayed in the format "MM" (e.g. "01").
 /// </summary>
-public class MonthShort : ElementViewModel, DA.MonthShort
+public class MonthShort : ElementViewModel<DXW.MonthShort>, DA.MonthShort
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public MonthShort(Run owner, DXW.MonthShort modeledElement) : base(owner, modeledElement)
+  public MonthShort(Run owner, DXW.MonthShort? modeledElement) : base(owner, modeledElement)
   {
   }
 

@@ -3,14 +3,14 @@
 /// <summary>
 /// Tab character
 /// </summary>
-public class TabChar: ElementViewModel, DA.NoBreakHyphen
+public class TabChar: ElementViewModel<DXW.TabChar>, DA.NoBreakHyphen
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public TabChar(Run owner, DXW.TabChar modeledElement) : base(owner, modeledElement)
+  public TabChar(Run owner, DXW.TabChar? modeledElement) : base(owner, modeledElement)
   {
   }
 

@@ -1,6 +1,4 @@
-﻿using DocxControls.Helpers;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for an object member. Replaces <see cref="PropertyViewModel"/> in the properties view.
@@ -8,18 +6,20 @@ namespace DocxControls.ViewModels;
 public class ObjectMemberViewModel : ObjectViewModel, IObjectViewModelProvider
 {
   /// <summary>
-  /// Default constructor.
-  /// </summary>
-  public ObjectMemberViewModel() : base()
-  {
-  }
-
-  /// <summary>
-  /// Initializing
+  /// Constructor with owner and member object.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="member"></param>
   public ObjectMemberViewModel(ObjectViewModel owner, object member) : base(owner, member)
+  {
+  }
+
+  /// <summary>
+  /// Constructor with owner and member type.
+  /// </summary>
+  /// <param name="owner"></param>
+  /// <param name="memberType"></param>
+  public ObjectMemberViewModel(ObjectViewModel owner, Type memberType) : base(owner, memberType)
   {
   }
 
@@ -29,12 +29,12 @@ public class ObjectMemberViewModel : ObjectViewModel, IObjectViewModelProvider
   public Type? MemberType
 
   {
-    get => base.ObjectType;
+    get => ObjectType;
     set
     {
-      if (value != base.ObjectType && value != null)
+      if (value != ObjectType && value != null)
       {
-        base.ModeledObject = Activator.CreateInstance(value);
+        ModeledObject = Activator.CreateInstance(value);
         NotifyPropertyChanged(nameof(ObjectType));
       }
     }
@@ -44,6 +44,7 @@ public class ObjectMemberViewModel : ObjectViewModel, IObjectViewModelProvider
   /// <summary>
   /// Collection of object members.
   /// </summary>
+  [NotMapped]
   public ObjectMembersViewModel? Collection { get; internal set; }
 
   /// <summary>

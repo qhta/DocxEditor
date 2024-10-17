@@ -3,18 +3,16 @@
 /// <summary>
 /// Specifies the numbering format. It can be one of the predefined formats or a custom format.
 /// </summary>
-public class NumberingFormat: ElementViewModel, DA.NumberingFormat
+public class NumberingFormat: ElementViewModel<DXW.NumberingFormat>, DA.NumberingFormat
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public NumberingFormat(ElementViewModel owner, DXW.NumberingFormat modeledElement) : base(owner, modeledElement)
+  public NumberingFormat(ElementViewModel owner, DXW.NumberingFormat? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.NumberingFormat OpenXmlElement => (DXW.NumberingFormat)ModeledElement!;
 
   /// <summary>
   /// <para>Numbering Format Type</para>

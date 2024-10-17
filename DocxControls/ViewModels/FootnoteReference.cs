@@ -3,18 +3,16 @@
 /// <summary>
 /// Specifies the presence of a footnote reference at the current location in the footnote.
 /// </summary>
-public class FootnoteReference : ElementViewModel, DA.FootnoteEndnoteReference
+public class FootnoteReference : ElementViewModel<DXW.FootnoteReference>, DA.FootnoteEndnoteReference
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public FootnoteReference(Run owner, DXW.FootnoteReference modeledElement) : base(owner, modeledElement)
+  public FootnoteReference(Run owner, DXW.FootnoteReference? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.FootnoteReference OpenXmlElement => (DXW.FootnoteReference)ModeledElement!;
 
   /// <summary>
   /// Parent run of this view model

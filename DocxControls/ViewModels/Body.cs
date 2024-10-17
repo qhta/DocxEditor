@@ -6,7 +6,7 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a body element
 /// </summary>
-public class Body: CompoundElementViewModel, DA.IStory
+public class Body: CompoundElementViewModel, DA._Story
 {
   /// <summary>
   /// Initializing constructor.

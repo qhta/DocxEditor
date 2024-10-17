@@ -5,42 +5,46 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// Collection of elements.
 /// </summary>
-public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollection<T> where T : DA._Element
+public class ElementViewModelCollection<T, U>: ElementViewModel<T>, DA.IElementCollection<U>
+  where T: DX.OpenXmlCompositeElement, new()
+
+  where U: ElementViewModel, new()
 {
+
   /// <summary>
-  /// Constructor with a owner object.
+  /// Constructor with owner object and modeled element.
   /// </summary>
-  /// <param name="parent"></param>
-  public ElementCollection(object? parent)
+  /// <param name="owner">owner ViewModel</param>
+  /// <param name="modeledElement">Modeled ModeledElement</param>
+  public ElementViewModelCollection(ViewModel owner, T? modeledElement) : base(owner, modeledElement ?? new T())
   {
-    Parent = parent;
   }
 
   /// <summary>
-  /// Returns an Application object that represents the DocxControls application.
+  /// Gets the application object.
   /// </summary>
-  public DA.Application Application => DocxControls.Application.Instance;
+  public DA.Application Application => base.Application;
 
   /// <summary>
-  /// Returns the owner object for collection.
+  /// Gets the parent object.
   /// </summary>
-  public object? Parent { get; }
+  public object? Parent => base.Parent;
 
   /// <summary>
   ///  Collection of Elements objects.
   /// </summary>
-  public ObservableCollection<T> Items { get; } = new();
+  public ObservableCollection<U> Items { get; } = new();
 
   /// <summary>
   /// Checks if the collection is empty
   /// </summary>
-  public bool IsEmpty => Items.Count == 0;
+  public new bool IsEmpty => Items.Count == 0;
 
   /// <summary>
   /// Returns an enumerator that iterates through the collection.
   /// </summary>
   /// <returns></returns>
-  public IEnumerator<T> GetEnumerator()
+  public IEnumerator<U> GetEnumerator()
   {
     // ReSharper disable once NotDisposedResourceIsReturned
     return Items.GetEnumerator();
@@ -52,15 +56,10 @@ public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollect
     return ((IEnumerable)Items).GetEnumerator();
   }
 
-  IEnumerator<T> IEnumerable<T>.GetEnumerator()
+  IEnumerator<U> IEnumerable<U>.GetEnumerator()
   {
     // ReSharper disable once NotDisposedResourceIsReturned
-    return ((IEnumerable<T>)Items).GetEnumerator();
-  }
-
-  bool ICollection<T>.Remove(T item)
-  {
-    return Remove(item);
+    return ((IEnumerable<U>)Items).GetEnumerator();
   }
 
   /// <summary>
@@ -69,38 +68,12 @@ public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollect
   public int Count => Items.Count;
 
   /// <summary>
-  /// Returns false.
-  /// </summary>
-  public bool IsReadOnly => false;
-
-  /// <summary>
   /// Adds a new item to the collection.
   /// </summary>
   /// <param name="item"></param>
-  internal void Add(T item)
+  internal void Add(U item)
   {
     Items.Add(item);
-  }
-
-  void ICollection<T>.Clear()
-  {
-    Clear();
-  }
-
-  bool ICollection<T>.Contains(T item)
-  {
-    return Contains(item);
-  }
-
- /// <inheritdoc/>
-  public void CopyTo(T[] array, int arrayIndex)
-  {
-    throw new NotImplementedException();
-  }
-
-  void ICollection<T>.Add(T item)
-  {
-    Add(item);
   }
 
   /// <summary>
@@ -116,7 +89,7 @@ public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollect
   /// </summary>
   /// <param name="item"></param>
   /// <returns></returns>
-  internal bool Contains(T item)
+  internal bool Contains(U item)
   {
     return Items.Contains(item);
   }
@@ -126,7 +99,7 @@ public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollect
   /// </summary>
   /// <param name="item"></param>
   /// <returns></returns>
-  internal bool Remove(T item)
+  internal bool Remove(U item)
   {
     return Items.Remove(item);
   }
@@ -135,13 +108,14 @@ public class ElementCollection<T>: ViewModel, ICollection<T>, DA.IElementCollect
   /// Gets the first item in the collection.
   /// </summary>
   /// <returns></returns>
-  internal T? First() => Items.FirstOrDefault();
+  internal U? First() => Items.FirstOrDefault();
 
   /// <summary>
   /// Gets the last item in the collection.
   /// </summary>
   /// <returns></returns>
-  internal T? Last() => Items.LastOrDefault();
+  internal U? Last() => Items.LastOrDefault();
+
 
 }
 

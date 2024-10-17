@@ -569,7 +569,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
         _objectViewModel = value as ObjectViewModel;
         if (_objectViewModel != null)
         {
-          _objectViewModel.Owner = this;
+          //_objectViewModel.Owner = this;
           _objectViewModel.PropertyChanged += ObjectViewModel_PropertyChanged;
         }
         _Value = _objectViewModel?.ModeledObject;

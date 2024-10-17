@@ -3,6 +3,6 @@
 /// <summary>
 /// Represents a window pane. 
 /// </summary>
-public interface Pane: IVisualElement
+public interface Pane: _VisualElement
 {
 }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a footnote or endnote in a document.
 /// </summary>
-public interface FootnoteEndnote: _Element, IStory
+public interface FootnoteEndnote: _Element, _Story
 {
   /// <summary>
   /// <para>Footnote/Endnote Type</para>

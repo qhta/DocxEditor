@@ -3,14 +3,14 @@
 /// <summary>
 ///  A non-breaking hyphen character
 /// </summary>
-public class NoBreakHyphen: ElementViewModel, DA.NoBreakHyphen
+public class NoBreakHyphen: ElementViewModel<DXW.NoBreakHyphen>, DA.NoBreakHyphen
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public NoBreakHyphen(Run owner, DXW.NoBreakHyphen modeledElement) : base(owner, modeledElement)
+  public NoBreakHyphen(Run owner, DXW.NoBreakHyphen? modeledElement) : base(owner, modeledElement)
   {
   }
 

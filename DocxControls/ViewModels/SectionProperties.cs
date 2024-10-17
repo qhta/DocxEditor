@@ -5,21 +5,16 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a section properties
 /// </summary>
-public class SectionProperties : ElementViewModel, DA.SectionProperties
+public class SectionProperties : ElementViewModel<DXW.SectionProperties>, DA.SectionProperties
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="CompoundElementViewModel"/></param>
   /// <param name="modeledElement">Modeled section modeledElement element</param>
-  public SectionProperties(CompoundElementViewModel ownerViewModel, DXW.SectionProperties modeledElement) : base(ownerViewModel, modeledElement)
+  public SectionProperties(CompoundElementViewModel ownerViewModel, DXW.SectionProperties? modeledElement) : base(ownerViewModel, modeledElement)
   {
   }
-
-  /// <summary>
-  /// Section properties element of the document
-  /// </summary>
-  internal DXW.SectionProperties OpenXmlElement => (DXW.SectionProperties)ModeledElement!;
 
   string? DA.SectionPropertiesBase.RsidRPr { get => RsidRPr; set => RsidRPr = value; }
   /// <summary>
@@ -519,4 +514,8 @@ public class SectionProperties : ElementViewModel, DA.SectionProperties
   }
   private SectionPropertiesChanges? _SectionPropertiesChanges;
 
+  /// <summary>
+  /// Display text for the section properties view
+  /// </summary>
+  public override string DisplayText => "=== Section Properties ===";
 }

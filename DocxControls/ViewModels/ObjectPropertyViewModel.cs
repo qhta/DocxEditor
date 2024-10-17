@@ -5,13 +5,13 @@
 /// </summary>
 public class ObjectPropertyViewModel : PropertyViewModel
 {
-  /// <summary>
-  /// Initializing constructor.
-  /// </summary>
-  /// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param> 
-  public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel) : base(ownerObjectViewModel)
-  {
-  }
+  ///// <summary>
+  ///// Initializing constructor.
+  ///// </summary>
+  ///// <param name="ownerObjectViewModel">New model for an object, which property is modeled here</param> 
+  //public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel) : base(ownerObjectViewModel)
+  //{
+  //}
 
   /// <summary>
   /// Initializing constructor.
@@ -27,20 +27,20 @@ public class ObjectPropertyViewModel : PropertyViewModel
   /// <param name="origValue">Value of the modeled object</param>
 
   public ObjectPropertyViewModel(ObjectViewModel ownerObjectViewModel, string? objectPropName, string? origPropName = null,
-    PropertyInfo? objectProperty = null, PropertyInfo? origProperty = null, 
-    Type? valueType = null, Type? origValueType = null, 
+    PropertyInfo? objectProperty = null, PropertyInfo? origProperty = null,
+    Type? valueType = null, Type? origValueType = null,
     object? value = null, object? origValue = null) : base(ownerObjectViewModel)
   {
     if (objectProperty == null && objectPropName != null)
       objectProperty = ownerObjectViewModel.GetType().GetProperty(objectPropName);
 
-    if (origPropName == null && objectPropName!=null)
+    if (origPropName == null && objectPropName != null)
       origPropName = objectPropName;
     else
     if (objectPropName == null && origPropName != null)
       objectPropName = origPropName;
 
-    if (origProperty==null)
+    if (origProperty == null)
       origProperty = ModeledObjectType!.GetProperty(origPropName!);
     if (origProperty == null && objectProperty == null)
       throw new ArgumentException($"Property {origPropName} not found in {ModeledObjectType!.Name} and not in {ownerObjectViewModel.GetType().Name}");
@@ -133,15 +133,31 @@ public class ObjectPropertyViewModel : PropertyViewModel
           var modeledObjectType = OriginalProperty?.PropertyType;
           if (modeledObjectType != null)
           {
-            //if (modeledObjectType.Name=="RunFonts")
-            //Debug.WriteLine($"modeledObjectType={modeledObjectType}");
-            value = Activator.CreateInstance(modeledObjectType);
-            if (value is DX.OpenXmlElement element)
-              _objectViewModel = Application.Instance.CreateViewModel(this, element);
+            if (modeledObjectType.IsSubclassOf(typeof(VM.ElementViewModel)))
+            {
+              var ownerViewModel = Owner;
+              if (ownerViewModel is ObjectViewModel objectViewModel)
+                ownerViewModel = objectViewModel.ModeledObject as ElementViewModel;
+              if (ownerViewModel is ElementViewModel elementViewModel)
+              {
+                _objectViewModel = Application.Instance.CreateViewModel(elementViewModel, modeledObjectType);
+                _objectViewModel.IsNew = true;
+              }
+              else
+                throw new Exception($"Cannot create object of type {modeledObjectType}");
+            }
             else
-              throw new ArgumentException($"Cannot create object of type {modeledObjectType}");
-            if (_objectViewModel != null)
-              _objectViewModel.IsNew = true;
+            {
+              value = Activator.CreateInstance(modeledObjectType);
+              if (value is DX.OpenXmlElement element)
+                _objectViewModel = Application.Instance.CreateViewModel(this, element);
+              else if (value is ObjectMembersViewModel)
+                return null;
+              else
+                throw new Exception($"Cannot create object of type {modeledObjectType}");
+              if (_objectViewModel != null)
+                _objectViewModel.IsNew = true;
+            }
           }
         }
         return base.ObjectViewModel;

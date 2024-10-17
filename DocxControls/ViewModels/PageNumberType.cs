@@ -3,18 +3,16 @@
 /// <summary>
 /// Specifies the type of page numbering.
 /// </summary>
-public class PageNumberType : ElementViewModel, DA.PageNumberType
+public class PageNumberType : ElementViewModel<DXW.PageNumberType>, DA.PageNumberType
 {
   /// <summary>
   /// Initializes a new instance of the <see cref="PageNumberType"/> class with the owner and modeledElement.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public PageNumberType(ElementViewModel owner, DXW.PageNumberType modeledElement) : base(owner, modeledElement)
+  public PageNumberType(ElementViewModel owner, DXW.PageNumberType? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.PageNumberType OpenXmlElement => (DXW.PageNumberType)ModeledElement!;
 
   /// <summary>
   /// Specifies the number format that shall be used for all page numbering in this section.>

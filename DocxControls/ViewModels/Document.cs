@@ -1,13 +1,12 @@
 ﻿using System.IO;
-
-using Qhta.MVVM;
+using DocxControls.Views;
 
 namespace DocxControls.ViewModels;
 
 /// <summary>
 /// View model for a document.
 /// </summary>
-public partial class Document : ViewModel, DA.Document, IEditable
+public class Document : ViewModel, DA.Document, IEditable
 {
   /// <summary>
   /// Default constructor.
@@ -34,7 +33,7 @@ public partial class Document : ViewModel, DA.Document, IEditable
   /// <summary>
   /// Internal WordprocessingDocument object
   /// </summary>
-  public DocumentFormat.OpenXml.Packaging.WordprocessingDocument WordDocument { get; set; } = null!;
+  public DXPack.WordprocessingDocument WordDocument { get; set; } = null!;
 
   /// <summary>
   /// OpenDocument a wordprocessing document for viewing/editing.
@@ -47,13 +46,13 @@ public partial class Document : ViewModel, DA.Document, IEditable
     IsEditable = isEditable;
     if (isEditable)
     {
-      TempFilePath = System.IO.Path.GetTempFileName();
+      TempFilePath = Path.GetTempFileName();
       File.Copy(FilePath, TempFilePath, true);
-      WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(TempFilePath, isEditable);
+      WordDocument = DXPack.WordprocessingDocument.Open(TempFilePath, isEditable);
     }
     else
     {
-      WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(filePath, isEditable);
+      WordDocument = DXPack.WordprocessingDocument.Open(filePath, isEditable);
     }
     Opened?.Invoke(this, EventArgs.Empty);
   }
@@ -64,8 +63,8 @@ public partial class Document : ViewModel, DA.Document, IEditable
   public void NewDocument()
   {
     IsEditable = true;
-    TempFilePath = System.IO.Path.GetTempFileName();
-    WordDocument = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Create(TempFilePath, DX.WordprocessingDocumentType.Document);
+    TempFilePath = Path.GetTempFileName();
+    WordDocument = DXPack.WordprocessingDocument.Create(TempFilePath, DX.WordprocessingDocumentType.Document);
     Created?.Invoke(this, EventArgs.Empty);
   }
 
@@ -103,7 +102,7 @@ public partial class Document : ViewModel, DA.Document, IEditable
       }
     }
   }
-  private string? _filePath = null;
+  private string? _filePath;
 
   #region IEditable implementation
   /// <summary>
@@ -142,7 +141,7 @@ public partial class Document : ViewModel, DA.Document, IEditable
   /// <summary>
   /// Returns a Window object that represents the active window (the window with the focus).
   /// </summary>
-  public Views.DocumentWindow? ActiveWindow
+  public DocumentWindow? ActiveWindow
   {
     get
     {

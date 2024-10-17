@@ -1,22 +1,22 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Specifies the properties for a single column of text within this section
 /// </summary>
-public class TextColumn: ElementViewModel, DA.TextColumn
+public class TextColumn: ElementViewModel<DXW.Column>, DA.TextColumn
 {
+  public TextColumn() : this(null, null)
+  {
+  }
+
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public TextColumn(ViewModel owner, DXW.Column modeledElement) : base(owner, modeledElement)
+  public TextColumn(ViewModel owner, DXW.Column? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.Column OpenXmlElement => (DXW.Column)ModeledElement!;
 
   DA.Length? DA.TextColumn.Width 
   {

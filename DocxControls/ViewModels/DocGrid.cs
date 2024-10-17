@@ -4,18 +4,16 @@
 /// Specifies the settings for the document grid, which enables precise layout of full-width East Asian language characters within a document
 /// by specifying the desired number of characters per line and lines per page for all East Asian text content in this section.
 /// </summary>
-public class DocGrid : ElementViewModel, DA.DocGrid
+public class DocGrid : ElementViewModel<DXW.DocGrid>, DA.DocGrid
 {
   /// <summary>
   /// Constructor with owner object and modeled ModeledElement.
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  public DocGrid(ElementViewModel owner, DXW.DocGrid modeledElement) : base(owner, modeledElement)
+  public DocGrid(ElementViewModel owner, DXW.DocGrid? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.DocGrid OpenXmlElement => (DXW.DocGrid)ModeledElement!;
 
   /// <summary>
   /// <para>Document Grid Type</para>

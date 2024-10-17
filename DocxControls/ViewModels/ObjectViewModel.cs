@@ -1,17 +1,8 @@
-﻿using System.ComponentModel;
-using System.Windows.Input;
-
-using DocumentFormat.OpenXml.Wordprocessing;
-
-using DocxControls.Helpers;
-
-using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 
 /// <summary>
-/// View model for complex object properties
+/// View model for an object to display and edit its properties.
 /// </summary>
 public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IPropertyProvider, ISelectable, IEditable
 {
@@ -20,8 +11,10 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor
   /// for the new item placeholder view model when the type of the modeled object is unknown.
   /// </summary>
-  protected ObjectViewModel()
+  /// <param name="owner">View model with will be a owner of the new view model</param>
+  protected ObjectViewModel(ViewModel owner)
   {
+    Owner = owner;
     _ObjectType = null;
     // ReSharper disable once VirtualMemberCallInConstructor
     DoubleClickCommand = new RelayCommand<object>(OnItemDoubleClicked);
@@ -33,19 +26,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
-  protected ObjectViewModel(Object modeledObject) : this()
+  protected ObjectViewModel(ViewModel owner, Object modeledObject) : this(owner)
   {
-    _ObjectType = modeledObject.GetType();
-    Initialize(_ObjectType, modeledObject);
-  }
-
-  /// <summary>
-  /// Initializing constructor
-  /// when the type of the modeled object is unknown, but the object may be known.
-  /// </summary>
-  protected ObjectViewModel(ViewModel owner, Object modeledObject) : this()
-  {
-    Owner = owner;
     _ObjectType = modeledObject.GetType();
     Initialize(_ObjectType, modeledObject);
   }
@@ -79,7 +61,8 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Owner ViewModel.
   /// </summary>
-  public ViewModel? Owner { get; set; }
+  [NotMapped]
+  public ViewModel? Owner { get; }
 
   /// <summary>
   /// Title for the window
@@ -109,56 +92,14 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   public Document GetDocumentViewModel() => (Owner as Document) ?? (Owner as ObjectViewModel)?.GetDocumentViewModel()
     ?? throw new InvalidOperationException("Owner is not a document view model");
 
-  ///// <summary>
-  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
-  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
-  ///// </summary>
-  ///// <param name="parent"></param>
-  ///// <param name="modeledObject"></param>
-  ///// <returns></returns>
-  //public static ObjectViewModel? Create(ViewModel parent, object modeledObject)
-  //{
-  //  var modeledObjectType = modeledObject?.GetType();
-  //  if (!(modeledObjectType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
-  //    if (!(modeledObjectType?.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
-  //      viewModelType = null;
-  //  if (viewModelType == null)
-  //  {
-  //    if (modeledObject != null)
-  //      return new ObjectViewModel(parent, modeledObject);
-  //  }
-  //  var result = viewModelType != null ? (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, modeledObject)! : null;
-  //  return result;
-  //}
-
-  ///// <summary>
-  ///// If ViewModel class is registered for the object type, creates an instance of the ViewModel class,
-  ///// otherwise creates an instance of the <see cref="ObjectViewModel"/> class.
-  ///// </summary>
-  ///// <param name="parent"></param>
-  ///// <param name="modeledObjectType"></param>
-  ///// <returns></returns>
-  //public static ObjectViewModel? Create(ViewModel parent, Type modeledObjectType)
-  //{
-  //  if (!(KnownObjectViewModelTypes.TryGetValue(modeledObjectType, out var viewModelType)))
-  //    if (!(modeledObjectType.BaseType != null && KnownObjectViewModelTypes.TryGetValue(modeledObjectType.BaseType, out viewModelType)))
-  //      viewModelType = null;
-  //  if (viewModelType == null)
-  //  {
-  //    throw new NotImplementedException($"ViewModelType({modeledObjectType}) not known");
-  //  }
-  //  var result =  (ObjectViewModel)Activator.CreateInstance(viewModelType, parent, null)!;
-  //  return result;
-  //}
-
-
   /// <summary>
   /// Initializing constructor.
   /// when the type of the modeled object is known.
   /// </summary>
+  /// <param name="owner">View model with will be a owner of the new view model</param>
   /// <param name="objectType">ValueType of the object which will be created if <paramref name="modeledObject"/> is null</param>
   /// <param name="modeledObject">object which properties are modeled</param>
-  public ObjectViewModel(Type objectType, Object? modeledObject) : this()
+  public ObjectViewModel(ViewModel owner, Type objectType, Object? modeledObject = null) : this(owner)
   {
     Initialize(objectType, modeledObject);
   }
@@ -175,7 +116,13 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     if (_ObjectType == null)
       return;
     if (ModeledObject == null)
-      ModeledObject = Activator.CreateInstance(_ObjectType);
+    {
+      if (_ObjectType.IsSubclassOf(typeof(VM.ElementViewModel)))
+
+        ModeledObject = Application.Instance.CreateViewModel(Owner!, _ObjectType);
+      else
+        ModeledObject = Activator.CreateInstance(_ObjectType);
+    }
   }
 
   private void ObjectMembers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -191,7 +138,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
             container.AppendChild(element);
           NotifyPropertyChanged(nameof(ModeledObject));
         }
-        memberViewModel.Owner = this;
+        //memberViewModel.Owner = this;
         memberViewModel.PropertyChanged += PropertiesViewModel_MemberChanged;
       }
     }
@@ -242,40 +189,35 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
     {
       var propertyViewModel = (PropertyViewModel)sender!;
       var propName = propertyViewModel.Name;
-      //if (propName == "RunFonts")
-      //{
-      //Debug.WriteLine($"{this}.PropertiesViewModel_PropertyChanged({sender}, {propName})");
-      if (ObjectProperties.Items.Any(p => p.Name == propName))
+      if (propName != null)
       {
-        var prop = ObjectProperties.Items.First(p => p.Name == propName);
-        if (prop.Value != propertyViewModel.Value)
+        var propViewModel = ObjectProperties.Items.FirstOrDefault(p => p.Name == propName);
+        if (propViewModel != null)
         {
-          var value = propertyViewModel.Value;
-          prop.Value = propertyViewModel.Value;
-          NotifyPropertyChanged(nameof(ModeledObject));
-          NotifyPropertyChanged(nameof(IsEmpty));
-        }
-      }
 
-      if (propName != null && _ObjectType != null)
-      {
-        ModeledObject ??= Activator.CreateInstance(_ObjectType);
-        var prop = ModeledObject!.GetType().GetProperty(propName);
-        if (prop != null && prop.CanWrite)
+          if (propViewModel.Value != propertyViewModel.Value)
+          {
+            propViewModel.Value = propertyViewModel.Value;
+            NotifyPropertyChanged(nameof(ModeledObject));
+            NotifyPropertyChanged(nameof(IsEmpty));
+            if (ModeledObject is DX.OpenXmlElement element)
+              Application.Instance.NotifyElementPropertyChanged(element, propName);
+          }
+          return;
+        }
+
+        if (_ObjectType != null)
         {
-          prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
-          //if (Value!= ModeledObject)
-          //{
-          //  if (ModeledObject is DX.ModeledElement modeledElement)
-          //  {
-          //    if (modeledElement.IsEmpty())
-          //      Value = null;
-          //    else
-          //      Value = modeledElement;
-          //  }
-          //}
-          NotifyPropertyChanged(nameof(ModeledObject));
-          NotifyPropertyChanged(nameof(IsEmpty));
+          ModeledObject ??= Activator.CreateInstance(_ObjectType);
+          var prop = ModeledObject!.GetType().GetProperty(propName);
+          if (prop != null && prop.CanWrite)
+          {
+            prop.SetValue(ModeledObject, propertyViewModel.Value.ToOpenXmlValue(propertyViewModel.OriginalType!));
+            NotifyPropertyChanged(nameof(ModeledObject));
+            NotifyPropertyChanged(nameof(IsEmpty));
+            if (ModeledObject is DX.OpenXmlElement element)
+              Application.Instance.NotifyElementPropertyChanged(element, propName);
+          }
         }
       }
     }
@@ -304,6 +246,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Object which properties are modeled
   /// </summary>
+  [NotMapped]
   public object? ModeledObject
   {
     get => _modeledObject;
@@ -339,34 +282,40 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// </summary>
   protected virtual ObjectPropertiesViewModel InitObjectProperties()
   {
+    Debug.WriteLine($"ObjectViewModel.InitObjectProperties ModeledObject={ModeledObject}");
     var objectProperties = new ObjectPropertiesViewModel(this);
-    if (ModeledObject!=null)
+    Type? reflectedType = null;
+    object? reflectedObject = null;
+    if (ModeledObject is ElementViewModel)
     {
-      if (Application.Instance.ElementViewModels.TryGetValue(ModeledObject.GetType(), out var typeDescriptor))
-        if (typeDescriptor.properties.Any())
-        {
-          foreach (var prop in typeDescriptor.properties)
-          {
-            var propName = prop.Name;
-            var systemType = prop.PropertyType;
-            //var origType = prop.PropertyType;
-            object? value = null;
-            object? originalValue = null;
-            var modeledObject = ModeledObject;
-            if (modeledObject != null)
-            {
-              originalValue = prop.GetValue(modeledObject);
-              value = originalValue;
-            }
-            var propertyViewModel =
-              new ObjectPropertyViewModel(this, null, propName, prop, null, systemType, null, value, originalValue);
-            propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
-            objectProperties.Add(propertyViewModel);
-          }
-          objectProperties.PropertyChanged += ObjectProperties_PropertyChanged;
-          return objectProperties;
-        }
+      reflectedObject = ModeledObject;
+      reflectedType = ModeledObject.GetType();
     }
+    else
+    if (ModeledObject is DX.OpenXmlElement element)
+    {
+      reflectedObject = Application.Instance.CreateViewModel(this, element);
+      reflectedType = reflectedObject.GetType();
+    }
+    if (reflectedType != null && reflectedObject!=null)
+    {
+      var properties = Application.Instance.GetViewModelProperties(reflectedType);
+      foreach (var prop in properties)
+      {
+        var propName = prop.Name;
+        var origType = prop.PropertyType;
+        var systemType = origType.ToSystemType(propName);
+        object? value = null;
+        object? originalValue = null;
+        originalValue = prop.GetValue(reflectedObject);
+        value = originalValue?.ToSystemValue(origType);
+        var propertyViewModel =
+          new ObjectPropertyViewModel(this, null, propName, prop, null, systemType, origType, value, originalValue);
+        propertyViewModel.PropertyChanged += PropertiesViewModel_PropertyChanged;
+        objectProperties.Add(propertyViewModel);
+      }
+    }
+    else
     if (ObjectType != null)
     {
       var properties = ObjectType.GetOpenXmlProperties().ToArray();
@@ -412,6 +361,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Members of the object.
   /// </summary>
+  [NotMapped]
   public ObjectMembersViewModel? ObjectMembers
   {
     get
@@ -511,6 +461,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is selected.
   /// </summary>
+  [NotMapped]
   public virtual bool IsSelected
   {
     get => _IsSelected;
@@ -531,6 +482,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is highlighted (temporary selected).
   /// </summary>
+  [NotMapped]
   public virtual bool IsHighlighted
   {
     get => _IsHighlighted;
@@ -548,13 +500,12 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Determines if the object is new.
   /// </summary>
+  [NotMapped]
   public bool IsNew
   {
-    get
-    {
+    get =>
       //Debug.WriteLine($"{this}.GetIsNew={_IsNew}");
-      return _IsNew;
-    }
+      _IsNew;
     set
     {
       if (value != _IsNew)
@@ -575,6 +526,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Width of the data grid in the view
   /// </summary>
+  [NotMapped]
   public double DataGridWidth
   {
     get => _dataGridWidth;
@@ -593,6 +545,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
+  [NotMapped]
   public ICommand? DoubleClickCommand { get; protected set; }
 
   private void OnItemDoubleClicked(object? parameter)
@@ -606,6 +559,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
+  [NotMapped]
   public ICommand? LeftMouseDownCommand { get; protected set; }
 
   private void OnItemLeftMouseDown(object? parameter)
@@ -619,6 +573,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Command to handle the double click event
   /// </summary>
+  [NotMapped]
   public ICommand? RightMouseUpCommand { get; protected set; }
 
   private void OnItemRightMouseUp(object? parameter)
@@ -635,7 +590,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <returns></returns>
   public override string ToString()
   {
-    if (_ObjectType==null)
+    if (_ObjectType == null)
       Debug.WriteLine($"ObjectViewModel._ObjectType is null, Owner is {Owner?.GetType().Name}");
     return GetType().Name + "(" + (_ObjectType != null ? $"{_ObjectType.Name}" : "") + ")";
   }
@@ -649,6 +604,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Was the object modified?
   /// </summary>
+  [NotMapped]
   public bool IsModified
   {
     get => _isModified;
@@ -672,6 +628,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// <summary>
   /// Is the object modified internally?
   /// </summary>
+  [NotMapped]
   public bool IsModifiedInternal { get; set; }
 
   #endregion IEditable implementation

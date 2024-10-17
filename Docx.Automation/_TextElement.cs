@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents an element that have a text read/write property.
 /// </summary>
-public interface ITextElement: _Element
+public interface _TextElement: _Element
 {
   /// <summary>
   /// Text content of the element.

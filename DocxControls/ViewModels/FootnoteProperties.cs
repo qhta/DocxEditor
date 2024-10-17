@@ -3,18 +3,16 @@
 /// <summary>
 /// Specifies the properties for footnotes in the section.
 /// </summary>
-public class FootnoteProperties: ElementViewModel, DA.FootnoteProperties
+public class FootnoteProperties: ElementViewModel<DXW.FootnoteProperties>, DA.FootnoteProperties
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public FootnoteProperties(ElementViewModel owner, DXW.FootnoteProperties modeledElement) : base(owner, modeledElement)
+  public FootnoteProperties(ElementViewModel owner, DXW.FootnoteProperties? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.FootnoteProperties OpenXmlElement => (DXW.FootnoteProperties)ModeledElement!;
 
   /// <summary>
   /// Specifies position for footnotes in the section.

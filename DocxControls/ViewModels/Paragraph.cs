@@ -14,7 +14,7 @@ public class Paragraph : Block, DA.Paragraph
   public Paragraph
     (ElementViewModel ownerViewModel, DXW.Paragraph paragraph) : base(ownerViewModel, paragraph)
   {
-    ParagraphProperties ??= new ParagraphProperties(this, paragraph.GetProperties());
+    ParagraphProperties ??= new ParagraphProperties(this, paragraph.GetParagraphProperties());
   }
 
   /// <summary>

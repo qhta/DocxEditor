@@ -1,11 +1,9 @@
-﻿using Docx.Automation;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Represents settings of text columns.
 /// </summary>
-public class TextColumns : ElementViewModelCollection<TextColumn>, DA.TextColumns
+public class TextColumns : ElementViewModelCollection<DXW.Columns, TextColumn>, DA.TextColumns
 {
 
   /// <summary>
@@ -13,11 +11,9 @@ public class TextColumns : ElementViewModelCollection<TextColumn>, DA.TextColumn
   /// </summary>
   /// <param name="parent"></param>
   /// <param name="columns"></param>
-  public TextColumns(ElementViewModel? parent, DXW.Columns columns) : base(parent)
+  public TextColumns(ElementViewModel parent, DXW.Columns columns) : base(parent, columns)
   {
   }
-
-  internal DXW.Columns OpenXmlElement => (DXW.Columns)ModeledElement!;
 
   /// <summary>
   /// Enumerates the collection.
@@ -33,11 +29,10 @@ public class TextColumns : ElementViewModelCollection<TextColumn>, DA.TextColumn
   /// </summary>
   public bool? EqualWidth
   {
-    get => OpenXmlElement.EqualWidth?.Value; 
+    get => OpenXmlElement?.EqualWidth?.Value; 
     set
     {
-      bool? oldValue = OpenXmlElement.EqualWidth?.Value;
-      if (value == oldValue) return;
+      if (value == EqualWidth) return;
       OpenXmlElement.EqualWidth = value is null ? null : new DX.OnOffValue(value);
       NotifyPropertyChanged(nameof(EqualWidth));
     }
@@ -91,4 +86,7 @@ public class TextColumns : ElementViewModelCollection<TextColumn>, DA.TextColumn
       NotifyPropertyChanged(nameof(Separator));
     }
   }
+
+  public DA.Application Application { get; }
+  public object? Parent { get; }
 }

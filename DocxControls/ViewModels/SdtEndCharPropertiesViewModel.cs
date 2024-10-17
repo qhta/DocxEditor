@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a Sdt element end char properties
 /// </summary>
-public class SdtEndCharPropertiesViewModel : ElementViewModel
+public class SdtEndCharPropertiesViewModel: ElementViewModel<DXW.SdtEndCharProperties>
 {
   /// <summary>
   /// Initializing constructor.

@@ -5,7 +5,7 @@ namespace Docx.Automation;
 /// <summary>
 /// Window that visualizes a document.
 /// </summary>
-public interface DocumentWindow: IVisualElement
+public interface DocumentWindow: _VisualElement
 {
   #region properties
   /// <summary>

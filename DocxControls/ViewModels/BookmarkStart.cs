@@ -3,9 +3,8 @@
 /// <summary>
 /// View model for a bookmark start element.
 /// </summary>
-public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
+public class BookmarkStart : ElementViewModel<DXW.BookmarkStart>, DA.Bookmark, DA.BookmarkStart
 {
-
   /// <summary>
   /// Initializing constructor.
   /// </summary>
@@ -13,15 +12,27 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   /// <param name="bookmarkStartModeledElement"></param>
   public BookmarkStart(CompoundElementViewModel parentViewModel, DXW.BookmarkStart bookmarkStartModeledElement) : base(parentViewModel, bookmarkStartModeledElement)
   {
-    var bookmarks = parentViewModel.GetDocumentViewModel()?.Bookmarks;
-    if (bookmarks == null)
-      throw new ArgumentException("Parent view model must have a bookmarks collection.");
-    _bookmarksViewModel = bookmarks!;
+
   }
 
-  private readonly Bookmarks _bookmarksViewModel;
-
-
+  /// <summary>
+  /// Bookmarks collection view model
+  /// </summary>
+  public Bookmarks Bookmarks
+  {
+    get
+    {
+      if (_bookmarksViewModel == null)
+      {
+        var bookmarks = (Parent as ElementViewModel)?.GetDocumentViewModel()?.Bookmarks;
+        if (bookmarks == null)
+          throw new ArgumentException("Parent view model must have a bookmarks collection.");
+        _bookmarksViewModel = bookmarks!;
+      }
+      return _bookmarksViewModel!;
+    }
+  }
+  private Bookmarks? _bookmarksViewModel;
 
   /// <summary>
   /// <c>BookmarkStartElement</c> element
@@ -52,7 +63,7 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   /// <summary>
   /// Corresponding <c>BookmarkEndViewModel</c> element
   /// </summary>
-  public BookmarkEnd? BookmarkEndViewModel => _bookmarksViewModel.GetBookmarkEnd(BookmarkStartElement?.Id?.Value);
+  public BookmarkEnd? BookmarkEndViewModel => Bookmarks.GetBookmarkEnd(BookmarkStartElement?.Id?.Value);
 
   /// <summary>
   /// Integer identifier of the bookmark
@@ -133,7 +144,7 @@ public class BookmarkStart : ElementViewModel, DA.Bookmark, DA.BookmarkStart
   {
     get
     {
-      var parentStory = _bookmarksViewModel.ParentStory;
+      var parentStory = Bookmarks.ParentStory;
       if (parentStory == null) return 0;
       return parentStory.StoryType;
     }

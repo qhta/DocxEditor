@@ -3,23 +3,36 @@
 /// <summary>
 /// View model for bookmark end element.
 /// </summary>
-public class BookmarkEnd : ElementViewModel, DA.BookmarkEnd
+public class BookmarkEnd : ElementViewModel<DXW.BookmarkEnd>, DA.BookmarkEnd
 {
-
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="parentViewModel"></param>
   /// <param name="bookmarkEnd"></param>
-  public BookmarkEnd(CompoundElementViewModel parentViewModel, DXW.BookmarkEnd bookmarkEnd): base (parentViewModel,bookmarkEnd)
+  public BookmarkEnd(CompoundElementViewModel parentViewModel, DXW.BookmarkEnd? bookmarkEnd): base (parentViewModel,bookmarkEnd)
   {
-    var bookmarks = parentViewModel.GetDocumentViewModel()?.Bookmarks;
-    if (bookmarks == null)
-      throw new ArgumentException("Parent view model must have a bookmarks collection.");
-    _bookmarksViewModel = bookmarks!;
+
   }
 
-  private readonly Bookmarks _bookmarksViewModel;
+  /// <summary>
+  /// Bookmarks collection view model
+  /// </summary>
+  public Bookmarks Bookmarks
+  {
+    get
+    {
+      if (_bookmarksViewModel==null)
+      {
+        var bookmarks = (Parent as ElementViewModel)?.GetDocumentViewModel()?.Bookmarks;
+        if (bookmarks == null)
+          throw new ArgumentException("Parent view model must have a bookmarks collection.");
+        _bookmarksViewModel = bookmarks!;
+      }
+      return _bookmarksViewModel!;
+    }
+  }
+  private Bookmarks? _bookmarksViewModel;
 
   /// <summary>
   /// <c>BookmarkEndElementElement</c> element
@@ -46,7 +59,7 @@ public class BookmarkEnd : ElementViewModel, DA.BookmarkEnd
   /// <summary>
   /// Corresponding <c>BookmarkStartViewModel</c> element
   /// </summary>
-  public BookmarkStart? BookmarkStartViewModel => _bookmarksViewModel.GetBookmarkStart(BookmarkEndElement?.Id?.Value);
+  public BookmarkStart? BookmarkStartViewModel => Bookmarks.GetBookmarkStart(BookmarkEndElement?.Id?.Value);
 
   /// <summary>
   /// Integer identifier of the bookmark

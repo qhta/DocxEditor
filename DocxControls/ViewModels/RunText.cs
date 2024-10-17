@@ -3,25 +3,19 @@
 /// <summary>
 /// View model for a run text element
 /// </summary>
-public class RunText : ElementViewModel, DA.RunText
+public class RunText : ElementViewModel<DXW.Text>, DA.RunText
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="runViewModel">Owner view model. Must be <see cref="Run"/></param>
   /// <param name="text"></param>
-  public RunText(Run runViewModel, DXW.Text text): base (runViewModel, text)
+  public RunText(Run runViewModel, DXW.Text? text): base (runViewModel, text)
   {
     DoubleClickCommand = null;
     LeftMouseDownCommand = null;
     RightMouseUpCommand = null;
   }
-
-  /// <summary>
-  /// ModeledElement element of the paragraph
-  /// </summary>
-  internal DXW.Text OpenXmlElement => (DXW.Text)ModeledElement!;
-
 
   /// <summary>
   /// Parent run of the element

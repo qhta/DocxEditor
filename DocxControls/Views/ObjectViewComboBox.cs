@@ -1,10 +1,7 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-
-using DocxControls.Helpers;
 
 
 namespace DocxControls.Views;
@@ -37,7 +34,8 @@ public class ObjectViewComboBox : ComboBox
       {
         if (propertyViewModel.ObjectViewModel == null && propertyViewModel.OriginalType != null)
         {
-          propertyViewModel.ObjectViewModel = new VM.ObjectViewModel(propertyViewModel.OriginalType, null)
+          Debug.WriteLine($"propertyViewModel.OriginalType={propertyViewModel.OriginalType}");
+          propertyViewModel.ObjectViewModel = new VM.ObjectViewModel(propertyViewModel.Owner!, propertyViewModel.OriginalType)
           { IsNew = true };
         }
       }
@@ -214,7 +212,7 @@ public class ObjectViewComboBox : ComboBox
       var collection = objectViewModel?.ObjectMembers;
       //Debug.WriteLine($"{this}.MembersDataGrid_LoadingRow collection = {collection}");
       //var allowedTypes = collection?.AllowedMemberTypes;
-      e.Row.Item = new VM.ObjectMemberViewModel { Owner = objectViewModel, MemberType = memberType, IsNew = true, Collection = collection };
+      e.Row.Item = new VM.ObjectMemberViewModel(objectViewModel!, memberType!) { IsNew = true, Collection = collection };
     }
     else
     {
@@ -282,6 +280,7 @@ public class ObjectViewComboBox : ComboBox
 
   private void UpdateDataGridWidth(DataGrid dataGrid)
   {
+    //Debug.WriteLine($"UpdateDataGridWidth({dataGrid})");
     // ReSharper disable once InvertIf
     if (dataGrid.DataContext is IObjectViewModelProvider viewModel)
     {

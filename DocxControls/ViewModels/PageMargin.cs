@@ -1,22 +1,18 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Represents the margins of a page.
 /// </summary>
-public class PageMargin: ElementViewModel, Docx.Automation.PageMargin
+public class PageMargin: ElementViewModel<DXW.PageMargin>, Docx.Automation.PageMargin
 {
   /// <summary>
   /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public PageMargin(ElementViewModel owner, DXW.PageMargin modeledElement) : base(owner, modeledElement)
+  public PageMargin(ElementViewModel owner, DXW.PageMargin? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.PageMargin OpenXmlElement => (DXW.PageMargin)ModeledElement!;
 
   DA.Length? DA.PageMargin.Right
   {

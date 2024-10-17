@@ -13,7 +13,7 @@ public sealed class Run : CompoundElementViewModel, DA.Run
   public Run(ElementViewModel propertiesViewModel, DXW.Run run) : base(propertiesViewModel, run)
   {
     LoadAllElements();
-    RunProperties ??= new RunProperties(this, run.GetProperties());
+    RunProperties ??= new RunProperties(this, run.GetRunProperties());
   }
 
   /// <summary>

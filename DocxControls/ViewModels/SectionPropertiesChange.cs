@@ -3,18 +3,16 @@
 /// <summary>
 /// Represents a change in section properties.
 /// </summary>
-public class SectionPropertiesChange : ElementViewModel, DA.SectionPropertiesChange
+public class SectionPropertiesChange: ElementViewModel<DXW.SectionPropertiesChange>, DA.SectionPropertiesChange
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public SectionPropertiesChange(ElementViewModel owner, DXW.SectionPropertiesChange modeledElement) : base(owner, modeledElement)
+  public SectionPropertiesChange(ElementViewModel owner, DXW.SectionPropertiesChange? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.SectionPropertiesChange OpenXmlElement => (DXW.SectionPropertiesChange)ModeledElement!;
 
   /// <summary>
   /// <para>author</para>

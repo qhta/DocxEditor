@@ -3,18 +3,16 @@
 /// <summary>
 /// ViewModel for Wordprocessing Color
 /// </summary>
-public class WordColor: ElementViewModel, DA.WordColor
+public class WordColor: ElementViewModel<DXW.Color>, DA.WordColor
 {
   /// <summary>
   /// Constructor with owner and modeled element
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public WordColor(ViewModel owner, DXW.Color modeledElement) : base(owner, modeledElement)
+  public WordColor(ViewModel owner, DXW.Color? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.Color OpenXmlElement => (DXW.Color)ModeledElement!;
 
   /// <summary>
   /// Hexadecimal value of the color.

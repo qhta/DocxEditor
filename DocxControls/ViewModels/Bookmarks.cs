@@ -11,7 +11,7 @@ public class Bookmarks : ElementCollection<BookmarkStart>, DA.Bookmarks
   /// <summary>
   /// The owner story of bookmarks collection.
   /// </summary>
-  public DA.IStory? ParentStory { get; set; }
+  public DA._Story? ParentStory { get; set; }
 
   /// <summary>
   /// Dictionary of bookmarks indexed by ID.

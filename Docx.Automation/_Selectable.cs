@@ -3,7 +3,7 @@
 /// <summary>
 /// interface for selectable elements
 /// </summary>
-public interface ISelectable
+public interface _Selectable
 {
   /// <summary>
   /// Gets a value indicating whether the element is selected.

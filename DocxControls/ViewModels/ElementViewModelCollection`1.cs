@@ -1,6 +1,4 @@
-﻿using Qhta.MVVM;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Collection of elements.
@@ -20,7 +18,7 @@ public class ElementViewModelCollection<T>: ElementCollection<T> where T: Elemen
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  public ElementViewModelCollection(ViewModel owner, DX.OpenXmlElement modeledElement) : base(owner)
+  public ElementViewModelCollection(ViewModel? owner, DX.OpenXmlElement modeledElement) : base(owner)
   {
     ModeledElement = modeledElement;
   }

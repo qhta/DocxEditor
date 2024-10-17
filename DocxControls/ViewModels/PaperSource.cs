@@ -3,18 +3,16 @@
 /// <summary>
 /// Specifies printer-specific settings for the printer tray(s) that shall be used to print different pages in this section in the document.
 /// </summary>
-public class PaperSource: ElementViewModel, DA.PaperSource
+public class PaperSource: ElementViewModel<DXW.PaperSource>, DA.PaperSource
 {
   /// <summary>
   /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public PaperSource(ElementViewModel owner, DXW.PaperSource modeledElement) : base(owner, modeledElement)
+  public PaperSource(ElementViewModel owner, DXW.PaperSource? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.PaperSource OpenXmlElement => (DXW.PaperSource)ModeledElement!;
 
   /// <summary>
   /// Specific code that uniquely identifies a specific printer tray to be used to print the first page of this section in the document.

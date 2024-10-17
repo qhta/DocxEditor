@@ -1474,15 +1474,6 @@ namespace DocxControls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {x:Static resources:Strings.Properties}.
-        /// </summary>
-        public static string XStaticResourcesStringsProperties {
-            get {
-                return ResourceManager.GetString("XStaticResourcesStringsProperties", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Zoom.
         /// </summary>
         public static string Zoom {

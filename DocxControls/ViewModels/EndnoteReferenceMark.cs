@@ -3,14 +3,14 @@
 /// <summary>
 /// Specifies the presence of an endnote reference mark at the current location in the endnote.
 /// </summary>
-public class EndnoteReferenceMark : ElementViewModel, DA.AnnotationReferenceMark
+public class EndnoteReferenceMark : ElementViewModel<DXW.EndnoteReferenceMark>, DA.AnnotationReferenceMark
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public EndnoteReferenceMark(Run owner, DXW.EndnoteReferenceMark modeledElement) : base(owner, modeledElement)
+  public EndnoteReferenceMark(Run owner, DXW.EndnoteReferenceMark? modeledElement) : base(owner, modeledElement)
   {
   }
 

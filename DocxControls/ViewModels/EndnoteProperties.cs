@@ -1,21 +1,18 @@
-﻿
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Specifies the properties for endnotes in the section.
 /// </summary>
-public class EndnoteProperties: ElementViewModel, DA.EndnoteProperties
+public class EndnoteProperties: ElementViewModel<DXW.EndnoteProperties>, DA.EndnoteProperties
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public EndnoteProperties(ElementViewModel owner, DXW.EndnoteProperties modeledElement) : base(owner, modeledElement)
+  public EndnoteProperties(ElementViewModel owner, DXW.EndnoteProperties? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.EndnoteProperties OpenXmlElement => (DXW.EndnoteProperties)ModeledElement!;
 
   /// <summary>
   /// Specifies position for Endnotes in the section.

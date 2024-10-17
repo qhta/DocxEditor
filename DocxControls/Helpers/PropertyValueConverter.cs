@@ -1,4 +1,5 @@
 ﻿using System.Windows.Data;
+using Qhta.WPF.Utils;
 
 namespace DocxControls.Helpers;
 
@@ -18,6 +19,10 @@ public class PropertyValueConverter : IValueConverter
   /// <returns></returns>
   public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
   {
+    if (value is VM.ObjectViewModel objectViewModel)
+    {
+      return objectViewModel.DebugText();
+    }
     return value?.AsString();
   }
 

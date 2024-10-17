@@ -4,18 +4,16 @@
 /// Specifies the presence of a complex field character at the current location in the parent run.
 /// A complex field character is a special character which delimits the start and end of a complex field or separates its field codes from its current field result.
 /// </summary>
-public class FieldChar: ElementViewModel, DA.FieldChar
+public class FieldChar: ElementViewModel<DXW.FieldChar>, DA.FieldChar
 {
   /// <summary>
   /// Constructor with owner and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public FieldChar(Run owner, DXW.FieldChar modeledElement) : base(owner, modeledElement)
+  public FieldChar(Run owner, DXW.FieldChar? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.FieldChar OpenXmlElement => (DXW.FieldChar)ModeledElement!;
 
   /// <summary>
   /// Parent run of this view model

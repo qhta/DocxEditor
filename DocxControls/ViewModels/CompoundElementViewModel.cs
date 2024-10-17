@@ -147,7 +147,7 @@ public abstract class CompoundElementViewModel : ElementViewModel
 
   private void ChildElementViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
   {
-    Debug.WriteLine($"ChildElementViewModel_PropertyChanged: {e.PropertyName}");
+    //Debug.WriteLine($"ChildElementViewModel_PropertyChanged: {e.PropertyName}");
   }
 
   #region ISelectable implementation ----------------------------------------------------------------------------------------------------------------

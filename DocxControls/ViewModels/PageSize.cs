@@ -3,18 +3,16 @@
 /// <summary>
 /// Represents the size of a page.
 /// </summary>
-public class PageSize: ElementViewModel, DA.PageSize
+public class PageSize: ElementViewModel<DXW.PageSize>, DA.PageSize
 {
   /// <summary>
   /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public PageSize(ElementViewModel owner, DXW.PageSize modeledElement) : base(owner, modeledElement)
+  public PageSize(ElementViewModel owner, DXW.PageSize? modeledElement) : base(owner, modeledElement)
   {
   }
-
-  internal DXW.PageSize OpenXmlElement => (DXW.PageSize)ModeledElement!;
 
   DA.Length? DA.PageSize.Width
   {

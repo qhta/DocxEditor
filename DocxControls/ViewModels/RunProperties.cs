@@ -3,7 +3,7 @@
 /// <summary>
 /// View model for a run properties
 /// </summary>
-public class RunProperties : ElementViewModel, DA.RunProperties
+public class RunProperties : ElementViewModel<DXW.RunProperties>, DA.RunProperties
 {
   /// <summary>
   /// Initializing constructor.

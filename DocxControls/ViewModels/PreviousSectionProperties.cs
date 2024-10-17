@@ -5,21 +5,16 @@ namespace DocxControls.ViewModels;
 /// <summary>
 /// View model for a section properties
 /// </summary>
-public class PreviousSectionProperties : ElementViewModel, DA.PreviousSectionProperties
+public class PreviousSectionProperties : ElementViewModel<DXW.PreviousSectionProperties>, DA.PreviousSectionProperties
 {
   /// <summary>
   /// Initializing constructor.
   /// </summary>
   /// <param name="ownerViewModel">Owner view model. Must be <see cref="CompoundElementViewModel"/></param>
   /// <param name="modeledElement">Modeled section modeledElement element</param>
-  public PreviousSectionProperties(ElementViewModel ownerViewModel, DXW.PreviousSectionProperties modeledElement) : base(ownerViewModel, modeledElement)
+  public PreviousSectionProperties(ElementViewModel ownerViewModel, DXW.PreviousSectionProperties? modeledElement) : base(ownerViewModel, modeledElement)
   {
   }
-
-  /// <summary>
-  /// Section properties element of the document
-  /// </summary>
-  internal DXW.PreviousSectionProperties OpenXmlElement => (DXW.PreviousSectionProperties)ModeledElement!;
 
   string? DA.SectionPropertiesBase.RsidRPr { get => RsidRPr; set => RsidRPr = value; }
   /// <summary>

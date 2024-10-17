@@ -3,7 +3,7 @@
 /// <summary>
 ///  A carriage return character
 /// </summary>
-public class CarriageReturn: ElementViewModel, DA.CarriageReturn
+public class CarriageReturn: ElementViewModel<DXW.CarriageReturn>, DA.CarriageReturn
 {
   /// <summary>
   /// Constructor with owner and modeled element.

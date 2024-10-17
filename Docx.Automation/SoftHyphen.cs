@@ -3,7 +3,7 @@
 /// <summary>
 ///  A soft hyphen character
 /// </summary>
-public interface SoftHyphen : _Element, _RunItem, ITextReadonlyElement
+public interface SoftHyphen : _Element, _RunItem, _TextReadonlyElement
 {
 
 }
