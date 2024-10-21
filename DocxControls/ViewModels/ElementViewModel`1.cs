@@ -11,7 +11,7 @@ public abstract class ElementViewModel<T> : ElementViewModel where T : DX.OpenXm
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  protected ElementViewModel(ViewModel owner, T? modeledElement) : base(owner, modeledElement ?? new T())
+  protected ElementViewModel(ViewModel? owner, T? modeledElement) : base(owner, modeledElement ?? new T())
   {
   }
 

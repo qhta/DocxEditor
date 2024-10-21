@@ -1,7 +1,4 @@
-﻿using Qhta.MVVM;
-using DocxControls.Helpers;
-
-namespace DocxControls.ViewModels;
+﻿namespace DocxControls.ViewModels;
 
 /// <summary>
 /// Class for providing data for <c>ComboBox</c> items.

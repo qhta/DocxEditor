@@ -12,7 +12,7 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// for the new item placeholder view model when the type of the modeled object is unknown.
   /// </summary>
   /// <param name="owner">View model with will be a owner of the new view model</param>
-  protected ObjectViewModel(ViewModel owner)
+  protected ObjectViewModel(ViewModel? owner)
   {
     Owner = owner;
     _ObjectType = null;
@@ -26,9 +26,9 @@ public class ObjectViewModel : ViewModel, IObjectViewModel, IToolTipProvider, IP
   /// Initializing constructor
   /// when the type of the modeled object is unknown, but the object may be known.
   /// </summary>
-  protected ObjectViewModel(ViewModel owner, Object modeledObject) : this(owner)
+  protected ObjectViewModel(ViewModel? owner, Object? modeledObject) : this(owner)
   {
-    _ObjectType = modeledObject.GetType();
+    _ObjectType = modeledObject?.GetType();
     Initialize(_ObjectType, modeledObject);
   }
 

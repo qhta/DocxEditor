@@ -2,9 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DocxControls.Views"
                     xmlns:helpers="clr-namespace:DocxControls.Helpers"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-                    xmlns:viewModels="clr-namespace:DocxControls.ViewModels">
+                    xmlns:viewModels="clr-namespace:DocxControls.ViewModels"
+                    >
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomToolTipStyle.xaml"/>
     <ResourceDictionary Source="pack://application:,,,/DocxControls;component/Views/CustomComboBoxStyle.xaml"/>
@@ -13,15 +12,15 @@
   <helpers:PropertyValueConverter x:Key="PropertyValueConverter" />
   <helpers:TypeNameConverter x:Key="TypeNameConverter"/>
   <helpers:EnumValuesConverter x:Key="EnumValuesConverter"/>
-  <DataTemplate x:Key="TextTemplate" DataType="local:PropertyViewModel" >
-    <!--<syncfusion:SfMaskedEdit 
+  <DataTemplate x:Key="TextTemplate" DataType="{x:Type viewModels:PropertyViewModel}" >
+    <local:TextEdit 
       Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
       Watermark="{Binding Watermark}"
-      Mask="{Binding EditMask}"
       MaskType = "RegEx"
       IsReadOnly="{Binding IsReadOnly}"
       TextWrapping="WrapWithOverflow"
-      AcceptsReturn="False">
+      AcceptsReturn="False"
+      >
       <TextBox.Style>
         <Style TargetType="TextBox">
           <Setter Property="BorderThickness" Value="0" />
@@ -29,36 +28,23 @@
             <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
               <Setter Property="Foreground" Value="LightGray"/>
             </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </TextBox.Style>
-    </syncfusion:SfMaskedEdit>-->
-    <xctk:WatermarkTextBox 
-      Text="{Binding Value, Converter={StaticResource PropertyValueConverter}, UpdateSourceTrigger=LostFocus}" 
-      Watermark="{Binding Watermark}"
-      IsReadOnly="{Binding IsReadOnly}"
-      Padding="{StaticResource PropertyPadding}"
-      TextWrapping="WrapWithOverflow">
-      <TextBox.Style>
-        <Style TargetType="TextBox">
-          <Setter Property="BorderThickness" Value="0" />
-          <Style.Triggers>
-            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
-              <Setter Property="Foreground" Value="LightGray"/>
+            <DataTrigger Binding="{Binding IsValid}" Value="False">
+              <Setter Property="Background" Value="Red"/>
+              <Setter Property="ToolTip" Value="{Binding ErrorMsg}"/>
             </DataTrigger>
           </Style.Triggers>
         </Style>
       </TextBox.Style>
-    </xctk:WatermarkTextBox>
+    </local:TextEdit>
   </DataTemplate>
 
-  <DataTemplate x:Key="CheckBoxTemplate" DataType="local:PropertyViewModel">
+  <DataTemplate x:Key="CheckBoxTemplate" DataType="{x:Type viewModels:PropertyViewModel}">
     <CheckBox 
        IsChecked="{Binding AsBoolean, UpdateSourceTrigger=PropertyChanged}"
        IsThreeState="{Binding IsThreeState}"
        Margin="{StaticResource PropertyPadding}"/>
   </DataTemplate>
-  <DataTemplate x:Key="ComboBoxTemplate" DataType="local:PropertyViewModel">
+  <DataTemplate x:Key="ComboBoxTemplate" DataType="{x:Type viewModels:PropertyViewModel}">
     <ComboBox 
        SelectedValue="{Binding SelectedEnum, UpdateSourceTrigger=PropertyChanged}"
        ItemsSource="{Binding EnumValues}"
@@ -67,7 +53,7 @@
        Padding="{StaticResource PropertyPadding}">
     </ComboBox>
   </DataTemplate>
-  <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="local:PropertyViewModel">
+  <DataTemplate x:Key="CheckBoxComboBoxTemplate" DataType="{x:Type viewModels:PropertyViewModel}">
     <local:CheckBoxComboBox 
        Text="{Binding SelectedEnum, Converter={StaticResource PropertyValueConverter},
        UpdateSourceTrigger=PropertyChanged}"
@@ -85,7 +71,7 @@
     >
     </local:ObjectViewComboBox>
   </DataTemplate>-->
-  <DataTemplate x:Key="ObjectViewComboBoxTemplate" DataType="local:PropertyViewModel">
+  <DataTemplate x:Key="ObjectViewComboBoxTemplate" DataType="{x:Type viewModels:PropertyViewModel}">
     <local:ObjectViewComboBox 
        Text="{Binding ObjectViewModel.ModeledObject, Converter={StaticResource PropertyValueConverter},
        UpdateSourceTrigger=Default}"

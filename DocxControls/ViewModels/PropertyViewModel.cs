@@ -100,8 +100,7 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       {
         _Value = value;
         NotifyPropertyChanged(nameof(Value));
-        if (Owner is ViewModel viewModel)
-          viewModel.NotifyPropertyChanged(Name);
+        Owner!.NotifyPropertyChanged(Name);
         IsModified = true;
       }
     }
@@ -252,6 +251,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   #endregion
 
   /// <summary>
+  /// Check if a type of the property is nullable.
+  /// </summary>
+  public virtual bool IsNullableType
+  {
+    get
+    {
+      var type = Type;
+      if (type != null)
+      {
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+          return true;
+      }
+      return false;
+    }
+  }
+
+  /// <summary>
   /// Not nullable type of the property.
   /// </summary>
   public virtual Type? NotNullableType
@@ -298,6 +314,23 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
   public virtual string? TooltipDescription => (Name != null) ? FixDescription(PropertiesDescriptions.ResourceManager
     .GetString(Name!, CultureInfo.CurrentUICulture)) : null;
 
+
+  /// <summary>
+  /// Error message for the property.
+  /// </summary>
+  public string? ErrorMsg
+  {
+    get => IsValid==false ? _ErrorMsg : null;
+    set
+    {
+      if (_ErrorMsg != value)
+      {
+        _ErrorMsg = value;
+        NotifyPropertyChanged(nameof(ErrorMsg));
+      }
+    }
+  }
+  private string? _ErrorMsg;
   /// <summary>
   /// 
   /// </summary>
@@ -450,20 +483,25 @@ public class PropertyViewModel : ViewModel, IToolTipProvider, IBooleanProvider, 
       var type = NotNullableType;
       if (type != null)
       {
+        List<EnumValueViewModel> result = new();
         if (type.IsOpenXmlEnum())
         {
-          var result = new List<EnumValueViewModel>();
           result.Add(new EnumValueViewModel());
           result.AddRange(
             type.GetOpenXmlProperties()
               .Select(CreateEnumPropValueViewModel));
+
           return result;
         }
         if (type.IsEnum)
         {
+          if (IsNullableType)
+            result.Add(new EnumValueViewModel());
           if (IsFlags)
-            return Enum.GetValues(type).Cast<object>().Select(CreateEnumFlagValueViewModel);
-          return Enum.GetValues(type).Cast<object>().Select(CreateEnumValueViewModel);
+            result.AddRange(Enum.GetValues(type).Cast<object>().Select(CreateEnumFlagValueViewModel));
+          else
+            result.AddRange(Enum.GetValues(type).Cast<object>().Select(CreateEnumValueViewModel));
+          return result;
         }
       }
       return [];

@@ -82,12 +82,33 @@ public class ObjectPropertyViewModel : PropertyViewModel
     if (e.PropertyName == nameof(Value))
     {
       var value = Value;
-      var val = value!.ToOpenXmlValue(OriginalType);
-      ViewModelObjectProperty?.SetValue(Owner, val);
-      OriginalProperty?.SetValue(ModeledObject, val);
-      var val2 = OriginalProperty?.GetValue(ModeledObject);
-      if (val2 != val)
-        Debug.WriteLine($"Property {Name} of {ModeledObject} not set to {val}");
+      try
+      {
+        IsValid = true;
+        if (Owner is ElementViewModel elementViewModel)
+        {
+          if (value is string str)
+            value = str.FromString(ViewModelObjectProperty!.PropertyType);
+          ViewModelObjectProperty?.SetValue(elementViewModel, value);
+        }
+        else
+        {
+          var val = value!.ToOpenXmlValue(OriginalType);
+          object owner = Owner!;
+          if (Owner is ObjectViewModel objectViewModel)
+            owner = objectViewModel.ModeledObject!;
+          ViewModelObjectProperty?.SetValue(owner, val);
+          OriginalProperty?.SetValue(ModeledObject, val);
+          var val2 = OriginalProperty?.GetValue(ModeledObject);
+          if (val2 != val)
+            Debug.WriteLine($"Property {Name} of {ModeledObject} not set to {val}");
+        }
+      } catch (Exception exception)
+      {
+        ErrorMsg = exception.Message;
+        IsValid = false;
+        throw;
+      }
     }
   }
 

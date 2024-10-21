@@ -13,7 +13,7 @@ public abstract class ElementViewModel : ObjectViewModel, _Element, DA._Selectab
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  protected ElementViewModel(ViewModel owner, DX.OpenXmlElement modeledElement) : base(owner, modeledElement)
+  protected ElementViewModel(ViewModel? owner, DX.OpenXmlElement? modeledElement) : base(owner, modeledElement)
   {
   }
 

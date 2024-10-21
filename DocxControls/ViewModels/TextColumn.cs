@@ -5,16 +5,19 @@
 /// </summary>
 public class TextColumn: ElementViewModel<DXW.Column>, DA.TextColumn
 {
+  /// <summary>
+  /// Default constructor. Needed for adding new elements to the collection.
+  /// </summary>
   public TextColumn() : this(null, null)
   {
   }
 
   /// <summary>
-  /// Initializing constructor.
+  /// Constructor with owner object and modeled element.
   /// </summary>
   /// <param name="owner"></param>
   /// <param name="modeledElement"></param>
-  public TextColumn(ViewModel owner, DXW.Column? modeledElement) : base(owner, modeledElement)
+  public TextColumn(ViewModel? owner, DXW.Column? modeledElement) : base(owner, modeledElement)
   {
   }
 

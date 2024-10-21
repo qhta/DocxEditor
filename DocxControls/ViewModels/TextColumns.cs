@@ -11,7 +11,7 @@ public class TextColumns : ElementViewModelCollection<DXW.Columns, TextColumn>, 
   /// </summary>
   /// <param name="parent"></param>
   /// <param name="columns"></param>
-  public TextColumns(ElementViewModel parent, DXW.Columns columns) : base(parent, columns)
+  public TextColumns(ElementViewModel? parent, DXW.Columns? columns) : base(parent, columns)
   {
   }
 
@@ -87,6 +87,13 @@ public class TextColumns : ElementViewModelCollection<DXW.Columns, TextColumn>, 
     }
   }
 
-  public DA.Application Application { get; }
-  public object? Parent { get; }
+  /// <summary>
+  /// Gets the application instance.
+  /// </summary>
+  public new DA.Application Application => DocxControls.Application.Instance;
+
+  /// <summary>
+  /// Gets the parent element of this element.
+  /// </summary>
+  public new object? Parent => Owner;
 }

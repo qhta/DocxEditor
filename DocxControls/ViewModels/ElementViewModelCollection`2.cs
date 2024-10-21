@@ -16,19 +16,9 @@ public class ElementViewModelCollection<T, U>: ElementViewModel<T>, DA.IElementC
   /// </summary>
   /// <param name="owner">owner ViewModel</param>
   /// <param name="modeledElement">Modeled ModeledElement</param>
-  public ElementViewModelCollection(ViewModel owner, T? modeledElement) : base(owner, modeledElement ?? new T())
+  public ElementViewModelCollection(ViewModel? owner, T? modeledElement) : base(owner, modeledElement ?? new T())
   {
   }
-
-  /// <summary>
-  /// Gets the application object.
-  /// </summary>
-  public DA.Application Application => base.Application;
-
-  /// <summary>
-  /// Gets the parent object.
-  /// </summary>
-  public object? Parent => base.Parent;
 
   /// <summary>
   ///  Collection of Elements objects.
@@ -61,6 +51,16 @@ public class ElementViewModelCollection<T, U>: ElementViewModel<T>, DA.IElementC
     // ReSharper disable once NotDisposedResourceIsReturned
     return ((IEnumerable<U>)Items).GetEnumerator();
   }
+
+  /// <summary>
+  /// Gets the application object.
+  /// </summary>
+  public new  DA.Application Application => DocxControls.Application.Instance;
+
+  /// <summary>
+  /// Gets the parent object.
+  /// </summary>
+  public new object? Parent => Owner;
 
   /// <summary>
   /// Returns the number of items in the collection.

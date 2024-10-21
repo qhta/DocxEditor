@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.1" />
-    <PackageReference Include="Qhta.MVVM" Version="4.1.0" />
+    <PackageReference Include="Qhta.MVVM" Version="4.2.0" />
     <PackageReference Include="Qhta.WPF.Utils" Version="3.4.0" />
     <PackageReference Include="Syncfusion.SfInput.WPF" Version="27.1.53" />
     <PackageReference Include="Syncfusion.Shared.WPF" Version="27.1.53" />

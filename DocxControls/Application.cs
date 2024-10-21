@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 
 using DocxControls.Views;
